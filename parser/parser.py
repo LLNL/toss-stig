@@ -29,15 +29,15 @@ def cli(input_file):
     tree=ET.fromstring(input_file.read())
     for group in tree.findall("xccdf:Group", NS):
         control = {
-            "group_title": find_and_parse(group, "xccdf:title"),
-            "rule_title": find_and_parse(group, "./xccdf:Rule/xccdf:title"),
-            "description": find_and_parse(group, "./xccdf:Rule/xccdf:description"),
-            "fix_text": find_and_parse(group, "./xccdf:Rule/xccdf:fixtext"),
-            "check_text": find_and_parse(group, "./xccdf:Rule/xccdf:check/xccdf:check-content"),
-            "stig_id": find_and_parse(group, "./xccdf:Rule/xccdf:version"),
-            "rule_id": group.find("./xccdf:Rule", NS).attrib["id"],
-            "severity": group.find("./xccdf:Rule", NS).attrib["severity"],
             "vuln_id": group.attrib["id"],
+            "severity": group.find("./xccdf:Rule", NS).attrib["severity"],
+            "group_title": find_and_parse(group, "xccdf:title"),
+            "rule_id": group.find("./xccdf:Rule", NS).attrib["id"],
+            "stig_id": find_and_parse(group, "./xccdf:Rule/xccdf:version"),
+            "rule_title": find_and_parse(group, "./xccdf:Rule/xccdf:title"),
+            "discussion": find_and_parse(group, "./xccdf:Rule/xccdf:description"),
+            "check_text": find_and_parse(group, "./xccdf:Rule/xccdf:check/xccdf:check-content"),
+            "fix_text": find_and_parse(group, "./xccdf:Rule/xccdf:fixtext"),
             "cci": [ident.text for ident in group.findall("./xccdf:Rule/xccdf:ident[@system='http://cyber.mil/cci']", NS)],
         }
         print(control)
