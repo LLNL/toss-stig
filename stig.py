@@ -294,9 +294,15 @@ def toss_04_010020(fake_password: str = None):
             all_encrypted = False
 
     if all_encrypted:
-        return StigResult("TOSS-04-010020", "success", )
+        return StigResult(
+            "TOSS-04-010020",
+            "success",
+        )
     else:
-        return StigResult("TOSS-04-010020", "failure", )
+        return StigResult(
+            "TOSS-04-010020",
+            "failure",
+        )
 
 
 def toss_04_xxxxxx():
