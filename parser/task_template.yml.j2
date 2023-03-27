@@ -1,11 +1,14 @@
 - name: {{ stig_id }} - {{ rule_title }}
   # TODO: Implement the task
-    when:
-    - {{ stig_id | replace('-', '_') }} | bool
-    - ansible_facts['virtualization_type'] != "docker"
-    - services['rdisc.service'] is defined
+  when:
+    - {{ stig_id_slug }} | bool
   tags:
+    - {{ vuln_id }}  # V-252911
+    - {{ group_title }}  # SRG-OS-000023-GPOS-00006
+    - {{ rule_id }}  # SV-252911r824057_rule
     - {{ stig_id }}  # TOSS-04-010000
     - {{ "DISA-STIG-" + stig_id}}  # DISA-STIG-TOSS-04-010000
     - {{ severity + "_severity" }}  # medium_severity
-    - {{ group_title }}  # SRG-OS-000023-GPOS-00006
+    {% for item in cci %}
+    - {{ item }}
+    {% endfor %}
