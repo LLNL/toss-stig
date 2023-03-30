@@ -1,3 +1,6 @@
+{% for line in check_text.splitlines() %} # {{line}}
+{%endfor%}
+
 - name: {{ stig_id }} - {{ rule_title }}
   # TODO: Implement the task
   when:
