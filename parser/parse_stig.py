@@ -20,8 +20,8 @@ def render_task_file(context, template, output_dir=".", filename=None):
         filename = context["stig_id_slug"] + ".yml"
     output_path = os.path.join(os.path.abspath(output_dir), filename)
     rendered = template.render(**context)
-    with open(output_path, "w") as ouptut_fh:
-        ouptut_fh.write(rendered)
+    with open(output_path, "w") as output_fh:
+        output_fh.write(rendered)
 
 
 def nist_from_cci(cci: str):
