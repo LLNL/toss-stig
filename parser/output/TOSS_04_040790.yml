@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253120
+
+# Verify TOSS does not accept router advertisements on all IPv6
+# interfaces by default, unless the system is a router. Note: If IPv6 is disabled
+# on the system, this requirement is Not Applicable. Check to see if router
+# advertisements are not accepted by default by using the following command: $
+# sudo sysctl net.ipv6.conf.default.accept_ra net.ipv6.conf.default.accept_ra = 0
+# If the "accept_ra" value is not "0" and is not documented with the Information
+# System Security Officer (ISSO) as an operational requirement, this is a finding.
+
+
+- name: TOSS-04-040790 - TOSS must not accept router advertisements on all IPv6 interfaces by default.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040790 | bool
+  tags:
+    - V-253120  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253120r825032_rule  
+    - TOSS-04-040790  
+    - DISA-STIG-TOSS-04-040790  
+    - medium_severity  
+    - CCI-000366
+    

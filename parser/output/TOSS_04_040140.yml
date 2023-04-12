@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253069
+
+# Verify TOSS enforces a minimum 15-character password length. The
+# "minlen" option sets the minimum number of characters in a new password. Check
+# for the value of the "minlen" option in "/etc/security/pwquality.conf" with the
+# following command: $ sudo grep minlen /etc/security/pwquality.conf minlen = 15
+# If the command does not return a "minlen" value of 15 or greater, this is a
+# finding.
+
+
+- name: TOSS-04-040140 - TOSS must enforce a minimum 15-character password length.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040140 | bool
+  tags:
+    - V-253069  
+    - SRG-OS-000078-GPOS-00046  
+    - SV-253069r824879_rule  
+    - TOSS-04-040140  
+    - DISA-STIG-TOSS-04-040140  
+    - medium_severity  
+    - CCI-000205
+    

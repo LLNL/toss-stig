@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253132
+
+# Verify TOSS restricts exposed kernel pointer addresses access with
+# the following commands: $ sudo sysctl kernel.kptr_restrict kernel.kptr_restrict
+# = 1 If the returned line does not have a value of "1", or a line is not
+# returned, this is a finding.
+
+
+- name: TOSS-04-040910 - TOSS must restrict exposed kernel pointer addresses access.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040910 | bool
+  tags:
+    - V-253132  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253132r825068_rule  
+    - TOSS-04-040910  
+    - DISA-STIG-TOSS-04-040910  
+    - medium_severity  
+    - CCI-000366
+    

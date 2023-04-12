@@ -1,0 +1,27 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253030
+
+# Verify TOSS audits the execution of privileged functions. Check if
+# TOSS is configured to audit the execution of the "execve" system call, by
+# running the following command: $ sudo grep execve /etc/audit/audit.rules -a
+# always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k execpriv -a
+# always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k execpriv -a
+# always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k execpriv -a
+# always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k execpriv If the
+# command does not return all lines, or the lines are commented out, this is a
+# finding.
+
+
+- name: TOSS-04-030860 - The TOSS audit system must prevent all software from executing at higher privilege levels than users executing the software and the audit system must be configured to audit the execution of privileged functions.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030860 | bool
+  tags:
+    - V-253030  
+    - SRG-OS-000326-GPOS-00126  
+    - SV-253030r824762_rule  
+    - TOSS-04-030860  
+    - DISA-STIG-TOSS-04-030860  
+    - medium_severity  
+    - CCI-002233
+    - CCI-002234
+    

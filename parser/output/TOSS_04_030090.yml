@@ -1,0 +1,25 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252976
+
+# Verify TOSS takes the appropriate action when an audit processing
+# failure occurs. Check that TOSS takes the appropriate action when an audit
+# processing failure occurs with the following command: $ sudo grep
+# disk_error_action /etc/audit/auditd.conf disk_error_action = HALT If the value
+# of the "disk_error_action" option is not "SYSLOG", "SINGLE", or "HALT", or the
+# line is commented out, ask the system administrator to indicate how the system
+# takes appropriate action when an audit process failure occurs. If there is no
+# evidence of appropriate action, this is a finding.
+
+
+- name: TOSS-04-030090 - TOSS must take appropriate action when an audit processing failure occurs.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030090 | bool
+  tags:
+    - V-252976  
+    - SRG-OS-000047-GPOS-00023  
+    - SV-252976r824252_rule  
+    - TOSS-04-030090  
+    - DISA-STIG-TOSS-04-030090  
+    - medium_severity  
+    - CCI-000140
+    

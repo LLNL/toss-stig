@@ -1,0 +1,20 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253079
+
+# Check to see if the sendmail package is installed with the following
+# command: $ sudo yum list installed sendmail If the sendmail package is
+# installed, this is a finding.
+
+
+- name: TOSS-04-040250 - TOSS must not have the sendmail package installed.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040250 | bool
+  tags:
+    - V-253079  
+    - SRG-OS-000095-GPOS-00049  
+    - SV-253079r824909_rule  
+    - TOSS-04-040250  
+    - DISA-STIG-TOSS-04-040250  
+    - medium_severity  
+    - CCI-000381
+    

@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253119
+
+# Verify TOSS ignores IPv6 ICMP redirect messages. Note: If IPv6 is
+# disabled on the system, this requirement is Not Applicable. Check the value of
+# the "accept_redirects" variables with the following command: $ sudo sysctl
+# net.ipv6.conf.all.accept_redirects net.ipv6.conf.all.accept_redirects = 0 If the
+# returned line does not have a value of "0", a line is not returned, or the line
+# is commented out, this is a finding.
+
+
+- name: TOSS-04-040780 - TOSS must ignore IPv6 Internet Control Message Protocol (ICMP) redirect messages.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040780 | bool
+  tags:
+    - V-253119  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253119r825029_rule  
+    - TOSS-04-040780  
+    - DISA-STIG-TOSS-04-040780  
+    - medium_severity  
+    - CCI-000366
+    

@@ -1,0 +1,27 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252946
+
+# Verify the "/etc/security/faillock.conf" file is configured to lock
+# an account after three unsuccessful logon attempts within 15 minutes: $ sudo
+# grep -e "deny =" -e "fail_interval =" /etc/security/faillock.conf deny = 3
+# fail_interval = 900 If the "deny" option is set to "0", more than "3", is
+# missing, or is commented out, this is a finding. If the "fail_interval" option
+# is set to less than "900", is missing, or is commented out, this is a finding.
+# Note: If the System Administrator demonstrates the use of an approved
+# centralized account management method that locks an account after three
+# unsuccessful logon attempts within a period of 15 minutes, this requirement is
+# Not Applicable.
+
+
+- name: TOSS-04-020000 - TOSS must enforce the limit of five consecutive invalid logon attempts by a user during a 15-minute time period.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020000 | bool
+  tags:
+    - V-252946  
+    - SRG-OS-000021-GPOS-00005  
+    - SV-252946r824162_rule  
+    - TOSS-04-020000  
+    - DISA-STIG-TOSS-04-020000  
+    - medium_severity  
+    - CCI-000044
+    

@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253093
+
+# Verify the NX (no-execution) bit flag is set on the system. Check
+# that the no-execution bit flag is set with the following commands: $ sudo dmesg
+# | grep NX [ 0.000000] NX (Execute Disable) protection: active If "dmesg" does
+# not show "NX (Execute Disable) protection" active, check the cpuinfo settings
+# with the following command: $ sudo less /proc/cpuinfo | grep -i flags flags :
+# fpu vme de pse tsc ms nx rdtscp lm constant_tsc If "flags" does not contain the
+# "nx" flag, this is a finding.
+
+
+- name: TOSS-04-040490 - TOSS must implement non-executable data to protect its memory from unauthorized code execution.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040490 | bool
+  tags:
+    - V-253093  
+    - SRG-OS-000433-GPOS-00192  
+    - SV-253093r824951_rule  
+    - TOSS-04-040490  
+    - DISA-STIG-TOSS-04-040490  
+    - medium_severity  
+    - CCI-002824
+    

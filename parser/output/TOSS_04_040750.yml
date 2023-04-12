@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253116
+
+# Verify the operating system SSH server uses strong entropy with the
+# following command: $ sudo grep -i ssh_use_strong_rng /etc/sysconfig/sshd
+# SSH_USE_STRONG_RNG=32 If the "SSH_USE_STRONG_RNG" line does not equal "32", is
+# commented out or missing, this is a finding.
+
+
+- name: TOSS-04-040750 - TOSS must ensure the SSH server uses strong entropy.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040750 | bool
+  tags:
+    - V-253116  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253116r825020_rule  
+    - TOSS-04-040750  
+    - DISA-STIG-TOSS-04-040750  
+    - low_severity  
+    - CCI-000366
+    

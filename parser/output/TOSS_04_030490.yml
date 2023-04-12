@@ -1,0 +1,29 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253003
+
+# Verify that an audit event is generated for any
+# successful/unsuccessful use of the "delete_module" command by performing the
+# following command to check the file system rules in "/etc/audit/audit.rules": $
+# sudo grep -w "delete_module" /etc/audit/audit.rules -a always,exit -F arch=b32
+# -S delete_module -F auid>=1000 -F auid!=unset -k module_chng -a always,exit
+# -F arch=b64 -S delete_module -F auid>=1000 -F auid!=unset -k module_chng If
+# the command does not return a line, or the line is commented out, this is a
+# finding.
+
+
+- name: TOSS-04-030490 - Successful/unsuccessful uses of the "delete_module" command in TOSS must generate an audit record.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030490 | bool
+  tags:
+    - V-253003  
+    - SRG-OS-000037-GPOS-00015  
+    - SV-253003r824333_rule  
+    - TOSS-04-030490  
+    - DISA-STIG-TOSS-04-030490  
+    - medium_severity  
+    - CCI-000130
+    - CCI-000135
+    - CCI-000169
+    - CCI-000172
+    - CCI-002884
+    

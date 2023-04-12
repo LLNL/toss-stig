@@ -1,0 +1,20 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252939
+
+# Verify there are no ."shosts" files on TOSS with the following
+# command: $ sudo find / -name '*.shosts' If any ."shosts" files are found, this
+# is a finding.
+
+
+- name: TOSS-04-010370 - There must be no ".shosts" files on The TOSS operating system.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010370 | bool
+  tags:
+    - V-252939  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-252939r824141_rule  
+    - TOSS-04-010370  
+    - DISA-STIG-TOSS-04-010370  
+    - medium_severity  
+    - CCI-000366
+    

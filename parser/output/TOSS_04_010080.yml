@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252919
+
+# Verify the OpenSSL library is configured to use only DoD-approved TLS
+# encryption: $ sudo grep -i MinProtocol
+# /etc/crypto-policies/back-ends/opensslcnf.config TLS.MinProtocol = TLSv1.2
+# DTLS.MinProtocol = DTLSv1.2 If the "TLS.MinProtocol" is set to anything older
+# than "TLSv1.2" or the "DTLS.MinProtocol" is set to anything older than DTLSv1.2,
+# this is a finding.
+
+
+- name: TOSS-04-010080 - The TOSS operating system must implement DoD-approved encryption in the OpenSSL package.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010080 | bool
+  tags:
+    - V-252919  
+    - SRG-OS-000125-GPOS-00065  
+    - SV-252919r824081_rule  
+    - TOSS-04-010080  
+    - DISA-STIG-TOSS-04-010080  
+    - medium_severity  
+    - CCI-000877
+    - CCI-001453
+    

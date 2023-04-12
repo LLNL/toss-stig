@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252951
+
+# Verify that TOSS contains no duplicate User IDs (UIDs) for
+# interactive users. Check that the operating system contains no duplicate UIDs
+# for interactive users with the following command: $ sudo awk -F ":"
+# 'list[$3]++{print $1, $3}' /etc/passwd If output is produced, and the accounts
+# listed are interactive user accounts, this is a finding.
+
+
+- name: TOSS-04-020060 - TOSS duplicate User IDs (UIDs) must not exist for interactive users.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020060 | bool
+  tags:
+    - V-252951  
+    - SRG-OS-000104-GPOS-00051  
+    - SV-252951r824177_rule  
+    - TOSS-04-020060  
+    - DISA-STIG-TOSS-04-020060  
+    - medium_severity  
+    - CCI-000764
+    - CCI-000804
+    

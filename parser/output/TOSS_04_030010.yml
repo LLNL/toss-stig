@@ -1,0 +1,42 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252973
+
+# Verify the audit service is configured to produce audit records.
+# Check that the audit service is installed properly with the following command: $
+# sudo yum list installed audit If the "audit" package is not installed, this is a
+# finding. Check that the audit service is properly running and active on the
+# system with the following command: $ sudo systemctl is-active auditd.service
+# active If the command above returns "inactive", this is a finding.
+
+
+- name: TOSS-04-030010 - TOSS audit records must contain information to establish what type of events occurred, when the events occurred, the source of events, where events occurred, and the outcome of events.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030010 | bool
+  tags:
+    - V-252973  
+    - SRG-OS-000037-GPOS-00015  
+    - SV-252973r824243_rule  
+    - TOSS-04-030010  
+    - DISA-STIG-TOSS-04-030010  
+    - medium_severity  
+    - CCI-000130
+    - CCI-000131
+    - CCI-000132
+    - CCI-000133
+    - CCI-000134
+    - CCI-000135
+    - CCI-000140
+    - CCI-000154
+    - CCI-000172
+    - CCI-001405
+    - CCI-001464
+    - CCI-001814
+    - CCI-001851
+    - CCI-001875
+    - CCI-001877
+    - CCI-001878
+    - CCI-001879
+    - CCI-001881
+    - CCI-001882
+    - CCI-002234
+    

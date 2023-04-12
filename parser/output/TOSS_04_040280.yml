@@ -1,0 +1,30 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253082
+
+# Verify the operating system disables the ability to load the USB
+# Storage kernel module. $ sudo grep -r usb-storage /etc/modprobe.d/* | grep
+# "install" install usb-storage /bin/false If the command does not return any
+# output, or the line is commented out, and use of USB Storage is not documented
+# with the Information System Security Officer (ISSO) as an operational
+# requirement, this is a finding. Verify the operating system disables the ability
+# to use USB mass storage devices. Check to see if USB mass storage is disabled
+# with the following command: $ sudo grep -r usb-storage /etc/modprobe.d/* | grep
+# "blacklist" blacklist usb-storage If the command does not return any output or
+# the output is not "blacklist usb-storage", and use of USB storage devices is not
+# documented with the Information System Security Officer (ISSO) as an operational
+# requirement, this is a finding.
+
+
+- name: TOSS-04-040280 - TOSS must be configured to disable USB mass storage.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040280 | bool
+  tags:
+    - V-253082  
+    - SRG-OS-000114-GPOS-00059  
+    - SV-253082r824918_rule  
+    - TOSS-04-040280  
+    - DISA-STIG-TOSS-04-040280  
+    - medium_severity  
+    - CCI-000778
+    - CCI-001958
+    

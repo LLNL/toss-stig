@@ -1,0 +1,26 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253111
+
+# Verify the system is configured to prevent unrestricted mail
+# relaying. Determine if "postfix" is installed with the following commands: $
+# sudo yum list installed postfix postfix.x86_64 2:3.5.8-2.el8 If postfix is not
+# installed, this is Not Applicable. If postfix is installed, determine if it is
+# configured to reject connections from unknown or untrusted networks with the
+# following command: $ sudo postconf -n smtpd_client_restrictions
+# smtpd_client_restrictions = permit_mynetworks, reject If the
+# "smtpd_client_restrictions" parameter contains any entries other than
+# "permit_mynetworks" and "reject", this is a finding.
+
+
+- name: TOSS-04-040700 - TOSS must be configured to prevent unrestricted mail relaying.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040700 | bool
+  tags:
+    - V-253111  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253111r825005_rule  
+    - TOSS-04-040700  
+    - DISA-STIG-TOSS-04-040700  
+    - medium_severity  
+    - CCI-000366
+    

@@ -1,0 +1,29 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253104
+
+# Verify the file integrity tool is configured to verify ACLs. Note:
+# AIDE is highly configurable at install time. This requirement assumes the
+# "aide.conf" file is under the "/etc" directory. If AIDE is not installed, ask
+# the System Administrator how file integrity checks are performed on the system.
+# Use the following command to determine if the file is in a location other than
+# "/etc/aide/aide.conf": $ sudo find / -name aide.conf Check the "aide.conf" file
+# to determine if the "acl" rule has been added to the rule list being applied to
+# the files and directories selection lists with the following command: $ sudo
+# egrep "[+]?acl" /etc/aide.conf VarFile = OwnerMode+n+l+X+acl If the "acl" rule
+# is not being used on all selection lines in the "/etc/aide.conf" file, is
+# commented out, or ACLs are not being checked by another file integrity tool,
+# this is a finding.
+
+
+- name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs).
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040630 | bool
+  tags:
+    - V-253104  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253104r824984_rule  
+    - TOSS-04-040630  
+    - DISA-STIG-TOSS-04-040630  
+    - low_severity  
+    - CCI-000366
+    

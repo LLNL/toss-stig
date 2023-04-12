@@ -1,0 +1,22 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253033
+
+# Verify the TOSS audit Daemon is configured to label all off-loaded
+# audit logs, with the following command: $ sudo grep "name_format"
+# /etc/audit/auditd.conf name_format = hostname If the "name_format" option is not
+# "hostname", "fqd", or "numeric", or the line is commented out, this is a
+# finding.
+
+
+- name: TOSS-04-030910 - TOSS must label all off-loaded audit logs before sending them to the central log server.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030910 | bool
+  tags:
+    - V-253033  
+    - SRG-OS-000342-GPOS-00133  
+    - SV-253033r824771_rule  
+    - TOSS-04-030910  
+    - DISA-STIG-TOSS-04-030910  
+    - medium_severity  
+    - CCI-001851
+    

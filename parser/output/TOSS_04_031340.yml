@@ -1,0 +1,20 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253051
+
+# Verify the audit service is enabled and active with the following
+# commands: $ sudo systemctl is-enabled auditd enabled $ sudo systemctl is-active
+# auditd active If the service is not "enabled" and "active" this is a finding.
+
+
+- name: TOSS-04-031340 - The auditd service must be running in TOSS.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_031340 | bool
+  tags:
+    - V-253051  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253051r824825_rule  
+    - TOSS-04-031340  
+    - DISA-STIG-TOSS-04-031340  
+    - medium_severity  
+    - CCI-000366
+    

@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253084
+
+# Verify the operating system has the policycoreutils package installed
+# with the following command: $ sudo yum list installed policycoreutils
+# policycoreutils.x86_64 2.9-16.el8 @anaconda If the policycoreutils package is
+# not installed, this is a finding.
+
+
+- name: TOSS-04-040310 - TOSS must have policycoreutils package installed.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040310 | bool
+  tags:
+    - V-253084  
+    - SRG-OS-000134-GPOS-00068  
+    - SV-253084r824924_rule  
+    - TOSS-04-040310  
+    - DISA-STIG-TOSS-04-040310  
+    - low_severity  
+    - CCI-001084
+    

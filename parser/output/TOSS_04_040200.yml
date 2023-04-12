@@ -1,0 +1,28 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253075
+
+# Verify the operating system disables the ability to load the CAN
+# protocol kernel module. $ sudo grep -r can /etc/modprobe.d/* | grep install
+# install can /bin/false If the command does not return any output, or the line is
+# commented out, and use of the CAN protocol is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement, this
+# is a finding. Verify the operating system disables the ability to use the CAN
+# protocol. Check to see if the CAN protocol is disabled with the following
+# command: $ sudo grep -r can /etc/modprobe.d/* | grep "blacklist" blacklist can
+# If the command does not return any output or the output is not "blacklist can",
+# and use of the CAN protocol is not documented with the Information System
+# Security Officer (ISSO) as an operational requirement, this is a finding.
+
+
+- name: TOSS-04-040200 - TOSS must disable the controller area network (CAN) protocol.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040200 | bool
+  tags:
+    - V-253075  
+    - SRG-OS-000095-GPOS-00049  
+    - SV-253075r824897_rule  
+    - TOSS-04-040200  
+    - DISA-STIG-TOSS-04-040200  
+    - medium_severity  
+    - CCI-000381
+    

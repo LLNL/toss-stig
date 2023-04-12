@@ -1,0 +1,20 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253080
+
+# Check to see if the telnet-server package is installed with the
+# following command: $ sudo yum list installed telnet-server If the telnet-server
+# package is installed, this is a finding.
+
+
+- name: TOSS-04-040260 - TOSS must not have the telnet-server package installed.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040260 | bool
+  tags:
+    - V-253080  
+    - SRG-OS-000095-GPOS-00049  
+    - SV-253080r824912_rule  
+    - TOSS-04-040260  
+    - DISA-STIG-TOSS-04-040260  
+    - medium_severity  
+    - CCI-000381
+    

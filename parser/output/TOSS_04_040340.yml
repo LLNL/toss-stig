@@ -1,0 +1,27 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253086
+
+# Verify the system commands contained in the following directories are
+# owned by "root" or an appropriate system account with the following command: $
+# sudo find -L /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin !
+# -user root -exec ls -l {} \; If any system commands are returned which are not
+# owned by an appropriate system account, this is a finding. Verify the
+# system-wide shared library files are owned by "root" or an appropriate system
+# account with the following command: $ sudo find -L /lib /lib64 /usr/lib
+# /usr/lib64 ! -user root -exec ls -l {} \; If any system wide shared library file
+# is returned which is not owned by an appropriate system account, this is a
+# finding.
+
+
+- name: TOSS-04-040340 - TOSS must limit privileges to change software resident within software libraries.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040340 | bool
+  tags:
+    - V-253086  
+    - SRG-OS-000259-GPOS-00100  
+    - SV-253086r824930_rule  
+    - TOSS-04-040340  
+    - DISA-STIG-TOSS-04-040340  
+    - medium_severity  
+    - CCI-001499
+    

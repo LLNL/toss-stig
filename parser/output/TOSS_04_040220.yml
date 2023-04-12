@@ -1,0 +1,28 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253077
+
+# Verify the operating system disables the ability to load the TIPC
+# protocol kernel module. $ sudo grep -r tipc /etc/modprobe.d/* | grep install
+# install tipc /bin/false If the command does not return any output, or the line
+# is commented out, and use of the TIPC protocol is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement, this
+# is a finding. Verify the operating system disables the ability to use the TIPC
+# protocol. Check to see if the TIPC protocol is disabled with the following
+# command: $ sudo grep -r tipc /etc/modprobe.d/* | grep "blacklist" blacklist tipc
+# If the command does not return any output or the output is not "blacklist tipc",
+# and use of the TIPC protocol is not documented with the Information System
+# Security Officer (ISSO) as an operational requirement, this is a finding.
+
+
+- name: TOSS-04-040220 - TOSS must disable the transparent inter-process communication (TIPC) protocol.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040220 | bool
+  tags:
+    - V-253077  
+    - SRG-OS-000095-GPOS-00049  
+    - SV-253077r824903_rule  
+    - TOSS-04-040220  
+    - DISA-STIG-TOSS-04-040220  
+    - medium_severity  
+    - CCI-000381
+    

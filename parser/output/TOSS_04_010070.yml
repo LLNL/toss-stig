@@ -1,0 +1,22 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252918
+
+# Verify that the pam_unix.so module is configured to use sha512. Check
+# that the pam_unix.so module is configured to use sha512 in
+# /etc/pam.d/system-auth with the following command: $ sudo grep password
+# /etc/pam.d/system-auth | grep pam_unix password sufficient pam_unix.so sha512 If
+# "sha512" is missing, or is commented out, this is a finding.
+
+
+- name: TOSS-04-010070 - The TOSS pam_unix.so module must be configured in the system-auth file to use a FIPS 140-2-approved cryptographic hashing algorithm for system authentication.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010070 | bool
+  tags:
+    - V-252918  
+    - SRG-OS-000120-GPOS-00061  
+    - SV-252918r824078_rule  
+    - TOSS-04-010070  
+    - DISA-STIG-TOSS-04-010070  
+    - medium_severity  
+    - CCI-000803
+    

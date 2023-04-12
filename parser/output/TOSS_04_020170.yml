@@ -1,0 +1,37 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252957
+
+# Check that the system locks an account after three unsuccessful logon
+# attempts within a period of 15 minutes until released by an administrator with
+# the following commands. Note: If a centralized authentication platform (AD, IdM,
+# LDAP, etc) is utilized for authentication, then this requirement is not
+# applicable, to allow the centralized platform to solely manage user lockout.
+# Verify the pam_faillock.so module is present in the "/etc/pam.d/system-auth" and
+# " /etc/pam.d/password-auth" files: $ sudo grep pam_faillock.so
+# /etc/pam.d/system-auth /etc/pam.d/password-auth /etc/pam.d/system-auth:auth
+# required pam_faillock.so preauth /etc/pam.d/system-auth:auth required
+# pam_faillock.so authfail /etc/pam.d/system-auth:account required pam_faillock.so
+# /etc/pam.d/password-auth:auth required pam_faillock.so preauth
+# /etc/pam.d/password-auth:auth required pam_faillock.so authfail
+# /etc/pam.d/password-auth:account required pam_faillock.so preauth If the
+# pam_failllock.so module is not present in the "/etc/pam.d/system-auth" and "
+# /etc/pam.d/password-auth" files, this is a finding. Verify the
+# "/etc/security/faillock.conf" file is configured to lock an account until
+# released by an administrator after three unsuccessful logon attempts: $ sudo
+# grep 'unlock_time =' /etc/security/faillock.conf unlock_time = 0 If the
+# "unlock_time" option is not set to "0", is missing or commented out, this is a
+# finding.
+
+
+- name: TOSS-04-020170 - TOSS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts in 15 minutes occur.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020170 | bool
+  tags:
+    - V-252957  
+    - SRG-OS-000329-GPOS-00128  
+    - SV-252957r824195_rule  
+    - TOSS-04-020170  
+    - DISA-STIG-TOSS-04-020170  
+    - medium_severity  
+    - CCI-002238
+    

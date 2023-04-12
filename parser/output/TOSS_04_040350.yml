@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253087
+
+# Verify the value for "ocredit" in "/etc/security/pwquality.conf" with
+# the following command: $ sudo grep ocredit /etc/security/pwquality.conf ocredit
+# = -1 If the value of "ocredit" is a positive number or is commented out, this is
+# a finding.
+
+
+- name: TOSS-04-040350 - TOSS must enforce password complexity by requiring that at least one special character be used.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040350 | bool
+  tags:
+    - V-253087  
+    - SRG-OS-000266-GPOS-00101  
+    - SV-253087r824933_rule  
+    - TOSS-04-040350  
+    - DISA-STIG-TOSS-04-040350  
+    - medium_severity  
+    - CCI-001619
+    

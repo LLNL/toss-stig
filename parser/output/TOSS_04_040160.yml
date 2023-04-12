@@ -1,0 +1,30 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253071
+
+# Verify the operating system disables the ability to load the
+# firewire-core kernel module. $ sudo grep -r firewire-core /etc/modprobe.d/* |
+# grep install install firewire-core /bin/false If the command does not return any
+# output, or the line is commented out, and use of the firewire-core protocol is
+# not documented with the Information System Security Officer (ISSO) as an
+# operational requirement, this is a finding. Verify the operating system disables
+# the ability to use the firewire-core kernel module. Check to see if the
+# firewire-core kernel module is disabled with the following command: $ sudo grep
+# -r firewire-core /etc/modprobe.d/* | grep "blacklist" blacklist firewire-core If
+# the command does not return any output or the output is not "blacklist
+# firewire-core", and use of the firewire-core kernel module is not documented
+# with the Information System Security Officer (ISSO) as an operational
+# requirement, this is a finding.
+
+
+- name: TOSS-04-040160 - TOSS must disable IEEE 1394 (FireWire) Support.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040160 | bool
+  tags:
+    - V-253071  
+    - SRG-OS-000095-GPOS-00049  
+    - SV-253071r824885_rule  
+    - TOSS-04-040160  
+    - DISA-STIG-TOSS-04-040160  
+    - medium_severity  
+    - CCI-000381
+    

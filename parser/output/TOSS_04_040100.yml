@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253065
+
+# Check to see if the rsh-server package is installed with the
+# following command: $ sudo yum list installed rsh-server If the rsh-server
+# package is installed, this is a finding.
+
+
+- name: TOSS-04-040100 - TOSS must not have the rsh-server package installed.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040100 | bool
+  tags:
+    - V-253065  
+    - SRG-OS-000074-GPOS-00042  
+    - SV-253065r824867_rule  
+    - TOSS-04-040100  
+    - DISA-STIG-TOSS-04-040100  
+    - medium_severity  
+    - CCI-000197
+    - CCI-000381
+    

@@ -1,0 +1,22 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252936
+
+# Verify TOSS is configured to mask the debug-shell systemd service
+# with the following command: $ sudo systemctl status debug-shell.service
+# debug-shell.service Loaded: masked (Reason: Unit debug-shell.service is masked.)
+# Active: inactive (dead) If the "debug-shell.service" is loaded and not masked,
+# this is a finding.
+
+
+- name: TOSS-04-010340 - The debug-shell systemd service must be disabled on TOSS.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010340 | bool
+  tags:
+    - V-252936  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-252936r824132_rule  
+    - TOSS-04-010340  
+    - DISA-STIG-TOSS-04-010340  
+    - medium_severity  
+    - CCI-000366
+    

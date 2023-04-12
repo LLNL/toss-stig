@@ -1,0 +1,31 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252928
+
+# If the system is not networked, this requirement is Not Applicable.
+# The system clock must be configured to compare the system clock at least every
+# 24 hours to the authoritative time source. Check the value of "maxpoll" in the
+# "/etc/chrony/chrony.conf" file with the following command: $ sudo grep maxpoll
+# /etc/chrony/chrony.conf server tick.usno.navy.mil iburst maxpoll 16 If "maxpoll"
+# is not set to "16" or does not exist, this is a finding. Verify that the
+# "chrony.conf" file is configured to an authoritative DoD time source by running
+# the following command: $ grep -i server /etc/chrony.conf server
+# tick.usno.navy.mil iburst maxpoll 16 server tock.usno.navy.mil iburst maxpoll 16
+# server ntp2.usno.navy.mil iburst maxpoll 16 If the parameter "server" is not
+# set, is not set to an authoritative DoD time source, or is commented out, this
+# is a finding.
+
+
+- name: TOSS-04-010180 - TOSS must, for networked systems, compare internal information system clocks at least every 24 hours with a server which is synchronized to one of the redundant United States Naval Observatory (USNO) time servers, or a time server designated for the appropriate DoD network (NIPRNet/SIPRNet), and/or the Global Positioning System (GPS).
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010180 | bool
+  tags:
+    - V-252928  
+    - SRG-OS-000355-GPOS-00143  
+    - SV-252928r825085_rule  
+    - TOSS-04-010180  
+    - DISA-STIG-TOSS-04-010180  
+    - medium_severity  
+    - CCI-001890
+    - CCI-001891
+    - CCI-002046
+    

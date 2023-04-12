@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253114
+
+# Verify TOSS enables hardening for the BPF JIT with the following
+# commands: $ sudo sysctl net.core.bpf_jit_harden net.core.bpf_jit_harden = 2 If
+# the returned line does not have a value of "2", or a line is not returned, this
+# is a finding.
+
+
+- name: TOSS-04-040730 - TOSS must enable hardening for the Berkeley Packet Filter Just-in-time compiler.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040730 | bool
+  tags:
+    - V-253114  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253114r825014_rule  
+    - TOSS-04-040730  
+    - DISA-STIG-TOSS-04-040730  
+    - medium_severity  
+    - CCI-000366
+    

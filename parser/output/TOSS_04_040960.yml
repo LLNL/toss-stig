@@ -1,0 +1,29 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253137
+
+# Verify the operating system is configured to enable DAC on hardlinks
+# with the following commands: Check the status of the fs.protected_hardlinks
+# kernel parameter. $ sudo sysctl fs.protected_hardlinks fs.protected_hardlinks =
+# 1 If "fs.protected_hardlinks" is not set to "1" or is missing, this is a
+# finding. Check that the configuration files are present to enable this kernel
+# parameter. $ sudo grep -r fs.protected_hardlinks /run/sysctl.d/*.conf
+# /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
+# /etc/sysctl.conf /etc/sysctl.d/*.conf
+# /etc/sysctl.d/99-sysctl.conf:fs.protected_hardlinks = 1 If
+# "fs.protected_hardlinks" is not set to "1", is missing or commented out, this is
+# a finding. If conflicting results are returned, this is a finding.
+
+
+- name: TOSS-04-040960 - TOSS must enable kernel parameters to enforce discretionary access control on hardlinks.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040960 | bool
+  tags:
+    - V-253137  
+    - SRG-OS-000312-GPOS-00122  
+    - SV-253137r825083_rule  
+    - TOSS-04-040960  
+    - DISA-STIG-TOSS-04-040960  
+    - medium_severity  
+    - CCI-002165
+    - CCI-002235
+    

@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252914
+
+# Check to see if the system requires authentication for rescue or
+# emergency mode with the following command: $ sudo grep sulogin-shell
+# /usr/lib/systemd/system/rescue.service
+# ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue If the "ExecStart" line
+# is configured for anything other than "/usr/lib/systemd/systemd-sulogin-shell
+# rescue", commented out, or missing, this is a finding.
+
+
+- name: TOSS-04-010030 - TOSS must require authentication upon booting into emergency or rescue modes.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010030 | bool
+  tags:
+    - V-252914  
+    - SRG-OS-000080-GPOS-00048  
+    - SV-252914r824066_rule  
+    - TOSS-04-010030  
+    - DISA-STIG-TOSS-04-010030  
+    - medium_severity  
+    - CCI-000213
+    

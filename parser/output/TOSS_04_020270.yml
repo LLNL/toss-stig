@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252966
+
+# To verify that null passwords cannot be used, run the following
+# command: $ sudo grep -i permitemptypasswords /etc/ssh/sshd_config
+# PermitEmptyPasswords no If "PermitEmptyPasswords" is set to "yes", this is a
+# finding.
+
+
+- name: TOSS-04-020270 - TOSS must not allow accounts configured with blank or null passwords.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020270 | bool
+  tags:
+    - V-252966  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-252966r824222_rule  
+    - TOSS-04-020270  
+    - DISA-STIG-TOSS-04-020270  
+    - high_severity  
+    - CCI-000366
+    

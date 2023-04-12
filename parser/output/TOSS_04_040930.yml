@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253134
+
+# Verify TOSS uses reverse path filtering on all IPv4 interfaces with
+# the following commands: $ sudo sysctl net.ipv4.conf.all.rp_filter
+# net.ipv4.conf.all.rp_filter = 1 If the returned line does not have a value of
+# "1", or a line is not returned, this is a finding.
+
+
+- name: TOSS-04-040930 - TOSS must use reverse path filtering on all IPv4 interfaces.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040930 | bool
+  tags:
+    - V-253134  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253134r825074_rule  
+    - TOSS-04-040930  
+    - DISA-STIG-TOSS-04-040930  
+    - medium_severity  
+    - CCI-000366
+    

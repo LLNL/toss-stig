@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253123
+
+# Verify TOSS does not allow interfaces to perform Internet Protocol
+# version 4 (IPv4) ICMP redirects by default. Note: If IPv4 is disabled on the
+# system, this requirement is Not Applicable. Check the value of the "default
+# send_redirects" variables with the following command: $ sudo sysctl
+# net.ipv4.conf.default.send_redirects net.ipv4.conf.default.send_redirects=0 If
+# the returned line does not have a value of "0", or a line is not returned, this
+# is a finding.
+
+
+- name: TOSS-04-040820 - TOSS must not allow interfaces to perform Internet Control Message Protocol (ICMP) redirects by default.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040820 | bool
+  tags:
+    - V-253123  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253123r825041_rule  
+    - TOSS-04-040820  
+    - DISA-STIG-TOSS-04-040820  
+    - medium_severity  
+    - CCI-000366
+    

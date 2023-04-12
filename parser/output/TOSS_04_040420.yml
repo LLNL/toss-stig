@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253090
+
+# Verify TOSS accepts PIV credentials. Check that the "opensc" package
+# is installed on the system with the following command: $ sudo yum list installed
+# opensc opensc.x86_64 0.20.0-4.el8 @anaconda Check that "opensc" accepts PIV
+# cards with the following command: $ sudo opensc-tool --list-drivers | grep -i
+# piv PIV-II Personal Identity Verification Card If the "opensc" package is not
+# installed and the "opensc-tool" driver list does not include "PIV-II", this is a
+# finding.
+
+
+- name: TOSS-04-040420 - TOSS must accept Personal Identity Verification (PIV) credentials.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040420 | bool
+  tags:
+    - V-253090  
+    - SRG-OS-000376-GPOS-00161  
+    - SV-253090r824942_rule  
+    - TOSS-04-040420  
+    - DISA-STIG-TOSS-04-040420  
+    - medium_severity  
+    - CCI-001953
+    

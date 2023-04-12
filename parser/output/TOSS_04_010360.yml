@@ -1,0 +1,22 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252938
+
+# Verify TOSS is not configured to reboot the system when
+# Ctrl-Alt-Delete is pressed seven times within two seconds with the following
+# command: $ sudo grep -i ctrl /etc/systemd/system.conf CtrlAltDelBurstAction=none
+# If the "CtrlAltDelBurstAction" is not set to "none", commented out, or is
+# missing, this is a finding.
+
+
+- name: TOSS-04-010360 - The systemd Ctrl-Alt-Delete burst key sequence in TOSS must be disabled.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010360 | bool
+  tags:
+    - V-252938  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-252938r824138_rule  
+    - TOSS-04-010360  
+    - DISA-STIG-TOSS-04-010360  
+    - high_severity  
+    - CCI-000366
+    

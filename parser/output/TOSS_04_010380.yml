@@ -1,0 +1,20 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252940
+
+# To verify that null passwords cannot be used, run the following
+# command: $ sudo grep -i nullok /etc/pam.d/system-auth If output is produced,
+# this is a finding.
+
+
+- name: TOSS-04-010380 - TOSS must not allow blank or null passwords in the system-auth file.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010380 | bool
+  tags:
+    - V-252940  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-252940r824144_rule  
+    - TOSS-04-010380  
+    - DISA-STIG-TOSS-04-010380  
+    - high_severity  
+    - CCI-000366
+    

@@ -1,0 +1,28 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253074
+
+# Verify the operating system disables the ability to load the ATM
+# protocol kernel module. $ sudo grep -r atm /etc/modprobe.d/* | grep install
+# install atm /bin/false If the command does not return any output, or the line is
+# commented out, and use of the ATM protocol is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement, this
+# is a finding. Verify the operating system disables the ability to use the ATM
+# protocol. Check to see if the ATM protocol is disabled with the following
+# command: $ sudo grep -r atm /etc/modprobe.d/* | grep "blacklist" blacklist atm
+# If the command does not return any output or the output is not "blacklist atm",
+# and use of the ATM protocol is not documented with the Information System
+# Security Officer (ISSO) as an operational requirement, this is a finding.
+
+
+- name: TOSS-04-040190 - TOSS must disable the asynchronous transfer mode (ATM) protocol.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040190 | bool
+  tags:
+    - V-253074  
+    - SRG-OS-000095-GPOS-00049  
+    - SV-253074r824894_rule  
+    - TOSS-04-040190  
+    - DISA-STIG-TOSS-04-040190  
+    - medium_severity  
+    - CCI-000381
+    

@@ -1,0 +1,28 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253002
+
+# Verify that an audit event is generated for any
+# successful/unsuccessful use of the "finit_module" syscall by performing the
+# following command to check the file system rules in "/etc/audit/audit.rules": $
+# sudo grep -w "finit_module" /etc/audit/audit.rules -a always,exit -F arch=b32 -S
+# finit_module -F auid>=1000 -F auid!=unset -k module_chng -a always,exit -F
+# arch=b64 -S finit_module -F auid>=1000 -F auid!=unset -k module_chng If the
+# command does not return a line, or the line is commented out, this is a finding.
+
+
+- name: TOSS-04-030480 - Successful/unsuccessful uses of the "finit_module" command in TOSS must generate an audit record.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030480 | bool
+  tags:
+    - V-253002  
+    - SRG-OS-000037-GPOS-00015  
+    - SV-253002r824330_rule  
+    - TOSS-04-030480  
+    - DISA-STIG-TOSS-04-030480  
+    - medium_severity  
+    - CCI-000130
+    - CCI-000135
+    - CCI-000169
+    - CCI-000172
+    - CCI-002884
+    

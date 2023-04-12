@@ -1,0 +1,30 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252930
+
+# Verify TOSS prevents the installation of patches, service packs,
+# device drivers, or operating system components without verification they have
+# been digitally signed using a certificate that is recognized and approved by the
+# organization. Check that YUM verifies the signature of packages from a
+# repository prior to install with the following command: $ sudo egrep
+# '^\[.*\]|gpgcheck' /etc/yum.repos.d/*.repo
+# /etc/yum.repos.d/appstream.repo:[appstream]
+# /etc/yum.repos.d/appstream.repo:gpgcheck=1 /etc/yum.repos.d/baseos.repo:[baseos]
+# /etc/yum.repos.d/baseos.repo:gpgcheck=1 If "gpgcheck" is not set to "1", or if
+# options are missing or commented out, ask the System Administrator how the
+# certificates for patches and other operating system components are verified. If
+# there is no process to validate certificates that is approved by the
+# organization, this is a finding.
+
+
+- name: TOSS-04-010220 - TOSS must prevent the installation of patches, service packs, device drivers, or operating system components without verification they have been digitally signed using a certificate that is recognized and approved by the organization.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010220 | bool
+  tags:
+    - V-252930  
+    - SRG-OS-000366-GPOS-00153  
+    - SV-252930r824114_rule  
+    - TOSS-04-010220  
+    - DISA-STIG-TOSS-04-010220  
+    - high_severity  
+    - CCI-001749
+    
