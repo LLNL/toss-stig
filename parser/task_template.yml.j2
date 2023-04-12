@@ -1,4 +1,7 @@
-{% for line in check_text.splitlines() %} # {{line}}
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/{{vuln_id}}
+
+{% for line in check_text.splitlines() -%} 
+# {{line}}
 {%endfor%}
 
 - name: {{ stig_id }} - {{ rule_title }}
@@ -6,12 +9,12 @@
   when:
     - {{ stig_id_slug }} | bool
   tags:
-    - {{ vuln_id }}  # V-252911
-    - {{ group_title }}  # SRG-OS-000023-GPOS-00006
-    - {{ rule_id }}  # SV-252911r824057_rule
-    - {{ stig_id }}  # TOSS-04-010000
-    - {{ "DISA-STIG-" + stig_id}}  # DISA-STIG-TOSS-04-010000
-    - {{ severity + "_severity" }}  # medium_severity
-    {% for item in cci %}
+    - {{ vuln_id }}  {# V-252911 #}
+    - {{ group_title }}  {# SRG-OS-000023-GPOS-00006 #}
+    - {{ rule_id }}  {# SV-252911r824057_rule #}
+    - {{ stig_id }}  {# TOSS-04-010000 #}
+    - {{ "DISA-STIG-" + stig_id}}  {# DISA-STIG-TOSS-04-010000 #}
+    - {{ severity + "_severity" }}  {# medium_severity #}
+    {% for item in cci -%}
     - {{ item }}
     {% endfor %}
