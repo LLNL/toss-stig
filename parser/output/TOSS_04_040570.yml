@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253099
+
+# Verify all local files and directories on TOSS have a valid group
+# with the following command: Note: The value after -fstype must be replaced with
+# the filesystem type. XFS is used as an example. $ sudo find / -fstype xfs
+# -nogroup If any files on the system do not have an assigned group, this is a
+# finding. Note: Command may produce error messages from the /proc and /sys
+# directories.
+
+
+- name: TOSS-04-040570 - All TOSS local files and directories must have a valid group owner.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040570 | bool
+  tags:
+    - V-253099  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253099r824969_rule  
+    - TOSS-04-040570  
+    - DISA-STIG-TOSS-04-040570  
+    - medium_severity  
+    - CCI-000366
+    

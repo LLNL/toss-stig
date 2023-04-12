@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252915
+
+# Verify remote access from outside the system using SSH prevents users
+# from logging on directly as "root." Check that SSH prevents users from logging
+# on directly as "root" with the following command: $ sudo grep -i PermitRootLogin
+# /etc/ssh/sshd_config PermitRootLogin no If the "PermitRootLogin" keyword is set
+# to "yes", is missing, or is commented out, and is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement, this
+# is a finding.
+
+
+- name: TOSS-04-010040 - TOSS must not permit direct logons to the root account using remote access from outside of the system via SSH.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010040 | bool
+  tags:
+    - V-252915  
+    - SRG-OS-000109-GPOS-00056  
+    - SV-252915r824069_rule  
+    - TOSS-04-010040  
+    - DISA-STIG-TOSS-04-010040  
+    - medium_severity  
+    - CCI-000770
+    

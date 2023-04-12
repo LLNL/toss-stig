@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253127
+
+# Verify TOSS does not accept IPv6 source-routed packets. Note: If IPv6
+# is disabled on the system, this requirement is Not Applicable. Check the value
+# of the accept source route variable with the following command: $ sudo sysctl
+# net.ipv6.conf.all.accept_source_route net.ipv6.conf.all.accept_source_route = 0
+# If the returned line does not have a value of "0", a line is not returned, or
+# the line is commented out, this is a finding.
+
+
+- name: TOSS-04-040860 - TOSS must not forward IPv6 source-routed packets.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040860 | bool
+  tags:
+    - V-253127  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253127r825053_rule  
+    - TOSS-04-040860  
+    - DISA-STIG-TOSS-04-040860  
+    - medium_severity  
+    - CCI-000366
+    

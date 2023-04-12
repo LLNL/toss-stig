@@ -1,0 +1,20 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253078
+
+# Check to see if any automated bug reporting packages are installed
+# with the following command: $ sudo yum list installed abrt* If any automated bug
+# reporting package is installed, this is a finding.
+
+
+- name: TOSS-04-040230 - TOSS must not have any automated bug reporting tools installed.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040230 | bool
+  tags:
+    - V-253078  
+    - SRG-OS-000095-GPOS-00049  
+    - SV-253078r824906_rule  
+    - TOSS-04-040230  
+    - DISA-STIG-TOSS-04-040230  
+    - medium_severity  
+    - CCI-000381
+    

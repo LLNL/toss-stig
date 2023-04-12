@@ -1,0 +1,22 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253088
+
+# Verify that "firewalld" is installed and active with the following
+# commands: $ sudo yum list installed firewalld firewalld.noarch 0.9.3-7.el8 $
+# sudo systemctl is-active firewalld active If the "firewalld" package is not
+# installed and "active", ask the System Administrator if another firewall is
+# installed. If no firewall is installed and active this is a finding.
+
+
+- name: TOSS-04-040370 - A firewall must be installed on TOSS.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040370 | bool
+  tags:
+    - V-253088  
+    - SRG-OS-000297-GPOS-00115  
+    - SV-253088r824936_rule  
+    - TOSS-04-040370  
+    - DISA-STIG-TOSS-04-040370  
+    - medium_severity  
+    - CCI-002314
+    

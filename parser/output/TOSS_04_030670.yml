@@ -1,0 +1,27 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253020
+
+# Verify TOSS generates an audit record when successful/unsuccessful
+# attempts to use the "openat" system calls by performing the following command to
+# check the file system rules in "/etc/audit/audit.rules": $ sudo grep -iw openat
+# /etc/audit/audit.rules -a always,exit -F arch=b32 -S openat -F exit=-EPERM -F
+# auid>=1000 -F auid!=unset -k perm_access -a always,exit -F arch=b64 -S openat
+# -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access -a always,exit -F
+# arch=b32 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k
+# perm_access -a always,exit -F arch=b64 -S openat -F exit=-EACCES -F
+# auid>=1000 -F auid!=unset -k perm_access If the command does not return all
+# lines, or the lines are commented out, this is a finding.
+
+
+- name: TOSS-04-030670 - Successful/unsuccessful uses of the openat system call in TOSS must generate an audit record.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030670 | bool
+  tags:
+    - V-253020  
+    - SRG-OS-000064-GPOS-00033  
+    - SV-253020r824384_rule  
+    - TOSS-04-030670  
+    - DISA-STIG-TOSS-04-030670  
+    - medium_severity  
+    - CCI-000172
+    

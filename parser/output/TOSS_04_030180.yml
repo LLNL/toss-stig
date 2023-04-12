@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252983
+
+# Verify the audit system prevents unauthorized changes with the
+# following command: $ sudo grep "^\s*[^#]" /etc/audit/audit.rules | tail -1 -e 2
+# If the audit system is not set to be immutable by adding the "-e 2" option to
+# the "/etc/audit/audit.rules", this is a finding.
+
+
+- name: TOSS-04-030180 - The TOSS audit system must protect auditing rules from unauthorized change.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030180 | bool
+  tags:
+    - V-252983  
+    - SRG-OS-000057-GPOS-00027  
+    - SV-252983r824273_rule  
+    - TOSS-04-030180  
+    - DISA-STIG-TOSS-04-030180  
+    - medium_severity  
+    - CCI-000162
+    - CCI-000163
+    - CCI-000164
+    

@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253129
+
+# Verify TOSS does not IPv4 ICMP redirect messages. Note: If IPv4 is
+# disabled on the system, this requirement is Not Applicable. Check the value of
+# the "all send_redirects" variables with the following command: $ sudo sysctl
+# net.ipv4.conf.all.send_redirects net.ipv4.conf.all.send_redirects = 0 If the
+# returned line does not have a value of "0", or a line is not returned, this is a
+# finding.
+
+
+- name: TOSS-04-040880 - TOSS must not send Internet Control Message Protocol (ICMP) redirects.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040880 | bool
+  tags:
+    - V-253129  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253129r825059_rule  
+    - TOSS-04-040880  
+    - DISA-STIG-TOSS-04-040880  
+    - medium_severity  
+    - CCI-000366
+    

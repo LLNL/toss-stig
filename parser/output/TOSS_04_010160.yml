@@ -1,0 +1,29 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252926
+
+# Verify the SSH daemon is configured to use only MACs employing FIPS
+# 140-2-approved algorithms: Check that the MACs in the back-end configurations
+# are FIPS 140-2-approved algorithms with the following command: $ sudo grep -i
+# macs /etc/crypto-policies/back-ends/openssh.config
+# /etc/crypto-policies/back-ends/opensshserver.config
+# /etc/crypto-policies/back-ends/openssh.config:MACs hmac-sha2-512,hmac-sha2-256
+# /etc/crypto-policies/back-ends/opensshserver.config:-oMACs=hmac-sha2-512,hmac-sha2-256'
+# /etc/crypto-policies/back-ends/opensshserver.config:-oMACs=hmac-sha2-512,hmac-sha2-256'
+# If the MAC entries in the "openssh.config" and "opensshserver.config" files have
+# any hashes other than "hmac-sha2-512" and "hmac-sha2-256", the order differs
+# from the example above, if they are missing, or commented out, this is a
+# finding.
+
+
+- name: TOSS-04-010160 - The TOSS SSH daemon must be configured to use only Message Authentication Codes (MACs) employing FIPS 140-2 validated cryptographic hash algorithms.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010160 | bool
+  tags:
+    - V-252926  
+    - SRG-OS-000250-GPOS-00093  
+    - SV-252926r824102_rule  
+    - TOSS-04-010160  
+    - DISA-STIG-TOSS-04-010160  
+    - medium_severity  
+    - CCI-001453
+    

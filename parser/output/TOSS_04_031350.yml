@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253052
+
+# Verify the TOSS audit Daemon is configured to include local events,
+# with the following command: $ sudo grep local_events /etc/audit/auditd.conf
+# local_events = yes If the value of the "local_events" option is not set to
+# "yes", or the line is commented out, this is a finding.
+
+
+- name: TOSS-04-031350 - The TOSS audit system must audit local events.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_031350 | bool
+  tags:
+    - V-253052  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253052r824828_rule  
+    - TOSS-04-031350  
+    - DISA-STIG-TOSS-04-031350  
+    - medium_severity  
+    - CCI-000366
+    

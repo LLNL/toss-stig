@@ -1,0 +1,26 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252982
+
+# Verify the audit log directory is owned by group root. First,
+# determine where the audit logs are stored with the following command: $ sudo
+# grep -iw log_file /etc/audit/auditd.conf log_file = /var/log/audit/audit.log
+# Using the directory where the audit log file is located, check if the directory
+# is owned by group "root" with the following command: $ sudo ls -ld
+# /var/log/audit/ drwx------. 2 root root 99 Jul 19 07:32 /var/log/audit/ If the
+# audit log directory is not owned by group "root", this is a finding.
+
+
+- name: TOSS-04-030170 - TOSS audit log directory must be owned by group root to prevent unauthorized read access.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030170 | bool
+  tags:
+    - V-252982  
+    - SRG-OS-000057-GPOS-00027  
+    - SV-252982r824270_rule  
+    - TOSS-04-030170  
+    - DISA-STIG-TOSS-04-030170  
+    - medium_severity  
+    - CCI-000162
+    - CCI-000163
+    - CCI-000164
+    

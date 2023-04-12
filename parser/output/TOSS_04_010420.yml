@@ -1,0 +1,22 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252944
+
+# Verify the SSH daemon does not allow Kerberos authentication with the
+# following command: $ sudo grep -i KerberosAuthentication /etc/ssh/sshd_config
+# KerberosAuthentication no If the value is returned as "yes", the returned line
+# is commented out, no output is returned, or has not been documented with the
+# ISSO, this is a finding.
+
+
+- name: TOSS-04-010420 - The TOSS SSH daemon must not allow Kerberos authentication, except to fulfill documented and validated mission requirements.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010420 | bool
+  tags:
+    - V-252944  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-252944r824156_rule  
+    - TOSS-04-010420  
+    - DISA-STIG-TOSS-04-010420  
+    - medium_severity  
+    - CCI-000366
+    

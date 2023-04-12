@@ -1,0 +1,25 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253112
+
+# Verify that the umask default for installed shells is "077." Check
+# for the value of the "UMASK" parameter in the "/etc/bashrc" and "/etc/csh.cshrc"
+# files with the following command: Note: If the value of the "UMASK" parameter is
+# set to "000" in either the "/etc/bashrc" or the "/etc/csh.cshrc" files, the
+# severity is raised to a CAT I. $ sudo grep -i umask /etc/bashrc /etc/csh.cshrc
+# /etc/bashrc: umask 077 /etc/bashrc: umask 077 /etc/csh.cshrc: umask 077
+# /etc/csh.cshrc: umask 077 If the value for the "UMASK" parameter is not "077",
+# or the "UMASK" parameter is missing or is commented out, this is a finding.
+
+
+- name: TOSS-04-040710 - TOSS must define default permissions for logon and non-logon shells.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040710 | bool
+  tags:
+    - V-253112  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253112r825008_rule  
+    - TOSS-04-040710  
+    - DISA-STIG-TOSS-04-040710  
+    - medium_severity  
+    - CCI-000366
+    

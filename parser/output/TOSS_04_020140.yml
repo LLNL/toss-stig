@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252954
+
+# Verify emergency accounts have been provisioned with an expiration
+# date of 72 hours. For every existing emergency account, run the following
+# command to obtain its account expiration information. $ sudo chage -l
+# system_account_name Verify each of these accounts has an expiration date set
+# within 72 hours. If any emergency accounts have no expiration date set or do not
+# expire within 72 hours, this is a finding. If there are no emergency accounts
+# configured, this requirement is Not Applicable.
+
+
+- name: TOSS-04-020140 - TOSS must automatically remove or disable emergency accounts after the crisis is resolved or 72 hours.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020140 | bool
+  tags:
+    - V-252954  
+    - SRG-OS-000123-GPOS-00064  
+    - SV-252954r824186_rule  
+    - TOSS-04-020140  
+    - DISA-STIG-TOSS-04-020140  
+    - medium_severity  
+    - CCI-001682
+    

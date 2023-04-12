@@ -1,0 +1,26 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252934
+
+# Verify that the SSH package is installed: $ rpm -q openssh-server
+# openssh-server-8.0p1-10.el8_4.2.x86_64 If the "SSH server" package is not
+# installed, this is a finding. Verify SSH is loaded and active with the following
+# commands: $ sudo systemctl is-active sshd active $ sudo systemctl is-enabled
+# sshd enabled If "sshd" does not show a status of "active" and "enabled", this is
+# a finding.
+
+
+- name: TOSS-04-010280 - All TOSS networked systems must have and implement SSH to protect the confidentiality and integrity of transmitted and received information, as well as information during preparation for transmission.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010280 | bool
+  tags:
+    - V-252934  
+    - SRG-OS-000423-GPOS-00187  
+    - SV-252934r824126_rule  
+    - TOSS-04-010280  
+    - DISA-STIG-TOSS-04-010280  
+    - medium_severity  
+    - CCI-002418
+    - CCI-002420
+    - CCI-002421
+    - CCI-002422
+    

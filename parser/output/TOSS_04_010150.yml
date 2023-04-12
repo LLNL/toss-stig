@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252925
+
+# Verify the GnuTLS library is configured to only allow DoD-approved
+# SSL/TLS Versions: $ sudo grep -io +vers.*
+# /etc/crypto-policies/back-ends/gnutls.config
+# +VERS-ALL:-VERS-DTLS0.9:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1:-VERS-DTLS1.0:+COMP-NULL:%PROFILE_MEDIUM
+# If the "gnutls.config" does not list
+# "-VERS-DTLS0.9:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1:-VERS-DTLS1.0" to disable
+# unapproved SSL/TLS versions, this is a finding.
+
+
+- name: TOSS-04-010150 - The TOSS operating system must implement DoD-approved TLS encryption in the GnuTLS package.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010150 | bool
+  tags:
+    - V-252925  
+    - SRG-OS-000250-GPOS-00093  
+    - SV-252925r824099_rule  
+    - TOSS-04-010150  
+    - DISA-STIG-TOSS-04-010150  
+    - medium_severity  
+    - CCI-001453
+    

@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253108
+
+# Verify the SSH public host key files have mode "0644" or less
+# permissive with the following command: $ sudo ls -l /etc/ssh/*.pub -rw-r--r-- 1
+# root root 618 Nov 28 06:43 ssh_host_dsa_key.pub -rw-r--r-- 1 root root 347 Nov
+# 28 06:43 ssh_host_key.pub -rw-r--r-- 1 root root 238 Nov 28 06:43
+# ssh_host_rsa_key.pub If any key.pub file has a mode more permissive than "0644",
+# this is a finding. Note: SSH public key files may be found in other directories
+# on the system depending on the installation.
+
+
+- name: TOSS-04-040670 - The TOSS SSH public host key files must have mode 0644 or less permissive.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040670 | bool
+  tags:
+    - V-253108  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253108r824996_rule  
+    - TOSS-04-040670  
+    - DISA-STIG-TOSS-04-040670  
+    - medium_severity  
+    - CCI-000366
+    

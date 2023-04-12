@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253043
+
+# Verify that an audit event is generated for any
+# successful/unsuccessful use of the "mount" syscall by performing the following
+# command to check the file system rules in "/etc/audit/audit.rules": $ sudo grep
+# -w "\-S mount" /etc/audit/audit.rules -a always,exit -F arch=b32 -S mount -F
+# auid>=1000 -F auid!=unset -k privileged -a always,exit -F arch=b64 -S mount
+# -F auid>=1000 -F auid!=unset -k privileged If the command does not return a
+# line, or the line is commented out, this is a finding.
+
+
+- name: TOSS-04-031170 - Successful/unsuccessful uses of the "mount" syscall in TOSS must generate an audit record.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_031170 | bool
+  tags:
+    - V-253043  
+    - SRG-OS-000471-GPOS-00215  
+    - SV-253043r824801_rule  
+    - TOSS-04-031170  
+    - DISA-STIG-TOSS-04-031170  
+    - medium_severity  
+    - CCI-000172
+    

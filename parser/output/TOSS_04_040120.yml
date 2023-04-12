@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253067
+
+# Verify that TOSS enforces a 60-day maximum password lifetime for new
+# user accounts by running the following command: $ sudo grep -i pass_max_days
+# /etc/login.defs PASS_MAX_DAYS 60 If the "PASS_MAX_DAYS" parameter value is
+# greater than "60", or commented out, this is a finding.
+
+
+- name: TOSS-04-040120 - TOSS must enforce a 60-day maximum password lifetime restriction.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040120 | bool
+  tags:
+    - V-253067  
+    - SRG-OS-000076-GPOS-00044  
+    - SV-253067r824873_rule  
+    - TOSS-04-040120  
+    - DISA-STIG-TOSS-04-040120  
+    - medium_severity  
+    - CCI-000199
+    

@@ -1,0 +1,22 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253066
+
+# Verify that TOSS enforces 24 hours/1 day as the minimum password
+# lifetime for new user accounts. Check for the value of "PASS_MIN_DAYS" in
+# "/etc/login.defs" with the following command: $ sudo grep -i pass_min_days
+# /etc/login.defs PASS_MIN_DAYS 1 If the "PASS_MIN_DAYS" parameter value is not
+# "1" or greater, or is commented out, this is a finding.
+
+
+- name: TOSS-04-040110 - TOSS must enforce 24 hours/1 day as the minimum password lifetime.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040110 | bool
+  tags:
+    - V-253066  
+    - SRG-OS-000075-GPOS-00043  
+    - SV-253066r824870_rule  
+    - TOSS-04-040110  
+    - DISA-STIG-TOSS-04-040110  
+    - medium_severity  
+    - CCI-000198
+    

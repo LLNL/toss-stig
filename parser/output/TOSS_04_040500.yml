@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253094
+
+# Verify the operating system removes all software components after
+# updated versions have been installed. Check if YUM is configured to remove
+# unneeded packages with the following command: $ sudo grep -i
+# clean_requirements_on_remove /etc/dnf/dnf.conf clean_requirements_on_remove=True
+# If "clean_requirements_on_remove" is not set to either "1", "True", or "yes",
+# commented out, or is missing from "/etc/dnf/dnf.conf", this is a finding.
+
+
+- name: TOSS-04-040500 - YUM must remove all software components after updated versions have been installed on TOSS.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040500 | bool
+  tags:
+    - V-253094  
+    - SRG-OS-000437-GPOS-00194  
+    - SV-253094r824954_rule  
+    - TOSS-04-040500  
+    - DISA-STIG-TOSS-04-040500  
+    - low_severity  
+    - CCI-002617
+    

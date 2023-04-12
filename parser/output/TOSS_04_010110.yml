@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252922
+
+# Verify The TOSS operating system is configured to use TCP syncookies.
+# Check the value of TCP syncookies with the following command: $ sysctl
+# net.ipv4.tcp_syncookies net.ipv4.tcp_syncookies = 1 If the value is not "1",
+# this is a finding. Check the saved value of TCP syncookies with the following
+# command: $ sudo grep -i net.ipv4.tcp_syncookies /etc/sysctl.conf /etc/sysctl.d/*
+# | grep -v '#' If no output is returned, this is a finding.
+
+
+- name: TOSS-04-010110 - The TOSS operating system must be configured to use TCP syncookies.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_010110 | bool
+  tags:
+    - V-252922  
+    - SRG-OS-000142-GPOS-00071  
+    - SV-252922r824090_rule  
+    - TOSS-04-010110  
+    - DISA-STIG-TOSS-04-010110  
+    - medium_severity  
+    - CCI-001095
+    

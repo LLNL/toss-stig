@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253054
+
+# Verify the operating system has the packages required for offloading
+# audit logs installed with the following commands: $ sudo yum list installed
+# rsyslog rsyslog.x86_64 8.2102.0-5.el8 @AppStream If the "rsyslog" package is not
+# installed, ask the administrator to indicate how audit logs are being offloaded
+# and what packages are installed to support it. If there is no evidence of audit
+# logs being offloaded, this is a finding.
+
+
+- name: TOSS-04-031370 - TOSS must have the packages required for offloading audit logs installed.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_031370 | bool
+  tags:
+    - V-253054  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253054r824834_rule  
+    - TOSS-04-031370  
+    - DISA-STIG-TOSS-04-031370  
+    - medium_severity  
+    - CCI-000366
+    

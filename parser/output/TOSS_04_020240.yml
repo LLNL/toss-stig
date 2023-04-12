@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252963
+
+# Verify TOSS is not configured to reboot the system when
+# Ctrl-Alt-Delete is pressed when using a graphical user interface with the
+# following command: Note: This requirement assumes the use of the TOSS default
+# graphical user interface, Gnome Shell. If the system does not have any graphical
+# user interface installed, this requirement is Not Applicable. $ sudo grep logout
+# /etc/dconf/db/local.d/* logout='' If the "logout" key is bound to an action, is
+# commented out, or is missing, this is a finding.
+
+
+- name: TOSS-04-020240 - The x86 Ctrl-Alt-Delete key sequence in TOSS must be disabled if a graphical user interface is installed.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020240 | bool
+  tags:
+    - V-252963  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-252963r824213_rule  
+    - TOSS-04-020240  
+    - DISA-STIG-TOSS-04-020240  
+    - high_severity  
+    - CCI-000366
+    

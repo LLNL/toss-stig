@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252969
+
+# Verify the operating system limits the ability of non-privileged
+# users to grant other users direct access to the contents of their home
+# directories/folders. Ensure that the user permissions on all user home
+# directories is set to 770 permissions with the following command: $ find $(awk
+# -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -maxdepth
+# 0 -not -perm 770 -ls If there is any output, this is a finding.
+
+
+- name: TOSS-04-020300 - All TOSS local interactive user home directories must have mode 0770 or less permissive.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020300 | bool
+  tags:
+    - V-252969  
+    - SRG-OS-000480-GPOS-00230  
+    - SV-252969r824231_rule  
+    - TOSS-04-020300  
+    - DISA-STIG-TOSS-04-020300  
+    - medium_severity  
+    - CCI-000366
+    

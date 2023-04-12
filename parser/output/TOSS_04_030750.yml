@@ -1,0 +1,26 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253022
+
+# Verify the audit tools are owned by "root" to prevent any
+# unauthorized access, deletion, or modification. Check the owner of each audit
+# tool by running the following command: $ sudo stat -c "%U %n" /sbin/auditctl
+# /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/rsyslogd
+# /sbin/augenrules root /sbin/auditctl root /sbin/aureport root /sbin/ausearch
+# root /sbin/autrace root /sbin/auditd root /sbin/rsyslogd root /sbin/augenrules
+# If any of the audit tools are not owned by "root", this is a finding.
+
+
+- name: TOSS-04-030750 - TOSS audit tools must be owned by "root".
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030750 | bool
+  tags:
+    - V-253022  
+    - SRG-OS-000256-GPOS-00097  
+    - SV-253022r824738_rule  
+    - TOSS-04-030750  
+    - DISA-STIG-TOSS-04-030750  
+    - medium_severity  
+    - CCI-001493
+    - CCI-001494
+    - CCI-001495
+    

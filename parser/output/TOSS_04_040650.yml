@@ -1,0 +1,21 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253106
+
+# Verify the SSH daemon performs strict mode checking of home directory
+# configuration files with the following command: $ sudo grep -i strictmodes
+# /etc/ssh/sshd_config StrictModes yes If "StrictModes" is set to "no", is
+# missing, or the returned line is commented out, this is a finding.
+
+
+- name: TOSS-04-040650 - The TOSS SSH daemon must perform strict mode checking of home directory configuration files.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_040650 | bool
+  tags:
+    - V-253106  
+    - SRG-OS-000480-GPOS-00227  
+    - SV-253106r824990_rule  
+    - TOSS-04-040650  
+    - DISA-STIG-TOSS-04-040650  
+    - medium_severity  
+    - CCI-000366
+    

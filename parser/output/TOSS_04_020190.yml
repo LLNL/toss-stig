@@ -1,0 +1,23 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252959
+
+# Verify that "/etc/sudoers" has no occurrences of "NOPASSWD." Check
+# that the "/etc/sudoers" file has no occurrences of "NOPASSWD" by running the
+# following command: $ sudo grep -i nopasswd /etc/sudoers /etc/sudoers.d/* %admin
+# ALL=(ALL) NOPASSWD: ALL If any occurrences of "NOPASSWD" are returned from the
+# command and have not been documented with the ISSO as an organizationally
+# defined administrative group utilizing MFA, this is a finding.
+
+
+- name: TOSS-04-020190 - TOSS must require users to provide a password for privilege escalation.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020190 | bool
+  tags:
+    - V-252959  
+    - SRG-OS-000373-GPOS-00157  
+    - SV-252959r824201_rule  
+    - TOSS-04-020190  
+    - DISA-STIG-TOSS-04-020190  
+    - medium_severity  
+    - CCI-002038
+    

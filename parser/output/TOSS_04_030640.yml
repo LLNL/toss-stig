@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253017
+
+# Verify TOSS generates an audit record when successful/unsuccessful
+# attempts to use the "lchown" system call by performing the following command to
+# check the file system rules in "/etc/audit/audit.rules": $ sudo grep -w lchown
+# /etc/audit/audit.rules -a always,exit -F arch=b32 -S lchown -F auid>=1000 -F
+# auid!=unset -k perm_mod -a always,exit -F arch=b64 -S lchown -F auid>=1000 -F
+# auid!=unset -k perm_mod If the command does not return a line, or the line is
+# commented out, this is a finding.
+
+
+- name: TOSS-04-030640 - Successful/unsuccessful uses of the lchown system call in TOSS must generate an audit record.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030640 | bool
+  tags:
+    - V-253017  
+    - SRG-OS-000064-GPOS-00033  
+    - SV-253017r824375_rule  
+    - TOSS-04-030640  
+    - DISA-STIG-TOSS-04-030640  
+    - medium_severity  
+    - CCI-000172
+    

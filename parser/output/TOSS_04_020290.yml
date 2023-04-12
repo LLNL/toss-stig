@@ -1,0 +1,24 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252968
+
+# Verify TOSS defines default permissions for all authenticated users
+# in such a way that the user can only read and modify their own files. Check for
+# the value of the "UMASK" parameter in "/etc/login.defs" file with the following
+# command: Note: If the value of the "UMASK" parameter is set to "000" in
+# "/etc/login.defs" file, the Severity is raised to a CAT I. $ grep -i umask
+# /etc/login.defs UMASK 077 If the value for the "UMASK" parameter is not "077",
+# or the "UMASK" parameter is missing or is commented out, this is a finding.
+
+
+- name: TOSS-04-020290 - TOSS must define default permissions for all authenticated users in such a way that the user can only read and modify their own files.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_020290 | bool
+  tags:
+    - V-252968  
+    - SRG-OS-000480-GPOS-00228  
+    - SV-252968r824228_rule  
+    - TOSS-04-020290  
+    - DISA-STIG-TOSS-04-020290  
+    - medium_severity  
+    - CCI-000366
+    

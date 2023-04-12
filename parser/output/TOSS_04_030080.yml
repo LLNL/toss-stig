@@ -1,0 +1,27 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252975
+
+# Verify that the SA and ISSO (at a minimum) are notified in the event
+# of an audit processing failure. Check that TOSS notifies the SA and ISSO (at a
+# minimum) in the event of an audit processing failure with the following command:
+# $ sudo grep action_mail_acct /etc/audit/auditd.conf action_mail_acct = root If
+# the value of the "action_mail_acct" keyword is not set to "root" and/or other
+# accounts for security personnel, the "action_mail_acct" keyword is missing, or
+# the retuned line is commented out, ask the system administrator to indicate how
+# they and the ISSO are notified of an audit process failure. If there is no
+# evidence of the proper personnel being notified of an audit processing failure,
+# this is a finding.
+
+
+- name: TOSS-04-030080 - TOSS must alert the ISSO and SA (at a minimum) in the event of an audit processing failure.
+  # TODO: Implement the task
+  when:
+    - TOSS_04_030080 | bool
+  tags:
+    - V-252975  
+    - SRG-OS-000046-GPOS-00022  
+    - SV-252975r824249_rule  
+    - TOSS-04-030080  
+    - DISA-STIG-TOSS-04-030080  
+    - medium_severity  
+    - CCI-000139
+    
