@@ -1,0 +1,42 @@
+---
+
+- hosts: all
+  become: yes
+
+  collections:
+    - ansible.posix
+    - community.general
+
+  roles:
+    - role: stig
+      tags:
+        - linux
+        - baseline
+
+  pre_tasks:
+    - name: Check for incompatible Ansible versions
+      ansible.builtin.fail:
+        msg: "An Ansible version >= 2.9 is required to run these roles."
+      when: ansible_version.full is version('2.9', '<')
+      tags:
+        - always
+
+    - name: Check for incompatible operating systems
+      ansible.builtin.assert:
+        that: ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] is version('8', '>=')
+        fail_msg: "We don't currently support your OS - {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_major_version'] }}. Please see README.md."
+        quiet: yes
+      tags:
+        - always
+
+    - name: Get package facts
+      ansible.builtin.package_facts:
+        manager: "rpm"
+      tags:
+        - always
+
+    - name: Get service facts
+      ansible.builtin.service_facts:
+      when: ansible_facts['virtualization_type'] != "docker"
+      tags:
+        - always
