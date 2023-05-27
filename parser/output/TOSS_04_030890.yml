@@ -24,11 +24,11 @@
   when:
     - TOSS_04_030890 | bool
   tags:
-    - V-253031  
-    - SRG-OS-000341-GPOS-00132  
-    - SV-253031r824765_rule  
-    - TOSS-04-030890  
-    - DISA-STIG-TOSS-04-030890  
-    - medium_severity  
+    - V-253031
+    - SRG-OS-000341-GPOS-00132
+    - SV-253031r824765_rule
+    - TOSS-04-030890
+    - DISA-STIG-TOSS-04-030890
+    - medium_severity
     - CCI-001849
-    
+

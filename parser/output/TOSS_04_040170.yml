@@ -19,11 +19,11 @@
   when:
     - TOSS_04_040170 | bool
   tags:
-    - V-253072  
-    - SRG-OS-000095-GPOS-00049  
-    - SV-253072r824888_rule  
-    - TOSS-04-040170  
-    - DISA-STIG-TOSS-04-040170  
-    - medium_severity  
+    - V-253072
+    - SRG-OS-000095-GPOS-00049
+    - SV-253072r824888_rule
+    - TOSS-04-040170
+    - DISA-STIG-TOSS-04-040170
+    - medium_severity
     - CCI-000381
-    
+

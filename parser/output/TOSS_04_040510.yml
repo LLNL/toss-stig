@@ -18,11 +18,10 @@
   when:
     - TOSS_04_040510 | bool
   tags:
-    - V-253095  
-    - SRG-OS-000445-GPOS-00199  
-    - SV-253095r824957_rule  
-    - TOSS-04-040510  
-    - DISA-STIG-TOSS-04-040510  
-    - medium_severity  
+    - V-253095
+    - SRG-OS-000445-GPOS-00199
+    - SV-253095r824957_rule
+    - TOSS-04-040510
+    - DISA-STIG-TOSS-04-040510
+    - medium_severity
     - CCI-002696
-    

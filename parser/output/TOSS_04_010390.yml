@@ -16,11 +16,11 @@
   when:
     - TOSS_04_010390 | bool
   tags:
-    - V-252941  
-    - SRG-OS-000480-GPOS-00227  
-    - SV-252941r824147_rule  
-    - TOSS-04-010390  
-    - DISA-STIG-TOSS-04-010390  
-    - medium_severity  
+    - V-252941
+    - SRG-OS-000480-GPOS-00227
+    - SV-252941r824147_rule
+    - TOSS-04-010390
+    - DISA-STIG-TOSS-04-010390
+    - medium_severity
     - CCI-000366
-    
+

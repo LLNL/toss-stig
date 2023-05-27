@@ -14,11 +14,11 @@
   when:
     - TOSS_04_010150 | bool
   tags:
-    - V-252925  
-    - SRG-OS-000250-GPOS-00093  
-    - SV-252925r824099_rule  
-    - TOSS-04-010150  
-    - DISA-STIG-TOSS-04-010150  
-    - medium_severity  
+    - V-252925
+    - SRG-OS-000250-GPOS-00093
+    - SV-252925r824099_rule
+    - TOSS-04-010150
+    - DISA-STIG-TOSS-04-010150
+    - medium_severity
     - CCI-001453
-    
+

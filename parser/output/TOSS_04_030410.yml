@@ -13,15 +13,15 @@
   when:
     - TOSS_04_030410 | bool
   tags:
-    - V-252995  
-    - SRG-OS-000037-GPOS-00015  
-    - SV-252995r824309_rule  
-    - TOSS-04-030410  
-    - DISA-STIG-TOSS-04-030410  
-    - medium_severity  
+    - V-252995
+    - SRG-OS-000037-GPOS-00015
+    - SV-252995r824309_rule
+    - TOSS-04-030410
+    - DISA-STIG-TOSS-04-030410
+    - medium_severity
     - CCI-000130
     - CCI-000135
     - CCI-000169
     - CCI-000172
     - CCI-002884
-    
+

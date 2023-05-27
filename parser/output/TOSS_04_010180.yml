@@ -19,13 +19,13 @@
   when:
     - TOSS_04_010180 | bool
   tags:
-    - V-252928  
-    - SRG-OS-000355-GPOS-00143  
-    - SV-252928r825085_rule  
-    - TOSS-04-010180  
-    - DISA-STIG-TOSS-04-010180  
-    - medium_severity  
+    - V-252928
+    - SRG-OS-000355-GPOS-00143
+    - SV-252928r825085_rule
+    - TOSS-04-010180
+    - DISA-STIG-TOSS-04-010180
+    - medium_severity
     - CCI-001890
     - CCI-001891
     - CCI-002046
-    
+

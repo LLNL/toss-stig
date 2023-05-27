@@ -14,13 +14,13 @@
   when:
     - TOSS_04_020020 | bool
   tags:
-    - V-252948  
-    - SRG-OS-000028-GPOS-00009  
-    - SV-252948r824168_rule  
-    - TOSS-04-020020  
-    - DISA-STIG-TOSS-04-020020  
-    - medium_severity  
+    - V-252948
+    - SRG-OS-000028-GPOS-00009
+    - SV-252948r824168_rule
+    - TOSS-04-020020
+    - DISA-STIG-TOSS-04-020020
+    - medium_severity
     - CCI-000056
     - CCI-000058
     - CCI-000060
-    
+

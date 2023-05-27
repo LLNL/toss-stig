@@ -11,11 +11,10 @@
   when:
     - TOSS_04_040910 | bool
   tags:
-    - V-253132  
-    - SRG-OS-000480-GPOS-00227  
-    - SV-253132r825068_rule  
-    - TOSS-04-040910  
-    - DISA-STIG-TOSS-04-040910  
-    - medium_severity  
+    - V-253132
+    - SRG-OS-000480-GPOS-00227
+    - SV-253132r825068_rule
+    - TOSS-04-040910
+    - DISA-STIG-TOSS-04-040910
+    - medium_severity
     - CCI-000366
-    

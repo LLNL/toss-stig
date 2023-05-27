@@ -13,11 +13,11 @@
   when:
     - TOSS_04_030060 | bool
   tags:
-    - V-252974  
-    - SRG-OS-000042-GPOS-00020  
-    - SV-252974r824246_rule  
-    - TOSS-04-030060  
-    - DISA-STIG-TOSS-04-030060  
-    - medium_severity  
+    - V-252974
+    - SRG-OS-000042-GPOS-00020
+    - SV-252974r824246_rule
+    - TOSS-04-030060
+    - DISA-STIG-TOSS-04-030060
+    - medium_severity
     - CCI-000135
-    
+

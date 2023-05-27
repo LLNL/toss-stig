@@ -20,11 +20,11 @@
   when:
     - TOSS_04_010220 | bool
   tags:
-    - V-252930  
-    - SRG-OS-000366-GPOS-00153  
-    - SV-252930r824114_rule  
-    - TOSS-04-010220  
-    - DISA-STIG-TOSS-04-010220  
-    - high_severity  
+    - V-252930
+    - SRG-OS-000366-GPOS-00153
+    - SV-252930r824114_rule
+    - TOSS-04-010220
+    - DISA-STIG-TOSS-04-010220
+    - high_severity
     - CCI-001749
-    
+
