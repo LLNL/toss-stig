@@ -20,6 +20,7 @@ def render_task_file(context, template, output_dir=".", filename=None):
         filename = context["stig_id_slug"] + ".yml"
     output_path = os.path.join(os.path.abspath(output_dir), filename)
     rendered = template.render(**context)
+    rendered = "\n".join(line.rstrip() for line in rendered.splitlines())
     with open(output_path, "w") as output_fh:
         output_fh.write(rendered)
 
