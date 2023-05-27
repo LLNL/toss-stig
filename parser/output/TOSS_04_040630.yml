@@ -19,11 +19,10 @@
   when:
     - TOSS_04_040630 | bool
   tags:
-    - V-253104  
-    - SRG-OS-000480-GPOS-00227  
-    - SV-253104r824984_rule  
-    - TOSS-04-040630  
-    - DISA-STIG-TOSS-04-040630  
-    - low_severity  
+    - V-253104
+    - SRG-OS-000480-GPOS-00227
+    - SV-253104r824984_rule
+    - TOSS-04-040630
+    - DISA-STIG-TOSS-04-040630
+    - low_severity
     - CCI-000366
-    

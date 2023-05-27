@@ -24,17 +24,18 @@
 
 
 - name: TOSS-04-010210 - The TOSS file integrity tool must notify the system administrator when changes to the baseline configuration or anomalies in the operation of any security functions are discovered within an organizationally defined frequency.
-  # TODO: Implement the task
+  package:
+    name: aide
+    state: present
   when:
     - TOSS_04_010210 | bool
   tags:
-    - V-252929  
-    - SRG-OS-000363-GPOS-00150  
-    - SV-252929r824111_rule  
-    - TOSS-04-010210  
-    - DISA-STIG-TOSS-04-010210  
-    - medium_severity  
+    - V-252929
+    - SRG-OS-000363-GPOS-00150
+    - SV-252929r824111_rule
+    - TOSS-04-010210
+    - DISA-STIG-TOSS-04-010210
+    - medium_severity
     - CCI-001744
     - CCI-002699
     - CCI-002702
-    
