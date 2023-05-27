@@ -13,15 +13,19 @@
 
 
 - name: TOSS-04-010430 - TOSS must not allow an unattended or automatic logon to the system.
-  # TODO: Implement the task
+  lineinfile:
+    create: true
+    path: /etc/gdm/custom.conf
+    regexp: '^AutomaticLoginEnable'
+    line: 'AutomaticLoginEnable=false'
+    insertafter: '^[daemon]\n'
   when:
     - TOSS_04_010430 | bool
   tags:
-    - V-252945  
-    - SRG-OS-000480-GPOS-00229  
-    - SV-252945r824159_rule  
-    - TOSS-04-010430  
-    - DISA-STIG-TOSS-04-010430  
-    - high_severity  
+    - V-252945
+    - SRG-OS-000480-GPOS-00229
+    - SV-252945r824159_rule
+    - TOSS-04-010430
+    - DISA-STIG-TOSS-04-010430
+    - high_severity
     - CCI-000366
-    
