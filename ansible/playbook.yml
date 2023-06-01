@@ -1,17 +1,18 @@
 ---
 
-- hosts: all
-  become: yes
+- hosts: localhost
+  connection: local
+
+  # gather_facts: no
 
   collections:
     - ansible.posix
     - community.general
 
   roles:
-    - role: stig
-      tags:
-        - linux
-        - baseline
+  - role: stig
+    vars:
+      - TOSS_04_010080: true
 
   pre_tasks:
     - name: Check for incompatible Ansible versions
@@ -29,14 +30,14 @@
       tags:
         - always
 
-    - name: Get package facts
-      ansible.builtin.package_facts:
-        manager: "rpm"
-      tags:
-        - always
+    # - name: Get package facts
+    #   ansible.builtin.package_facts:
+    #     manager: "rpm"
+    #   tags:
+    #     - always
 
-    - name: Get service facts
-      ansible.builtin.service_facts:
-      when: ansible_facts['virtualization_type'] != "docker"
-      tags:
-        - always
+    # - name: Get service facts
+    #   ansible.builtin.service_facts:
+    #   when: ansible_facts['virtualization_type'] != "docker"
+    #   tags:
+    #     - always
