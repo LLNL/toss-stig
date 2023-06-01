@@ -9,7 +9,53 @@
 
 
 - name: TOSS-04-010080 - The TOSS operating system must implement DoD-approved encryption in the OpenSSL package.
-  # TODO: Implement the task
+  block:
+    - name: Check for duplicate values of TLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
+      lineinfile:
+        path: /etc/crypto-policies/back-ends/opensslcnf.config
+        create: false
+        regexp: (?i)^\s*TLS.MinProtocol\s+
+        state: absent
+      check_mode: true
+      changed_when: false
+      register: dupes
+    - name: Deduplicate values of TLS.MinProtocol from /etc/crypto-policies/back-ends/opensslcnf.config
+      lineinfile:
+        path: /etc/crypto-policies/back-ends/opensslcnf.config
+        create: false
+        regexp: (?i)^\s*TLS.MinProtocol\s+
+        state: absent
+      when: dupes.found is defined and dupes.found > 1
+    - name: Insert correct line of TLS.MinProtocol to /etc/crypto-policies/back-ends/opensslcnf.config
+      lineinfile:
+        path: /etc/crypto-policies/back-ends/opensslcnf.config
+        create: true
+        regexp: (?i)^\s*TLS.MinProtocol\s+
+        line: TLS.MinProtocol TLSv1.2
+        state: present
+    - name: Check for duplicate values of DTLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
+      lineinfile:
+        path: /etc/crypto-policies/back-ends/opensslcnf.config
+        create: false
+        regexp: (?i)^\s*DTLS.MinProtocol\s+
+        state: absent
+      check_mode: true
+      changed_when: false
+      register: dupes
+    - name: Deduplicate values of DTLS.MinProtocol from /etc/crypto-policies/back-ends/opensslcnf.config
+      lineinfile:
+        path: /etc/crypto-policies/back-ends/opensslcnf.config
+        create: false
+        regexp: (?i)^\s*DTLS.MinProtocol\s+
+        state: absent
+      when: dupes.found is defined and dupes.found > 1
+    - name: Insert correct line of DTLS.MinProtocol to /etc/crypto-policies/back-ends/opensslcnf.config
+      lineinfile:
+        path: /etc/crypto-policies/back-ends/opensslcnf.config
+        create: true
+        regexp: (?i)^\s*DTLS.MinProtocol\s+
+        line: DTLS.MinProtocol TLSv1.2
+        state: present
   when:
     - TOSS_04_010080 | bool
   tags:
@@ -21,4 +67,3 @@
     - medium_severity
     - CCI-000877
     - CCI-001453
-
