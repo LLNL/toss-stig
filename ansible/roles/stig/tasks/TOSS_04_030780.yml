@@ -44,7 +44,8 @@
     path: /etc/aide.conf
     regexp: ^{{ item }}\s
     line: '{{ item }} p+i+n+u+g+s+b+acl+xattrs+sha512 '
-  with_items: '{{ audit_tools }}'  when:
+  with_items: '{{ audit_tools }}'
+  when:
     - TOSS_04_030780 | bool
   tags:
     - V-253023
