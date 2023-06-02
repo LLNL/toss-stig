@@ -31,7 +31,7 @@
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: true
         regexp: (?i)^\s*TLS.MinProtocol\s+
-        line: TLS.MinProtocol TLSv1.2
+        line: TLS.MinProtocol = TLSv1.2
         state: present
     - name: Check for duplicate values of DTLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
       lineinfile:
@@ -54,7 +54,7 @@
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: true
         regexp: (?i)^\s*DTLS.MinProtocol\s+
-        line: DTLS.MinProtocol TLSv1.2
+        line: DTLS.MinProtocol = DTLSv1.2
         state: present
   when:
     - TOSS_04_010080 | bool
