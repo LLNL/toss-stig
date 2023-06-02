@@ -1,0 +1,10 @@
+---
+
+  - name: Generic STIG Controls
+    ansible.builtin.include_tasks:
+      file: '{{ control }}.yml'
+    loop: '{{ controls }}'
+    loop_control:
+      loop_var: control
+    tags:
+      - always
