@@ -8,7 +8,29 @@
 
 
 - name: TOSS-04-010070 - The TOSS pam_unix.so module must be configured in the system-auth file to use a FIPS 140-2-approved cryptographic hashing algorithm for system authentication.
-  # TODO: Implement the task
+  block:
+    - name: Check bad algorithms are absent
+      community.general.pamd:
+        name: system-auth
+        type: password
+        control: sufficient
+        module_path: pam_unix.so
+        module_arguments:
+          - descrypt
+          - bigcrypt
+          - md5
+          - sha256
+        state: args_absent
+        backup: yes
+    - name: Check good algorithms are present
+      community.general.pamd:
+        name: system-auth
+        type: password
+        control: sufficient
+        module_path: pam_unix.so
+        module_arguments: sha512
+        state: args_present
+        backup: yes
   when:
     - TOSS_04_010070 | bool
   tags:
@@ -19,4 +41,3 @@
     - DISA-STIG-TOSS-04-010070
     - medium_severity
     - CCI-000803
-

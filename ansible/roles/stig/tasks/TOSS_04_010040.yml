@@ -10,7 +10,14 @@
 
 
 - name: TOSS-04-010040 - TOSS must not permit direct logons to the root account using remote access from outside of the system via SSH.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^(?i)#?PermitRootLogin'
+    line: 'PermitRootLogin no'
+    state: present
+    backup: yes
+    validate: /usr/sbin/sshd -t -f %s
+  notify: restart sshd
   when:
     - TOSS_04_010040 | bool
   tags:
@@ -21,4 +28,4 @@
     - DISA-STIG-TOSS-04-010040
     - medium_severity
     - CCI-000770
-
+    - NASA-ASCS-40062

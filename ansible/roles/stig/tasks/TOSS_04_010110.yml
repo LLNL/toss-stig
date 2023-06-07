@@ -9,7 +9,12 @@
 
 
 - name: TOSS-04-010110 - The TOSS operating system must be configured to use TCP syncookies.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^(?i)#?net.ipv4.tcp_syncookies'
+    line: 'net.ipv4.tcp_syncookies = 1'
+    state: present
+    backup: yes
   when:
     - TOSS_04_010110 | bool
   tags:
@@ -20,4 +25,3 @@
     - DISA-STIG-TOSS-04-010110
     - medium_severity
     - CCI-001095
-

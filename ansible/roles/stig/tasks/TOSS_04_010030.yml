@@ -9,7 +9,11 @@
 
 
 - name: TOSS-04-010030 - TOSS must require authentication upon booting into emergency or rescue modes.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /usr/lib/systemd/system/rescue.service
+    regexp: '^#?ExecStart='
+    line: 'ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue'
+    backup: yes
   when:
     - TOSS_04_010030 | bool
   tags:
@@ -20,4 +24,3 @@
     - DISA-STIG-TOSS-04-010030
     - medium_severity
     - CCI-000213
-
