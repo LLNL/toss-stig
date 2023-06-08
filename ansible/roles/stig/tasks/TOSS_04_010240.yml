@@ -10,7 +10,9 @@
 
 
 - name: TOSS-04-010240 - TOSS must have the packages required for multifactor authentication installed.
-  # TODO: Implement the task
+  package:
+    name: openssl-pkcs11
+    state: present
   when:
     - TOSS_04_010240 | bool
   tags:
@@ -21,4 +23,4 @@
     - DISA-STIG-TOSS-04-010240
     - medium_severity
     - CCI-001948
-
+    - DISA-STIG-RHEL-08-010390
