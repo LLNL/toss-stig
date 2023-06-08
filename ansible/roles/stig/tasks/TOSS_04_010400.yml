@@ -9,32 +9,14 @@
 # Implementation adapted from: https://github.com/RedHatOfficial/ansible-role-rhel8-stig
 
 - name: TOSS-04-010400 - The TOSS SSH daemon must not allow authentication using known host's authentication.
-  block:
-    - name: Check for duplicate values
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        create: false
-        regexp: (?i)^\s*IgnoreUserKnownHosts\s+
-        state: absent
-      check_mode: true
-      changed_when: false
-      register: dupes
-    - name: Deduplicate values from /etc/ssh/sshd_config
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        create: false
-        regexp: (?i)^\s*IgnoreUserKnownHosts\s+
-        state: absent
-      when: dupes.found is defined and dupes.found > 1
-    - name: Insert correct line to /etc/ssh/sshd_config
-      lineinfile:
-        path: /etc/ssh/sshd_config
-        create: true
-        regexp: (?i)^\s*IgnoreUserKnownHosts\s+
-        line: IgnoreUserKnownHosts yes
-        state: present
-        insertbefore: ^[#\s]*Match
-        validate: /usr/sbin/sshd -t -f %s
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^(?i)#?IgnoreUserKnownHosts'
+    line: 'IgnoreUserKnownHosts yes'
+    state: present
+    backup: yes
+    validate: /usr/sbin/sshd -t -f %s
+  notify: restart sshd
   when:
     - TOSS_04_010400 | bool
   tags:
@@ -45,3 +27,4 @@
     - DISA-STIG-TOSS-04-010400
     - medium_severity
     - CCI-000366
+    - NASA-ASCS-40091

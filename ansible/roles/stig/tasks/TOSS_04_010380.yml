@@ -6,7 +6,10 @@
 
 
 - name: TOSS-04-010380 - TOSS must not allow blank or null passwords in the system-auth file.
-  # TODO: Implement the task
+  ansible.builtin.replace:
+    path: '/etc/pam.d/system-auth'
+    regexp: '(nullok_secure|nullok)'
+    backup: yes
   when:
     - TOSS_04_010380 | bool
   tags:
@@ -17,4 +20,3 @@
     - DISA-STIG-TOSS-04-010380
     - high_severity
     - CCI-000366
-

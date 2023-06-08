@@ -7,7 +7,13 @@
 
 
 - name: TOSS-04-010410 - The TOSS SSH daemon must not allow compression or must only allow compression after successful authentication.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^(?i)#?Compression'
+    line: 'Compression delayed'
+    state: present
+    backup: yes
+    validate: /usr/sbin/sshd -t -f %s
   when:
     - TOSS_04_010410 | bool
   tags:
@@ -18,4 +24,3 @@
     - DISA-STIG-TOSS-04-010410
     - medium_severity
     - CCI-000366
-

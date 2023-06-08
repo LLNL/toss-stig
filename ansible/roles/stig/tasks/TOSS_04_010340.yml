@@ -8,7 +8,12 @@
 
 
 - name: TOSS-04-010340 - The debug-shell systemd service must be disabled on TOSS.
-  # TODO: Implement the task
+  systemd:
+    name: debug-shell.service
+    enabled: 'no'
+    state: stopped
+    masked: 'yes'
+  ignore_errors: 'yes'
   when:
     - TOSS_04_010340 | bool
   tags:
@@ -19,4 +24,4 @@
     - DISA-STIG-TOSS-04-010340
     - medium_severity
     - CCI-000366
-
+    - DISA-STIG-RHEL-08-040180

@@ -8,7 +8,12 @@
 
 
 - name: TOSS-04-010360 - The systemd Ctrl-Alt-Delete burst key sequence in TOSS must be disabled.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/system.conf
+    regexp: '^#?CtrlAltDelBurstAction='
+    line: 'CtrlAltDelBurstAction=none'
+    state: present
+    backup: yes
   when:
     - TOSS_04_010360 | bool
   tags:
@@ -19,4 +24,5 @@
     - DISA-STIG-TOSS-04-010360
     - high_severity
     - CCI-000366
-
+    - NASA-ASCS-20365
+    - DISA-STIG-RHEL-08-040172

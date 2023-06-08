@@ -8,7 +8,14 @@
 
 
 - name: TOSS-04-010420 - The TOSS SSH daemon must not allow Kerberos authentication, except to fulfill documented and validated mission requirements.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^(?i)#?KerberosAuthentication'
+    line: 'KerberosAuthentication no'
+    state: present
+    backup: yes
+    validate: /usr/sbin/sshd -t -f %s
+  notify: restart sshd
   when:
     - TOSS_04_010420 | bool
   tags:
@@ -19,4 +26,4 @@
     - DISA-STIG-TOSS-04-010420
     - medium_severity
     - CCI-000366
-
+    - NASA-ASCS-40051
