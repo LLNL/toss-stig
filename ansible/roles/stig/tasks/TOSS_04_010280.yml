@@ -12,8 +12,8 @@
   block:
   - name: Ensure openssh-server is installed
     ansible.builtin.package:
-    name: openssh-server
-    state: present
+      name: openssh-server
+      state: present
   - name: Enable service sshd
     service:
       name: sshd
