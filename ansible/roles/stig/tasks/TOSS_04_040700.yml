@@ -12,9 +12,33 @@
 
 
 - name: TOSS-04-040700 - TOSS must be configured to prevent unrestricted mail relaying.
-  # TODO: Implement the task
+  block:
+  - name: Check for duplicate values
+    lineinfile:
+      path: /etc/postfix/main.cf
+      create: false
+      regexp: ^[ \t]*smtpd_client_restrictions\s*=\s*
+      state: absent
+    check_mode: true
+    changed_when: false
+    register: dupes
+  - name: Deduplicate values from /etc/postfix/main.cf
+    lineinfile:
+      path: /etc/postfix/main.cf
+      create: false
+      regexp: ^[ \t]*smtpd_client_restrictions\s*=\s*
+      state: absent
+    when: dupes.found is defined and dupes.found > 1
+  - name: Insert correct line to /etc/postfix/main.cf
+    lineinfile:
+      path: /etc/postfix/main.cf
+      create: true
+      regexp: ^[ \t]*smtpd_client_restrictions\s*=\s*
+      line: smtpd_client_restrictions = permit_mynetworks,reject
+      state: present
   when:
     - TOSS_04_040700 | bool
+    - '"postfix" in ansible_facts.packages'
   tags:
     - V-253111
     - SRG-OS-000480-GPOS-00227
@@ -23,3 +47,4 @@
     - DISA-STIG-TOSS-04-040700
     - medium_severity
     - CCI-000366
+    - DISA-STIG-RHEL-08-040290

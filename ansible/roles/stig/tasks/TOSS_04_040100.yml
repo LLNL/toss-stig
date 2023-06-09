@@ -6,7 +6,9 @@
 
 
 - name: TOSS-04-040100 - TOSS must not have the rsh-server package installed.
-  # TODO: Implement the task
+  ansible.builtin.package:
+    name: rsh-server
+    state: absent
   when:
     - TOSS_04_040100 | bool
   tags:
@@ -18,4 +20,5 @@
     - medium_severity
     - CCI-000197
     - CCI-000381
-
+    - NASA-ASCS-20240
+    - DISA-STIG-RHEL-08-040010

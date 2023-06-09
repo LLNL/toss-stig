@@ -6,7 +6,9 @@
 
 
 - name: TOSS-04-040260 - TOSS must not have the telnet-server package installed.
-  # TODO: Implement the task
+  ansible.builtin.package:
+    name: telnet-server
+    state: absent
   when:
     - TOSS_04_040260 | bool
   tags:
@@ -17,4 +19,5 @@
     - DISA-STIG-TOSS-04-040260
     - medium_severity
     - CCI-000381
-
+    - NASA-ASCS-20241
+    - DISA-STIG-RHEL-08-040000

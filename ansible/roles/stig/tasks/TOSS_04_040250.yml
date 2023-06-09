@@ -6,7 +6,9 @@
 
 
 - name: TOSS-04-040250 - TOSS must not have the sendmail package installed.
-  # TODO: Implement the task
+  package:
+    name: sendmail
+    state: absent
   when:
     - TOSS_04_040250 | bool
   tags:
@@ -17,4 +19,4 @@
     - DISA-STIG-TOSS-04-040250
     - medium_severity
     - CCI-000381
-
+    - DISA-STIG-RHEL-08-040002

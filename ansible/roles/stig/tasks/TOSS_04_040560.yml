@@ -8,7 +8,11 @@
 
 
 - name: TOSS-04-040560 - A File Transfer Protocol (FTP) server package must not be installed unless mission essential on TOSS.
-  # TODO: Implement the task
+  block:
+  - name: Ensure vsftpd is removed
+    package:
+      name: vsftpd
+      state: absent
   when:
     - TOSS_04_040560 | bool
   tags:
@@ -19,3 +23,4 @@
     - DISA-STIG-TOSS-04-040560
     - high_severity
     - CCI-000366
+    - DISA-STIG-RHEL-08-040360

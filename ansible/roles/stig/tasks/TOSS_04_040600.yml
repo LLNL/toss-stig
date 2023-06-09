@@ -10,7 +10,22 @@
 
 
 - name: TOSS-04-040600 - If the Trivial File Transfer Protocol (TFTP) server is required, the TOSS TFTP daemon must be configured to operate in secure mode.
-  # TODO: Implement the task
+  block:
+  - name: Find out if the file exists and contains the line configuring server arguments
+    find:
+      path: /etc/xinetd.d
+      patterns: tftp
+      contains: ^[\s]+server_args.*$
+    register: tftpd_secure_config_line
+  - name: If installed, Ensure that TFTP server is configured to start with secure directory
+    lineinfile:
+      path: /etc/xinetd.d/tftp
+      regexp: ^[\s]*(server_args[\s]+=[\s]+.*?)(-s[\s]+[/\.\w]+)*(.*)$
+      line: \1 -s {{ var_tftpd_secure_directory }} \3
+      state: present
+      backrefs: true
+    when:
+    - '"tftp-server" in ansible_facts.packages'
   when:
     - TOSS_04_040600 | bool
   tags:
@@ -21,3 +36,4 @@
     - DISA-STIG-TOSS-04-040600
     - medium_severity
     - CCI-000366
+    - DISA-STIG-RHEL-08-040190
