@@ -10,7 +10,17 @@
 
 
 - name: TOSS-04-040420 - TOSS must accept Personal Identity Verification (PIV) credentials.
-  # TODO: Implement the task
+  block:
+  - name: Ensure opensc is installed
+    ansible.builtin.package:
+      name: opensc
+      state: present
+  - name: Ensure opensc accepts PIV cards
+    shell: "opensc-tool --list-drivers | grep -i piv"
+    register: piv_drivers
+    failed_when: "PIV-II" not in piv_drivers.stdout
+
+
   when:
     - TOSS_04_040420 | bool
   tags:
@@ -21,4 +31,3 @@
     - DISA-STIG-TOSS-04-040420
     - medium_severity
     - CCI-001953
-

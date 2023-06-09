@@ -9,7 +9,9 @@
 
 
 - name: TOSS-04-031370 - TOSS must have the packages required for offloading audit logs installed.
-  # TODO: Implement the task
+  ansible.builtin.package:
+    name: rsyslog
+    state: present
   when:
     - TOSS_04_031370 | bool
   tags:
@@ -20,4 +22,3 @@
     - DISA-STIG-TOSS-04-031370
     - medium_severity
     - CCI-000366
-

@@ -10,7 +10,9 @@
 
 
 - name: TOSS-04-031380 - TOSS must have the packages required for encrypting offloaded audit logs installed.
-  # TODO: Implement the task
+  ansible.builtin.package:
+    name: rsyslog-gnutls
+    state: present
   when:
     - TOSS_04_031380 | bool
   tags:
@@ -21,4 +23,3 @@
     - DISA-STIG-TOSS-04-031380
     - medium_severity
     - CCI-000366
-

@@ -7,7 +7,9 @@
 
 
 - name: TOSS-04-040760 - TOSS must have the packages required to use the hardware random number generator entropy gatherer service.
-  # TODO: Implement the task
+  package:
+    name: rng-tools
+    state: present
   when:
     - TOSS_04_040760 | bool
   tags:
@@ -18,3 +20,4 @@
     - DISA-STIG-TOSS-04-040760
     - low_severity
     - CCI-000366
+    - DISA-STIG-RHEL-08-010472

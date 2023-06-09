@@ -8,9 +8,19 @@
 
 
 - name: TOSS-04-040370 - A firewall must be installed on TOSS.
-  # TODO: Implement the task
+  block:
+  - name: Ensure firewalld is installed
+    ansible.builtin.package:
+      name: firewalld
+      state: present
+  - name: Ensure firewalld is enabled / active
+    ansible.builtin.systemd:
+      name: firewalld
+      enabled: yes
+      state: started
+      masked: 'no'
   when:
-    - TOSS_04_040370 | bool
+  - TOSS_04_040370 | bool
   tags:
     - V-253088
     - SRG-OS-000297-GPOS-00115
@@ -19,4 +29,3 @@
     - DISA-STIG-TOSS-04-040370
     - medium_severity
     - CCI-002314
-
