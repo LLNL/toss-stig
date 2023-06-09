@@ -10,7 +10,13 @@
 
 
 - name: TOSS-04-040900 - TOSS must prevent IPv6 Internet Control Message Protocol (ICMP) redirect messages from being accepted.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^(?i)#?net.ipv6.conf.default.accept_redirects'
+    line: 'net.ipv6.conf.default.accept_redirects = 0'
+    state: present
+    backup: yes
+  notify: reload sysctl
   when:
     - TOSS_04_040900 | bool
   tags:
@@ -21,3 +27,4 @@
     - DISA-STIG-TOSS-04-040900
     - medium_severity
     - CCI-000366
+    - NASA-ASCS-20270

@@ -10,7 +10,13 @@
 
 
 - name: TOSS-04-040790 - TOSS must not accept router advertisements on all IPv6 interfaces by default.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^(?i)#?net.ipv6.conf.default.accept_ra'
+    line: 'net.ipv6.conf.default.accept_ra = 0'
+    state: present
+    backup: yes
+  notify: reload sysctl
   when:
     - TOSS_04_040790 | bool
   tags:
@@ -21,3 +27,5 @@
     - DISA-STIG-TOSS-04-040790
     - medium_severity
     - CCI-000366
+    - DISA-STIG-RHEL-08-040262
+    - NASA-ASCS-20269

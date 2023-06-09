@@ -9,7 +9,13 @@
 
 
 - name: TOSS-04-040770 - TOSS must ignore IPv4 Internet Control Message Protocol (ICMP) redirect messages.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^(?i)#?net.ipv4.conf.all.accept_redirects'
+    line: 'net.ipv4.conf.all.accept_redirects = 0'
+    state: present
+    backup: yes
+  notify: reload sysctl
   when:
     - TOSS_04_040770 | bool
   tags:
@@ -20,3 +26,4 @@
     - DISA-STIG-TOSS-04-040770
     - medium_severity
     - CCI-000366
+    - NASA-ASCS-20190

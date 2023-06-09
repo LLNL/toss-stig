@@ -15,6 +15,7 @@
     line: 'net.ipv4.tcp_syncookies = 1'
     state: present
     backup: yes
+  notify: reload sysctl
   when:
     - TOSS_04_010110 | bool
   tags:
@@ -25,3 +26,4 @@
     - DISA-STIG-TOSS-04-010110
     - medium_severity
     - CCI-001095
+    - NASA-ASCS-20116

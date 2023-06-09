@@ -9,7 +9,13 @@
 
 
 - name: TOSS-04-040860 - TOSS must not forward IPv6 source-routed packets.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^(?i)#?net.ipv6.conf.all.accept_source_route'
+    line: 'net.ipv6.conf.all.accept_source_route = 0'
+    state: present
+    backup: yes
+  notify: reload sysctl
   when:
     - TOSS_04_040860 | bool
   tags:
@@ -20,3 +26,4 @@
     - DISA-STIG-TOSS-04-040860
     - medium_severity
     - CCI-000366
+    - NASA-ASCS-20273

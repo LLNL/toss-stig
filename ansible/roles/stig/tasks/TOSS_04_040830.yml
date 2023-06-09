@@ -10,7 +10,13 @@
 
 
 - name: TOSS-04-040830 - TOSS must not forward IPv4 source-routed packets by default.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^(?i)#?net.ipv4.conf.default.accept_source_route'
+    line: 'net.ipv4.conf.default.accept_source_route = 0'
+    state: present
+    backup: yes
+  notify: reload sysctl
   when:
     - TOSS_04_040830 | bool
   tags:
@@ -21,3 +27,4 @@
     - DISA-STIG-TOSS-04-040830
     - medium_severity
     - CCI-000366
+    - NASA-ASCS-20194

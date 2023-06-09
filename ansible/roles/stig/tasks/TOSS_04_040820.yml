@@ -10,7 +10,13 @@
 
 
 - name: TOSS-04-040820 - TOSS must not allow interfaces to perform Internet Control Message Protocol (ICMP) redirects by default.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/sysctl.conf
+    regexp: '^(?i)#?net.ipv4.conf.default.send_redirects'
+    line: 'net.ipv4.conf.default.send_redirects = 0'
+    state: present
+    backup: yes
+  notify: reload sysctl
   when:
     - TOSS_04_040820 | bool
   tags:
@@ -21,3 +27,4 @@
     - DISA-STIG-TOSS-04-040820
     - medium_severity
     - CCI-000366
+    - NASA-ASCS-20195
