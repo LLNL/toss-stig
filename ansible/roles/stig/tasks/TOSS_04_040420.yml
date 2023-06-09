@@ -17,10 +17,7 @@
       state: present
   - name: Ensure opensc accepts PIV cards
     shell: "opensc-tool --list-drivers | grep -i piv"
-    register: piv_drivers
-    failed_when: "PIV-II" not in piv_drivers.stdout
-
-
+    # failed_when: "PIV-II" not in piv_drivers.stdout # TODO -- This doesn't work this way, need to re-implement
   when:
     - TOSS_04_040420 | bool
   tags:
