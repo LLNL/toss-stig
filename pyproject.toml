@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "toss-stig"
+version = "0.1.0"
+description = ""
+authors = ["Ian Lee <lee1001@llnl.gov>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "toss_stig"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+beautifulsoup4 = "^4.12.0"
+
+[tool.poetry.group.dev.dependencies]
+ipython = "^8.11.0"
+black = "^23.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
