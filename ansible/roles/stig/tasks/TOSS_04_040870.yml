@@ -16,7 +16,7 @@
     line: 'net.ipv4.icmp_echo_ignore_broadcasts = 1'
     state: present
     backup: true
-  notify: reload sysctl
+  notify: Reload sysctl
   when:
     - toss_04_040870 | bool
   tags:

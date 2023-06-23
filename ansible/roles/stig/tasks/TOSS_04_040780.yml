@@ -15,7 +15,7 @@
     line: 'net.ipv6.conf.all.accept_redirects = 0'
     state: present
     backup: true
-  notify: reload sysctl
+  notify: Reload sysctl
   when:
     - toss_04_040780 | bool
   tags:

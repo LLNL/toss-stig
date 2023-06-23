@@ -15,7 +15,7 @@
     line: 'net.ipv4.conf.all.send_redirects = 0'
     state: present
     backup: true
-  notify: reload sysctl
+  notify: Reload sysctl
   when:
     - toss_04_040880 | bool
   tags:

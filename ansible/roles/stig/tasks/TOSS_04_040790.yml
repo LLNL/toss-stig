@@ -16,7 +16,7 @@
     line: 'net.ipv6.conf.default.accept_ra = 0'
     state: present
     backup: true
-  notify: reload sysctl
+  notify: Reload sysctl
   when:
     - toss_04_040790 | bool
   tags:

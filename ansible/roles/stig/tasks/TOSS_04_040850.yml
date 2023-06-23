@@ -16,7 +16,7 @@
     line: 'net.ipv6.conf.default.accept_source_route = 0'
     state: present
     backup: true
-  notify: reload sysctl
+  notify: Reload sysctl
   when:
     - toss_04_040850 | bool
   tags:

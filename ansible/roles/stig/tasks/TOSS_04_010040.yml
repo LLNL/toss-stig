@@ -17,7 +17,7 @@
     state: present
     backup: true
     validate: /usr/sbin/sshd -t -f %s
-  notify: restart sshd
+  notify: Restart sshd
   when:
     - toss_04_010040 | bool
   tags:
