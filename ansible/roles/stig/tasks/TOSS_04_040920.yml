@@ -1,0 +1,38 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253133
+
+# Verify the "sudoers" file restricts sudo access to authorized
+# personnel. $ sudo grep -iwr 'ALL[[:blank:]]\+ALL' /etc/sudoers /etc/sudoers.d If
+# the either of the following entries are returned, this is a finding: ALL
+# ALL=(ALL) ALL ALL ALL=(ALL:ALL) ALL
+
+
+- name: TOSS-04-040920 - TOSS must restrict privilege elevation to authorized personnel.
+  block:
+     /etc/sudoers /etc/sudoers.d
+    - name: Find out if /etc/sudoers.d/* files contain "ALL ALL" permissions
+      ansible.builtin.find:
+        path: /etc/sudoers.d
+        patterns: '*'
+        contains: 'ALL[[:blank:]]\+ALL'
+      register: sudoers_d
+    - name: Remove  occurrences of "ALL ALL" from /etc/sudoers file
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers
+        regexp: 'ALL[[:blank:]]\+ALL'
+        state: absent
+    - name: Remove found occurrences of "ALL ALL" from /etc/sudoers.d/* files
+      ansible.builtin.lineinfile:
+        path: '{{ item.path }}'
+        regexp: 'ALL[[:blank:]]\+ALL'
+        state: absent
+      with_items: '{{ sudoers_d.files }}'
+  when:
+    - toss_04_040920 | bool
+  tags:
+    - V-253133
+    - SRG-OS-000480-GPOS-00227
+    - SV-253133r825071_rule
+    - TOSS-04-040920
+    - DISA-STIG-TOSS-04-040920
+    - medium_severity
+    - CCI-000366

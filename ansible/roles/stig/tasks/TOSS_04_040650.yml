@@ -7,7 +7,14 @@
 
 
 - name: TOSS-04-040650 - The TOSS SSH daemon must perform strict mode checking of home directory configuration files.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/ssh/sshd_config
+    create: true
+    regexp: (?i)^\s*StrictModes\s+
+    line: StrictModes yes
+    state: present
+    validate: /usr/sbin/sshd -t -f %s
+  notify: Restart sshd
   when:
     - toss_04_040650 | bool
   tags:
