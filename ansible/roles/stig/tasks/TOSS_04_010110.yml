@@ -14,7 +14,7 @@
     regexp: '^(?i)#?net.ipv4.tcp_syncookies'
     line: 'net.ipv4.tcp_syncookies = 1'
     state: present
-    backup: yes
+    backup: true
   notify: reload sysctl
   when:
     - toss_04_010110 | bool

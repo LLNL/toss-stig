@@ -22,14 +22,14 @@
       paths: /etc/yum.repos.d
       patterns: '*.repo'
       file_type: file
-      recurse: no
+      recurse: false
     register: yum_repo_files
   - name: Ensure gpgcheck Enabled For All Package Repositories
     ansible.builtin.replace:
       path: '{{ yum_repo_file.path }}'
       regexp: '^#?\s*gpgcheck=[0-9]+'
       replace: 'gpgcheck=1'
-      backup: yes
+      backup: true
     loop: '{{ yum_repo_files.files }}'
     loop_control:
       loop_var: yum_repo_file

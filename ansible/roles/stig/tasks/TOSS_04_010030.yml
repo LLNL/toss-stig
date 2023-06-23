@@ -13,7 +13,7 @@
     path: /usr/lib/systemd/system/rescue.service
     regexp: '^#?ExecStart='
     line: 'ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue'
-    backup: yes
+    backup: true
   when:
     - toss_04_010030 | bool
   tags:

@@ -11,12 +11,12 @@
 
 
 - name: TOSS-04-010050 - The TOSS file system automounter must be disabled unless required.
-  systemd:
+  ansible.builtin.systemd:
     name: autofs.service
-    enabled: 'no'
+    enabled: false
     state: stopped
-    masked: 'yes'
-  ignore_errors: 'yes'
+    masked: true
+  ignore_errors: true
   when:
     - toss_04_010050 | bool
   tags:

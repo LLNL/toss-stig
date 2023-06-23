@@ -1,6 +1,7 @@
 ---
 
-- hosts: localhost
+- name: Configure system according to TOSS STIG
+  hosts: localhost
   connection: local
 
   # gather_facts: no
@@ -10,9 +11,7 @@
     - community.general
 
   roles:
-  - role: stig
-    vars:
-      - toss_04_010080: true
+    - role: stig
 
   pre_tasks:
     - name: Check for incompatible Ansible versions
@@ -26,7 +25,7 @@
       ansible.builtin.assert:
         that: ansible_facts['distribution'] == "RedHat" and ansible_facts['distribution_major_version'] is version('8', '>=')
         fail_msg: "We don't currently support your OS - {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_major_version'] }}. Please see README.md."
-        quiet: yes
+        quiet: true
       tags:
         - always
 

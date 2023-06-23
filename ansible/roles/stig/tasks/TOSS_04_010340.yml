@@ -8,12 +8,12 @@
 
 
 - name: TOSS-04-010340 - The debug-shell systemd service must be disabled on TOSS.
-  systemd:
+  ansible.builtin.systemd:
     name: debug-shell.service
-    enabled: 'no'
+    enabled: false
     state: stopped
-    masked: 'yes'
-  ignore_errors: 'yes'
+    masked: true
+  ignore_errors: true
   when:
     - toss_04_010340 | bool
   tags:

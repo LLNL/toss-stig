@@ -29,11 +29,11 @@
 - name: TOSS-04-010000 - TOSS must display the Standard Mandatory DoD Notice and Consent Banner or equivalent US Government Agency Notice and Consent Banner before granting local or remote access to the system.
   block:
     - name: Modify the System Login Banner - ensure correct banner
-      copy:
+      ansible.builtin.copy:
         content: "{{ login_banner_text }}"
         dest: /etc/issue
     - name: Set the GNOME3 Login Warning Banner Text
-      ini_file:
+      community.general.ini_file:
         dest: /etc/dconf/db/gdm.d/00-security-settings
         section: org/gnome/login-screen
         option: banner-message-text
@@ -41,7 +41,7 @@
         create: true
         no_extra_spaces: true
     - name: Insert correct banner setting into /etc/ssh/sshd_config
-      lineinfile:
+      ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         create: true
         regexp: (?i)^\s*Banner\s+

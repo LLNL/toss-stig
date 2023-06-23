@@ -19,7 +19,7 @@
 # AIDE rule is not applicable.
 
 - name: Set audit_tools fact
-  set_fact:
+  ansible.builtin.set_fact:
     audit_tools:
     - /usr/sbin/auditctl
     - /usr/sbin/auditd
@@ -40,7 +40,7 @@
     - CCI-001496
 
 - name: TOSS-04-030780 - TOSS must use cryptographic mechanisms to protect the integrity of audit tools.
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/aide.conf
     regexp: ^{{ item }}\s
     line: '{{ item }} p+i+n+u+g+s+b+acl+xattrs+sha512 '

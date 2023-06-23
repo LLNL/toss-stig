@@ -9,7 +9,7 @@
   ansible.builtin.replace:
     path: '/etc/pam.d/system-auth'
     regexp: '(nullok_secure|nullok)'
-    backup: yes
+    backup: true
   when:
     - toss_04_010380 | bool
   tags:

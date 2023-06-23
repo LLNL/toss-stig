@@ -41,7 +41,7 @@
       regexp: '^(?i)#?Banner'
       line: 'Banner /etc/issue'
       state: present
-      backup: yes
+      backup: true
       validate: /usr/sbin/sshd -t -f %s
     notify: restart sshd
   when:

@@ -11,9 +11,9 @@
 - name: TOSS-04-010170 - The TOSS operating system must be configured to preserve log records from failure events.
   ansible.builtin.systemd:
     name: rsyslog
-    enabled: yes
+    enabled: true
     state: started
-    masked: 'no'
+    masked: false
   when:
     - toss_04_010170 | bool
   tags:

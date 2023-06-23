@@ -16,9 +16,9 @@
   - name: Ensure firewalld is enabled / active
     ansible.builtin.systemd:
       name: firewalld
-      enabled: yes
+      enabled: true
       state: started
-      masked: 'no'
+      masked: false
   when:
   - toss_04_040370 | bool
   tags:

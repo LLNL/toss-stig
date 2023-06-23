@@ -14,7 +14,7 @@
     regexp: '^(?i)#?net.ipv6.conf.all.accept_source_route'
     line: 'net.ipv6.conf.all.accept_source_route = 0'
     state: present
-    backup: yes
+    backup: true
   notify: reload sysctl
   when:
     - toss_04_040860 | bool

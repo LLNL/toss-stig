@@ -18,7 +18,7 @@
     ansible.builtin.systemd:
       name: auditd
       state: started
-      enabled: yes
+      enabled: true
   when:
     - toss_04_030010 | bool
   tags:

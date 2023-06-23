@@ -21,7 +21,7 @@
           - md5
           - sha256
         state: args_absent
-        backup: yes
+        backup: true
     - name: Check good algorithms are present
       community.general.pamd:
         name: system-auth
@@ -30,7 +30,7 @@
         module_path: pam_unix.so
         module_arguments: sha512
         state: args_present
-        backup: yes
+        backup: true
   when:
     - toss_04_010070 | bool
   tags:

@@ -15,7 +15,7 @@
     regexp: '^(?i)#?PermitRootLogin'
     line: 'PermitRootLogin no'
     state: present
-    backup: yes
+    backup: true
     validate: /usr/sbin/sshd -t -f %s
   notify: restart sshd
   when:

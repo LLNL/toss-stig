@@ -14,7 +14,7 @@
     regexp: '^(?i)#?net.ipv4.conf.all.send_redirects'
     line: 'net.ipv4.conf.all.send_redirects = 0'
     state: present
-    backup: yes
+    backup: true
   notify: reload sysctl
   when:
     - toss_04_040880 | bool

@@ -13,7 +13,7 @@
     regexp: '^#?CtrlAltDelBurstAction='
     line: 'CtrlAltDelBurstAction=none'
     state: present
-    backup: yes
+    backup: true
   when:
     - toss_04_010360 | bool
   tags:

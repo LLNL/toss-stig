@@ -24,7 +24,7 @@
 
 
 - name: TOSS-04-010210 - The TOSS file integrity tool must notify the system administrator when changes to the baseline configuration or anomalies in the operation of any security functions are discovered within an organizationally defined frequency.
-  package:
+  ansible.builtin.package:
     name: aide
     state: present
   when:

@@ -15,7 +15,7 @@
     regexp: '^(?i)#?net.ipv4.icmp_echo_ignore_broadcasts'
     line: 'net.ipv4.icmp_echo_ignore_broadcasts = 1'
     state: present
-    backup: yes
+    backup: true
   notify: reload sysctl
   when:
     - toss_04_040870 | bool

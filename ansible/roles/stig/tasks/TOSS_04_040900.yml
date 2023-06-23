@@ -15,7 +15,7 @@
     regexp: '^(?i)#?net.ipv6.conf.default.accept_redirects'
     line: 'net.ipv6.conf.default.accept_redirects = 0'
     state: present
-    backup: yes
+    backup: true
   notify: reload sysctl
   when:
     - toss_04_040900 | bool

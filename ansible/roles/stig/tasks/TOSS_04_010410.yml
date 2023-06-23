@@ -12,7 +12,7 @@
     regexp: '^(?i)#?Compression'
     line: 'Compression delayed'
     state: present
-    backup: yes
+    backup: true
     validate: /usr/sbin/sshd -t -f %s
   when:
     - toss_04_010410 | bool

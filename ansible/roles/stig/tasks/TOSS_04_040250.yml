@@ -6,7 +6,7 @@
 
 
 - name: TOSS-04-040250 - TOSS must not have the sendmail package installed.
-  package:
+  ansible.builtin.package:
     name: sendmail
     state: absent
   when:

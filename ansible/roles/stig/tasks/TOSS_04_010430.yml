@@ -13,7 +13,7 @@
 
 
 - name: TOSS-04-010430 - TOSS must not allow an unattended or automatic logon to the system.
-  lineinfile:
+  ansible.builtin.lineinfile:
     create: true
     path: /etc/gdm/custom.conf
     regexp: '^AutomaticLoginEnable'

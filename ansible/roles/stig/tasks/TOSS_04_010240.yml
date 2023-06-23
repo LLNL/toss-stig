@@ -10,7 +10,7 @@
 
 
 - name: TOSS-04-010240 - TOSS must have the packages required for multifactor authentication installed.
-  package:
+  ansible.builtin.package:
     name: openssl-pkcs11
     state: present
   when:

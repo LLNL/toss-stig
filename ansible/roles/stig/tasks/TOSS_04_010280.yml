@@ -15,11 +15,10 @@
       name: openssh-server
       state: present
   - name: Enable service sshd
-    service:
+    ansible.builtin.service:
       name: sshd
-      enabled: 'yes'
+      enabled: true
       state: started
-      masked: 'no'
   when:
     - toss_04_010280 | bool
   tags:
