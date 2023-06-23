@@ -7,28 +7,19 @@
 
 - name: TOSS-04-010350 - The root account must be the only account having unrestricted access to the TOSS system.
   block:
-  - name: Verify Only Root Has UID 0
-    ansible.builtin.command: awk -F':' '$3 == 0 && $1 != "root" { print $1 }' /etc/passwd
-    args:
-      warn: false
-    register: uidzero
-    changed_when: false
-    failed_when: false
-    when:
-      - NASA_ASCS_20121 | bool
-    tags:
-      - NASA-ASCS-20121
-      - critical
+    - name: Verify Only Root Has UID 0
+      ansible.builtin.command: awk -F':' '$3 == 0 && $1 != "root" { print $1 }' /etc/passwd
+      args:
+        warn: false
+      register: uidzero
+      changed_when: false
+      failed_when: false
 
-  - name: Verify Only Root Has UID 0
-    ansible.builtin.fail:
-      msg: "Another account has been found to have uid 0 in /etc/passwd besides root."
-    when:
-      - NASA_ASCS_20121 | bool
-      - uidzero.stdout_lines is defined and uidzero.stdout_lines | length > 0
-    tags:
-      - NASA-ASCS-20121
-      - critical
+    - name: Verify Only Root Has UID 0
+      ansible.builtin.fail:
+        msg: "Another account has been found to have uid 0 in /etc/passwd besides root."
+      when:
+        - uidzero.stdout_lines is defined and uidzero.stdout_lines | length > 0
 
   when:
     - toss_04_010350 | bool

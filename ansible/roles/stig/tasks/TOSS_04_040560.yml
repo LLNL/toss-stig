@@ -9,10 +9,10 @@
 
 - name: TOSS-04-040560 - A File Transfer Protocol (FTP) server package must not be installed unless mission essential on TOSS.
   block:
-  - name: Ensure vsftpd is removed
-    ansible.builtin.package:
-      name: vsftpd
-      state: absent
+    - name: Ensure vsftpd is removed
+      ansible.builtin.package:
+        name: vsftpd
+        state: absent
   when:
     - toss_04_040560 | bool
   tags:

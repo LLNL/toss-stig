@@ -9,16 +9,16 @@
 
 - name: TOSS-04-040370 - A firewall must be installed on TOSS.
   block:
-  - name: Ensure firewalld is installed
-    ansible.builtin.package:
-      name: firewalld
-      state: present
-  - name: Ensure firewalld is enabled / active
-    ansible.builtin.systemd:
-      name: firewalld
-      enabled: true
-      state: started
-      masked: false
+    - name: Ensure firewalld is installed
+      ansible.builtin.package:
+        name: firewalld
+        state: present
+    - name: Ensure firewalld is enabled / active
+      ansible.builtin.systemd:
+        name: firewalld
+        enabled: true
+        state: started
+        masked: false
   when:
   - toss_04_040370 | bool
   tags:

@@ -11,13 +11,13 @@
 
 - name: TOSS-04-040420 - TOSS must accept Personal Identity Verification (PIV) credentials.
   block:
-  - name: Ensure opensc is installed
-    ansible.builtin.package:
-      name: opensc
-      state: present
-  - name: Ensure opensc accepts PIV cards
-    ansible.builtin.shell: "opensc-tool --list-drivers | grep -i piv"
-    # failed_when: "PIV-II" not in piv_drivers.stdout # TODO -- This doesn't work this way, need to re-implement
+    - name: Ensure opensc is installed
+      ansible.builtin.package:
+        name: opensc
+        state: present
+    - name: Ensure opensc accepts PIV cards
+      ansible.builtin.shell: "opensc-tool --list-drivers | grep -i piv"
+      # failed_when: "PIV-II" not in piv_drivers.stdout # TODO -- This doesn't work this way, need to re-implement
   when:
     - toss_04_040420 | bool
   tags:

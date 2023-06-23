@@ -13,20 +13,20 @@
 
 - name: TOSS-04-010390 - TOSS must not be performing packet forwarding unless the system is a router.
   block:
-  - name: Ensure ipv4 forwarding is disabled
-    ansible.builtin.lineinfile:
-      path: /etc/sysctl.conf
-      regexp: '^(?i)#?net.ipv4.ip_forward'
-      line: 'net.ipv4.ip_forward = 0'
-      state: present
-      backup: true
-  - name: Ensure ipv6 forwarding is disabled
-    ansible.builtin.lineinfile:
-      path: /etc/sysctl.conf
-      regexp: '^(?i)#?net.ipv6.conf.all.forwarding'
-      line: 'net.ipv6.conf.all.forwarding = 0'
-      state: present
-      backup: true
+    - name: Ensure ipv4 forwarding is disabled
+      ansible.builtin.lineinfile:
+        path: /etc/sysctl.conf
+        regexp: '^(?i)#?net.ipv4.ip_forward'
+        line: 'net.ipv4.ip_forward = 0'
+        state: present
+        backup: true
+    - name: Ensure ipv6 forwarding is disabled
+      ansible.builtin.lineinfile:
+        path: /etc/sysctl.conf
+        regexp: '^(?i)#?net.ipv6.conf.all.forwarding'
+        line: 'net.ipv6.conf.all.forwarding = 0'
+        state: present
+        backup: true
   notify: reload sysctl
   when:
     - toss_04_010390 | bool

@@ -10,15 +10,15 @@
 
 - name: TOSS-04-010280 - All TOSS networked systems must have and implement SSH to protect the confidentiality and integrity of transmitted and received information, as well as information during preparation for transmission.
   block:
-  - name: Ensure openssh-server is installed
-    ansible.builtin.package:
-      name: openssh-server
-      state: present
-  - name: Enable service sshd
-    ansible.builtin.service:
-      name: sshd
-      enabled: true
-      state: started
+    - name: Ensure openssh-server is installed
+      ansible.builtin.package:
+        name: openssh-server
+        state: present
+    - name: Enable service sshd
+      ansible.builtin.service:
+        name: sshd
+        enabled: true
+        state: started
   when:
     - toss_04_010280 | bool
   tags:
