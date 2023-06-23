@@ -10,7 +10,7 @@
 - name: TOSS-04-020060 - TOSS duplicate User IDs (UIDs) must not exist for interactive users.
   # TODO: Implement the task
   when:
-    - TOSS_04_020060 | bool
+    - toss_04_020060 | bool
   tags:
     - V-252951
     - SRG-OS-000104-GPOS-00051
@@ -20,4 +20,3 @@
     - medium_severity
     - CCI-000764
     - CCI-000804
-

@@ -9,7 +9,7 @@
 - name: TOSS-04-040350 - TOSS must enforce password complexity by requiring that at least one special character be used.
   # TODO: Implement the task
   when:
-    - TOSS_04_040350 | bool
+    - toss_04_040350 | bool
   tags:
     - V-253087
     - SRG-OS-000266-GPOS-00101
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-040350
     - medium_severity
     - CCI-001619
-

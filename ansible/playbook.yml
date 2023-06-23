@@ -12,7 +12,7 @@
   roles:
   - role: stig
     vars:
-      - TOSS_04_010080: true
+      - toss_04_010080: true
 
   pre_tasks:
     - name: Check for incompatible Ansible versions

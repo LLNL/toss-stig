@@ -10,7 +10,7 @@
     name: telnet-server
     state: absent
   when:
-    - TOSS_04_040260 | bool
+    - toss_04_040260 | bool
   tags:
     - V-253080
     - SRG-OS-000095-GPOS-00049

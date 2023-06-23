@@ -10,7 +10,7 @@
 - name: TOSS-04-040740 - TOSS must enable the hardware random number generator entropy gatherer service.
   # TODO: Implement the task
   when:
-    - TOSS_04_040740 | bool
+    - toss_04_040740 | bool
   tags:
     - V-253115
     - SRG-OS-000480-GPOS-00227

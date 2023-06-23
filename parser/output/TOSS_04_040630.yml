@@ -17,7 +17,7 @@
 - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs).
   # TODO: Implement the task
   when:
-    - TOSS_04_040630 | bool
+    - toss_04_040630 | bool
   tags:
     - V-253104
     - SRG-OS-000480-GPOS-00227

@@ -18,7 +18,7 @@
 - name: TOSS-04-040640 - The TOSS file integrity tool must be configured to verify extended attributes.
   # TODO: Implement the task
   when:
-    - TOSS_04_040640 | bool
+    - toss_04_040640 | bool
   tags:
     - V-253105
     - SRG-OS-000480-GPOS-00227

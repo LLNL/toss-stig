@@ -11,7 +11,7 @@
 - name: TOSS-04-020250 - TOSS must disable the user list at logon for graphical user interfaces.
   # TODO: Implement the task
   when:
-    - TOSS_04_020250 | bool
+    - toss_04_020250 | bool
   tags:
     - V-252964
     - SRG-OS-000480-GPOS-00227
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-020250
     - medium_severity
     - CCI-000366
-

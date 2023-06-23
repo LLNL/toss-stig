@@ -11,7 +11,7 @@
 - name: TOSS-04-030810 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect "/etc/passwd".
   # TODO: Implement the task
   when:
-    - TOSS_04_030810 | bool
+    - toss_04_030810 | bool
   tags:
     - V-253026
     - SRG-OS-000303-GPOS-00120
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-030810
     - medium_severity
     - CCI-002130
-

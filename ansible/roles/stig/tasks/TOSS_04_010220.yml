@@ -34,7 +34,7 @@
     loop_control:
       loop_var: yum_repo_file
   when:
-    - TOSS_04_010220 | bool
+    - toss_04_010220 | bool
   tags:
     - V-252930
     - SRG-OS-000366-GPOS-00153

@@ -11,7 +11,7 @@
 - name: TOSS-04-031180 - Successful/unsuccessful uses of the "su" command in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031180 | bool
+    - toss_04_031180 | bool
   tags:
     - V-253044
     - SRG-OS-000471-GPOS-00215
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-031180
     - medium_severity
     - CCI-000172
-

@@ -18,7 +18,7 @@
     masked: 'yes'
   ignore_errors: 'yes'
   when:
-    - TOSS_04_010050 | bool
+    - toss_04_010050 | bool
   tags:
     - V-252916
     - SRG-OS-000114-GPOS-00059

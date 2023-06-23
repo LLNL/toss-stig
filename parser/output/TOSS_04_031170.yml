@@ -12,7 +12,7 @@
 - name: TOSS-04-031170 - Successful/unsuccessful uses of the "mount" syscall in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031170 | bool
+    - toss_04_031170 | bool
   tags:
     - V-253043
     - SRG-OS-000471-GPOS-00215
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-031170
     - medium_severity
     - CCI-000172
-

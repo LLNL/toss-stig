@@ -10,7 +10,7 @@
 - name: TOSS-04-010100 - TOSS must prevent unauthorized and unintended information transfer via shared system resources.
   # TODO: Implement the task
   when:
-    - TOSS_04_010100 | bool
+    - toss_04_010100 | bool
   tags:
     - V-252921
     - SRG-OS-000138-GPOS-00069
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-010100
     - medium_severity
     - CCI-001090
-

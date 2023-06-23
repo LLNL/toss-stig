@@ -13,7 +13,7 @@
 - name: TOSS-04-030130 - TOSS audit log directory must have a mode of 0700 or less permissive to prevent unauthorized read access.
   # TODO: Implement the task
   when:
-    - TOSS_04_030130 | bool
+    - toss_04_030130 | bool
   tags:
     - V-252978
     - SRG-OS-000057-GPOS-00027
@@ -24,4 +24,3 @@
     - CCI-000162
     - CCI-000163
     - CCI-000164
-

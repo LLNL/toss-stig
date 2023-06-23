@@ -12,7 +12,7 @@
 - name: TOSS-04-030000 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.
   # TODO: Implement the task
   when:
-    - TOSS_04_030000 | bool
+    - toss_04_030000 | bool
   tags:
     - V-252972
     - SRG-OS-000004-GPOS-00004
@@ -26,4 +26,3 @@
     - CCI-001404
     - CCI-001405
     - CCI-002130
-

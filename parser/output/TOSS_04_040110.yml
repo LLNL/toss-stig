@@ -10,7 +10,7 @@
 - name: TOSS-04-040110 - TOSS must enforce 24 hours/1 day as the minimum password lifetime.
   # TODO: Implement the task
   when:
-    - TOSS_04_040110 | bool
+    - toss_04_040110 | bool
   tags:
     - V-253066
     - SRG-OS-000075-GPOS-00043
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-040110
     - medium_severity
     - CCI-000198
-

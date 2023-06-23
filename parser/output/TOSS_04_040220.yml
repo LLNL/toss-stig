@@ -16,7 +16,7 @@
 - name: TOSS-04-040220 - TOSS must disable the transparent inter-process communication (TIPC) protocol.
   # TODO: Implement the task
   when:
-    - TOSS_04_040220 | bool
+    - toss_04_040220 | bool
   tags:
     - V-253077
     - SRG-OS-000095-GPOS-00049
@@ -25,4 +25,3 @@
     - DISA-STIG-TOSS-04-040220
     - medium_severity
     - CCI-000381
-

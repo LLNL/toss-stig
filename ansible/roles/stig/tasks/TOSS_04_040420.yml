@@ -19,7 +19,7 @@
     shell: "opensc-tool --list-drivers | grep -i piv"
     # failed_when: "PIV-II" not in piv_drivers.stdout # TODO -- This doesn't work this way, need to re-implement
   when:
-    - TOSS_04_040420 | bool
+    - toss_04_040420 | bool
   tags:
     - V-253090
     - SRG-OS-000376-GPOS-00161

@@ -16,7 +16,7 @@
 - name: TOSS-04-040590 - Cron logging must be implemented in TOSS.
   # TODO: Implement the task
   when:
-    - TOSS_04_040590 | bool
+    - toss_04_040590 | bool
   tags:
     - V-253101
     - SRG-OS-000480-GPOS-00227

@@ -25,7 +25,7 @@
 - name: TOSS-04-020170 - TOSS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts in 15 minutes occur.
   # TODO: Implement the task
   when:
-    - TOSS_04_020170 | bool
+    - toss_04_020170 | bool
   tags:
     - V-252957
     - SRG-OS-000329-GPOS-00128
@@ -34,4 +34,3 @@
     - DISA-STIG-TOSS-04-020170
     - medium_severity
     - CCI-002238
-

@@ -1,286 +1,286 @@
 ---
 
 controls:
-  - TOSS_04_010000
-  - TOSS_04_010030
-  - TOSS_04_010040
-  - TOSS_04_010050
-  - TOSS_04_010060
-  - TOSS_04_010070
-  - TOSS_04_010080
-  - TOSS_04_010110
-  - TOSS_04_010120
-  - TOSS_04_010150
-  - TOSS_04_010170
-  - TOSS_04_010210
-  - TOSS_04_010220
-  - TOSS_04_010230
-  - TOSS_04_010240
-  - TOSS_04_010280
-  - TOSS_04_010340
-  - TOSS_04_010350
-  - TOSS_04_010360
-  - TOSS_04_010380
-  - TOSS_04_010390
-  - TOSS_04_010400
-  - TOSS_04_010410
-  - TOSS_04_010420
-  - TOSS_04_010430
-  - TOSS_04_030010
-  - TOSS_04_030780
-  - TOSS_04_031370
-  - TOSS_04_031380
-  - TOSS_04_040100
-  - TOSS_04_040250
-  - TOSS_04_040260
-  - TOSS_04_040310
-  - TOSS_04_040370
-  - TOSS_04_040420
-  - TOSS_04_040560
-  - TOSS_04_040600
-  - TOSS_04_040700
-  - TOSS_04_040760
-  - TOSS_04_040770
-  - TOSS_04_040780
-  - TOSS_04_040790
-  - TOSS_04_040800
-  - TOSS_04_040820
-  - TOSS_04_040830
-  - TOSS_04_040840
-  - TOSS_04_040850
-  - TOSS_04_040860
-  - TOSS_04_040870
-  - TOSS_04_040880
-  - TOSS_04_040890
-  - TOSS_04_040900
+  - toss_04_010000
+  - toss_04_010030
+  - toss_04_010040
+  - toss_04_010050
+  - toss_04_010060
+  - toss_04_010070
+  - toss_04_010080
+  - toss_04_010110
+  - toss_04_010120
+  - toss_04_010150
+  - toss_04_010170
+  - toss_04_010210
+  - toss_04_010220
+  - toss_04_010230
+  - toss_04_010240
+  - toss_04_010280
+  - toss_04_010340
+  - toss_04_010350
+  - toss_04_010360
+  - toss_04_010380
+  - toss_04_010390
+  - toss_04_010400
+  - toss_04_010410
+  - toss_04_010420
+  - toss_04_010430
+  - toss_04_030010
+  - toss_04_030780
+  - toss_04_031370
+  - toss_04_031380
+  - toss_04_040100
+  - toss_04_040250
+  - toss_04_040260
+  - toss_04_040310
+  - toss_04_040370
+  - toss_04_040420
+  - toss_04_040560
+  - toss_04_040600
+  - toss_04_040700
+  - toss_04_040760
+  - toss_04_040770
+  - toss_04_040780
+  - toss_04_040790
+  - toss_04_040800
+  - toss_04_040820
+  - toss_04_040830
+  - toss_04_040840
+  - toss_04_040850
+  - toss_04_040860
+  - toss_04_040870
+  - toss_04_040880
+  - toss_04_040890
+  - toss_04_040900
 
 # Booleans that control which controls are run
 # Generate with:
 # `for f in ../parser/output/*.yml roles/stig/tasks/TOSS*.yml; do echo $(basename $f .yml): true; done`
-TOSS_04_010000: true
-TOSS_04_010010: true
-TOSS_04_010020: true
-TOSS_04_010030: true
-TOSS_04_010040: true
-TOSS_04_010050: true
-TOSS_04_010060: true
-TOSS_04_010070: true
-TOSS_04_010080: true
-TOSS_04_010090: true
-TOSS_04_010100: true
-TOSS_04_010110: true
-TOSS_04_010120: true
-TOSS_04_010140: true
-TOSS_04_010150: true
-TOSS_04_010160: true
-TOSS_04_010170: true
-TOSS_04_010180: true
-TOSS_04_010210: true
-TOSS_04_010220: true
-TOSS_04_010230: true
-TOSS_04_010240: true
-TOSS_04_010250: true
-TOSS_04_010280: true
-TOSS_04_010330: true
-TOSS_04_010340: true
-TOSS_04_010350: true
-TOSS_04_010360: true
-TOSS_04_010370: true
-TOSS_04_010380: true
-TOSS_04_010390: true
-TOSS_04_010400: true
-TOSS_04_010410: true
-TOSS_04_010420: true
-TOSS_04_010430: true
-TOSS_04_020000: true
-TOSS_04_020010: true
-TOSS_04_020020: true
-TOSS_04_020030: true
-TOSS_04_020050: true
-TOSS_04_020060: true
-TOSS_04_020070: true
-TOSS_04_020120: true
-TOSS_04_020140: true
-TOSS_04_020150: true
-TOSS_04_020160: true
-TOSS_04_020170: true
-TOSS_04_020180: true
-TOSS_04_020190: true
-TOSS_04_020200: true
-TOSS_04_020210: true
-TOSS_04_020230: true
-TOSS_04_020240: true
-TOSS_04_020250: true
-TOSS_04_020260: true
-TOSS_04_020270: true
-TOSS_04_020280: true
-TOSS_04_020290: true
-TOSS_04_020300: true
-TOSS_04_020310: true
-TOSS_04_020320: true
-TOSS_04_030000: true
-TOSS_04_030010: true
-TOSS_04_030060: true
-TOSS_04_030080: true
-TOSS_04_030090: true
-TOSS_04_030120: true
-TOSS_04_030130: true
-TOSS_04_030140: true
-TOSS_04_030150: true
-TOSS_04_030160: true
-TOSS_04_030170: true
-TOSS_04_030180: true
-TOSS_04_030190: true
-TOSS_04_030310: true
-TOSS_04_030320: true
-TOSS_04_030330: true
-TOSS_04_030340: true
-TOSS_04_030350: true
-TOSS_04_030360: true
-TOSS_04_030370: true
-TOSS_04_030380: true
-TOSS_04_030390: true
-TOSS_04_030400: true
-TOSS_04_030410: true
-TOSS_04_030420: true
-TOSS_04_030430: true
-TOSS_04_030440: true
-TOSS_04_030450: true
-TOSS_04_030460: true
-TOSS_04_030470: true
-TOSS_04_030480: true
-TOSS_04_030490: true
-TOSS_04_030500: true
-TOSS_04_030510: true
-TOSS_04_030520: true
-TOSS_04_030540: true
-TOSS_04_030550: true
-TOSS_04_030560: true
-TOSS_04_030570: true
-TOSS_04_030580: true
-TOSS_04_030590: true
-TOSS_04_030600: true
-TOSS_04_030610: true
-TOSS_04_030620: true
-TOSS_04_030630: true
-TOSS_04_030640: true
-TOSS_04_030650: true
-TOSS_04_030660: true
-TOSS_04_030670: true
-TOSS_04_030680: true
-TOSS_04_030750: true
-TOSS_04_030780: true
-TOSS_04_030790: true
-TOSS_04_030800: true
-TOSS_04_030810: true
-TOSS_04_030820: true
-TOSS_04_030840: true
-TOSS_04_030850: true
-TOSS_04_030860: true
-TOSS_04_030890: true
-TOSS_04_030900: true
-TOSS_04_030910: true
-TOSS_04_030990: true
-TOSS_04_031000: true
-TOSS_04_031100: true
-TOSS_04_031110: true
-TOSS_04_031120: true
-TOSS_04_031130: true
-TOSS_04_031140: true
-TOSS_04_031150: true
-TOSS_04_031160: true
-TOSS_04_031170: true
-TOSS_04_031180: true
-TOSS_04_031190: true
-TOSS_04_031200: true
-TOSS_04_031210: true
-TOSS_04_031220: true
-TOSS_04_031230: true
-TOSS_04_031240: true
-TOSS_04_031340: true
-TOSS_04_031350: true
-TOSS_04_031360: true
-TOSS_04_031370: true
-TOSS_04_031380: true
-TOSS_04_040010: true
-TOSS_04_040020: true
-TOSS_04_040030: true
-TOSS_04_040040: true
-TOSS_04_040050: true
-TOSS_04_040060: true
-TOSS_04_040070: true
-TOSS_04_040080: true
-TOSS_04_040090: true
-TOSS_04_040100: true
-TOSS_04_040110: true
-TOSS_04_040120: true
-TOSS_04_040130: true
-TOSS_04_040140: true
-TOSS_04_040150: true
-TOSS_04_040160: true
-TOSS_04_040170: true
-TOSS_04_040180: true
-TOSS_04_040190: true
-TOSS_04_040200: true
-TOSS_04_040210: true
-TOSS_04_040220: true
-TOSS_04_040230: true
-TOSS_04_040250: true
-TOSS_04_040260: true
-TOSS_04_040270: true
-TOSS_04_040280: true
-TOSS_04_040290: true
-TOSS_04_040310: true
-TOSS_04_040330: true
-TOSS_04_040340: true
-TOSS_04_040350: true
-TOSS_04_040370: true
-TOSS_04_040390: true
-TOSS_04_040420: true
-TOSS_04_040440: true
-TOSS_04_040480: true
-TOSS_04_040490: true
-TOSS_04_040500: true
-TOSS_04_040510: true
-TOSS_04_040540: true
-TOSS_04_040550: true
-TOSS_04_040560: true
-TOSS_04_040570: true
-TOSS_04_040580: true
-TOSS_04_040590: true
-TOSS_04_040600: true
-TOSS_04_040610: true
-TOSS_04_040630: true
-TOSS_04_040640: true
-TOSS_04_040650: true
-TOSS_04_040660: true
-TOSS_04_040670: true
-TOSS_04_040680: true
-TOSS_04_040690: true
-TOSS_04_040700: true
-TOSS_04_040710: true
-TOSS_04_040720: true
-TOSS_04_040730: true
-TOSS_04_040740: true
-TOSS_04_040750: true
-TOSS_04_040760: true
-TOSS_04_040770: true
-TOSS_04_040780: true
-TOSS_04_040790: true
-TOSS_04_040800: true
-TOSS_04_040810: true
-TOSS_04_040820: true
-TOSS_04_040830: true
-TOSS_04_040840: true
-TOSS_04_040850: true
-TOSS_04_040860: true
-TOSS_04_040870: true
-TOSS_04_040880: true
-TOSS_04_040890: true
-TOSS_04_040900: true
-TOSS_04_040910: true
-TOSS_04_040920: true
-TOSS_04_040930: true
-TOSS_04_040940: true
-TOSS_04_040950: true
-TOSS_04_040960: true
+toss_04_010000: true
+toss_04_010010: true
+toss_04_010020: true
+toss_04_010030: true
+toss_04_010040: true
+toss_04_010050: true
+toss_04_010060: true
+toss_04_010070: true
+toss_04_010080: true
+toss_04_010090: true
+toss_04_010100: true
+toss_04_010110: true
+toss_04_010120: true
+toss_04_010140: true
+toss_04_010150: true
+toss_04_010160: true
+toss_04_010170: true
+toss_04_010180: true
+toss_04_010210: true
+toss_04_010220: true
+toss_04_010230: true
+toss_04_010240: true
+toss_04_010250: true
+toss_04_010280: true
+toss_04_010330: true
+toss_04_010340: true
+toss_04_010350: true
+toss_04_010360: true
+toss_04_010370: true
+toss_04_010380: true
+toss_04_010390: true
+toss_04_010400: true
+toss_04_010410: true
+toss_04_010420: true
+toss_04_010430: true
+toss_04_020000: true
+toss_04_020010: true
+toss_04_020020: true
+toss_04_020030: true
+toss_04_020050: true
+toss_04_020060: true
+toss_04_020070: true
+toss_04_020120: true
+toss_04_020140: true
+toss_04_020150: true
+toss_04_020160: true
+toss_04_020170: true
+toss_04_020180: true
+toss_04_020190: true
+toss_04_020200: true
+toss_04_020210: true
+toss_04_020230: true
+toss_04_020240: true
+toss_04_020250: true
+toss_04_020260: true
+toss_04_020270: true
+toss_04_020280: true
+toss_04_020290: true
+toss_04_020300: true
+toss_04_020310: true
+toss_04_020320: true
+toss_04_030000: true
+toss_04_030010: true
+toss_04_030060: true
+toss_04_030080: true
+toss_04_030090: true
+toss_04_030120: true
+toss_04_030130: true
+toss_04_030140: true
+toss_04_030150: true
+toss_04_030160: true
+toss_04_030170: true
+toss_04_030180: true
+toss_04_030190: true
+toss_04_030310: true
+toss_04_030320: true
+toss_04_030330: true
+toss_04_030340: true
+toss_04_030350: true
+toss_04_030360: true
+toss_04_030370: true
+toss_04_030380: true
+toss_04_030390: true
+toss_04_030400: true
+toss_04_030410: true
+toss_04_030420: true
+toss_04_030430: true
+toss_04_030440: true
+toss_04_030450: true
+toss_04_030460: true
+toss_04_030470: true
+toss_04_030480: true
+toss_04_030490: true
+toss_04_030500: true
+toss_04_030510: true
+toss_04_030520: true
+toss_04_030540: true
+toss_04_030550: true
+toss_04_030560: true
+toss_04_030570: true
+toss_04_030580: true
+toss_04_030590: true
+toss_04_030600: true
+toss_04_030610: true
+toss_04_030620: true
+toss_04_030630: true
+toss_04_030640: true
+toss_04_030650: true
+toss_04_030660: true
+toss_04_030670: true
+toss_04_030680: true
+toss_04_030750: true
+toss_04_030780: true
+toss_04_030790: true
+toss_04_030800: true
+toss_04_030810: true
+toss_04_030820: true
+toss_04_030840: true
+toss_04_030850: true
+toss_04_030860: true
+toss_04_030890: true
+toss_04_030900: true
+toss_04_030910: true
+toss_04_030990: true
+toss_04_031000: true
+toss_04_031100: true
+toss_04_031110: true
+toss_04_031120: true
+toss_04_031130: true
+toss_04_031140: true
+toss_04_031150: true
+toss_04_031160: true
+toss_04_031170: true
+toss_04_031180: true
+toss_04_031190: true
+toss_04_031200: true
+toss_04_031210: true
+toss_04_031220: true
+toss_04_031230: true
+toss_04_031240: true
+toss_04_031340: true
+toss_04_031350: true
+toss_04_031360: true
+toss_04_031370: true
+toss_04_031380: true
+toss_04_040010: true
+toss_04_040020: true
+toss_04_040030: true
+toss_04_040040: true
+toss_04_040050: true
+toss_04_040060: true
+toss_04_040070: true
+toss_04_040080: true
+toss_04_040090: true
+toss_04_040100: true
+toss_04_040110: true
+toss_04_040120: true
+toss_04_040130: true
+toss_04_040140: true
+toss_04_040150: true
+toss_04_040160: true
+toss_04_040170: true
+toss_04_040180: true
+toss_04_040190: true
+toss_04_040200: true
+toss_04_040210: true
+toss_04_040220: true
+toss_04_040230: true
+toss_04_040250: true
+toss_04_040260: true
+toss_04_040270: true
+toss_04_040280: true
+toss_04_040290: true
+toss_04_040310: true
+toss_04_040330: true
+toss_04_040340: true
+toss_04_040350: true
+toss_04_040370: true
+toss_04_040390: true
+toss_04_040420: true
+toss_04_040440: true
+toss_04_040480: true
+toss_04_040490: true
+toss_04_040500: true
+toss_04_040510: true
+toss_04_040540: true
+toss_04_040550: true
+toss_04_040560: true
+toss_04_040570: true
+toss_04_040580: true
+toss_04_040590: true
+toss_04_040600: true
+toss_04_040610: true
+toss_04_040630: true
+toss_04_040640: true
+toss_04_040650: true
+toss_04_040660: true
+toss_04_040670: true
+toss_04_040680: true
+toss_04_040690: true
+toss_04_040700: true
+toss_04_040710: true
+toss_04_040720: true
+toss_04_040730: true
+toss_04_040740: true
+toss_04_040750: true
+toss_04_040760: true
+toss_04_040770: true
+toss_04_040780: true
+toss_04_040790: true
+toss_04_040800: true
+toss_04_040810: true
+toss_04_040820: true
+toss_04_040830: true
+toss_04_040840: true
+toss_04_040850: true
+toss_04_040860: true
+toss_04_040870: true
+toss_04_040880: true
+toss_04_040890: true
+toss_04_040900: true
+toss_04_040910: true
+toss_04_040920: true
+toss_04_040930: true
+toss_04_040940: true
+toss_04_040950: true
+toss_04_040960: true

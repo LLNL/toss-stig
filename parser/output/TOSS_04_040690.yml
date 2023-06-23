@@ -13,7 +13,7 @@
 - name: TOSS-04-040690 - TOSS must be a vendor-supported release.
   # TODO: Implement the task
   when:
-    - TOSS_04_040690 | bool
+    - toss_04_040690 | bool
   tags:
     - V-253110
     - SRG-OS-000480-GPOS-00227

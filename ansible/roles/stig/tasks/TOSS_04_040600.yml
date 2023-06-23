@@ -27,7 +27,7 @@
     when:
     - '"tftp-server" in ansible_facts.packages'
   when:
-    - TOSS_04_040600 | bool
+    - toss_04_040600 | bool
   tags:
     - V-253102
     - SRG-OS-000480-GPOS-00227

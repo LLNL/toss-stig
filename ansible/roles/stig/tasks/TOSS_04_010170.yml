@@ -15,7 +15,7 @@
     state: started
     masked: 'no'
   when:
-    - TOSS_04_010170 | bool
+    - toss_04_010170 | bool
   tags:
     - V-252927
     - SRG-OS-000269-GPOS-00103

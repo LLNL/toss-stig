@@ -10,7 +10,7 @@
 - name: TOSS-04-040010 - TOSS must monitor remote access methods.
   # TODO: Implement the task
   when:
-    - TOSS_04_040010 | bool
+    - toss_04_040010 | bool
   tags:
     - V-253056
     - SRG-OS-000032-GPOS-00013
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-040010
     - medium_severity
     - CCI-000067
-

@@ -17,7 +17,7 @@
 - name: TOSS-04-010160 - The TOSS SSH daemon must be configured to use only Message Authentication Codes (MACs) employing FIPS 140-2 validated cryptographic hash algorithms.
   # TODO: Implement the task
   when:
-    - TOSS_04_010160 | bool
+    - toss_04_010160 | bool
   tags:
     - V-252926
     - SRG-OS-000250-GPOS-00093
@@ -26,4 +26,3 @@
     - DISA-STIG-TOSS-04-010160
     - medium_severity
     - CCI-001453
-

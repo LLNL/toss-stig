@@ -15,7 +15,7 @@
 - name: TOSS-04-020150 - TOSS must reveal error messages only to authorized users.
   # TODO: Implement the task
   when:
-    - TOSS_04_020150 | bool
+    - toss_04_020150 | bool
   tags:
     - V-252955
     - SRG-OS-000206-GPOS-00084
@@ -24,4 +24,3 @@
     - DISA-STIG-TOSS-04-020150
     - medium_severity
     - CCI-001314
-

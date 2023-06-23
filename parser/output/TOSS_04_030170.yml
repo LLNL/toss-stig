@@ -12,7 +12,7 @@
 - name: TOSS-04-030170 - TOSS audit log directory must be owned by group root to prevent unauthorized read access.
   # TODO: Implement the task
   when:
-    - TOSS_04_030170 | bool
+    - toss_04_030170 | bool
   tags:
     - V-252982
     - SRG-OS-000057-GPOS-00027
@@ -23,4 +23,3 @@
     - CCI-000162
     - CCI-000163
     - CCI-000164
-

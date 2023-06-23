@@ -18,7 +18,7 @@
 - name: TOSS-04-040160 - TOSS must disable IEEE 1394 (FireWire) Support.
   # TODO: Implement the task
   when:
-    - TOSS_04_040160 | bool
+    - toss_04_040160 | bool
   tags:
     - V-253071
     - SRG-OS-000095-GPOS-00049
@@ -27,4 +27,3 @@
     - DISA-STIG-TOSS-04-040160
     - medium_severity
     - CCI-000381
-

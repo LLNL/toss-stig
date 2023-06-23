@@ -10,7 +10,7 @@
 - name: TOSS-04-020120 - TOSS must disable account identifiers (individuals, groups, roles, and devices) after 35 days of inactivity.
   # TODO: Implement the task
   when:
-    - TOSS_04_020120 | bool
+    - toss_04_020120 | bool
   tags:
     - V-252953
     - SRG-OS-000118-GPOS-00060
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-020120
     - medium_severity
     - CCI-000795
-

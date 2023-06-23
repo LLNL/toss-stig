@@ -9,7 +9,7 @@
 - name: TOSS-04-040910 - TOSS must restrict exposed kernel pointer addresses access.
   # TODO: Implement the task
   when:
-    - TOSS_04_040910 | bool
+    - toss_04_040910 | bool
   tags:
     - V-253132
     - SRG-OS-000480-GPOS-00227

@@ -32,7 +32,7 @@
         state: args_present
         backup: yes
   when:
-    - TOSS_04_010070 | bool
+    - toss_04_010070 | bool
   tags:
     - V-252918
     - SRG-OS-000120-GPOS-00061

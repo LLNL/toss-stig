@@ -15,7 +15,7 @@
 - name: TOSS-04-040290 - TOSS must be configured so that all network connections associated with SSH traffic are terminated at the end of the session or after 10 minutes of inactivity, except to fulfill documented and validated mission requirements.
   # TODO: Implement the task
   when:
-    - TOSS_04_040290 | bool
+    - toss_04_040290 | bool
   tags:
     - V-253083
     - SRG-OS-000126-GPOS-00066
@@ -26,4 +26,3 @@
     - CCI-000879
     - CCI-001133
     - CCI-002361
-

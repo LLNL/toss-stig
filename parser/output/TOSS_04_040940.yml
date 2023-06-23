@@ -10,7 +10,7 @@
 - name: TOSS-04-040940 - TOSS network interfaces must not be in promiscuous mode.
   # TODO: Implement the task
   when:
-    - TOSS_04_040940 | bool
+    - toss_04_040940 | bool
   tags:
     - V-253135
     - SRG-OS-000480-GPOS-00227
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-040940
     - medium_severity
     - CCI-000366
-

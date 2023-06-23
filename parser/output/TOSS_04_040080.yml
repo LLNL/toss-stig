@@ -9,7 +9,7 @@
 - name: TOSS-04-040080 - TOSS must require the change of at least eight characters when passwords are changed.
   # TODO: Implement the task
   when:
-    - TOSS_04_040080 | bool
+    - toss_04_040080 | bool
   tags:
     - V-253063
     - SRG-OS-000072-GPOS-00040

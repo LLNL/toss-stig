@@ -12,7 +12,7 @@
 - name: TOSS-04-020020 - TOSS must retain a user's session lock until that user reestablishes access using established identification and authentication procedures.
   # TODO: Implement the task
   when:
-    - TOSS_04_020020 | bool
+    - toss_04_020020 | bool
   tags:
     - V-252948
     - SRG-OS-000028-GPOS-00009
@@ -23,4 +23,3 @@
     - CCI-000056
     - CCI-000058
     - CCI-000060
-

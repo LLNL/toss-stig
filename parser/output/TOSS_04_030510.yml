@@ -11,7 +11,7 @@
 - name: TOSS-04-030510 - Successful/unsuccessful uses of the "chsh" command in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030510 | bool
+    - toss_04_030510 | bool
   tags:
     - V-253005
     - SRG-OS-000037-GPOS-00015
@@ -24,4 +24,3 @@
     - CCI-000169
     - CCI-000172
     - CCI-002884
-

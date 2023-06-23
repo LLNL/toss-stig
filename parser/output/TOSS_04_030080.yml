@@ -15,7 +15,7 @@
 - name: TOSS-04-030080 - TOSS must alert the ISSO and SA (at a minimum) in the event of an audit processing failure.
   # TODO: Implement the task
   when:
-    - TOSS_04_030080 | bool
+    - toss_04_030080 | bool
   tags:
     - V-252975
     - SRG-OS-000046-GPOS-00022
@@ -24,4 +24,3 @@
     - DISA-STIG-TOSS-04-030080
     - medium_severity
     - CCI-000139
-

@@ -37,7 +37,7 @@
       line: smtpd_client_restrictions = permit_mynetworks,reject
       state: present
   when:
-    - TOSS_04_040700 | bool
+    - toss_04_040700 | bool
     - '"postfix" in ansible_facts.packages'
   tags:
     - V-253111

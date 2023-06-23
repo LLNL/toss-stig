@@ -10,7 +10,7 @@
 - name: TOSS-04-040680 - The x86 Ctrl-Alt-Delete key sequence must be disabled on TOSS.
   # TODO: Implement the task
   when:
-    - TOSS_04_040680 | bool
+    - toss_04_040680 | bool
   tags:
     - V-253109
     - SRG-OS-000480-GPOS-00227

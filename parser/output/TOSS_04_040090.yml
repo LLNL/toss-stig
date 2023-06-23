@@ -10,7 +10,7 @@
 - name: TOSS-04-040090 - TOSS must store only encrypted representations of passwords.
   # TODO: Implement the task
   when:
-    - TOSS_04_040090 | bool
+    - toss_04_040090 | bool
   tags:
     - V-253064
     - SRG-OS-000073-GPOS-00041
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-040090
     - medium_severity
     - CCI-000196
-

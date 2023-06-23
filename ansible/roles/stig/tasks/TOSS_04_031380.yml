@@ -14,7 +14,7 @@
     name: rsyslog-gnutls
     state: present
   when:
-    - TOSS_04_031380 | bool
+    - toss_04_031380 | bool
   tags:
     - V-253055
     - SRG-OS-000480-GPOS-00227

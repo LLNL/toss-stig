@@ -15,7 +15,7 @@
 - name: TOSS-04-020050 - TOSS must map the authenticated identity to the user or group account for PKI-based authentication.
   # TODO: Implement the task
   when:
-    - TOSS_04_020050 | bool
+    - toss_04_020050 | bool
   tags:
     - V-252950
     - SRG-OS-000068-GPOS-00036
@@ -24,4 +24,3 @@
     - DISA-STIG-TOSS-04-020050
     - medium_severity
     - CCI-000187
-

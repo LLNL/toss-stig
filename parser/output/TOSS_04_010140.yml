@@ -22,7 +22,7 @@
 - name: TOSS-04-010140 - The TOSS operating system must implement DoD-approved encryption to protect the confidentiality of SSH connections.
   # TODO: Implement the task
   when:
-    - TOSS_04_010140 | bool
+    - toss_04_010140 | bool
   tags:
     - V-252924
     - SRG-OS-000250-GPOS-00093
@@ -32,4 +32,3 @@
     - medium_severity
     - CCI-001453
     - CCI-003123
-

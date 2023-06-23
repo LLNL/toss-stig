@@ -13,7 +13,7 @@
 - name: TOSS-04-020320 - All TOSS local interactive user home directories must be owned by the user's primary group.
   # TODO: Implement the task
   when:
-    - TOSS_04_020320 | bool
+    - toss_04_020320 | bool
   tags:
     - V-252971
     - SRG-OS-000480-GPOS-00230
@@ -22,4 +22,3 @@
     - DISA-STIG-TOSS-04-020320
     - medium_severity
     - CCI-000366
-

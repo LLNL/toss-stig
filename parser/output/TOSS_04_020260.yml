@@ -9,7 +9,7 @@
 - name: TOSS-04-020260 - TOSS must display the date and time of the last successful account logon upon an SSH logon.
   # TODO: Implement the task
   when:
-    - TOSS_04_020260 | bool
+    - toss_04_020260 | bool
   tags:
     - V-252965
     - SRG-OS-000480-GPOS-00227
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-020260
     - medium_severity
     - CCI-000366
-

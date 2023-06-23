@@ -10,7 +10,7 @@
 - name: TOSS-04-040030 - TOSS must force a frequent session key renegotiation for SSH connections to the server.
   # TODO: Implement the task
   when:
-    - TOSS_04_040030 | bool
+    - toss_04_040030 | bool
   tags:
     - V-253058
     - SRG-OS-000033-GPOS-00014
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-040030
     - medium_severity
     - CCI-000068
-

@@ -22,7 +22,7 @@
 - name: TOSS-04-030890 - TOSS must allocate audit record storage capacity to store at least one week's worth of audit records, when audit records are not immediately sent to a central audit record storage facility.
   # TODO: Implement the task
   when:
-    - TOSS_04_030890 | bool
+    - toss_04_030890 | bool
   tags:
     - V-253031
     - SRG-OS-000341-GPOS-00132
@@ -31,4 +31,3 @@
     - DISA-STIG-TOSS-04-030890
     - medium_severity
     - CCI-001849
-

@@ -11,7 +11,7 @@
 - name: TOSS-04-040140 - TOSS must enforce a minimum 15-character password length.
   # TODO: Implement the task
   when:
-    - TOSS_04_040140 | bool
+    - toss_04_040140 | bool
   tags:
     - V-253069
     - SRG-OS-000078-GPOS-00046
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-040140
     - medium_severity
     - CCI-000205
-

@@ -13,7 +13,7 @@
 - name: TOSS-04-030490 - Successful/unsuccessful uses of the "delete_module" command in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030490 | bool
+    - toss_04_030490 | bool
   tags:
     - V-253003
     - SRG-OS-000037-GPOS-00015
@@ -26,4 +26,3 @@
     - CCI-000169
     - CCI-000172
     - CCI-002884
-

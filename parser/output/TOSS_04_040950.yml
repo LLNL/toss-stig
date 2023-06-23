@@ -15,7 +15,7 @@
 - name: TOSS-04-040950 - TOSS must enable kernel parameters to enforce discretionary access control on symlinks.
   # TODO: Implement the task
   when:
-    - TOSS_04_040950 | bool
+    - toss_04_040950 | bool
   tags:
     - V-253136
     - SRG-OS-000312-GPOS-00122

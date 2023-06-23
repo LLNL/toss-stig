@@ -11,7 +11,7 @@
     name: rng-tools
     state: present
   when:
-    - TOSS_04_040760 | bool
+    - toss_04_040760 | bool
   tags:
     - V-253117
     - SRG-OS-000480-GPOS-00227

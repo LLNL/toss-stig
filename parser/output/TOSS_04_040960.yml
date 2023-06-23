@@ -16,7 +16,7 @@
 - name: TOSS-04-040960 - TOSS must enable kernel parameters to enforce discretionary access control on hardlinks.
   # TODO: Implement the task
   when:
-    - TOSS_04_040960 | bool
+    - toss_04_040960 | bool
   tags:
     - V-253137
     - SRG-OS-000312-GPOS-00122

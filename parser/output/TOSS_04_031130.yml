@@ -10,7 +10,7 @@
 - name: TOSS-04-031130 - Successful/unsuccessful modifications to the "lastlog" file in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031130 | bool
+    - toss_04_031130 | bool
   tags:
     - V-253039
     - SRG-OS-000470-GPOS-00214
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-031130
     - medium_severity
     - CCI-000172
-

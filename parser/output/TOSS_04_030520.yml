@@ -12,7 +12,7 @@
 - name: TOSS-04-030520 - Successful/unsuccessful uses of setfiles in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030520 | bool
+    - toss_04_030520 | bool
   tags:
     - V-253006
     - SRG-OS-000037-GPOS-00015
@@ -25,4 +25,3 @@
     - CCI-000169
     - CCI-000172
     - CCI-002884
-

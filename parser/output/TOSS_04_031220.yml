@@ -12,7 +12,7 @@
 - name: TOSS-04-031220 - Successful/unsuccessful uses of "unix_chkpwd" in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031220 | bool
+    - toss_04_031220 | bool
   tags:
     - V-253048
     - SRG-OS-000471-GPOS-00215
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-031220
     - medium_severity
     - CCI-000172
-

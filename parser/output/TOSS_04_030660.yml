@@ -16,7 +16,7 @@
 - name: TOSS-04-030660 - Successful/unsuccessful uses of the open_by_handle_at system call system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030660 | bool
+    - toss_04_030660 | bool
   tags:
     - V-253019
     - SRG-OS-000064-GPOS-00033
@@ -25,4 +25,3 @@
     - DISA-STIG-TOSS-04-030660
     - medium_severity
     - CCI-000172
-

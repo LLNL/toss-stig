@@ -12,7 +12,7 @@
 - name: TOSS-04-030610 - Successful/unsuccessful uses of the fchown system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030610 | bool
+    - toss_04_030610 | bool
   tags:
     - V-253014
     - SRG-OS-000064-GPOS-00033
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-030610
     - medium_severity
     - CCI-000172
-

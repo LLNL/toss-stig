@@ -11,7 +11,7 @@
 - name: TOSS-04-040540 - TOSS must prevent the use of dictionary words for passwords.
   # TODO: Implement the task
   when:
-    - TOSS_04_040540 | bool
+    - toss_04_040540 | bool
   tags:
     - V-253096
     - SRG-OS-000480-GPOS-00225

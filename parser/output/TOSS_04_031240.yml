@@ -10,7 +10,7 @@
 - name: TOSS-04-031240 - Successful/unsuccessful uses of the "kmod" command in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031240 | bool
+    - toss_04_031240 | bool
   tags:
     - V-253050
     - SRG-OS-000471-GPOS-00216
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-031240
     - medium_severity
     - CCI-000172
-

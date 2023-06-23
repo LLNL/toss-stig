@@ -20,7 +20,7 @@
       state: started
       enabled: yes
   when:
-    - TOSS_04_030010 | bool
+    - toss_04_030010 | bool
   tags:
     - V-252973
     - SRG-OS-000037-GPOS-00015

@@ -31,7 +31,7 @@
       - critical
 
   when:
-    - TOSS_04_010350 | bool
+    - toss_04_010350 | bool
   tags:
     - V-252937
     - SRG-OS-000480-GPOS-00227

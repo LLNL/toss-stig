@@ -18,7 +18,7 @@
     validate: /usr/sbin/sshd -t -f %s
   notify: restart sshd
   when:
-    - TOSS_04_010400 | bool
+    - toss_04_010400 | bool
   tags:
     - V-252942
     - SRG-OS-000480-GPOS-00227

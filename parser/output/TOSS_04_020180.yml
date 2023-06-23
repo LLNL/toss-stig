@@ -10,7 +10,7 @@
 - name: TOSS-04-020180 - TOSS must require users to reauthenticate for privilege escalation.
   # TODO: Implement the task
   when:
-    - TOSS_04_020180 | bool
+    - toss_04_020180 | bool
   tags:
     - V-252958
     - SRG-OS-000373-GPOS-00156
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-020180
     - medium_severity
     - CCI-002038
-

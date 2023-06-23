@@ -12,7 +12,7 @@
 - name: TOSS-04-020140 - TOSS must automatically remove or disable emergency accounts after the crisis is resolved or 72 hours.
   # TODO: Implement the task
   when:
-    - TOSS_04_020140 | bool
+    - toss_04_020140 | bool
   tags:
     - V-252954
     - SRG-OS-000123-GPOS-00064
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-020140
     - medium_severity
     - CCI-001682
-

@@ -22,7 +22,7 @@
 - name: TOSS-04-020070 - TOSS must use multifactor authentication for network and local access to privileged and non-privileged accounts.
   # TODO: Implement the task
   when:
-    - TOSS_04_020070 | bool
+    - toss_04_020070 | bool
   tags:
     - V-252952
     - SRG-OS-000105-GPOS-00052
@@ -34,4 +34,3 @@
     - CCI-000766
     - CCI-000767
     - CCI-000768
-

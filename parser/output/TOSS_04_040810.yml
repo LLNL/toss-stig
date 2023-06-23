@@ -8,7 +8,7 @@
 - name: TOSS-04-040810 - TOSS must not allow blank or null passwords in the password-auth file.
   # TODO: Implement the task
   when:
-    - TOSS_04_040810 | bool
+    - toss_04_040810 | bool
   tags:
     - V-253122
     - SRG-OS-000480-GPOS-00227

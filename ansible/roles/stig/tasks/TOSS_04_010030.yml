@@ -15,7 +15,7 @@
     line: 'ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue'
     backup: yes
   when:
-    - TOSS_04_010030 | bool
+    - toss_04_010030 | bool
   tags:
     - V-252914
     - SRG-OS-000080-GPOS-00048

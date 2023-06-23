@@ -14,7 +14,7 @@
 - name: TOSS-04-040130 - TOSS must prohibit password reuse for a minimum of five generations.
   # TODO: Implement the task
   when:
-    - TOSS_04_040130 | bool
+    - toss_04_040130 | bool
   tags:
     - V-253068
     - SRG-OS-000077-GPOS-00045
@@ -23,4 +23,3 @@
     - DISA-STIG-TOSS-04-040130
     - medium_severity
     - CCI-000200
-

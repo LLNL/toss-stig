@@ -12,7 +12,7 @@
 - name: TOSS-04-030440 - Successful/unsuccessful uses of the "renameat" command in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030440 | bool
+    - toss_04_030440 | bool
   tags:
     - V-252998
     - SRG-OS-000037-GPOS-00015
@@ -25,4 +25,3 @@
     - CCI-000169
     - CCI-000172
     - CCI-002884
-

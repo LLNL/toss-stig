@@ -9,7 +9,7 @@
 - name: TOSS-04-040930 - TOSS must use reverse path filtering on all IPv4 interfaces.
   # TODO: Implement the task
   when:
-    - TOSS_04_040930 | bool
+    - toss_04_040930 | bool
   tags:
     - V-253134
     - SRG-OS-000480-GPOS-00227

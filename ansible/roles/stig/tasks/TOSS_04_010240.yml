@@ -14,7 +14,7 @@
     name: openssl-pkcs11
     state: present
   when:
-    - TOSS_04_010240 | bool
+    - toss_04_010240 | bool
   tags:
     - V-252932
     - SRG-OS-000375-GPOS-00160

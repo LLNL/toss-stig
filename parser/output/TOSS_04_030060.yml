@@ -11,7 +11,7 @@
 - name: TOSS-04-030060 - TOSS must generate audit records containing the full-text recording of privileged commands.
   # TODO: Implement the task
   when:
-    - TOSS_04_030060 | bool
+    - toss_04_030060 | bool
   tags:
     - V-252974
     - SRG-OS-000042-GPOS-00020
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-030060
     - medium_severity
     - CCI-000135
-

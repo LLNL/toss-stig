@@ -9,7 +9,7 @@
 - name: TOSS-04-040750 - TOSS must ensure the SSH server uses strong entropy.
   # TODO: Implement the task
   when:
-    - TOSS_04_040750 | bool
+    - toss_04_040750 | bool
   tags:
     - V-253116
     - SRG-OS-000480-GPOS-00227

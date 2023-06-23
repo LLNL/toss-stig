@@ -12,7 +12,7 @@
 - name: TOSS-04-031200 - Successful/unsuccessful uses of the "unix_update" in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031200 | bool
+    - toss_04_031200 | bool
   tags:
     - V-253046
     - SRG-OS-000471-GPOS-00215
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-031200
     - medium_severity
     - CCI-000172
-

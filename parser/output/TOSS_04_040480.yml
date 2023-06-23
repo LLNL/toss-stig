@@ -9,7 +9,7 @@
 - name: TOSS-04-040480 - A firewall must be able to protect against or limit the effects of Denial of Service (DoS) attacks by ensuring TOSS can implement rate-limiting measures on impacted network interfaces.
   # TODO: Implement the task
   when:
-    - TOSS_04_040480 | bool
+    - toss_04_040480 | bool
   tags:
     - V-253092
     - SRG-OS-000420-GPOS-00186
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-040480
     - medium_severity
     - CCI-002385
-

@@ -18,7 +18,7 @@
 - name: TOSS-04-010330 - For TOSS systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured.
   # TODO: Implement the task
   when:
-    - TOSS_04_010330 | bool
+    - toss_04_010330 | bool
   tags:
     - V-252935
     - SRG-OS-000480-GPOS-00227
@@ -27,4 +27,3 @@
     - DISA-STIG-TOSS-04-010330
     - medium_severity
     - CCI-000366
-

@@ -15,7 +15,7 @@
 - name: TOSS-04-040340 - TOSS must limit privileges to change software resident within software libraries.
   # TODO: Implement the task
   when:
-    - TOSS_04_040340 | bool
+    - toss_04_040340 | bool
   tags:
     - V-253086
     - SRG-OS-000259-GPOS-00100
@@ -24,4 +24,3 @@
     - DISA-STIG-TOSS-04-040340
     - medium_severity
     - CCI-001499
-

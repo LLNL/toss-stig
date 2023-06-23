@@ -18,7 +18,7 @@
 - name: TOSS-04-040270 - TOSS must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the PPSM CAL and vulnerability assessments.
   # TODO: Implement the task
   when:
-    - TOSS_04_040270 | bool
+    - toss_04_040270 | bool
   tags:
     - V-253081
     - SRG-OS-000096-GPOS-00050
@@ -27,4 +27,3 @@
     - DISA-STIG-TOSS-04-040270
     - medium_severity
     - CCI-000382
-

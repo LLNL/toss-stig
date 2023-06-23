@@ -10,7 +10,7 @@
 - name: TOSS-04-040550 - TOSS must enforce a delay of at least four seconds between logon prompts following a failed logon attempt.
   # TODO: Implement the task
   when:
-    - TOSS_04_040550 | bool
+    - toss_04_040550 | bool
   tags:
     - V-253097
     - SRG-OS-000480-GPOS-00226

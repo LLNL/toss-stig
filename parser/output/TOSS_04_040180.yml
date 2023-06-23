@@ -9,7 +9,7 @@
 - name: TOSS-04-040180 - TOSS must disable network management of the chrony daemon.
   # TODO: Implement the task
   when:
-    - TOSS_04_040180 | bool
+    - toss_04_040180 | bool
   tags:
     - V-253073
     - SRG-OS-000095-GPOS-00049
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-040180
     - medium_severity
     - CCI-000381
-

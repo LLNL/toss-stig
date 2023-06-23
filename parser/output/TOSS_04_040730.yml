@@ -9,7 +9,7 @@
 - name: TOSS-04-040730 - TOSS must enable hardening for the Berkeley Packet Filter Just-in-time compiler.
   # TODO: Implement the task
   when:
-    - TOSS_04_040730 | bool
+    - toss_04_040730 | bool
   tags:
     - V-253114
     - SRG-OS-000480-GPOS-00227

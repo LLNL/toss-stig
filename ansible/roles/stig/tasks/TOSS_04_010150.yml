@@ -12,7 +12,7 @@
 - name: TOSS-04-010150 - The TOSS operating system must implement DoD-approved TLS encryption in the GnuTLS package.
   # TODO: Implement the task
   when:
-    - TOSS_04_010150 | bool
+    - toss_04_010150 | bool
   tags:
     - V-252925
     - SRG-OS-000250-GPOS-00093

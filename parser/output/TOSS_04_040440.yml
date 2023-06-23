@@ -14,7 +14,7 @@
 - name: TOSS-04-040440 - TOSS must implement DoD-approved encryption in the OpenSSL package.
   # TODO: Implement the task
   when:
-    - TOSS_04_040440 | bool
+    - toss_04_040440 | bool
   tags:
     - V-253091
     - SRG-OS-000393-GPOS-00173
@@ -23,4 +23,3 @@
     - DISA-STIG-TOSS-04-040440
     - medium_severity
     - CCI-002890
-

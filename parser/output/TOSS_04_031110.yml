@@ -13,7 +13,7 @@
 - name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031110 | bool
+    - toss_04_031110 | bool
   tags:
     - V-253037
     - SRG-OS-000468-GPOS-00212
@@ -22,4 +22,3 @@
     - DISA-STIG-TOSS-04-031110
     - medium_severity
     - CCI-000172
-

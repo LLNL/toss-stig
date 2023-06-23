@@ -11,7 +11,7 @@
     regexp: '(nullok_secure|nullok)'
     backup: yes
   when:
-    - TOSS_04_010380 | bool
+    - toss_04_010380 | bool
   tags:
     - V-252940
     - SRG-OS-000480-GPOS-00227

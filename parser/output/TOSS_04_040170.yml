@@ -17,7 +17,7 @@
 - name: TOSS-04-040170 - TOSS must disable mounting of cramfs.
   # TODO: Implement the task
   when:
-    - TOSS_04_040170 | bool
+    - toss_04_040170 | bool
   tags:
     - V-253072
     - SRG-OS-000095-GPOS-00049
@@ -26,4 +26,3 @@
     - DISA-STIG-TOSS-04-040170
     - medium_severity
     - CCI-000381
-

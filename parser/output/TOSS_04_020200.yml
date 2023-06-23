@@ -10,7 +10,7 @@
 - name: TOSS-04-020200 - All TOSS local interactive user accounts must be assigned a home directory upon creation.
   # TODO: Implement the task
   when:
-    - TOSS_04_020200 | bool
+    - toss_04_020200 | bool
   tags:
     - V-252960
     - SRG-OS-000480-GPOS-00227
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-020200
     - medium_severity
     - CCI-000366
-

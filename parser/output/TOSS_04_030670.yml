@@ -15,7 +15,7 @@
 - name: TOSS-04-030670 - Successful/unsuccessful uses of the openat system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030670 | bool
+    - toss_04_030670 | bool
   tags:
     - V-253020
     - SRG-OS-000064-GPOS-00033
@@ -24,4 +24,3 @@
     - DISA-STIG-TOSS-04-030670
     - medium_severity
     - CCI-000172
-

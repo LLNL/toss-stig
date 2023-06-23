@@ -13,7 +13,7 @@
 - name: TOSS-04-020160 - TOSS must protect wireless access to the system using authentication of users and/or devices.
   # TODO: Implement the task
   when:
-    - TOSS_04_020160 | bool
+    - toss_04_020160 | bool
   tags:
     - V-252956
     - SRG-OS-000299-GPOS-00117
@@ -24,4 +24,3 @@
     - CCI-001443
     - CCI-001444
     - CCI-002418
-

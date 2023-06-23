@@ -9,7 +9,7 @@
 - name: TOSS-04-031360 - TOSS must resolve audit information before writing to disk.
   # TODO: Implement the task
   when:
-    - TOSS_04_031360 | bool
+    - toss_04_031360 | bool
   tags:
     - V-253053
     - SRG-OS-000480-GPOS-00227
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-031360
     - low_severity
     - CCI-000366
-

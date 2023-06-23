@@ -10,7 +10,7 @@
     name: sendmail
     state: absent
   when:
-    - TOSS_04_040250 | bool
+    - toss_04_040250 | bool
   tags:
     - V-253079
     - SRG-OS-000095-GPOS-00049

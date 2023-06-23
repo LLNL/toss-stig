@@ -11,7 +11,7 @@
 - name: TOSS-04-040570 - All TOSS local files and directories must have a valid group owner.
   # TODO: Implement the task
   when:
-    - TOSS_04_040570 | bool
+    - toss_04_040570 | bool
   tags:
     - V-253099
     - SRG-OS-000480-GPOS-00227

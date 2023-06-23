@@ -15,7 +15,7 @@
 - name: TOSS-04-020230 - All TOSS local interactive users must have a home directory assigned in the /etc/passwd file.
   # TODO: Implement the task
   when:
-    - TOSS_04_020230 | bool
+    - toss_04_020230 | bool
   tags:
     - V-252962
     - SRG-OS-000480-GPOS-00227
@@ -24,4 +24,3 @@
     - DISA-STIG-TOSS-04-020230
     - medium_severity
     - CCI-000366
-

@@ -14,7 +14,7 @@
 - name: TOSS-04-020010 - TOSS must limit the number of concurrent sessions to 256 for all accounts and/or account types.
   # TODO: Implement the task
   when:
-    - TOSS_04_020010 | bool
+    - toss_04_020010 | bool
   tags:
     - V-252947
     - SRG-OS-000027-GPOS-00008
@@ -23,4 +23,3 @@
     - DISA-STIG-TOSS-04-020010
     - low_severity
     - CCI-000054
-

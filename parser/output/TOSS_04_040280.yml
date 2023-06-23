@@ -17,7 +17,7 @@
 - name: TOSS-04-040280 - TOSS must be configured to disable USB mass storage.
   # TODO: Implement the task
   when:
-    - TOSS_04_040280 | bool
+    - toss_04_040280 | bool
   tags:
     - V-253082
     - SRG-OS-000114-GPOS-00059
@@ -27,4 +27,3 @@
     - medium_severity
     - CCI-000778
     - CCI-001958
-

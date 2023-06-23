@@ -13,7 +13,7 @@
 - name: TOSS-04-030990 - The TOSS audit system must be configured to audit any usage of the "fsetxattr" system call.
   # TODO: Implement the task
   when:
-    - TOSS_04_030990 | bool
+    - toss_04_030990 | bool
   tags:
     - V-253034
     - SRG-OS-000458-GPOS-00203
@@ -22,4 +22,3 @@
     - DISA-STIG-TOSS-04-030990
     - medium_severity
     - CCI-000172
-

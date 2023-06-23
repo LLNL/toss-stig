@@ -16,7 +16,7 @@
 - name: TOSS-04-030680 - Successful/unsuccessful uses of the truncate system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030680 | bool
+    - toss_04_030680 | bool
   tags:
     - V-253021
     - SRG-OS-000064-GPOS-00033
@@ -25,4 +25,3 @@
     - DISA-STIG-TOSS-04-030680
     - medium_severity
     - CCI-000172
-

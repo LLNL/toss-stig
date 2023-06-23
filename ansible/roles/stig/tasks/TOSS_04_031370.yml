@@ -13,7 +13,7 @@
     name: rsyslog
     state: present
   when:
-    - TOSS_04_031370 | bool
+    - toss_04_031370 | bool
   tags:
     - V-253054
     - SRG-OS-000480-GPOS-00227

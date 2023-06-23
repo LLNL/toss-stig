@@ -16,7 +16,7 @@
 - name: TOSS-04-040210 - TOSS must disable the stream control transmission (SCTP) protocol.
   # TODO: Implement the task
   when:
-    - TOSS_04_040210 | bool
+    - toss_04_040210 | bool
   tags:
     - V-253076
     - SRG-OS-000095-GPOS-00049
@@ -25,4 +25,3 @@
     - DISA-STIG-TOSS-04-040210
     - medium_severity
     - CCI-000381
-

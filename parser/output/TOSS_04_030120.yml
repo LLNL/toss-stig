@@ -13,7 +13,7 @@
 - name: TOSS-04-030120 - TOSS audit logs must have a mode of 0600 or less permissive to prevent unauthorized read access.
   # TODO: Implement the task
   when:
-    - TOSS_04_030120 | bool
+    - toss_04_030120 | bool
   tags:
     - V-252977
     - SRG-OS-000057-GPOS-00027
@@ -24,4 +24,3 @@
     - CCI-000162
     - CCI-000163
     - CCI-000164
-

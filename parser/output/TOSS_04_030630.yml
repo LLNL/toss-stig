@@ -16,7 +16,7 @@
 - name: TOSS-04-030630 - Successful/unsuccessful uses of the ftruncate system call system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030630 | bool
+    - toss_04_030630 | bool
   tags:
     - V-253016
     - SRG-OS-000064-GPOS-00033
@@ -25,4 +25,3 @@
     - DISA-STIG-TOSS-04-030630
     - medium_severity
     - CCI-000172
-

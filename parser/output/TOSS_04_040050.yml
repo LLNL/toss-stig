@@ -9,7 +9,7 @@
 - name: TOSS-04-040050 - TOSS must enforce password complexity by requiring that at least one upper-case character be used.
   # TODO: Implement the task
   when:
-    - TOSS_04_040050 | bool
+    - toss_04_040050 | bool
   tags:
     - V-253060
     - SRG-OS-000069-GPOS-00037
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-040050
     - medium_severity
     - CCI-000192
-

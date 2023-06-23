@@ -11,7 +11,7 @@
 - name: TOSS-04-031140 - Successful/unsuccessful uses of "semanage" in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031140 | bool
+    - toss_04_031140 | bool
   tags:
     - V-253040
     - SRG-OS-000471-GPOS-00215
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-031140
     - medium_severity
     - CCI-000172
-

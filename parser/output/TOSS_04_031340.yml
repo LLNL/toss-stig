@@ -8,7 +8,7 @@
 - name: TOSS-04-031340 - The auditd service must be running in TOSS.
   # TODO: Implement the task
   when:
-    - TOSS_04_031340 | bool
+    - toss_04_031340 | bool
   tags:
     - V-253051
     - SRG-OS-000480-GPOS-00227
@@ -17,4 +17,3 @@
     - DISA-STIG-TOSS-04-031340
     - medium_severity
     - CCI-000366
-

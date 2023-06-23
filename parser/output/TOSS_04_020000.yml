@@ -15,7 +15,7 @@
 - name: TOSS-04-020000 - TOSS must enforce the limit of five consecutive invalid logon attempts by a user during a 15-minute time period.
   # TODO: Implement the task
   when:
-    - TOSS_04_020000 | bool
+    - toss_04_020000 | bool
   tags:
     - V-252946
     - SRG-OS-000021-GPOS-00005
@@ -24,4 +24,3 @@
     - DISA-STIG-TOSS-04-020000
     - medium_severity
     - CCI-000044
-

@@ -9,7 +9,7 @@
 - name: TOSS-04-040120 - TOSS must enforce a 60-day maximum password lifetime restriction.
   # TODO: Implement the task
   when:
-    - TOSS_04_040120 | bool
+    - toss_04_040120 | bool
   tags:
     - V-253067
     - SRG-OS-000076-GPOS-00044
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-040120
     - medium_severity
     - CCI-000199
-

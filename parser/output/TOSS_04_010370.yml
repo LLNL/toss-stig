@@ -8,7 +8,7 @@
 - name: TOSS-04-010370 - There must be no ".shosts" files on The TOSS operating system.
   # TODO: Implement the task
   when:
-    - TOSS_04_010370 | bool
+    - toss_04_010370 | bool
   tags:
     - V-252939
     - SRG-OS-000480-GPOS-00227
@@ -17,4 +17,3 @@
     - DISA-STIG-TOSS-04-010370
     - medium_severity
     - CCI-000366
-

@@ -10,7 +10,7 @@
 - name: TOSS-04-030910 - TOSS must label all off-loaded audit logs before sending them to the central log server.
   # TODO: Implement the task
   when:
-    - TOSS_04_030910 | bool
+    - toss_04_030910 | bool
   tags:
     - V-253033
     - SRG-OS-000342-GPOS-00133
@@ -19,4 +19,3 @@
     - DISA-STIG-TOSS-04-030910
     - medium_severity
     - CCI-001851
-

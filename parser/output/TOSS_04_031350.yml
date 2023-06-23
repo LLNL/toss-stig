@@ -9,7 +9,7 @@
 - name: TOSS-04-031350 - The TOSS audit system must audit local events.
   # TODO: Implement the task
   when:
-    - TOSS_04_031350 | bool
+    - toss_04_031350 | bool
   tags:
     - V-253052
     - SRG-OS-000480-GPOS-00227
@@ -18,4 +18,3 @@
     - DISA-STIG-TOSS-04-031350
     - medium_severity
     - CCI-000366
-

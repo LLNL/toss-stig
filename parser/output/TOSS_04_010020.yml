@@ -12,7 +12,7 @@
 - name: TOSS-04-010020 - TOSS, for PKI-based authentication, must enforce authorized access to the corresponding private key.
   # TODO: Implement the task
   when:
-    - TOSS_04_010020 | bool
+    - toss_04_010020 | bool
   tags:
     - V-252913
     - SRG-OS-000067-GPOS-00035
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-010020
     - medium_severity
     - CCI-000186
-

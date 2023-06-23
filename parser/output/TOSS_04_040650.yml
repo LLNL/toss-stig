@@ -9,7 +9,7 @@
 - name: TOSS-04-040650 - The TOSS SSH daemon must perform strict mode checking of home directory configuration files.
   # TODO: Implement the task
   when:
-    - TOSS_04_040650 | bool
+    - toss_04_040650 | bool
   tags:
     - V-253106
     - SRG-OS-000480-GPOS-00227

@@ -13,7 +13,7 @@
 - name: TOSS-04-030090 - TOSS must take appropriate action when an audit processing failure occurs.
   # TODO: Implement the task
   when:
-    - TOSS_04_030090 | bool
+    - toss_04_030090 | bool
   tags:
     - V-252976
     - SRG-OS-000047-GPOS-00023
@@ -22,4 +22,3 @@
     - DISA-STIG-TOSS-04-030090
     - medium_severity
     - CCI-000140
-

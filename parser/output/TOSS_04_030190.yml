@@ -10,7 +10,7 @@
 - name: TOSS-04-030190 - The TOSS audit system must protect logon UIDs from unauthorized change.
   # TODO: Implement the task
   when:
-    - TOSS_04_030190 | bool
+    - toss_04_030190 | bool
   tags:
     - V-252984
     - SRG-OS-000057-GPOS-00027
@@ -21,4 +21,3 @@
     - CCI-000162
     - CCI-000163
     - CCI-000164
-

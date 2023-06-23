@@ -12,7 +12,7 @@
 - name: TOSS-04-030550 - TOSS must allow only the Information System Security Manager (ISSM) (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited.
   # TODO: Implement the task
   when:
-    - TOSS_04_030550 | bool
+    - toss_04_030550 | bool
   tags:
     - V-253008
     - SRG-OS-000063-GPOS-00032
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-030550
     - medium_severity
     - CCI-000171
-

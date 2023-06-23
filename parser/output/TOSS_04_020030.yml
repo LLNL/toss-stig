@@ -12,7 +12,7 @@
 - name: TOSS-04-020030 - TOSS must automatically lock graphical user sessions after 15 minutes of inactivity.
   # TODO: Implement the task
   when:
-    - TOSS_04_020030 | bool
+    - toss_04_020030 | bool
   tags:
     - V-252949
     - SRG-OS-000029-GPOS-00010
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-020030
     - medium_severity
     - CCI-000057
-

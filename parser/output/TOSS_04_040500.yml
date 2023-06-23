@@ -11,7 +11,7 @@
 - name: TOSS-04-040500 - YUM must remove all software components after updated versions have been installed on TOSS.
   # TODO: Implement the task
   when:
-    - TOSS_04_040500 | bool
+    - toss_04_040500 | bool
   tags:
     - V-253094
     - SRG-OS-000437-GPOS-00194

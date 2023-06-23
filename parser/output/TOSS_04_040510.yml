@@ -16,7 +16,7 @@
 - name: TOSS-04-040510 - TOSS must enable the "SELinux" targeted policy.
   # TODO: Implement the task
   when:
-    - TOSS_04_040510 | bool
+    - toss_04_040510 | bool
   tags:
     - V-253095
     - SRG-OS-000445-GPOS-00199

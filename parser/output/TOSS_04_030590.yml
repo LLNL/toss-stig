@@ -12,7 +12,7 @@
 - name: TOSS-04-030590 - Successful/unsuccessful uses of the fchmod system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_030590 | bool
+    - toss_04_030590 | bool
   tags:
     - V-253012
     - SRG-OS-000064-GPOS-00033
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-030590
     - medium_severity
     - CCI-000172
-

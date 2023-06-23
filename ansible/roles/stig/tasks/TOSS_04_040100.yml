@@ -10,7 +10,7 @@
     name: rsh-server
     state: absent
   when:
-    - TOSS_04_040100 | bool
+    - toss_04_040100 | bool
   tags:
     - V-253065
     - SRG-OS-000074-GPOS-00042

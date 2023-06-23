@@ -12,7 +12,7 @@
 - name: TOSS-04-020290 - TOSS must define default permissions for all authenticated users in such a way that the user can only read and modify their own files.
   # TODO: Implement the task
   when:
-    - TOSS_04_020290 | bool
+    - toss_04_020290 | bool
   tags:
     - V-252968
     - SRG-OS-000480-GPOS-00228
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-020290
     - medium_severity
     - CCI-000366
-

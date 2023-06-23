@@ -12,7 +12,7 @@
 - name: TOSS-04-020240 - The x86 Ctrl-Alt-Delete key sequence in TOSS must be disabled if a graphical user interface is installed.
   # TODO: Implement the task
   when:
-    - TOSS_04_020240 | bool
+    - toss_04_020240 | bool
   tags:
     - V-252963
     - SRG-OS-000480-GPOS-00227
@@ -21,4 +21,3 @@
     - DISA-STIG-TOSS-04-020240
     - high_severity
     - CCI-000366
-

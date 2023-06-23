@@ -12,7 +12,7 @@
 - name: TOSS-04-040490 - TOSS must implement non-executable data to protect its memory from unauthorized code execution.
   # TODO: Implement the task
   when:
-    - TOSS_04_040490 | bool
+    - toss_04_040490 | bool
   tags:
     - V-253093
     - SRG-OS-000433-GPOS-00192

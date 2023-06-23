@@ -11,7 +11,7 @@
 - name: TOSS-04-020300 - All TOSS local interactive user home directories must have mode 0770 or less permissive.
   # TODO: Implement the task
   when:
-    - TOSS_04_020300 | bool
+    - toss_04_020300 | bool
   tags:
     - V-252969
     - SRG-OS-000480-GPOS-00230
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-020300
     - medium_severity
     - CCI-000366
-

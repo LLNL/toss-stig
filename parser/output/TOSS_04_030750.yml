@@ -12,7 +12,7 @@
 - name: TOSS-04-030750 - TOSS audit tools must be owned by "root".
   # TODO: Implement the task
   when:
-    - TOSS_04_030750 | bool
+    - toss_04_030750 | bool
   tags:
     - V-253022
     - SRG-OS-000256-GPOS-00097
@@ -23,4 +23,3 @@
     - CCI-001493
     - CCI-001494
     - CCI-001495
-

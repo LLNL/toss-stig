@@ -9,7 +9,7 @@
 - name: TOSS-04-040920 - TOSS must restrict privilege elevation to authorized personnel.
   # TODO: Implement the task
   when:
-    - TOSS_04_040920 | bool
+    - toss_04_040920 | bool
   tags:
     - V-253133
     - SRG-OS-000480-GPOS-00227

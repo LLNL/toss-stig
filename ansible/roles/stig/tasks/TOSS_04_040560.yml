@@ -14,7 +14,7 @@
       name: vsftpd
       state: absent
   when:
-    - TOSS_04_040560 | bool
+    - toss_04_040560 | bool
   tags:
     - V-253098
     - SRG-OS-000480-GPOS-00227

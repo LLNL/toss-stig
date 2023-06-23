@@ -20,7 +20,7 @@
     line: 'AutomaticLoginEnable=false'
     insertafter: '^[daemon]\n'
   when:
-    - TOSS_04_010430 | bool
+    - toss_04_010430 | bool
   tags:
     - V-252945
     - SRG-OS-000480-GPOS-00229

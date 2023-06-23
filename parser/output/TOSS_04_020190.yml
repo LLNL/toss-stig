@@ -11,7 +11,7 @@
 - name: TOSS-04-020190 - TOSS must require users to provide a password for privilege escalation.
   # TODO: Implement the task
   when:
-    - TOSS_04_020190 | bool
+    - toss_04_020190 | bool
   tags:
     - V-252959
     - SRG-OS-000373-GPOS-00157
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-020190
     - medium_severity
     - CCI-002038
-

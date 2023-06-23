@@ -12,7 +12,7 @@
 - name: TOSS-04-040670 - The TOSS SSH public host key files must have mode 0644 or less permissive.
   # TODO: Implement the task
   when:
-    - TOSS_04_040670 | bool
+    - toss_04_040670 | bool
   tags:
     - V-253108
     - SRG-OS-000480-GPOS-00227

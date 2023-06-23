@@ -11,7 +11,7 @@
 - name: TOSS-04-030800 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect "/etc/gshadow".
   # TODO: Implement the task
   when:
-    - TOSS_04_030800 | bool
+    - toss_04_030800 | bool
   tags:
     - V-253025
     - SRG-OS-000303-GPOS-00120
@@ -20,4 +20,3 @@
     - DISA-STIG-TOSS-04-030800
     - medium_severity
     - CCI-002130
-

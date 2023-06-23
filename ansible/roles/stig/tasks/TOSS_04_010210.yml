@@ -28,7 +28,7 @@
     name: aide
     state: present
   when:
-    - TOSS_04_010210 | bool
+    - toss_04_010210 | bool
   tags:
     - V-252929
     - SRG-OS-000363-GPOS-00150

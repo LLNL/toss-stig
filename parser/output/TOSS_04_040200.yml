@@ -16,7 +16,7 @@
 - name: TOSS-04-040200 - TOSS must disable the controller area network (CAN) protocol.
   # TODO: Implement the task
   when:
-    - TOSS_04_040200 | bool
+    - toss_04_040200 | bool
   tags:
     - V-253075
     - SRG-OS-000095-GPOS-00049
@@ -25,4 +25,3 @@
     - DISA-STIG-TOSS-04-040200
     - medium_severity
     - CCI-000381
-

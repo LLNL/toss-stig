@@ -16,7 +16,7 @@
 - name: TOSS-04-040190 - TOSS must disable the asynchronous transfer mode (ATM) protocol.
   # TODO: Implement the task
   when:
-    - TOSS_04_040190 | bool
+    - toss_04_040190 | bool
   tags:
     - V-253074
     - SRG-OS-000095-GPOS-00049
@@ -25,4 +25,3 @@
     - DISA-STIG-TOSS-04-040190
     - medium_severity
     - CCI-000381
-

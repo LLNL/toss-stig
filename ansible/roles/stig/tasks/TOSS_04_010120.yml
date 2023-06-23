@@ -45,7 +45,7 @@
       validate: /usr/sbin/sshd -t -f %s
     notify: restart sshd
   when:
-    - TOSS_04_010120 | bool
+    - toss_04_010120 | bool
     - not (compute_node | bool)  # Not applicable on compute nodes
   tags:
     - V-252923

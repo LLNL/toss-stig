@@ -57,7 +57,7 @@
         line: DTLS.MinProtocol = DTLSv1.2
         state: present
   when:
-    - TOSS_04_010080 | bool
+    - toss_04_010080 | bool
   tags:
     - V-252919
     - SRG-OS-000125-GPOS-00065

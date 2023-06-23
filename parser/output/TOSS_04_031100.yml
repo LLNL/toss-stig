@@ -13,7 +13,7 @@
 - name: TOSS-04-031100 - Successful/unsuccessful uses of the fremovexattr system call in TOSS must generate an audit record.
   # TODO: Implement the task
   when:
-    - TOSS_04_031100 | bool
+    - toss_04_031100 | bool
   tags:
     - V-253036
     - SRG-OS-000468-GPOS-00212
@@ -22,4 +22,3 @@
     - DISA-STIG-TOSS-04-031100
     - medium_severity
     - CCI-000172
-

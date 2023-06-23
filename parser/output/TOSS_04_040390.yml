@@ -13,7 +13,7 @@
 - name: TOSS-04-040390 - TOSS must take appropriate action when the internal event queue is full.
   # TODO: Implement the task
   when:
-    - TOSS_04_040390 | bool
+    - toss_04_040390 | bool
   tags:
     - V-253089
     - SRG-OS-000342-GPOS-00133
@@ -22,4 +22,3 @@
     - DISA-STIG-TOSS-04-040390
     - medium_severity
     - CCI-001851
-

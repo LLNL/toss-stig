@@ -10,7 +10,7 @@
 - name: TOSS-04-040720 - TOSS must disable access to network bpf syscall from unprivileged processes.
   # TODO: Implement the task
   when:
-    - TOSS_04_040720 | bool
+    - toss_04_040720 | bool
   tags:
     - V-253113
     - SRG-OS-000480-GPOS-00227

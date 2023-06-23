@@ -17,7 +17,7 @@
     backup: yes
   notify: reload sysctl
   when:
-    - TOSS_04_010110 | bool
+    - toss_04_010110 | bool
   tags:
     - V-252922
     - SRG-OS-000142-GPOS-00071

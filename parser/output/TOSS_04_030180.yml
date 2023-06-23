@@ -9,7 +9,7 @@
 - name: TOSS-04-030180 - The TOSS audit system must protect auditing rules from unauthorized change.
   # TODO: Implement the task
   when:
-    - TOSS_04_030180 | bool
+    - toss_04_030180 | bool
   tags:
     - V-252983
     - SRG-OS-000057-GPOS-00027
@@ -20,4 +20,3 @@
     - CCI-000162
     - CCI-000163
     - CCI-000164
-

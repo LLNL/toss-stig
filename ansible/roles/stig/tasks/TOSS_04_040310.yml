@@ -11,7 +11,7 @@
     name: policycoreutils
     state: present
   when:
-    - TOSS_04_040310 | bool
+    - toss_04_040310 | bool
   tags:
     - V-253084
     - SRG-OS-000134-GPOS-00068

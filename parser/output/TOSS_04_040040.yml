@@ -21,7 +21,7 @@
 - name: TOSS-04-040040 - TOSS must implement NIST FIPS-validated cryptography for the following: to provision digital signatures; to generate cryptographic hashes; and to protect unclassified information requiring confidentiality and cryptographic protection in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.
   # TODO: Implement the task
   when:
-    - TOSS_04_040040 | bool
+    - toss_04_040040 | bool
   tags:
     - V-253059
     - SRG-OS-000033-GPOS-00014
@@ -31,4 +31,3 @@
     - high_severity
     - CCI-000068
     - CCI-002450
-
