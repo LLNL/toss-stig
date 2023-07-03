@@ -7,7 +7,7 @@
 
 
 - name: TOSS-04-040910 - TOSS must restrict exposed kernel pointer addresses access.
-  ansible.builtin.sysctl:
+  ansible.posix.sysctl:
     name: kernel.kptr_restrict
     value: 1
     state: present

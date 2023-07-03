@@ -8,7 +8,6 @@
 
 - name: TOSS-04-040920 - TOSS must restrict privilege elevation to authorized personnel.
   block:
-     /etc/sudoers /etc/sudoers.d
     - name: Find out if /etc/sudoers.d/* files contain "ALL ALL" permissions
       ansible.builtin.find:
         path: /etc/sudoers.d
