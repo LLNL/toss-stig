@@ -8,7 +8,11 @@
 
 
 - name: TOSS-04-040680 - The x86 Ctrl-Alt-Delete key sequence must be disabled on TOSS.
-  # TODO: Implement the task
+  ansible.builtin.systemd:
+    name: ctrl-alt-del.target
+    state: stopped
+    enabled: false
+    masked: true
   when:
     - toss_04_040680 | bool
   tags:

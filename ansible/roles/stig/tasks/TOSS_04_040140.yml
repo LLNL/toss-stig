@@ -9,7 +9,11 @@
 
 
 - name: TOSS-04-040140 - TOSS must enforce a minimum 15-character password length.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^#?\s*minlen'
+    line: 'minlen = {{ pwquality_minlen }}'
+    backup: true
   when:
     - toss_04_040140 | bool
   tags:

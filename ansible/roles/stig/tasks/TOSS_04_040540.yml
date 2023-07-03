@@ -9,7 +9,11 @@
 
 
 - name: TOSS-04-040540 - TOSS must prevent the use of dictionary words for passwords.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^#?\s*dictcheck'
+    line: 'dictcheck = 1'
+    backup: true
   when:
     - toss_04_040540 | bool
   tags:

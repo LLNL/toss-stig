@@ -1,5 +1,16 @@
 ---
 
+user_umask: '077'
+pass_max_days: '60'
+pass_min_days: '1'
+pwquality_difok: '15'
+pwquality_minlen: '8'
+pwquality_retry: '3'
+pwhistory_remember: '24'
+pam_faillock_deny: 3
+pam_faillock_interval: 900
+max_concurrent_login_sessions: 256
+
 controls:
   - toss_04_010000
   - toss_04_010030
@@ -27,19 +38,32 @@ controls:
   - toss_04_010410
   - toss_04_010420
   - toss_04_010430
+  - toss_04_020000
+  - toss_04_020010
+  - toss_04_020170
   - toss_04_030010
   - toss_04_030780
   - toss_04_031370
   - toss_04_031380
+  - toss_04_040050
+  - toss_04_040060
+  - toss_04_040070
+  - toss_04_040080
   - toss_04_040100
+  - toss_04_040140
   - toss_04_040250
   - toss_04_040260
   - toss_04_040310
+  - toss_04_040350
   - toss_04_040370
   - toss_04_040420
+  - toss_04_040540
   - toss_04_040560
   - toss_04_040600
+  - toss_04_040680
+  - toss_04_040690
   - toss_04_040700
+  - toss_04_040710
   - toss_04_040760
   - toss_04_040770
   - toss_04_040780

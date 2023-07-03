@@ -7,7 +7,11 @@
 
 
 - name: TOSS-04-040050 - TOSS must enforce password complexity by requiring that at least one upper-case character be used.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/security/pwquality.conf
+    regexp: '^#?\s*ucredit'
+    line: 'ucredit = -1'
+    backup: true
   when:
     - toss_04_040050 | bool
   tags:

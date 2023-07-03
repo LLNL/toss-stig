@@ -23,7 +23,13 @@
 
 
 - name: TOSS-04-020170 - TOSS must automatically lock an account until the locked account is released by an administrator when three unsuccessful logon attempts in 15 minutes occur.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    state: present
+    dest: /etc/security/limits.conf
+    insertbefore: ^# End of file
+    regexp: ^\s*unlock_time\s*=
+    line: unlock_time = 0
+    create: true
   when:
     - toss_04_020170 | bool
   tags:

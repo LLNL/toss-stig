@@ -1,4 +1,6 @@
-# Running the Ansible Playbook to check STIG
+# TOSS 4 STIG Ansible Playbook
+
+## Running the Ansible Playbook to check STIG
 
 ```bash
 ansible-playbook -i localhost, --check playbook.yml
@@ -24,3 +26,7 @@ git mv parser/output/$YOUR_CHOICE ansible/roles/stig/tasks/
 And then add the missing implementation to that task. Once that implementation is ready, add the control to the list of implemented `controls` listed out in `ansible/roles/stig/defaults/main.yml` (approximately line 3).
 
 Push those changes to a branch, and submit a pull request, and you'll be off and running!
+
+## Notes / Guidance
+
+Some controls can not be checked automatically, and require manually validating. These controls are tagged with the `manual-control` tag, and print a debug message in place of either succeeding or failing.

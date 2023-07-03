@@ -12,7 +12,13 @@
 
 
 - name: TOSS-04-020010 - TOSS must limit the number of concurrent sessions to 256 for all accounts and/or account types.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    state: present
+    dest: /etc/security/limits.conf
+    insertbefore: ^# End of file
+    regexp: ^#?\*.*maxlogins
+    line: '*          hard    maxlogins     {{ max_concurrent_login_sessions }}'
+    create: true
   when:
     - toss_04_020010 | bool
   tags:

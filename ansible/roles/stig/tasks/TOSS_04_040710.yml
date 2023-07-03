@@ -11,7 +11,11 @@
 
 
 - name: TOSS-04-040710 - TOSS must define default permissions for logon and non-logon shells.
-  # TODO: Implement the task
+  ansible.builtin.replace:
+    path: /etc/bashrc
+    regexp: 'umask \b[0-9]{3}\b'
+    replace: 'umask {{ user_umask }}'
+    backup: true
   when:
     - toss_04_040710 | bool
   tags:
