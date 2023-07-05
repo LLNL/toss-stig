@@ -13,21 +13,21 @@
 - name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record.
   block:
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod
+        notify: Build auditd rules
   when:
     - toss_04_031110 | bool
   tags:

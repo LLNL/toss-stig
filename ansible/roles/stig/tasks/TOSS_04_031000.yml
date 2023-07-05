@@ -13,21 +13,21 @@
 - name: TOSS-04-031000 - The TOSS audit system must be configured to audit any usage of the "lsetxattr" system call.
   block:
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S lsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S lsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S lsetxattr -F auid=0 -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S lsetxattr -F auid=0 -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S lsetxattr -F auid=0 -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S lsetxattr -F auid=0 -k perm_mod
+        notify: Build auditd rules
   when:
     - toss_04_031000 | bool
   tags:

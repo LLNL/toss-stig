@@ -16,21 +16,21 @@
 - name: TOSS-04-030630 - Successful/unsuccessful uses of the ftruncate system call system call in TOSS must generate an audit record.
   block:
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+        notify: Build auditd rules
   when:
     - toss_04_030630 | bool
   tags:

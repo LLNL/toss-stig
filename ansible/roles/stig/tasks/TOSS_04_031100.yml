@@ -13,21 +13,21 @@
 - name: TOSS-04-031100 - Successful/unsuccessful uses of the fremovexattr system call in TOSS must generate an audit record.
   block:
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S fremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S fremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b32 -S fremovexattr -F auid=0 -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b32 -S fremovexattr -F auid=0 -k perm_mod
+        notify: Build auditd rules
     - ansible.builtin.lineinfile:
-      path: /etc/audit/audit.rules
-      line: -a always,exit -F arch=b64 -S fremovexattr -F auid=0 -k perm_mod
-      notify: Build auditd rules
+        path: /etc/audit/audit.rules
+        line: -a always,exit -F arch=b64 -S fremovexattr -F auid=0 -k perm_mod
+        notify: Build auditd rules
   when:
     - toss_04_031100 | bool
   tags:
