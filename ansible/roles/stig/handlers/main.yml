@@ -17,3 +17,6 @@
 
   - name: Reload sysctl
     ansible.builtin.command: sysctl --system
+
+  - name: Build auditd rules
+    ansible.builtin.command: augenrules

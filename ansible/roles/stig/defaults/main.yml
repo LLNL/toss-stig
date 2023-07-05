@@ -1,5 +1,12 @@
 ---
 
+auditd_max_log_file: '320'
+auditd_num_logs: '5'
+auditd_max_log_file_action: 'rotate'
+auditd_flush: 'incremental_async'
+auditd_space_left: '100'
+auditd_space_left_action: 'email'
+
 user_umask: '077'
 pass_max_days: '60'
 pass_min_days: '1'
@@ -41,8 +48,72 @@ controls:
   - toss_04_020000
   - toss_04_020010
   - toss_04_020170
+  - toss_04_030000
   - toss_04_030010
+  - toss_04_030060
+  - toss_04_030180
+  - toss_04_030190
+  - toss_04_030310
+  - toss_04_030320
+  - toss_04_030330
+  - toss_04_030340
+  - toss_04_030350
+  - toss_04_030360
+  - toss_04_030370
+  - toss_04_030380
+  - toss_04_030390
+  - toss_04_030400
+  - toss_04_030410
+  - toss_04_030420
+  - toss_04_030430
+  - toss_04_030440
+  - toss_04_030450
+  - toss_04_030460
+  - toss_04_030470
+  - toss_04_030480
+  - toss_04_030490
+  - toss_04_030500
+  - toss_04_030510
+  - toss_04_030520
+  - toss_04_030540
+  - toss_04_030560
+  - toss_04_030570
+  - toss_04_030580
+  - toss_04_030590
+  - toss_04_030600
+  - toss_04_030610
+  - toss_04_030620
+  - toss_04_030630
+  - toss_04_030640
+  - toss_04_030650
+  - toss_04_030660
+  - toss_04_030670
+  - toss_04_030680
   - toss_04_030780
+  - toss_04_030790
+  - toss_04_030800
+  - toss_04_030810
+  - toss_04_030820
+  - toss_04_030840
+  - toss_04_030850
+  - toss_04_030860
+  - toss_04_030990
+  - toss_04_031000
+  - toss_04_031100
+  - toss_04_031110
+  - toss_04_031120
+  - toss_04_031130
+  - toss_04_031140
+  - toss_04_031150
+  - toss_04_031160
+  - toss_04_031170
+  - toss_04_031180
+  - toss_04_031190
+  - toss_04_031200
+  - toss_04_031210
+  - toss_04_031220
+  - toss_04_031230
+  - toss_04_031240
   - toss_04_031370
   - toss_04_031380
   - toss_04_040050

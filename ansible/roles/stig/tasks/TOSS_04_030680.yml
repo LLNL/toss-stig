@@ -1,0 +1,40 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253021
+
+# Verify TOSS generates an audit record when successful/unsuccessful
+# attempts to use the "truncate" system calls by performing the following command
+# to check the file system rules in "/etc/audit/audit.rules": $ sudo grep -iw
+# truncate /etc/audit/audit.rules -a always,exit -F arch=b32 -S truncate -F
+# exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access -a always,exit -F
+# arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k
+# perm_access -a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F
+# auid>=1000 -F auid!=unset -k perm_access -a always,exit -F arch=b64 -S
+# truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access If the
+# command does not return all lines, or the lines are commented out, this is a
+# finding.
+
+
+- name: TOSS-04-030680 - Successful/unsuccessful uses of the truncate system call in TOSS must generate an audit record.
+  block:
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b32 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b64 -S truncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b32 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b64 -S truncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+  notify: Build auditd rules
+  when:
+    - toss_04_030680 | bool
+  tags:
+    - V-253021
+    - SRG-OS-000064-GPOS-00033
+    - SV-253021r824387_rule
+    - TOSS-04-030680
+    - DISA-STIG-TOSS-04-030680
+    - medium_severity
+    - CCI-000172

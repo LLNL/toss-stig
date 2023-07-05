@@ -1,0 +1,39 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253011
+
+# Verify TOSS generates an audit record when successful/unsuccessful
+# attempts to use the "creat" system call by performing the following command to
+# check the file system rules in "/etc/audit/audit.rules": $ sudo grep -iw creat
+# /etc/audit/audit.rules -a always,exit -F arch=b32 -S creat -F exit=-EPERM -F
+# auid>=1000 -F auid!=unset -k perm_access -a always,exit -F arch=b64 -S creat
+# -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access -a always,exit -F
+# arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+# -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F
+# auid!=unset -k perm_access If the command does not return all lines, or the
+# lines are commented out, this is a finding.
+
+
+- name: TOSS-04-030580 - Successful/unsuccessful uses of the creat system call in TOSS must generate an audit record.
+  block:
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b32 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+  notify: Build auditd rules
+  when:
+    - toss_04_030580 | bool
+  tags:
+    - V-253011
+    - SRG-OS-000064-GPOS-00033
+    - SV-253011r824357_rule
+    - TOSS-04-030580
+    - DISA-STIG-TOSS-04-030580
+    - medium_severity
+    - CCI-000172

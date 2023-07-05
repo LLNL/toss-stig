@@ -1,0 +1,25 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253047
+
+# Verify that an audit event is generated for any
+# successful/unsuccessful use of the "usermod" command by performing the following
+# command to check the file system rules in "/etc/audit/audit.rules": $ sudo grep
+# -w usermod /etc/audit/audit.rules -a always,exit -F path=/usr/sbin/usermod -F
+# perm=x -F auid>=1000 -F auid!=unset -k privileged If the command does not
+# return a line, or the line is commented out, this is a finding.
+
+
+- name: TOSS-04-031210 - Successful/unsuccessful uses of the "usermod" command in TOSS must generate an audit record.
+  ansible.builtin.lineinfile:
+    path: /etc/audit/audit.rules
+    line: -a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=unset -k privileged
+  notify: Build auditd rules
+  when:
+    - toss_04_031210 | bool
+  tags:
+    - V-253047
+    - SRG-OS-000471-GPOS-00215
+    - SV-253047r824813_rule
+    - TOSS-04-031210
+    - DISA-STIG-TOSS-04-031210
+    - medium_severity
+    - CCI-000172

@@ -1,0 +1,37 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253037
+
+# Verify if TOSS is configured to audit the execution of the
+# "lremovexattr" system call, by running the following command: $ sudo grep -w
+# lremovexattr /etc/audit/audit.rules -a always,exit -F arch=b32 -S lremovexattr
+# -F auid>=1000 -F auid!=unset -k perm_mod -a always,exit -F arch=b64 -S
+# lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod -a always,exit -F
+# arch=b32 -S lremovexattr -F auid=0 -k perm_mod -a always,exit -F arch=b64 -S
+# lremovexattr -F auid=0 -k perm_mod If the command does not return all lines, or
+# the lines are commented out, this is a finding.
+
+
+- name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record.
+  block:
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod
+    - ansible.builtin.lineinfile:
+      path: /etc/audit/audit.rules
+      line: -a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod
+  notify: Build auditd rules
+  when:
+    - toss_04_031110 | bool
+  tags:
+    - V-253037
+    - SRG-OS-000468-GPOS-00212
+    - SV-253037r824783_rule
+    - TOSS-04-031110
+    - DISA-STIG-TOSS-04-031110
+    - medium_severity
+    - CCI-000172

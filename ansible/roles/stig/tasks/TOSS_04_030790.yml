@@ -1,0 +1,25 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253024
+
+# Verify TOSS generates audit records for all account creations,
+# modifications, disabling, and termination events that affect "/etc/group". Check
+# the auditing rules in "/etc/audit/audit.rules" with the following command: $
+# sudo grep /etc/group /etc/audit/audit.rules -w /etc/group -p wa -k identity If
+# the command does not return a line, or the line is commented out, this is a
+# finding.
+
+
+- name: TOSS-04-030790 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect "/etc/group".
+  ansible.builtin.lineinfile:
+    path: /etc/audit/audit.rules
+    line: -w /etc/group -p wa -k identity
+  notify: Build auditd rules
+  when:
+    - toss_04_030790 | bool
+  tags:
+    - V-253024
+    - SRG-OS-000303-GPOS-00120
+    - SV-253024r824744_rule
+    - TOSS-04-030790
+    - DISA-STIG-TOSS-04-030790
+    - medium_severity
+    - CCI-002130

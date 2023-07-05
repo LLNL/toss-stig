@@ -1,0 +1,31 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252972
+
+# Verify TOSS generates audit records for all account creations,
+# modifications, disabling, and termination events that affect "/etc/shadow."
+# Check the auditing rules in "/etc/audit/audit.rules" with the following command:
+# $ sudo grep /etc/shadow /etc/audit/audit.rules -w /etc/shadow -p wa -k identity
+# If the command does not return a line, or the line is commented out, this is a
+# finding. Note: The "-k" allows for specifying an arbitrary identifier. The
+# string following "-k" does not need to match the example output above.
+
+
+- name: TOSS-04-030000 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.
+  ansible.builtin.lineinfile:
+    path: /etc/audit/audit.rules
+    line: -w /etc/shadow -p wa -k identity
+  notify: Build auditd rules
+  when:
+    - toss_04_030000 | bool
+  tags:
+    - V-252972
+    - SRG-OS-000004-GPOS-00004
+    - SV-252972r824240_rule
+    - TOSS-04-030000
+    - DISA-STIG-TOSS-04-030000
+    - medium_severity
+    - CCI-000018
+    - CCI-000172
+    - CCI-001403
+    - CCI-001404
+    - CCI-001405
+    - CCI-002130

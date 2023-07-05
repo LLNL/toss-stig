@@ -1,0 +1,30 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253006
+
+# Verify that an audit event is generated for any
+# successful/unsuccessful use of the "setfiles" command by performing the
+# following command to check the file system rules in "/etc/audit/audit.rules": $
+# sudo grep -w "setfiles" /etc/audit/audit.rules -a always,exit -F
+# path=/usr/sbin/setfiles -F perm=x -F auid>=1000 -F auid!=unset -k
+# privileged-unix-update If the command does not return a line, or the line is
+# commented out, this is a finding.
+
+
+- name: TOSS-04-030520 - Successful/unsuccessful uses of setfiles in TOSS must generate an audit record.
+  ansible.builtin.lineinfile:
+    path: /etc/audit/audit.rules
+    line: -a always,exit -F path=/usr/sbin/setfiles -F perm=x -F auid>=1000 -F auid!=unset -k privileged-unix-update
+  notify: Build auditd rules
+  when:
+    - toss_04_030520 | bool
+  tags:
+    - V-253006
+    - SRG-OS-000037-GPOS-00015
+    - SV-253006r824342_rule
+    - TOSS-04-030520
+    - DISA-STIG-TOSS-04-030520
+    - medium_severity
+    - CCI-000130
+    - CCI-000135
+    - CCI-000169
+    - CCI-000172
+    - CCI-002884
