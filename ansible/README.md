@@ -1,5 +1,14 @@
 # TOSS 4 STIG Ansible Playbook
 
+## Dependencies
+
+This ansible playbook relies on a few Ansible Galaxy libraries. You can install them with the following commands:
+
+```
+ansible-galaxy collection install ansible.posix
+ansible-galaxy collection install community.general
+```
+
 ## Running the Ansible Playbook to check STIG
 
 ```bash

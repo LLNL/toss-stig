@@ -20,6 +20,7 @@
         line: 'net.ipv4.ip_forward = 0'
         state: present
         backup: true
+        notify: Reload sysctl
     - name: Ensure ipv6 forwarding is disabled
       ansible.builtin.lineinfile:
         path: /etc/sysctl.conf
@@ -27,7 +28,7 @@
         line: 'net.ipv6.conf.all.forwarding = 0'
         state: present
         backup: true
-  notify: Reload sysctl
+        notify: Reload sysctl
   when:
     - toss_04_010390 | bool
   tags:

@@ -16,16 +16,19 @@
     - ansible.builtin.lineinfile:
       path: /etc/audit/audit.rules
       line: -a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -k execpriv
+      notify: Build auditd rules
     - ansible.builtin.lineinfile:
       path: /etc/audit/audit.rules
       line: -a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -k execpriv
+      notify: Build auditd rules
     - ansible.builtin.lineinfile:
       path: /etc/audit/audit.rules
       line: -a always,exit -F arch=b32 -S execve -C gid!=egid -F egid=0 -k execpriv
+      notify: Build auditd rules
     - ansible.builtin.lineinfile:
       path: /etc/audit/audit.rules
       line: -a always,exit -F arch=b64 -S execve -C gid!=egid -F egid=0 -k execpriv
-  notify: Build auditd rules
+      notify: Build auditd rules
   when:
     - toss_04_030860 | bool
   tags:
