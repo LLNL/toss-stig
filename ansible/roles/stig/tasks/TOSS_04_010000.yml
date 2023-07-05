@@ -30,7 +30,7 @@
   block:
     - name: Modify the System Login Banner - ensure correct banner
       ansible.builtin.copy:
-        content: "{{ login_banner_text }}"
+        src: etc/issue
         dest: /etc/issue
     - name: Set the GNOME3 Login Warning Banner Text
       community.general.ini_file:
