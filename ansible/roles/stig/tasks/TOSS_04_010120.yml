@@ -46,7 +46,7 @@
       notify: Restart sshd
   when:
     - toss_04_010120 | bool
-    - not (compute_node | bool)  # Not applicable on compute nodes
+    # - not (compute_node | bool)  # Not applicable on compute nodes - # TODO need a universal way to check this.
   tags:
     - V-252923
     - SRG-OS-000228-GPOS-00088
