@@ -19,6 +19,7 @@ pwhistory_remember: '24'
 pam_faillock_deny: 3
 pam_faillock_interval: 900
 max_concurrent_login_sessions: 256
+var_sudo_timestamp_timeout: '0'
 
 controls:
   - toss_04_010000
