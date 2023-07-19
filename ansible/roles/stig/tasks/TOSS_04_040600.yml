@@ -11,6 +11,9 @@
 
 - name: TOSS-04-040600 - If the Trivial File Transfer Protocol (TFTP) server is required, the TOSS TFTP daemon must be configured to operate in secure mode.
   block:
+    - name: Gather the package facts
+      package_facts:
+        manager: auto
     - name: Find out if the file exists and contains the line configuring server arguments
       ansible.builtin.find:
         path: /etc/xinetd.d
