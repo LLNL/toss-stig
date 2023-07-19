@@ -14,11 +14,11 @@
     - ansible.builtin.lineinfile:
         path: /etc/audit/audit.rules
         line: -a always,exit -F arch=b32 -S renameat -F auid>=1000 -F auid!=unset -k delete
-        notify: Build auditd rules
+      notify: Build auditd rules
     - ansible.builtin.lineinfile:
         path: /etc/audit/audit.rules
         line: -a always,exit -F arch=b64 -S renameat -F auid>=1000 -F auid!=unset -k delete
-        notify: Build auditd rules
+      notify: Build auditd rules
   when:
     - toss_04_030440 | bool
   tags:

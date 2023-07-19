@@ -17,19 +17,19 @@
     - ansible.builtin.lineinfile:
         path: /etc/audit/audit.rules
         line: -a always,exit -F arch=b32 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
-        notify: Build auditd rules
+      notify: Build auditd rules
     - ansible.builtin.lineinfile:
         path: /etc/audit/audit.rules
         line: -a always,exit -F arch=b64 -S openat -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
-        notify: Build auditd rules
+      notify: Build auditd rules
     - ansible.builtin.lineinfile:
         path: /etc/audit/audit.rules
         line: -a always,exit -F arch=b32 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
-        notify: Build auditd rules
+      notify: Build auditd rules
     - ansible.builtin.lineinfile:
         path: /etc/audit/audit.rules
         line: -a always,exit -F arch=b64 -S openat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
-        notify: Build auditd rules
+      notify: Build auditd rules
   when:
     - toss_04_030670 | bool
   tags:
