@@ -15,6 +15,7 @@ pass_min_days: '1'
 pwquality_difok: '15'
 pwquality_minlen: '8'
 pwquality_retry: '3'
+pwquality_ocredit: '-1'
 pwhistory_remember: '24'
 pam_faillock_deny: 3
 pam_faillock_interval: 900
