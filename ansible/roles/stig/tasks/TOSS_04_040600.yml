@@ -28,7 +28,7 @@
         state: present
         backrefs: true
       when:
-      - '"tftp-server" in ansible_facts.packages'
+        - '"tftp-server" in ansible_facts.packages'
   when:
     - toss_04_040600 | bool
   tags:
