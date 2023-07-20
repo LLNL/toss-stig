@@ -9,8 +9,6 @@
   block:
     - name: Verify Only Root Has UID 0
       ansible.builtin.command: awk -F':' '$3 == 0 && $1 != "root" { print $1 }' /etc/passwd
-      args:
-        warn: false
       register: uidzero
       changed_when: false
       failed_when: false

@@ -21,13 +21,13 @@
 - name: Set audit_tools fact
   ansible.builtin.set_fact:
     audit_tools:
-    - /usr/sbin/auditctl
-    - /usr/sbin/auditd
-    - /usr/sbin/augenrules
-    - /usr/sbin/aureport
-    - /usr/sbin/ausearch
-    - /usr/sbin/autrace
-    - /usr/sbin/rsyslogd
+      - /usr/sbin/auditctl
+      - /usr/sbin/auditd
+      - /usr/sbin/augenrules
+      - /usr/sbin/aureport
+      - /usr/sbin/ausearch
+      - /usr/sbin/autrace
+      - /usr/sbin/rsyslogd
   when:
     - toss_04_030780 | bool
   tags:

@@ -1,22 +1,26 @@
 ---
 
-  - name: Restart rsyslog
-    ansible.builtin.systemd:
-      name: rsyslog
-      state: restarted
+- name: Restart rsyslog
+  ansible.builtin.systemd:
+    name: rsyslog
+    state: restarted
 
-  - name: Restart sshd
-    ansible.builtin.systemd:
-      name: sshd
-      state: restarted
+- name: Restart sshd
+  ansible.builtin.systemd:
+    name: sshd
+    state: restarted
 
-  - name: Reload firewall
-    ansible.builtin.systemd:
-      name: firewalld
-      state: restarted
+- name: Reload firewall
+  ansible.builtin.systemd:
+    name: firewalld
+    state: restarted
 
-  - name: Reload sysctl
-    ansible.builtin.command: sysctl --system
+- name: Reload sysctl
+  ansible.builtin.command: sysctl --system
+  register: output
+  changed_when: output.rc != 0
 
-  - name: Build auditd rules
-    ansible.builtin.command: augenrules
+- name: Build auditd rules
+  ansible.builtin.command: augenrules
+  register: output
+  changed_when: output.rc != 0

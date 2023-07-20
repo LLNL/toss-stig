@@ -13,7 +13,6 @@
     enabled: false
     state: stopped
     masked: true
-  ignore_errors: true
   when:
     - toss_04_010340 | bool
   tags:

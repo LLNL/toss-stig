@@ -6,9 +6,9 @@
 
   # gather_facts: no
 
-  collections:
-    - ansible.posix
-    - community.general
+  # collections:
+  #   - ansible.posix
+  #   - community.general
 
   roles:
     - role: stig
