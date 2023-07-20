@@ -1,0 +1,4 @@
+skip_list:
+    - name[missing]
+    - key-order
+    - yaml[line-length]
