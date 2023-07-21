@@ -24,6 +24,7 @@
       stat:
         path: /etc/xinetd.d/tftp
       register: tftp_file
+      failed_when: not tftp_file.stat.exists
     - name: If installed, Ensure that TFTP server is configured to start with secure directory
       ansible.builtin.lineinfile:
         path: /etc/xinetd.d/tftp
