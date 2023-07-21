@@ -20,6 +20,10 @@
         patterns: tftp
         contains: ^[\s]+server_args.*$
       register: tftpd_secure_config_line
+    - name: Check if /etc/xinetd.d/tftp exists
+      stat:
+        path: /etc/xinetd.d/tftp
+      register: tftp_file
     - name: If installed, Ensure that TFTP server is configured to start with secure directory
       ansible.builtin.lineinfile:
         path: /etc/xinetd.d/tftp
@@ -28,6 +32,7 @@
         state: present
         backrefs: true
       when:
+        - tftp_file.stat.exists
         - '"tftp-server" in ansible_facts.packages'
   when:
     - toss_04_040600 | bool
