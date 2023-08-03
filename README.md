@@ -1,8 +1,10 @@
 # TOSS STIG
 
-Source code repository for TOSS STIG.
+Source code repository for the TOSS STIG.
 
-Note: As of 2022-12-13, the TOSS STIG is only available on the pki enabled DISA portal: <https://cyber.mil/>
+The STIG content files can be downloaded from DISA's website: <https://public.cyber.mil/stigs/downloads/>
+
+For the Ansible playbook that implements this stig, see the [ansible](/ansible) directory.
 
 ## Log Format
 
