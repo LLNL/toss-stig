@@ -8,7 +8,9 @@
 
 
 - name: TOSS-04-040090 - TOSS must store only encrypted representations of passwords.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    line: ENCRYPT_METHOD SHA512
   when:
     - toss_04_040090 | bool
   tags:

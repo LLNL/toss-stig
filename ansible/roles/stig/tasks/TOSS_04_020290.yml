@@ -10,7 +10,9 @@
 
 
 - name: TOSS-04-020290 - TOSS must define default permissions for all authenticated users in such a way that the user can only read and modify their own files.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    line: UMASK 077
   when:
     - toss_04_020290 | bool
   tags:

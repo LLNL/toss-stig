@@ -8,7 +8,9 @@
 
 
 - name: TOSS-04-040110 - TOSS must enforce 24 hours/1 day as the minimum password lifetime.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    line: PASS_MIN_DAYS 1
   when:
     - toss_04_040110 | bool
   tags:

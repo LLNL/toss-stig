@@ -8,7 +8,9 @@
 
 
 - name: TOSS-04-040550 - TOSS must enforce a delay of at least four seconds between logon prompts following a failed logon attempt.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    line: FAIL_DELAY 4
   when:
     - toss_04_040550 | bool
   tags:

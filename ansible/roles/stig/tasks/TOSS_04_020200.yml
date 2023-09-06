@@ -8,7 +8,9 @@
 
 
 - name: TOSS-04-020200 - All TOSS local interactive user accounts must be assigned a home directory upon creation.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    line: CREATE_HOME yes
   when:
     - toss_04_020200 | bool
   tags:

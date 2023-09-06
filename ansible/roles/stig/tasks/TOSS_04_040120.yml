@@ -7,7 +7,9 @@
 
 
 - name: TOSS-04-040120 - TOSS must enforce a 60-day maximum password lifetime restriction.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/login.defs
+    line: PASS_MAX_DAYS 60
   when:
     - toss_04_040120 | bool
   tags:
