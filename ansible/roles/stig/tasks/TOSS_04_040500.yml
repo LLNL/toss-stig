@@ -9,7 +9,9 @@
 
 
 - name: TOSS-04-040500 - YUM must remove all software components after updated versions have been installed on TOSS.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/dnf/dnf.conf
+    line: clean_requirements_on_remove=True
   when:
     - toss_04_040500 | bool
   tags:
