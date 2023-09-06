@@ -13,7 +13,9 @@
 
 
 - name: TOSS-04-030080 - TOSS must alert the ISSO and SA (at a minimum) in the event of an audit processing failure.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/audit/auditd.conf
+    line: action_mail_acct = root
   when:
     - toss_04_030080 | bool
   tags:

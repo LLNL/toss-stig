@@ -11,7 +11,9 @@
 
 
 - name: TOSS-04-030090 - TOSS must take appropriate action when an audit processing failure occurs.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/audit/auditd.conf
+    line: disk_error_action = HALT
   when:
     - toss_04_030090 | bool
   tags:
