@@ -7,7 +7,9 @@
 
 
 - name: TOSS-04-040180 - TOSS must disable network management of the chrony daemon.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/chrony.conf
+    line: cmdport 0
   when:
     - toss_04_040180 | bool
   tags:
