@@ -7,7 +7,11 @@
 
 
 - name: TOSS-04-040730 - TOSS must enable hardening for the Berkeley Packet Filter Just-in-time compiler.
-  # TODO: Implement the task
+  ansible.posix.sysctl:
+    name: net.core.bpf_jit_harden
+    value: 2
+    state: present
+    reload: true
   when:
     - toss_04_040730 | bool
   tags:

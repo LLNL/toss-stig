@@ -13,7 +13,11 @@
 # a finding. If conflicting results are returned, this is a finding.
 
 - name: TOSS-04-040950 - TOSS must enable kernel parameters to enforce discretionary access control on symlinks.
-  # TODO: Implement the task
+  ansible.posix.sysctl:
+    name: fs.protected_symlinks
+    value: 1
+    state: present
+    reload: true
   when:
     - toss_04_040950 | bool
   tags:

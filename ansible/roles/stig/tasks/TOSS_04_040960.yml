@@ -14,7 +14,11 @@
 
 
 - name: TOSS-04-040960 - TOSS must enable kernel parameters to enforce discretionary access control on hardlinks.
-  # TODO: Implement the task
+  ansible.posix.sysctl:
+    name: fs.protected_hardlinks
+    value: 1
+    state: present
+    reload: true
   when:
     - toss_04_040960 | bool
   tags:

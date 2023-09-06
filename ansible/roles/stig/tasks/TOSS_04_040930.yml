@@ -7,7 +7,11 @@
 
 
 - name: TOSS-04-040930 - TOSS must use reverse path filtering on all IPv4 interfaces.
-  # TODO: Implement the task
+  ansible.posix.sysctl:
+    name: net.ipv4.conf.all.rp_filter
+    value: 1
+    state: present
+    reload: true
   when:
     - toss_04_040930 | bool
   tags:
