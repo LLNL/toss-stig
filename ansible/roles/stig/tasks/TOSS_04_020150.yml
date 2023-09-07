@@ -13,7 +13,9 @@
 
 
 - name: TOSS-04-020150 - TOSS must reveal error messages only to authorized users.
-  # TODO: Implement the task
+  ansible.builtin.file:
+    path: /var/log/messages
+    mode: '640'
   when:
     - toss_04_020150 | bool
   tags:
