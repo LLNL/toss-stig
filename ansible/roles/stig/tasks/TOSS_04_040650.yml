@@ -14,6 +14,7 @@
     line: StrictModes yes
     state: present
     validate: /usr/sbin/sshd -t -f %s
+    mode: '600'
   notify: Restart sshd
   when:
     - toss_04_040650 | bool

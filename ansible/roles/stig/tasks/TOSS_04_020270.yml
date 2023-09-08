@@ -8,12 +8,12 @@
 
 - name: TOSS-04-020270 - TOSS must not allow accounts configured with blank or null passwords.
   ansible.builtin.lineinfile:
-      path: /etc/ssh/sshd_config
-      regexp: '^(?i)#?PermitEmptyPasswords'
-      line: 'PermitEmptyPasswords no'
-      state: present
-      backup: true
-      validate: /usr/sbin/sshd -t -f %s
+    path: /etc/ssh/sshd_config
+    regexp: '^(?i)#?PermitEmptyPasswords'
+    line: 'PermitEmptyPasswords no'
+    state: present
+    backup: true
+    validate: /usr/sbin/sshd -t -f %s
   notify: Restart sshd
   when:
     - toss_04_020270 | bool

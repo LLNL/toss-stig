@@ -19,6 +19,7 @@
     regexp: '^AutomaticLoginEnable'
     line: 'AutomaticLoginEnable=false'
     insertafter: '^[daemon]\n'
+    mode: '644'
   when:
     - toss_04_010430 | bool
   tags:

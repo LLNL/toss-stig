@@ -33,6 +33,7 @@
         regexp: (?i)^\s*TLS.MinProtocol\s+
         line: TLS.MinProtocol = TLSv1.2
         state: present
+        mode: '644'
     - name: Check for duplicate values of DTLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensslcnf.config
@@ -56,6 +57,7 @@
         regexp: (?i)^\s*DTLS.MinProtocol\s+
         line: DTLS.MinProtocol = DTLSv1.2
         state: present
+        mode: '644'
   when:
     - toss_04_010080 | bool
   tags:

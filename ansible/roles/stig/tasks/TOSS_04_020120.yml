@@ -9,9 +9,9 @@
 
 - name: TOSS-04-020120 - TOSS must disable account identifiers (individuals, groups, roles, and devices) after 35 days of inactivity.
   ansible.builtin.lineinfile:
-      path: /etc/default/useradd
-      regexp: '^#?INACTIVE'
-      line: 'INACTIVE=35'
+    path: /etc/default/useradd
+    regexp: '^#?INACTIVE'
+    line: 'INACTIVE=35'
   when:
     - toss_04_020120 | bool
   tags:

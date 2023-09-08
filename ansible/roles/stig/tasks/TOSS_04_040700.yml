@@ -36,6 +36,7 @@
         regexp: ^[ \t]*smtpd_client_restrictions\s*=\s*
         line: smtpd_client_restrictions = permit_mynetworks,reject
         state: present
+        mode: '644'
   when:
     - toss_04_040700 | bool
     - '"postfix" in ansible_facts.packages'

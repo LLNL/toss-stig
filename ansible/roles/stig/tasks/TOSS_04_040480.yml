@@ -8,9 +8,9 @@
 
 - name: TOSS-04-040480 - A firewall must be able to protect against or limit the effects of Denial of Service (DoS) attacks by ensuring TOSS can implement rate-limiting measures on impacted network interfaces.
   ansible.builtin.lineinfile:
-      path: /etc/default/useradd
-      regexp: '^#?FirewallBackend'
-      line: 'FirewallBackend=nftables'
+    path: /etc/default/useradd
+    regexp: '^#?FirewallBackend'
+    line: 'FirewallBackend=nftables'
   when:
     - toss_04_040480 | bool
   tags:

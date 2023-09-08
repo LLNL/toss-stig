@@ -19,6 +19,7 @@
     regexp: ^#?\*.*maxlogins
     line: '*          hard    maxlogins     {{ max_concurrent_login_sessions }}'
     create: true
+    mode: '644'
   when:
     - toss_04_020010 | bool
   tags:

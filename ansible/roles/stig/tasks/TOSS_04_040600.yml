@@ -21,7 +21,7 @@
         contains: ^[\s]+server_args.*$
       register: tftpd_secure_config_line
     - name: Check if /etc/xinetd.d/tftp exists
-      stat:
+      ansible.builtin.stat:
         path: /etc/xinetd.d/tftp
       register: tftp_file
       failed_when: not tftp_file.stat.exists

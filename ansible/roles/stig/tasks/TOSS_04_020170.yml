@@ -30,6 +30,7 @@
     regexp: ^\s*unlock_time\s*=
     line: unlock_time = 0
     create: true
+    mode: '644'
   when:
     - toss_04_020170 | bool
   tags:
