@@ -6,7 +6,14 @@
 
 
 - name: TOSS-04-040810 - TOSS must not allow blank or null passwords in the password-auth file.
-  # TODO: Implement the task
+  ansible.builtin.replace:
+      path: '/etc/pam.d/{{ pam_auth_file }}'
+      regexp: '(nullok_secure|nullok)'
+      backup: yes
+    loop:
+      - password-auth
+    loop_control:
+      loop_var: pam_auth_file
   when:
     - toss_04_040810 | bool
   tags:
@@ -17,3 +24,4 @@
     - DISA-STIG-TOSS-04-040810
     - high_severity
     - CCI-000366
+    - NASA-ASCS-20165
