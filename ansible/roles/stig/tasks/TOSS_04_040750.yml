@@ -7,7 +7,10 @@
 
 
 - name: TOSS-04-040750 - TOSS must ensure the SSH server uses strong entropy.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+      path: /etc/sysconfig/sshd
+      regexp: '^#?SSH_USE_STRONG_RNG'
+      line: 'SSH_USE_STRONG_RNG=32'
   when:
     - toss_04_040750 | bool
   tags:
