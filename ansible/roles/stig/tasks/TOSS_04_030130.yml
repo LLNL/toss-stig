@@ -11,7 +11,10 @@
 
 
 - name: TOSS-04-030130 - TOSS audit log directory must have a mode of 0700 or less permissive to prevent unauthorized read access.
-  # TODO: Implement the task
+  ansible.builtin.file:
+    path: /var/log/audit
+    mode: '700'
+    state: directory
   when:
     - toss_04_030130 | bool
   tags:

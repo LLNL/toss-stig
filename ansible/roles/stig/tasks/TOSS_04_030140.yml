@@ -10,7 +10,11 @@
 
 
 - name: TOSS-04-030140 - TOSS audit logs must be owned by user root to prevent unauthorized read access.
-  # TODO: Implement the task
+  ansible.builtin.file:
+    path: /var/log/audit/audit.log
+    owner: root
+    mode: '600'
+    state: touch
   when:
     - toss_04_030140 | bool
   tags:
