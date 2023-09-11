@@ -13,6 +13,7 @@
   ansible.builtin.file:
     path: /var/log/audit/audit.log
     owner: root
+    mode: '600'
     state: touch
   when:
     - toss_04_030160 | bool
