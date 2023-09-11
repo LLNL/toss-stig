@@ -6,7 +6,10 @@
 
 
 - name: TOSS-04-031340 - The auditd service must be running in TOSS.
-  # TODO: Implement the task
+  ansible.builtin.systemd:
+    name: auditd
+    state: started
+    enabled: true
   when:
     - toss_04_031340 | bool
   tags:
