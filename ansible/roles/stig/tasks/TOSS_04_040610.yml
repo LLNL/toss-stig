@@ -11,7 +11,8 @@
 
 
 - name: TOSS-04-040610 - The graphical display manager must not be installed on TOSS unless approved.
-  # TODO: Implement the task
+  shell: systemctl get-default | grep multi-user.target
+  ignore_errors: true
   when:
     - toss_04_040610 | bool
   tags:
