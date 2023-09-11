@@ -11,17 +11,9 @@
 
 
 - name: TOSS-04-040610 - The graphical display manager must not be installed on TOSS unless approved.
-  block:
-    - name: TOSS-04-040610 part1, get default target.
-      ansible.builtin.systemd:
-        name: default.target
-        state: query
-      register: current_default_target
-    - name: TOSS-04-040610 part2, check if default target is multi-user.target
-      ansible.builtin.assert:
-        that:
-          - current_default_target.active == "multi-user.target"
-        msg: "Finding! Default target is not set to multi-user.target"
+  ansible.builtin.command: systemctl set-default multi-user.target
+  register: set_default_target
+  changed_when: "'Created symlink' in set_default_target.stdout"
   when:
     - toss_04_040610 | bool
   tags:
