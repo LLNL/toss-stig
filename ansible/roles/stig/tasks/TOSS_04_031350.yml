@@ -7,7 +7,13 @@
 
 
 - name: TOSS-04-031350 - The TOSS audit system must audit local events.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/audit/auditd.conf
+    create: true
+    regexp: (?i)^\s*local_events\s*=\s*
+    line: local_events = yes
+    state: present
+    mode: '640'
   when:
     - toss_04_031350 | bool
   tags:
