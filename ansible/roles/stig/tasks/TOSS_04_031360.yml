@@ -7,7 +7,13 @@
 
 
 - name: TOSS-04-031360 - TOSS must resolve audit information before writing to disk.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/audit/auditd.conf
+    create: true
+    regexp: (?i)^\s*log_format\s*=\s*
+    line: log_format = ENRICHED
+    state: present
+    mode: '640'
   when:
     - toss_04_031360 | bool
   tags:
