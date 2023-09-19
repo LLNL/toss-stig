@@ -6,7 +6,7 @@
 
 
 - name: TOSS-04-040230 - TOSS must not have any automated bug reporting tools installed.
-  yum:
+  ansible.builtin.yum:
     name: "{{ item }}"
     state: absent
   with_items:
