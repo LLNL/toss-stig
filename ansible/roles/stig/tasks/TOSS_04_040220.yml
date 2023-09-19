@@ -13,8 +13,30 @@
 # Security Officer (ISSO) as an operational requirement, this is a finding.
 
 
-- name: TOSS-04-040220 - TOSS must disable the transparent inter-process communication (TIPC) protocol.
-  # TODO: Implement the task
+- name: TOSS-04-040220 - TOSS must disable the transparent inter-process communication (TIPC) protocol. Check install is /bin/false.
+  ansible.builtin.lineinfile:
+    create: true
+    dest: /etc/modprobe.d/tipc.conf
+    regexp: install\s+tipc
+    line: install tipc /bin/false
+    mode: '644'
+  when:
+    - toss_04_040220 | bool
+  tags:
+    - V-253077
+    - SRG-OS-000095-GPOS-00049
+    - SV-253077r824903_rule
+    - TOSS-04-040220
+    - DISA-STIG-TOSS-04-040220
+    - medium_severity
+    - CCI-000381
+- name: TOSS-04-040220 - TOSS must disable the transparent inter-process communication (TIPC) protocol. Check tipc blacklisted.
+  ansible.builtin.lineinfile:
+    create: true
+    dest: /etc/modprobe.d/blacklist-tipc.conf
+    regexp: ^blacklist tipc$
+    line: blacklist tipc
+    mode: '644'
   when:
     - toss_04_040220 | bool
   tags:
