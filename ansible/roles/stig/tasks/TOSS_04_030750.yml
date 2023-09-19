@@ -10,7 +10,18 @@
 
 
 - name: TOSS-04-030750 - TOSS audit tools must be owned by "root".
-  # TODO: Implement the task
+  ansible.builtin.file:
+    path: "{{ item.path }}"
+    owner: root
+    recurse: true
+  loop:
+    - { path: '/sbin/auditctl' }
+    - { path: '/sbin/aureport' }
+    - { path: '/sbin/ausearch' }
+    - { path: '/sbin/autrace' }
+    - { path: '/sbin/auditd' }
+    - { path: '/sbin/rsyslogd' }
+    - { path: '/sbin/augenrules' }
   when:
     - toss_04_030750 | bool
   tags:
