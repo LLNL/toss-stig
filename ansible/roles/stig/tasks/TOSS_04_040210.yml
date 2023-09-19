@@ -13,8 +13,30 @@
 # Security Officer (ISSO) as an operational requirement, this is a finding.
 
 
-- name: TOSS-04-040210 - TOSS must disable the stream control transmission (SCTP) protocol.
-  # TODO: Implement the task
+- name: TOSS-04-040210 - TOSS must disable the stream control transmission (SCTP) protocol. Check/create installs to /bin/false
+  ansible.builtin.lineinfile:
+    create: true
+    dest: /etc/modprobe.d/sctp.conf
+    regexp: install\s+sctp
+    line: install sctp /bin/false
+    mode: '644'
+  when:
+    - toss_04_040210 | bool
+  tags:
+    - V-253076
+    - SRG-OS-000095-GPOS-00049
+    - SV-253076r824900_rule
+    - TOSS-04-040210
+    - DISA-STIG-TOSS-04-040210
+    - medium_severity
+    - CCI-000381
+- name: TOSS-04-040210 - TOSS must disable the stream control transmission (SCTP) protocol. Check/Create blacklist-sctp.conf
+  ansible.builtin.lineinfile:
+    create: true
+    dest: /etc/modprobe.d/blacklist-sctp.conf
+    regexp: ^blacklist sctp$
+    line: blacklist sctp
+    mode: '644'
   when:
     - toss_04_040210 | bool
   tags:
