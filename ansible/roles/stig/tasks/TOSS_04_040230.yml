@@ -7,17 +7,8 @@
 
 - name: TOSS-04-040230 - TOSS must not have any automated bug reporting tools installed.
   ansible.builtin.yum:
-    name: "{{ item }}"
+    name: ['abrt', 'abrt-cli', 'abrt-gui', 'abrt-addon-ccpp', 'abrt-addon-kerneloops', 'abrt-plugin-sosreport', 'abrt-addon-vmcore', 'python3-abrt-addon']
     state: absent
-  with_items:
-    - abrt
-    - abrt-cli
-    - abrt-gui
-    - abrt-addon-ccpp
-    - abrt-addon-kerneloops
-    - abrt-plugin-sosreport
-    - abrt-addon-vmcore
-    - python3-abrt-addon
   when:
     - toss_04_040230 | bool
   tags:
