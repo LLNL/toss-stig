@@ -13,8 +13,31 @@
 # Security Officer (ISSO) as an operational requirement, this is a finding.
 
 
-- name: TOSS-04-040200 - TOSS must disable the controller area network (CAN) protocol.
-  # TODO: Implement the task
+- name: TOSS-04-040200 - TOSS must disable the controller area network (CAN) protocol. Check can.conf
+  ansible.builtin.lineinfile:
+    create: true
+    dest: /etc/modprobe.d/can.conf
+    regexp: install\s+can
+    line: install can /bin/false
+    mode: '644'
+  when:
+    - toss_04_040200 | bool
+  tags:
+    - V-253075
+    - SRG-OS-000095-GPOS-00049
+    - SV-253075r824897_rule
+    - TOSS-04-040200
+    - DISA-STIG-TOSS-04-040200
+    - medium_severity
+    - CCI-000381
+
+- name: TOSS-04-040200 - TOSS must disable the controller area network (CAN) protocol. Check blacklist-can.conf
+  ansible.builtin.lineinfile:
+    create: true
+    dest: /etc/modprobe.d/blacklist-can.conf
+    regexp: ^blacklist can$
+    line: blacklist can
+    mode: '644'
   when:
     - toss_04_040200 | bool
   tags:
