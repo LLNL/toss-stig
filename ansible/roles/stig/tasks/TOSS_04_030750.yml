@@ -13,7 +13,6 @@
   ansible.builtin.file:
     path: "{{ item.path }}"
     owner: root
-    recurse: true
   loop:
     - { path: '/sbin/auditctl' }
     - { path: '/sbin/aureport' }
