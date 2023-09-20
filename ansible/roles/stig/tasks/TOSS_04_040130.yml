@@ -11,8 +11,34 @@
 # "remember" module argument is set to less than "5", this is a finding.
 
 
-- name: TOSS-04-040130 - TOSS must prohibit password reuse for a minimum of five generations.
-  # TODO: Implement the task
+- name: TOSS-04-040130 - TOSS must prohibit password reuse for a minimum of five generations. Check password-auth.
+  community.general.pamd:
+    name: password-auth
+    type: password
+    control: requisite
+    module_path: pam_pwhistory.so
+    module_arguments: 'remember=10 retry=3'
+    state: args_present
+    backup: true
+  when:
+    - toss_04_040130 | bool
+  tags:
+    - V-253068
+    - SRG-OS-000077-GPOS-00045
+    - SV-253068r824876_rule
+    - TOSS-04-040130
+    - DISA-STIG-TOSS-04-040130
+    - medium_severity
+    - CCI-000200
+- name: TOSS-04-040130 - TOSS must prohibit password reuse for a minimum of five generations. Check system-auth.
+  community.general.pamd:
+    name: system-auth
+    type: password
+    control: requisite
+    module_path: pam_pwhistory.so
+    module_arguments: 'remember=10 retry=3'
+    state: args_present
+    backup: true
   when:
     - toss_04_040130 | bool
   tags:
