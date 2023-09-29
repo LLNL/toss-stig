@@ -15,14 +15,28 @@
 
 
 - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs).
-  # TODO: Implement the task
+  block:
+  - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs). Check DIR.
+    ansible.builtin.lineinfile:
+      path: /etc/aide/aide.conf
+      regexp: DIR = p+i+n+u+g+acl+selinux+xattrs
+      line: DIR = p+i+n+u+g+acl+selinux+xattrs
+      state: present
+      mode: '600'
+  - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs). Check NORMAL.
+    ansible.builtin.lineinfile:
+      path: /etc/aide/aide.conf
+      regexp: NORMAL = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha512
+      line: NORMAL = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha512
+      state: present
+      mode: '600'
   when:
     - toss_04_040630 | bool
   tags:
-    - V-253104
+    - CCI-000366
+    - DISA-STIG-TOSS-04-040630
+    - low_severity
     - SRG-OS-000480-GPOS-00227
     - SV-253104r824984_rule
     - TOSS-04-040630
-    - DISA-STIG-TOSS-04-040630
-    - low_severity
-    - CCI-000366
+    - V-253104
