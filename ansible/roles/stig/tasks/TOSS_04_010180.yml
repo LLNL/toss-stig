@@ -15,7 +15,39 @@
 
 
 - name: TOSS-04-010180 - TOSS must, for networked systems, compare internal information system clocks at least every 24 hours with a server which is synchronized to one of the redundant United States Naval Observatory (USNO) time servers, or a time server designated for the appropriate DoD network (NIPRNet/SIPRNet), and/or the Global Positioning System (GPS).
-  # TODO: Implement the task
+  block:
+    - name: TOSS-04-010180 - Check chrony polling configuration.
+      ansible.builtin.lineinfile:
+        path: /etc/chrony/chrony.conf
+        create: true
+        regexp: maxpoll 16
+        line: server tick.usno.navy.mil iburst maxpoll 16
+        state: present
+        mode: '600'
+    - name: TOSS-04-010180 - Check time source - tick.usno.navy.mil
+      ansible.builtin.lineinfile:
+        path: /etc/chrony/chrony.conf
+        create: true
+        regexp: server tick.usno.navy.mil iburst maxpoll 16
+        line: server tick.usno.navy.mil iburst maxpoll 16
+        state: present
+        mode: '600'
+    - name: TOSS-04-010180 - Check time source - tock.usno.navy.mil
+      ansible.builtin.lineinfile:
+        path: /etc/chrony/chrony.conf
+        create: true
+        regexp: server tock.usno.navy.mil iburst maxpoll 16
+        line: server tock.usno.navy.mil iburst maxpoll 16
+        state: present
+        mode: '600'
+    - name: TOSS-04-010180 - Check time source - ntp2.usno.navy.mil
+      ansible.builtin.lineinfile:
+        path: /etc/chrony/chrony.conf
+        create: true
+        regexp: server ntp2.usno.navy.mil iburst maxpoll 16
+        line: server ntp2.usno.navy.mil iburst maxpoll 16
+        state: present
+        mode: '600'
   when:
     - toss_04_010180 | bool
   tags:
