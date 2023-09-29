@@ -17,7 +17,7 @@
     type: password
     control: requisite
     module_path: pam_pwhistory.so
-    module_arguments: 'remember=10 retry=3'
+    module_arguments: 'remember=5 retry=3'
     state: args_present
     backup: true
   when:
@@ -36,7 +36,7 @@
     type: password
     control: requisite
     module_path: pam_pwhistory.so
-    module_arguments: 'remember=10 retry=3'
+    module_arguments: 'remember=5 retry=3'
     state: args_present
     backup: true
   when:
