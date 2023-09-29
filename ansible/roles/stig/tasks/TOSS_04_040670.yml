@@ -10,14 +10,25 @@
 
 
 - name: TOSS-04-040670 - The TOSS SSH public host key files must have mode 0644 or less permissive.
-  # TODO: Implement the task
+  block:
+    - ansible.builtin.find:
+        paths: /etc/ssh/
+        file_type: file
+        patterns: '*.pub'
+      register: ssh_keys
+    - ansible.builtin.file:
+        path: '{{ ssh_key.path }}'
+        mode: '0600'
+      loop: '{{ ssh_keys.files }}'
+      loop_control:
+        loop_var: ssh_key
   when:
     - toss_04_040670 | bool
   tags:
-    - V-253108
+    - CCI-000366
+    - DISA-STIG-TOSS-04-040670
+    - medium_severity
     - SRG-OS-000480-GPOS-00227
     - SV-253108r824996_rule
     - TOSS-04-040670
-    - DISA-STIG-TOSS-04-040670
-    - medium_severity
-    - CCI-000366
+    - V-253108

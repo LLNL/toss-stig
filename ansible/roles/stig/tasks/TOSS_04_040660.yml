@@ -9,14 +9,25 @@
 
 
 - name: TOSS-04-040660 - The TOSS SSH private host key files must have mode 0600 or less permissive.
-  # TODO: Implement the task
+  block:
+    - ansible.builtin.find:
+        paths: /etc/ssh/
+        file_type: file
+        patterns: 'ssh_host*key'
+      register: ssh_keys
+    - ansible.builtin.file:
+        path: '{{ ssh_key.path }}'
+        mode: '0600'
+      loop: '{{ ssh_keys.files }}'
+      loop_control:
+        loop_var: ssh_key
   when:
     - toss_04_040660 | bool
   tags:
-    - V-253107
+    - CCI-000366
+    - DISA-STIG-TOSS-04-040660
+    - medium_severity
     - SRG-OS-000480-GPOS-00227
     - SV-253107r824993_rule
     - TOSS-04-040660
-    - DISA-STIG-TOSS-04-040660
-    - medium_severity
-    - CCI-000366
+    - V-253107

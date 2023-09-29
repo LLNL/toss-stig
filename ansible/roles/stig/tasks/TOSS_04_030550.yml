@@ -10,14 +10,26 @@
 
 
 - name: TOSS-04-030550 - TOSS must allow only the Information System Security Manager (ISSM) (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited.
-  # TODO: Implement the task
+  block:
+    - ansible.builtin.find:
+        paths: /var/log/audit
+        file_type: file
+        patterns: 'audit.log*'
+      register: audit_logs
+    - ansible.builtin.file:
+        path: '{{ audit_log.path }}'
+        mode: '0640'
+      loop: '{{ audit_logs.files }}'
+      loop_control:
+        loop_var: audit_log
   when:
     - toss_04_030550 | bool
   tags:
-    - V-253008
+    - CCI-000171
+    - DISA-STIG-TOSS-04-030550
+    - medium_severity
+    - NASA-ASCS-20009
     - SRG-OS-000063-GPOS-00032
     - SV-253008r824348_rule
     - TOSS-04-030550
-    - DISA-STIG-TOSS-04-030550
-    - medium_severity
-    - CCI-000171
+    - V-253008
