@@ -16,20 +16,20 @@
 
 - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs).
   block:
-  - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs). Check DIR.
-    ansible.builtin.lineinfile:
-      path: /etc/aide/aide.conf
-      regexp: DIR = p+i+n+u+g+acl+selinux+xattrs
-      line: DIR = p+i+n+u+g+acl+selinux+xattrs
-      state: present
-      mode: '600'
-  - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs). Check NORMAL.
-    ansible.builtin.lineinfile:
-      path: /etc/aide/aide.conf
-      regexp: NORMAL = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha512
-      line: NORMAL = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha512
-      state: present
-      mode: '600'
+    - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs). Check DIR.
+      ansible.builtin.lineinfile:
+        path: /etc/aide/aide.conf
+        regexp: DIR = p+i+n+u+g+acl+selinux+xattrs
+        line: DIR = p+i+n+u+g+acl+selinux+xattrs
+        state: present
+        mode: '600'
+    - name: TOSS-04-040630 - The TOSS file integrity tool must be configured to verify Access Control Lists (ACLs). Check NORMAL.
+      ansible.builtin.lineinfile:
+        path: /etc/aide/aide.conf
+        regexp: NORMAL = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha512
+        line: NORMAL = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha512
+        state: present
+        mode: '600'
   when:
     - toss_04_040630 | bool
   tags:
