@@ -32,6 +32,8 @@
     - medium_severity
     - CCI-000778
     - CCI-001958
+    - isso_documented
+
 - name: TOSS-04-040280 - TOSS must be configured to disable USB mass storage.
   ansible.builtin.lineinfile:
     create: true
@@ -50,3 +52,4 @@
     - medium_severity
     - CCI-000778
     - CCI-001958
+    - isso_documented

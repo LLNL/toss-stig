@@ -30,6 +30,8 @@
     - DISA-STIG-TOSS-04-040220
     - medium_severity
     - CCI-000381
+    - isso_documented
+
 - name: TOSS-04-040220 - TOSS must disable the transparent inter-process communication (TIPC) protocol. Check tipc blacklisted.
   ansible.builtin.lineinfile:
     create: true
@@ -47,3 +49,4 @@
     - DISA-STIG-TOSS-04-040220
     - medium_severity
     - CCI-000381
+    - isso_documented

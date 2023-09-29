@@ -30,6 +30,8 @@
     - DISA-STIG-TOSS-04-040210
     - medium_severity
     - CCI-000381
+    - isso_documented
+
 - name: TOSS-04-040210 - TOSS must disable the stream control transmission (SCTP) protocol. Check/Create blacklist-sctp.conf
   ansible.builtin.lineinfile:
     create: true
@@ -47,3 +49,4 @@
     - DISA-STIG-TOSS-04-040210
     - medium_severity
     - CCI-000381
+    - isso_documented

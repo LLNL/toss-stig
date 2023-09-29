@@ -30,6 +30,7 @@
     - DISA-STIG-TOSS-04-040200
     - medium_severity
     - CCI-000381
+    - isso_documented
 
 - name: TOSS-04-040200 - TOSS must disable the controller area network (CAN) protocol. Check blacklist-can.conf
   ansible.builtin.lineinfile:
@@ -48,3 +49,4 @@
     - DISA-STIG-TOSS-04-040200
     - medium_severity
     - CCI-000381
+    - isso_documented
