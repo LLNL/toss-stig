@@ -14,14 +14,20 @@
 
 
 - name: TOSS-04-040510 - TOSS must enable the "SELinux" targeted policy.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUXTYPE=targeted'
+    line: 'SELINUXTYPE=targeted'
+    state: present
   when:
     - toss_04_040510 | bool
   tags:
-    - V-253095
+    - CCI-002696
+    - DISA-STIG-RHEL-08-010450
+    - DISA-STIG-TOSS-04-040510
+    - hpc_issue
+    - medium_severity
     - SRG-OS-000445-GPOS-00199
     - SV-253095r824957_rule
     - TOSS-04-040510
-    - DISA-STIG-TOSS-04-040510
-    - medium_severity
-    - CCI-002696
+    - V-253095

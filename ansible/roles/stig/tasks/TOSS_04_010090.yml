@@ -7,14 +7,18 @@
 
 
 - name: TOSS-04-010090 - TOSS must use a Linux Security Module configured to enforce limits on system services.
-  # TODO: Implement the task
+  ansible.posix.selinux:
+    state: 'enforcing'
+    policy: targeted
   when:
     - toss_04_010090 | bool
   tags:
-    - V-252920
+    - CCI-001084
+    - DISA-STIG-TOSS-04-010090
+    - hpc_issue
+    - medium_severity
+    - NASA-ASCS-20280
     - SRG-OS-000134-GPOS-00068
     - SV-252920r824084_rule
     - TOSS-04-010090
-    - DISA-STIG-TOSS-04-010090
-    - medium_severity
-    - CCI-001084
+    - V-252920
