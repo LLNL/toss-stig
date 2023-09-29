@@ -9,9 +9,9 @@
 
 - name: TOSS-04-040740 - TOSS must enable the hardware random number generator entropy gatherer service.
   ansible.builtin.systemd:
-      name: rngd
-      state: started
-      enabled: yes
+    name: rngd
+    state: started
+    enabled: true
   when:
     - toss_04_040740 | bool
   tags:
