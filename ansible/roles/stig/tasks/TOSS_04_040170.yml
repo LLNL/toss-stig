@@ -15,7 +15,21 @@
 
 
 - name: TOSS-04-040170 - TOSS must disable mounting of cramfs.
-  # TODO: Implement the task
+  block:
+    - name: TOSS-04-040190 - TOSS must disable mounting of cramfs. Check install.
+      ansible.builtin.lineinfile:
+        create: true
+        dest: /etc/modprobe.d/cramfs.conf
+        regexp: install\s+cramfs
+        line: install cramfs /bin/false
+        mode: '644'
+    - name: TOSS-04-040190 - TOSS must disable mounting of cramfs. Check blacklist.
+      ansible.builtin.lineinfile:
+        create: true
+        dest: /etc/modprobe.d/blacklist-cramfs.conf
+        regexp: ^blacklist cramfs$
+        line: blacklist cramfs
+        mode: '644'
   when:
     - toss_04_040170 | bool
   tags:

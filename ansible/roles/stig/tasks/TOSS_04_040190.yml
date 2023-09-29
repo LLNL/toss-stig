@@ -14,7 +14,21 @@
 
 
 - name: TOSS-04-040190 - TOSS must disable the asynchronous transfer mode (ATM) protocol.
-  # TODO: Implement the task
+  block:
+    - name: TOSS-04-040190 - TOSS must disable the asynchronous transfer mode (ATM) protocol. Check install.
+      ansible.builtin.lineinfile:
+        create: true
+        dest: /etc/modprobe.d/usb-storage.conf
+        regexp: install\s+usb-storage
+        line: install usb-storage /bin/false
+        mode: '644'
+    - name: TOSS-04-040190 - TOSS must disable the asynchronous transfer mode (ATM) protocol. Check blacklist.
+      ansible.builtin.lineinfile:
+        create: true
+        dest: /etc/modprobe.d/blacklist-usb-storage.conf
+        regexp: ^blacklist usb-storage$
+        line: blacklist usb-storage
+        mode: '644'
   when:
     - toss_04_040190 | bool
   tags:
