@@ -20,13 +20,12 @@
 
 
 - name: TOSS-04-010140 - The TOSS operating system must implement DoD-approved encryption to protect the confidentiality of SSH connections.
-  - block:
+  block:
     - name: Verify that CRYPTO_POLICY is not defined in sshd
       ansible.builtin.lineinfile:
         path: /etc/sysconfig/sshd
         regexp: '^#?CRYPTO_POLICY='
         state: absent
-      check_mode: yes
       changed_when: false
       register: out
     - name: Verity that system-wide crypto policies are in effect
@@ -35,20 +34,28 @@
         regexp: '^#?CRYPTO_POLICY='
         insertbefore: '#'
       when: out.found
+    - name: Verify which system-wide crypto policy is in use
+      ansible.builtin.command: sudo update-crypto-policies --show
+      register: crypto_policy_output
+      changed_when: "'FIPS:OSPP' in crypto_policy_output.stdout"
     - name: Configure the TOSS SSH daemon to use only ciphers employing FIPS 140-2-approved algorithms
       ansible.builtin.command: sudo fips-mode-setup --enable
-    - name: 'opensshserver.config: Set facts'
+      register: fips_setup_output
+      changed_when: fips_setup_output !=0
+    - name: 'Set crypto policy in opensshserver.config'
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensshserver.config
         regexp: '^#?/etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY='
         line: '/etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY={{ sshd_approved_ciphers }}'
         create: true
-    - name: 'openssh.config: Set facts'
+        mode: '600'
+    - name: 'Set crypto policy in openssh.config'
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/openssh.config
         regexp: '^#?/etc/crypto-policies/back-ends/openssh.config:CRYPTO_POLICY='
         line: '/etc/crypto-policies/back-ends/openssh.config:CRYPTO_POLICY={{ sshd_approved_ciphers }}'
         create: true
+        mode: '600'
   when:
     - toss_04_010140 | bool
   tags:
