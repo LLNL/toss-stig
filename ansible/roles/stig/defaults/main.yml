@@ -22,6 +22,7 @@ pam_faillock_interval: 900
 max_concurrent_login_sessions: 256
 var_sudo_timestamp_timeout: '0'
 var_tftpd_secure_directory: /var/lib/tftpboot
+sshd_approved_ciphers: aes256-ctr,aes192-ctr,aes128-ctr
 
 controls:
   - toss_04_010000
@@ -176,6 +177,7 @@ controls:
   - toss_04_040880
   - toss_04_040890
   - toss_04_040900
+  - toss_04_010140
 
 # Booleans that control which controls are run
 # Generate with:
