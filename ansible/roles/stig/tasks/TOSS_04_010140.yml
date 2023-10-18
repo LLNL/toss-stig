@@ -42,7 +42,7 @@
       ansible.builtin.command: sudo fips-mode-setup --enable
       register: fips_setup_output
       changed_when: fips_setup_output !=0
-    notify: Restart sshd
+      notify: Restart sshd
     - name: 'Set crypto policy in opensshserver.config'
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensshserver.config
