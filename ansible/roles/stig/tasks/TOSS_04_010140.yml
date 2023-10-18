@@ -42,7 +42,6 @@
       ansible.builtin.command: sudo fips-mode-setup --enable
       register: fips_setup_output
       changed_when: fips_setup_output !=0
-      notify: Restart sshd
     - name: 'Set crypto policy in opensshserver.config'
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensshserver.config
@@ -50,7 +49,6 @@
         line: '/etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY={{ sshd_approved_ciphers }}'
         create: true
         mode: '644'
-      notify: Restart sshd
     - name: 'Set crypto policy in openssh.config'
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/openssh.config
@@ -58,7 +56,6 @@
         line: '/etc/crypto-policies/back-ends/openssh.config:CRYPTO_POLICY={{ sshd_approved_ciphers }}'
         create: true
         mode: '644'
-      notify: Restart sshd
   when:
     - toss_04_010140 | bool
   tags:
