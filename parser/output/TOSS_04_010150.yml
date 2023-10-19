@@ -10,7 +10,10 @@
 
 
 - name: TOSS-04-010150 - The TOSS operating system must implement DoD-approved TLS encryption in the GnuTLS package.
-  # TODO: Implement the task
+  ansible.builtin.lineinfile:
+    path: /etc/crypto-policies/back-ends/gnutls.config
+    regexp: '\+VERS-ALL(?::-VERS-[A-Z]+\d\.\d)+'
+    replace: '+VERS-ALL:-VERS-DTLS0.9:-VERS-SSL3.0:-VERS-TLS1.0:-VERS-TLS1.1:-VERS-DTLS1.0'
   when:
     - toss_04_010150 | bool
   tags:
