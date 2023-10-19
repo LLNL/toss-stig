@@ -43,19 +43,15 @@
       register: fips_setup_output
       changed_when: fips_setup_output !=0
     - name: 'Set crypto policy in opensshserver.config'
-      ansible.builtin.lineinfile:
+      ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/opensshserver.config
-        regexp: '^#?/etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY='
-        line: '/etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY={{ sshd_approved_ciphers }}'
-        create: true
-        mode: '644'
+        regexp: '^#?CRYPTO_POLICY=\S+'
+        replace: "CRYPTO_POLICY='-oCiphers={{ sshd_approved_ciphers }}'"
     - name: 'Set crypto policy in openssh.config'
-      ansible.builtin.lineinfile:
+      ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/openssh.config
-        regexp: '^#?/etc/crypto-policies/back-ends/openssh.config:CRYPTO_POLICY='
-        line: '/etc/crypto-policies/back-ends/openssh.config:CRYPTO_POLICY={{ sshd_approved_ciphers }}'
-        create: true
-        mode: '644'
+        regexp: '^#?Ciphers '
+        replace: 'Ciphers {{ sshd_approved_ciphers }}'
   when:
     - toss_04_010140 | bool
   tags:
