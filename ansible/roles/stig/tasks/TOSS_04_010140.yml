@@ -50,7 +50,7 @@
     - name: 'Set crypto policy in openssh.config'
       ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/openssh.config
-        regexp: '^#?Ciphers '
+        regexp: '^#?Ciphers \S+'
         replace: 'Ciphers {{ sshd_approved_ciphers }}'
   when:
     - toss_04_010140 | bool
