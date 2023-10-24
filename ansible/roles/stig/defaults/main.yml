@@ -180,6 +180,8 @@ controls:
   - toss_04_010140
   - toss_04_010150
   - toss_04_010160
+  - toss_04_010250
+  - toss_04_010100
 
 # Booleans that control which controls are run
 # Generate with:

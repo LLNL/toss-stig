@@ -8,7 +8,16 @@
 
 
 - name: TOSS-04-010100 - TOSS must prevent unauthorized and unintended information transfer via shared system resources.
-  # TODO: Implement the task
+  block:
+    - name: Check to see if there are any public directories without an owner
+      ansible.builtin.command: find / -nouser -type d -perm -0002 -ls # find / -type d -perm -0002 -exec ls -lLd {} \; # TODO FIND HANGS
+      register: unowned_dirs
+    - name: Set the owner of public directories without an owner to root
+      ansible.builtin.file:
+        path: "{{ item }}"
+        user: root
+      loop: "{{ unowned_dirs }}"
+      when: unowned_dirs.stdout | length > 0
   when:
     - toss_04_010100 | bool
   tags:
