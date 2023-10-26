@@ -10,7 +10,24 @@
 
 
 - name: TOSS-04-020020 - TOSS must retain a user's session lock until that user reestablishes access using established identification and authentication procedures.
-  # TODO: Implement the task
+  block:
+    - name: Enable GNOME3 Screensaver Lock After Idle Period
+      community.general.ini_file:
+        dest: /etc/dconf/db/local.d/00-screensaver
+        section: org/gnome/desktop/screensaver
+        option: lock-enabled
+        value: 'true'
+        create: true
+        no_extra_spaces: true
+        mode: 644
+    - name: Update GNOME3 screenserver lock-screen-enabled false
+      ansible.builtin.command: sudo gsettings get org.gnome.desktop.screensaver lock-enabled
+      register: lock_screen_output
+      changed_when: false
+    - name: Dconf Update
+      ansible.builtin.command: sudo dconf update
+      register: update_output
+      changed_when: false # TODO: figure out what the output should be when sucessful
   when:
     - toss_04_020020 | bool
   tags:
