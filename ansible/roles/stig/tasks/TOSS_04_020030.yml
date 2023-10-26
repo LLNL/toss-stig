@@ -10,9 +10,23 @@
 
 
 - name: TOSS-04-020030 - TOSS must automatically lock graphical user sessions after 15 minutes of inactivity.
-  # TODO: Implement the task
+  block:
+    - name: Set GNOME3 Screensaver Inactivity Timeout
+      community.general.ini_file:
+        dest: /etc/dconf/db/local.d/00-screensaver
+        section: org/gnome/desktop/session
+        option: idle-delay
+        value: uint32 {{ inactivity_timeout_value }}
+        create: true
+        no_extra_spaces: true
+        mode: '0644'
+    - name: Dconf Update
+      ansible.builtin.command: sudo dconf update
+      register: update_output
+      changed_when: false # TODO: figure out what the output should be when sucessful
   when:
     - toss_04_020030 | bool
+    - dconf_gnome_screensaver_lock_enabled | bool
   tags:
     - V-252949
     - SRG-OS-000029-GPOS-00010
@@ -21,3 +35,5 @@
     - DISA-STIG-TOSS-04-020030
     - medium_severity
     - CCI-000057
+    - dconf_gnome_screensaver_lock_enabled
+    - DISA-STIG-RHEL-08-020060

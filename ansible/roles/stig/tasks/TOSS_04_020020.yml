@@ -19,7 +19,7 @@
         value: 'true'
         create: true
         no_extra_spaces: true
-        mode: 644
+        mode: '0644'
     - name: Update GNOME3 screenserver lock-screen-enabled false
       ansible.builtin.command: sudo gsettings get org.gnome.desktop.screensaver lock-enabled
       register: lock_screen_output
@@ -30,6 +30,7 @@
       changed_when: false # TODO: figure out what the output should be when sucessful
   when:
     - toss_04_020020 | bool
+    - dconf_gnome_screensaver_lock_enabled | bool
   tags:
     - V-252948
     - SRG-OS-000028-GPOS-00009
@@ -40,3 +41,4 @@
     - CCI-000056
     - CCI-000058
     - CCI-000060
+    - dconf_gnome_screensaver_lock_enabled
