@@ -8,7 +8,20 @@
 
 
 - name: TOSS-04-020180 - TOSS must require users to reauthenticate for privilege escalation.
-  # TODO: Implement the task
+  block:
+    - name: Find /etc/sudoers.d/ files
+      ansible.builtin.find:
+        paths: /etc/sudoers.d/
+      register: sudoers
+    - name: Remove lines containing !authenticate from sudoers files
+      ansible.builtin.replace:
+        regexp: (^(?!#).*[\s]+\!authenticate.*$)
+        replace: '# \g<1>'
+        path: '{{ item.path }}'
+        validate: /usr/sbin/visudo -cf %s
+      with_items:
+        - path: /etc/sudoers
+        - '{{ sudoers.files }}'
   when:
     - toss_04_020180 | bool
   tags:
@@ -19,3 +32,4 @@
     - DISA-STIG-TOSS-04-020180
     - medium_severity
     - CCI-002038
+    - DISA-STIG-RHEL-08-010381
