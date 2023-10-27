@@ -9,7 +9,20 @@
 
 
 - name: TOSS-04-020250 - TOSS must disable the user list at logon for graphical user interfaces.
-  # TODO: Implement the task
+  block:
+    - name: Disable the GNOME3 Login User List
+      community.general.ini_file:
+        dest: /etc/dconf/db/local.d/02-login-screen
+        section: org/gnome/login-screen
+        option: disable-user-list
+        value: 'true'
+        no_extra_spaces: true
+        create: true
+        mode: '0644'
+    - name: Dconf Update
+      ansible.builtin.command: sudo dconf update
+      register: update_output
+      changed_when: false
   when:
     - toss_04_020250 | bool
   tags:
@@ -20,3 +33,5 @@
     - DISA-STIG-TOSS-04-020250
     - medium_severity
     - CCI-000366
+    - DISA-STIG-RHEL-08-020032
+    - dconf_gnome_screensaver_lock_enabled

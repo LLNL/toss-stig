@@ -26,7 +26,6 @@
       changed_when: false # TODO: figure out what the output should be when sucessful
   when:
     - toss_04_020030 | bool
-    - dconf_gnome_screensaver_lock_enabled | bool
   tags:
     - V-252949
     - SRG-OS-000029-GPOS-00010

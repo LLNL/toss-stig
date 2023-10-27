@@ -10,7 +10,20 @@
 
 
 - name: TOSS-04-020240 - The x86 Ctrl-Alt-Delete key sequence in TOSS must be disabled if a graphical user interface is installed.
-  # TODO: Implement the task
+  block:
+    - name: Disable Ctrl-Alt-Del Reboot Key Sequence in GNOME3
+      community.general.ini_file:
+        dest: /etc/dconf/db/local.d/00-disable-CAD
+        section: org/gnome/settings-daemon/plugins/media-keys
+        option: logout
+        value: ''''
+        create: true
+        no_extra_spaces: true
+        mode: '0644'
+    - name: Dconf Update
+      ansible.builtin.command: sudo dconf update
+      register: update_output
+      changed_when: false
   when:
     - toss_04_020240 | bool
   tags:
@@ -21,3 +34,5 @@
     - DISA-STIG-TOSS-04-020240
     - high_severity
     - CCI-000366
+    - dconf_gnome_screensaver_lock_enabled
+    - DISA-STIG-RHEL-08-040171
