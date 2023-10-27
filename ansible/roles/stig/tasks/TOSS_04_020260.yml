@@ -33,7 +33,7 @@
         state: present
         insertbefore: ^[#\s]*Match
         validate: /usr/sbin/sshd -t -f %s
-        mode: '0644'
+        mode: '0600'
   when:
     - toss_04_020260 | bool
   tags:

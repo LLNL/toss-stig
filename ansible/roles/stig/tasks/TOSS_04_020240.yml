@@ -16,7 +16,7 @@
         dest: /etc/dconf/db/local.d/00-disable-CAD
         section: org/gnome/settings-daemon/plugins/media-keys
         option: logout
-        value: ''''
+        value: ''''''
         create: true
         no_extra_spaces: true
         mode: '0644'
