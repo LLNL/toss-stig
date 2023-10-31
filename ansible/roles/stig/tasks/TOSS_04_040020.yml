@@ -1,0 +1,47 @@
+# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253057
+
+# Verify the SSH client is configured to force frequent session key
+# renegotiation with the following command: $ sudo grep -i RekeyLimit
+# /etc/ssh/ssh_config RekeyLimit 1G 1h If "RekeyLimit" does not have a maximum
+# data amount and maximum time defined, is missing or commented out, this is a
+# finding.
+
+
+- name: TOSS-04-040020 - TOSS must force a frequent session key renegotiation for SSH connections by the client.
+  block:
+    - name: Check for duplicate values
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/ssh_config
+        create: false
+        regexp: (?i)^\s*RekeyLimit\s+
+        state: absent
+      check_mode: true
+      changed_when: false
+      register: dupes
+    - name: Deduplicate values from /etc/ssh/ssh_config
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/ssh_config
+        create: false
+        regexp: (?i)^\s*RekeyLimit\s+
+        state: absent
+      when: dupes.found is defined and dupes.found > 1
+    - name: Insert correct line to /etc/ssh/ssh_config
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/ssh_config
+        create: true
+        regexp: (?i)^\s*RekeyLimit\s+
+        line: RekeyLimit {{ var_rekey_limit_size }} {{ var_rekey_limit_time }}
+        state: present
+        insertbefore: ^[#\s]*Match
+        validate: /usr/sbin/sshd -t -f %s
+        mode: '0644'
+  when:
+    - toss_04_040020 | bool
+  tags:
+    - V-253057
+    - SRG-OS-000033-GPOS-00014
+    - SV-253057r824843_rule
+    - TOSS-04-040020
+    - DISA-STIG-TOSS-04-040020
+    - medium_severity
+    - CCI-000068

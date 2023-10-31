@@ -192,6 +192,9 @@ controls:
   - toss_04_020260
   - toss_04_030910
   - toss_04_020300
+  - toss_04_040010
+  - toss_04_040020
+  - toss_04_040030
 
 # Booleans that control which controls are run
 # Generate with:
