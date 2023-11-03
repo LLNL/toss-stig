@@ -14,9 +14,6 @@
       ansible.builtin.getent:
         database: passwd
         split: ':'
-    - name: Debug
-      ansible.builtin.debug:
-        var: ansible_facts.getent_passwd
     - name: Create local_users variable from the getent output
       ansible.builtin.set_fact:
         local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
@@ -42,3 +39,4 @@
     - DISA-STIG-TOSS-04-020300
     - medium_severity
     - CCI-000366
+    - DISA-STIG-RHEL-08-010730
