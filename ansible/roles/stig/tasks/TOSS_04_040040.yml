@@ -19,7 +19,28 @@
 
 
 - name: TOSS-04-040040 - TOSS must implement NIST FIPS-validated cryptography for the following to provision digital signatures; to generate cryptographic hashes; and to protect unclassified information requiring confidentiality and cryptographic protection in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.
-  # TODO: Implement the task
+  block:
+    - name: Check to see the current status of FIPS mode
+      ansible.builtin.command: /usr/bin/fips-mode-setup --check
+      register: is_fips_enabled
+      changed_when: false
+    - name: Enable FIPS mode
+      ansible.builtin.command: /usr/bin/fips-mode-setup --enable
+      when: is_fips_enabled.stdout.find('FIPS mode is enabled.') == -1
+      changed_when: false
+    - name: Check to see if the kernel boot parameter is configured for FIPS mode
+      ansible.builtin.command: grub2-editenv list | grep "fips=1"
+      register: boot_param
+      changed_when: false
+    - name: Check to see if the system is in FIPS mode
+      ansible.builtin.command: cat /proc/sys/crypto/fips_enabled
+      register: system_mode
+      when: boot_param.rc != 0
+      changed_when: false
+    - name: Fail when kernel boot param
+      ansible.builtin.fail:
+        msg: "Either the kernel boot parameter was not set to fips=1 or the system is not in FIPS mode. Include fips=1 in the kernel boot parameters during installation to enable strict FIPS compliance."
+      when: boot_param.rc == 0 | system_mode == 0
   when:
     - toss_04_040040 | bool
   tags:
@@ -32,3 +53,5 @@
     - CCI-000068
     - CCI-002450
     - isso_documented
+    - hpc_issue
+    - DISA-STIG-RHEL-08-010020

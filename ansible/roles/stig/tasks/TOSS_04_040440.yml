@@ -12,7 +12,17 @@
 
 
 - name: TOSS-04-040440 - TOSS must implement DoD-approved encryption in the OpenSSL package.
-  # TODO: Implement the task
+  block:
+    - name: Verify that system-wide crypto policies are in effect
+      ansible.builtin.lineinfile:
+        path: /etc/pki/tls/openssl.cnf
+        regex: '.include /etc/crypto-policies/back-ends/opensslcnf.config'
+        line: ".include /etc/crypto-policies/back-ends/opensslcnf.config"
+        mode: '0644'
+        create: true
+    - name: Configure the TOSS OpenSSL library to use only ciphers employing FIPS 140-2-approved algorithms
+      ansible.builtin.command: fips-mode-setup --enable
+      changed_when: false
   when:
     - toss_04_040440 | bool
   tags:
@@ -23,3 +33,5 @@
     - DISA-STIG-TOSS-04-040440
     - medium_severity
     - CCI-002890
+    - hpc_issue
+    - DISA-STIG-RHEL-08-010293
