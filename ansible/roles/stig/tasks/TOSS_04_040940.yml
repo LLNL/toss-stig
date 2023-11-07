@@ -17,6 +17,7 @@
       ansible.builtin.command: ip link set dev {{ item.split(':')[1] }} multicast off promisc off
       loop: '{{ network_interfaces.stdout_lines }}'
       when: 'item.find("PROMISC") != -1'
+      changed_when: 'item.find("PROMISC") != -1'
   when:
     - toss_04_040940 | bool
   tags:
