@@ -29,18 +29,17 @@
       when: is_fips_enabled.stdout.find('FIPS mode is enabled.') == -1
       changed_when: false
     - name: Check to see if the kernel boot parameter is configured for FIPS mode
-      ansible.builtin.command: grub2-editenv list | grep "fips=1"
+      ansible.builtin.command: grub2-editenv list
       register: boot_param
       changed_when: false
     - name: Check to see if the system is in FIPS mode
       ansible.builtin.command: cat /proc/sys/crypto/fips_enabled
       register: system_mode
-      when: boot_param.rc != 0
       changed_when: false
     - name: Fail when kernel boot param
       ansible.builtin.fail:
-        msg: "Either the kernel boot parameter was not set to fips=1 or the system is not in FIPS mode. Include fips=1 in the kernel boot parameters during installation to enable strict FIPS compliance."
-      when: boot_param.rc == 0 | system_mode == 0
+        msg: "Either the kernel boot parameter was not set to 'fips=1' or the system is not in FIPS mode. Include 'fips=1' in the kernel boot parameters during installation to enable strict FIPS compliance."
+      when: 'boot_param.stdout.find("fips=1") == -1 or system_mode.stdout != "1"'
   when:
     - toss_04_040040 | bool
   tags:
