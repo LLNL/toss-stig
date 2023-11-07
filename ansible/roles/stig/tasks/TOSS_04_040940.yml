@@ -10,16 +10,14 @@
 - name: TOSS-04-040940 - TOSS network interfaces must not be in promiscuous mode.
   block:
     - name: Gather network interfaces
-      ansible.builtin.command:
-        cmd: ip link show | grep -i promisc
+      ansible.builtin.command: ip link show
       register: network_interfaces
       changed_when: false
     - name: Disable promiscuous mode
-      ansible.builtin.command:
-        cmd: ip link set dev {{ item.split(':')[1] }} multicast off promisc off
+      ansible.builtin.command: ip link set dev {{ item.split(':')[1] }} multicast off promisc off
       changed_when: false
       loop: '{{ network_interfaces.stdout_lines }}'
-      when: network_interfaces.rc != 0
+      when: '"PROMISC" in item'
   when:
     - toss_04_040940 | bool
   tags:
