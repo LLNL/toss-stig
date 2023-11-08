@@ -16,11 +16,12 @@
 - name: TOSS-04-010250 - TOSS must prohibit the use of cached authentications after one day.
   block:
     - name: Check that SSSD allows cached authentications
-      ansible.builtin.command: grep cache_credentials /etc/sssd/sssd.conf
-      register: cache_cred_bool
-      ignore_errors: true
+      ansible.builtin.lineinfile:
+        path: /etc/sssd/sssd.conf
+        regexp: '^cache_credentials = true'
+        state: absent
+      register: cache_cred_enabled
       check_mode: false
-      changed_when: cache_cred_bool.rc != 0
     - name: Check that SSSD prohibits the use of cached authentications after one day
       community.general.ini_file:
         dest: /etc/sssd/sssd.conf
@@ -28,9 +29,8 @@
         option: offline_credentials_expiration
         value: "1"
         create: true
-        mode: 384
-      when:
-        - cache_cred_bool.stdout == "cache_credentials = true" or cache_cred_bool.rc != 0
+        mode: '0384'
+      when: cache_cred_enabled.found != 0
   when:
     - toss_04_010250 | bool
   tags:
