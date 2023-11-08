@@ -16,7 +16,15 @@
 
 
 - name: TOSS-04-020280 - TOSS must not have unnecessary accounts.
-  # TODO: Implement the task
+  block:
+    - name: Check the system accounts on the system
+      ansible.builtin.command: more /etc/passwd
+      register: system_accounts
+      changed_when: false
+    - name: List all accounts
+      ansible.builtin.debug:
+        var: system_accounts
+        verbosity: 1
   when:
     - toss_04_020280 | bool
   tags:
@@ -28,3 +36,5 @@
     - medium_severity
     - CCI-000366
     - isso_documented
+    - DISA-STIG-RHEL-08-020320
+    - manual
