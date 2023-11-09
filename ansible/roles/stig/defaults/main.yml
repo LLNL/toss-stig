@@ -203,7 +203,7 @@ controls:
   - toss_04_040040
   - toss_04_040390
   - toss_04_020280
-  - toss-04-040490
+  - toss_04_040490
 
 # Booleans that control which controls are run
 # Generate with:
