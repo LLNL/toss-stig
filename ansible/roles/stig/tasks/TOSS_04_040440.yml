@@ -16,7 +16,7 @@
     - name: Verify that system-wide crypto policies are in effect
       ansible.builtin.lineinfile:
         path: /etc/pki/tls/openssl.cnf
-        regex: '.include /etc/crypto-policies/back-ends/opensslcnf.config'
+        regexp: '.include /etc/crypto-policies/back-ends/opensslcnf.config'
         line: ".include /etc/crypto-policies/back-ends/opensslcnf.config"
         mode: '0644'
         create: true
