@@ -12,7 +12,8 @@
 - name: TOSS-04-040490 - TOSS must implement non-executable data to protect its memory from unauthorized code execution.
   block:
     - name: Check that the no-execution bit flag is set
-      ansible.builtin.command: 'dmesg | grep "NX (Execute Disable) protection: active"'
+      ansible.builtin.shell:
+        cmd: 'set -o pipefail && dmesg | grep "NX (Execute Disable) protection: active"'
       register: execute_bit_flag
       failed_when: execute_bit_flag.rc not in [0, 1]
       changed_when: false
