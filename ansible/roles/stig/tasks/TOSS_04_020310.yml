@@ -10,10 +10,13 @@
   block:
     - name: Get the list of home directories not owned by root
       ansible.builtin.shell:
-        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -maxdepth 0 -not -user root -ls"
-        register: home_dirs
-    - name: Change the owner of a local interactive user's home directory
-      ansible.builtin.command: sudo chown root {{ item }}
+        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -maxdepth 0 -not -user root"
+      register: home_dirs
+      changed_when: false
+    - name: Change the owner of the local interactive user's home directory
+      ansible.builtin.file:
+        path: '{{ item }}'
+        owner: root
       loop: home_dirs
   when:
     - toss_04_020310 | bool
