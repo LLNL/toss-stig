@@ -10,25 +10,20 @@
 
 - name: TOSS-04-020300 - All TOSS local interactive user home directories must have mode 0770 or less permissive.
   block:
-    - name: Get all local users from /etc/passwd
-      ansible.builtin.getent:
-        database: passwd
-        split: ':'
-    - name: Create local_users variable from the getent output
-      ansible.builtin.set_fact:
-        local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
-    - name: Test for existence home directories to avoid creating them.
-      ansible.builtin.stat:
-        path: '{{ item.value[4] }}'
-      register: path_exists
-      loop: '{{ local_users }}'
+    - name: Get all local users from /etc/passwd, ignoring any errors from directories that don't exist on this system
+      ansible.builtin.shell:
+        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -maxdepth 0 -not -perm 770 2> /dev/null"
+      register: local_users
+      ignore_errors: true
+      changed_when: false
     - name: Ensure interactive local users have proper permissions on their respective home directories
       ansible.builtin.file:
-        path: '{{ item.0.value[4] }}'
+        path: '{{ item }}'
         mode: '770'
         follow: false
         recurse: false
-      loop: '{{ local_users | zip(path_exists.results) | list }}'
+      loop: '{{ local_users.stdout_lines }}'
+      check_mode: true
   when:
     - toss_04_020300 | bool
   tags:
