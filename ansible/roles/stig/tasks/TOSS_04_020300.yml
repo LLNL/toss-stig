@@ -12,7 +12,7 @@
   block:
     - name: Get all local users from /etc/passwd, ignoring any errors from directories that don't exist on this system
       ansible.builtin.shell:
-        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -maxdepth 0 -not -perm 770 2> /dev/null"
+        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -xdev -maxdepth 0 -not -perm 770 2> /dev/null"
       register: local_users
       ignore_errors: true
       changed_when: false
