@@ -17,7 +17,7 @@
       ansible.builtin.file:
         path: "{{ item }}"
         owner: root
-      loop: "{{ unowned_dirs }}"
+      loop: "{{ unowned_dirs.stdout_lines }}"
       when: unowned_dirs.stdout | length > 0
   when:
     - toss_04_010100 | bool

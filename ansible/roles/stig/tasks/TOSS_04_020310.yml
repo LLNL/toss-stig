@@ -8,16 +8,17 @@
 
 - name: TOSS-04-020310 - All TOSS local interactive user home directories must be owned by root.
   block:
-    - name: Get the list of home directories not owned by root
+    - name: Get the list of home directories not owned by root, ignoring any errors from directories that don't exist on this system
       ansible.builtin.shell:
-        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -xdev -maxdepth 0 -not -user root"
+        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -xdev -maxdepth 0 -not -user root 2> /dev/null"
       register: home_dirs
       changed_when: false
+      failed_when: local_users.rc not in [0,1]
     - name: Change the owner of the local interactive user's home directory
       ansible.builtin.file:
         path: '{{ item }}'
         owner: root
-      loop: home_dirs
+      loop: '{{ home_dirs.stdout_lines }}'
   when:
     - toss_04_020310 | bool
   tags:

@@ -14,8 +14,8 @@
       ansible.builtin.shell:
         cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -xdev -maxdepth 0 -not -perm 770 2> /dev/null"
       register: local_users
-      ignore_errors: true
       changed_when: false
+      failed_when: local_users.rc not in [0,1]
     - name: Ensure interactive local users have proper permissions on their respective home directories
       ansible.builtin.file:
         path: '{{ item }}'
@@ -23,7 +23,6 @@
         follow: false
         recurse: false
       loop: '{{ local_users.stdout_lines }}'
-      check_mode: true
   when:
     - toss_04_020300 | bool
   tags:
