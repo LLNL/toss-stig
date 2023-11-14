@@ -9,7 +9,17 @@
 
 
 - name: TOSS-04-040580 - All TOSS local files and directories must have a valid owner.
-  # TODO: Implement the task
+  block:
+    - name: Verify all local files and directories on TOSS have a valid group
+      ansible.builtin.cmd: "find / -xdev -fstype xfs -nouser"
+      register: nouser_files
+      changed_when: false
+      failed_when: "nouser_files.rc not in [0,1]"
+    - name: Assign files and directories without a group to root # TODO check if this is the right thing to do vs deleting or different user
+      ansible.builtin.file:
+        path: '{{ item }}'
+        owner: root
+      loop: '{{ nouser_files.stdout_lines }}'
   when:
     - toss_04_040580 | bool
   tags:
