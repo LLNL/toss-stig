@@ -16,7 +16,16 @@
 
 
 - name: TOSS-04-040270 - TOSS must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the PPSM CAL and vulnerability assessments.
-  # TODO: Implement the task
+  block:
+    - name: Gather information about active zones
+      ansible.posix.firewalld_info:
+        active_zones: true
+      register: result
+    - name: List all zones
+      ansible.builtin.debug:
+        var: result.firewalld_info.zones
+        verbosity: 1
+
   when:
     - toss_04_040270 | bool
   tags:
@@ -27,3 +36,5 @@
     - DISA-STIG-TOSS-04-040270
     - medium_severity
     - CCI-000382
+    - DISA-STIG-RHEL-08-040030
+    - manual
