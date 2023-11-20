@@ -15,16 +15,17 @@
 - name: TOSS-04-020050 - TOSS must map the authenticated identity to the user or group account for PKI-based authentication.
   block:
     - name: Verify the certificate of the user or group is mapped to the corresponding user or group in the "sssd.conf" file
-      ansible.builtin.lineinfile:
+      community.general.ini_file:
         path: /etc/sssd/sssd.conf
-        regexp: "{{ item.regexp }}"
-        line: "{{ item.line }}"
+        section: "certmap"
+        option: "{{ item.option }}"
+        value: "{{ item.value }}"
+        mode: '0600'
       loop:
-        - { regexp: '^[certmap]', line: '[certmap]'}
-        - { regexp: '^matchrule/s=', line: 'matchrule = '}
-        - { regexp: '^maprule/s=', line: 'maprule ='}
-        - { regexp: '^domains/s=', line: 'domains ='}
-
+        - { option: '^matchrule', value: ''}
+        - { option: '^maprule', value: ''}
+        - { option: '^domains', value: ''}
+      register: result
   when:
     - toss_04_020050 | bool
   tags:
@@ -35,3 +36,4 @@
     - DISA-STIG-TOSS-04-020050
     - medium_severity
     - CCI-000187
+    - manual
