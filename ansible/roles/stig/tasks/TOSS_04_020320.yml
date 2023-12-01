@@ -11,7 +11,19 @@
 
 
 - name: TOSS-04-020320 - All TOSS local interactive user home directories must be owned by the user's primary group.
-  # TODO: Implement the task
+  block:
+    - name: Get the list of home directories not owned by  the user's primary group, ignoring any errors from directories that don't exist on this system
+      ansible.builtin.shell:
+        cmd: "awk -F: '($3>=1000)&&($7 !~ /nologin/)&&("stat -c '%g' " $6 | getline dir_group)&&(dir_group!=$4){print $1,$6,dir_group}' /etc/passwd 2>/dev/null"
+      register: home_dirs
+      changed_when: false
+      failed_when: local_users.rc not in [0,1]
+    - name: Change the owner of the local interactive user's home directory
+      ansible.builtin.file:
+        path: '{{ item.$2 }}'
+        owner: '{{ item.$3 }}'
+        mode: '0700'
+      loop: '{{ home_dirs.stdout_lines }}'
   when:
     - toss_04_020320 | bool
   tags:
