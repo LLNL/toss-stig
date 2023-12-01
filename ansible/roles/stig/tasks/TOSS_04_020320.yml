@@ -24,7 +24,6 @@
       ansible.builtin.file:
         path: '{{ item.split().1 }}'
         group: '{{ item.split().2 }}'
-        mode: '0700'
       loop: '{{ home_dirs.stdout_lines }}'
   when:
     - toss_04_020320 | bool
