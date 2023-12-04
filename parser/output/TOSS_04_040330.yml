@@ -11,7 +11,6 @@
 # the administrator to indicate how the partitions are encrypted. If there is no
 # evidence that all local disk partitions are encrypted, this is a finding.
 
-
 - name: TOSS-04-040330 - All TOSS local disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at rest protection.
   # TODO: Implement the task
   when:
@@ -26,3 +25,4 @@
     - CCI-001199
     - CCI-002475
     - CCI-002476
+    - hpc_issue
