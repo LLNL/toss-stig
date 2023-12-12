@@ -11,9 +11,18 @@
 
 
 - name: TOSS-04-040690 - TOSS must be a vendor-supported release.
-  # TODO: Implement the task
-  ansible.builtin.debug:
-    msg: "Ensure version of TOSS (toss-release package) is supported. See https://hpc.llnl.gov/toss for supported versions"
+  block:
+    - name: Get the current version of TOSS
+      ansible.builtin.command: 'grep -o "[0-9].[0-9]" /etc/toss-release'
+      changed_when: false
+      register: toss_version
+    - name: Get current date
+      ansible.builtin.set_fact:
+        curr_date: "{{ now() }}"
+    - name: Check if the current version is supported
+      ansible.builtin.fail:
+        msg: "TOSS {{ toss_version.stdout }}, is no longer supported. See https://hpc.llnl.gov/toss for supported versions"
+      when: now() > (toss_end_of_support[toss_version.stdout] | to_datetime)
   when:
     - toss_04_040690 | bool
   tags:
@@ -24,4 +33,4 @@
     - DISA-STIG-TOSS-04-040690
     - high_severity
     - CCI-000366
-    - manual-control
+    - manual

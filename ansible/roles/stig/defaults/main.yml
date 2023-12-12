@@ -26,6 +26,14 @@ var_rekey_limit_time: 1h
 var_sudo_timestamp_timeout: '0'
 var_tftpd_secure_directory: /var/lib/tftpboot
 sshd_approved_ciphers: aes256-ctr,aes192-ctr,aes128-ctr
+toss_end_of_support: {
+  "4.3": "2022-5-1 01:00:00",
+  "4.4": "2023-12-1 01:00:00",
+  "4.5": "2023-5-1 01:00:00",
+  "4.6": "2023-12-1 01:00:00",
+  "4.7": "2024-5-1 01:00:00",
+  "4.8": "2029-6-1 01:00:00"
+}
 
 controls:
   - toss_04_010000
@@ -210,6 +218,8 @@ controls:
   - toss_04_020050
   - toss_04_040270
   - toss_04_020320
+  - toss_04_040590
+  - toss_04_040690
 
 # Booleans that control which controls are run
 # Generate with:

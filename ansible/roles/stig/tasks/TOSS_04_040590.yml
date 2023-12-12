@@ -14,7 +14,21 @@
 
 
 - name: TOSS-04-040590 - Cron logging must be implemented in TOSS.
-  # TODO: Implement the task
+  block:
+    - name: Check that rsyslog is configured to log cron events
+      ansible.builtin.command: "grep -r cron /etc/rsyslog.conf /etc/rsyslog.d"
+      changed_when: false
+      register: cron_output
+    - name: Check for cron logging all facilities
+      ansible.builtin.command: "grep -r /var/log/messages /etc/rsyslog.conf /etc/rsyslog.d"
+      changed_when: false
+      register: varlog_output
+      when: cron_output.rc != 0
+    - name: Configure "rsyslog" to log all cron messages
+      ansible.builtin.lineinfile:
+        path: /etc/rsyslog.conf
+        line: "cron.* /var/log/cron"
+      when: varlog_output.skipped is not defined and varlog_output.rc != 0 and cron_output.rc != 0
   when:
     - toss_04_040590 | bool
   tags:
