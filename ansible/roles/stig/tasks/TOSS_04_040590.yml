@@ -18,10 +18,14 @@
     - name: Check that rsyslog is configured to log cron events
       ansible.builtin.command: "grep -r cron /etc/rsyslog.conf /etc/rsyslog.d"
       changed_when: false
+      check_mode: false
+      failed_when: cron_output.rc not in [0,1]
       register: cron_output
     - name: Check for cron logging all facilities
       ansible.builtin.command: "grep -r /var/log/messages /etc/rsyslog.conf /etc/rsyslog.d"
       changed_when: false
+      check_mode: false
+      failed_when: varlog_output.rc not in [0,1]
       register: varlog_output
       when: cron_output.rc != 0
     - name: Configure "rsyslog" to log all cron messages
