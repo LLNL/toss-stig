@@ -13,7 +13,24 @@
 
 
 - name: TOSS-04-020230 - All TOSS local interactive users must have a home directory assigned in the /etc/passwd file.
-  # TODO: Implement the task
+  block:
+    - name: Verify the integrity of the /etc/passwd file
+      ansible.builtin.command: "pwck -r"
+      failed_when: false
+      changed_when: false
+      check_mode: false
+      register: passwd_check
+    - name: Check if the users are local interactive users
+      ansible.builtin.command: "awk -F: '($3>=1000)&&($7 !~ /nologin/){print $1}' /etc/passwd"
+      changed_when: false
+      check_mode: false
+      register: local_interactive_users
+    - name: Display any local interactive users without home directories
+      ansible.builtin.debug:
+        var: item
+      when: item.split().0 == "user" and item.split().1[1:-2] in local_interactive_users.stdout
+      # Only check output lines that are flagging a user without a directory, and parse out the '' surrounding the username"
+      loop: '{{ passwd_check.stdout_lines }}'
   when:
     - toss_04_020230 | bool
   tags:
@@ -24,3 +41,4 @@
     - DISA-STIG-TOSS-04-020230
     - medium_severity
     - CCI-000366
+    - hpc_issue
