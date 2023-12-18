@@ -26,7 +26,29 @@
 
 
 - name: TOSS-04-040150 - TOSS must cover or disable the built-in or attached camera when not in use.
-  # TODO: Implement the task
+  block:
+    - name: Determine if the camera is disabled via blacklist
+      ansible.builtin.command: grep -P '^blacklist[\s,\S]*video' {{ item }}
+      check_mode: false
+      changed_when: false
+      failed_when: blacklists.rc not in [0,1]
+      register: blacklists
+      with_fileglob:
+        - "/etc/modprobe.d/*"
+    - name: Display all blacklisted drivers
+      ansible.builtin.debug:
+        var: blacklists.stdout_lines
+        verbosity: 1
+    - name: Determine the driver being used by the camera
+      ansible.builtin.command: "dmesg | grep -i video"
+      check_mode: false
+      changed_when: false
+      failed_when: drivers.rc not in [0,1]
+      register: drivers
+    - name: Display all video drivers, if the camera driver blacklist is missing, add it to the "/etc/modprobe.d/blacklist.conf" file
+      ansible.builtin.debug:
+        var: drivers.stdout_lines
+        verbosity: 1
   when:
     - toss_04_040150 | bool
   tags:
@@ -38,3 +60,4 @@
     - medium_severity
     - CCI-000381
     - manual
+    - hpc_issue
