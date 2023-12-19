@@ -225,6 +225,8 @@ controls:
   - toss_04_020060
   - toss_04_040150
   - toss_04_020230
+  - toss_04_030890
+  - toss_04_030900
 
 # Booleans that control which controls are run
 # Generate with:
