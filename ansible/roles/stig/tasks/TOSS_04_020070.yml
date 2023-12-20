@@ -77,6 +77,7 @@
         cmd: set -o pipefail && authselect current | tail -n+3 | awk '{ print $2 }'
       register: result_authselect_features
       changed_when: false
+      check_mode: false
       when:
         - result_authselect_check_cmd is success
     - name: Enable Smartcards in SSSD - Ensure "with-smartcard" feature is enabled using authselect tool
