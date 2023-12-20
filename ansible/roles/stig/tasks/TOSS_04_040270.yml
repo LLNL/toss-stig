@@ -25,6 +25,7 @@
       ansible.builtin.debug:
         var: result.firewalld_info.zones
         verbosity: 1
+    # TODO: fail if there are no rules at all
 
   when:
     - toss_04_040270 | bool
