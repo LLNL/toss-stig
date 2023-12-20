@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252960
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252960
 
 # Verify all local interactive users on TOSS are assigned a home
 # directory upon creation with the following command: $ sudo grep -i create_home

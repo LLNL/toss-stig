@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252949
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252949
 
 # Verify TOSS initiates a session lock after at most a 15-minute period
 # of inactivity for graphical user interfaces with the following commands: Note:

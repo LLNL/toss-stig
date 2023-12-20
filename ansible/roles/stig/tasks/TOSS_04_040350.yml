@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253087
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253087
 
 # Verify the value for "ocredit" in "/etc/security/pwquality.conf" with
 # the following command: $ sudo grep ocredit /etc/security/pwquality.conf ocredit

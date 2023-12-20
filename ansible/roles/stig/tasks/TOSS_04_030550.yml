@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253008
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253008
 
 # Verify that the files in directory "/etc/audit/rules.d/" and
 # "/etc/audit/auditd.conf" file have a mode of "0640" or less permissive by using

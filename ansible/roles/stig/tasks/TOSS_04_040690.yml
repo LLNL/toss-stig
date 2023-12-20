@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253110
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253110
 
 # Verify the version of the operating system is vendor supported. Check
 # the version of the operating system with the following command: $ sudo cat

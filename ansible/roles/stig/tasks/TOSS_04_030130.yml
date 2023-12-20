@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252978
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252978
 
 # Verify the audit log directory has a mode of "0700" or less
 # permissive. First, determine where the audit logs are stored with the following

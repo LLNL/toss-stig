@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253033
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253033
 
 # Verify the TOSS audit Daemon is configured to label all off-loaded
 # audit logs, with the following command: $ sudo grep "name_format"

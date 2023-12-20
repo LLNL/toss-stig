@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252933
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252933
 
 # Verify that SSSD prohibits the use of cached authentications after
 # one day. Note: If smart card authentication is not being used on the system,

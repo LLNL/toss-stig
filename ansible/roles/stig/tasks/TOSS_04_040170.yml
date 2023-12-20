@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253072
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253072
 
 # Verify the operating system disables the ability to load the cramfs
 # kernel module. $ sudo grep -r cramfs /etc/modprobe.d/* | grep install install

@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253093
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253093
 
 # Verify the NX (no-execution) bit flag is set on the system. Check
 # that the no-execution bit flag is set with the following commands: $ sudo dmesg
