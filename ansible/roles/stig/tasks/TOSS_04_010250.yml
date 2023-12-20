@@ -28,7 +28,7 @@
         option: offline_credentials_expiration
         value: "1"
         create: true
-        mode: '0384'
+        mode: '0600'
       when: cache_cred_enabled.found != 0
   when:
     - toss_04_010250 | bool
