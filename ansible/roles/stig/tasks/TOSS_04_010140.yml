@@ -35,12 +35,12 @@
         replace: '#CRYPTO_POLICY='
       when: out.found
     - name: Verify which system-wide crypto policy is in use
-      ansible.builtin.command: sudo update-crypto-policies --show
+      ansible.builtin.command: update-crypto-policies --show
       register: crypto_policy_output
       changed_when: false
       check_mode: false
     - name: Configure the TOSS SSH daemon to use only ciphers employing FIPS 140-2-approved algorithms
-      ansible.builtin.command: sudo fips-mode-setup --enable
+      ansible.builtin.command: fips-mode-setup --enable
       register: fips_setup_output
       changed_when: fips_setup_output !=0
     - name: 'Set crypto policy in opensshserver.config'

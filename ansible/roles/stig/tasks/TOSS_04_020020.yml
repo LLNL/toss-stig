@@ -21,7 +21,7 @@
         no_extra_spaces: true
         mode: '0644'
     - name: Update GNOME3 screenserver lock-screen-enabled false
-      ansible.builtin.command: sudo gsettings get org.gnome.desktop.screensaver lock-enabled
+      ansible.builtin.command: gsettings get org.gnome.desktop.screensaver lock-enabled
       register: lock_screen_output
       changed_when: false
     - name: Dconf Update
