@@ -34,5 +34,5 @@
     - medium_severity
     - CCI-002890
     - hpc_issue
-    - pki_authenication
+    - pki_authentication
     - DISA-STIG-RHEL-08-010293
