@@ -17,14 +17,16 @@
 
 - name: TOSS-04-020280 - TOSS must not have unnecessary accounts.
   block:
-    - name: Check the system accounts on the system
-      ansible.builtin.command: more /etc/passwd
-      register: system_accounts
-      check_mode: false
-      changed_when: false
+    - name: Get all /etc/passwd file entries
+      ansible.builtin.getent:
+        database: passwd
+        split: ':'
+    - name: Create local_users variable from the getent output
+      ansible.builtin.set_fact:
+        local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
     - name: List all accounts
       ansible.builtin.debug:
-        var: system_accounts
+        var: local_users
         verbosity: 1
   when:
     - toss_04_020280 | bool
