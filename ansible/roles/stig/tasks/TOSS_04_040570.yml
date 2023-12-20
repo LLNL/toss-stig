@@ -11,7 +11,7 @@
 - name: TOSS-04-040570 - All TOSS local files and directories must have a valid group owner.
   block:
     - name: Verify all local files and directories on TOSS have a valid group
-      ansible.builtin.command: "find / -xdev -fstype xfs -nogroup"
+      ansible.builtin.command: "find / -xdev -nogroup"
       register: nogroup_files
       changed_when: false
       check_mode: false
