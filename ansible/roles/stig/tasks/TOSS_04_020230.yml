@@ -21,7 +21,7 @@
       check_mode: false
       register: passwd_check
     - name: Check if the users are local interactive users
-      ansible.builtin.command: "awk -F: '($3>=1000)&&($7 !~ /nologin/){print $1}' /etc/passwd"
+      ansible.builtin.command: "awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/){print $1}' /etc/passwd"
       changed_when: false
       check_mode: false
       register: local_interactive_users
