@@ -23,6 +23,7 @@
     - name: Check to see the current status of FIPS mode
       ansible.builtin.command: /usr/bin/fips-mode-setup --check
       register: is_fips_enabled
+      check_mode: false
       changed_when: false
     - name: Enable FIPS mode
       ansible.builtin.command: /usr/bin/fips-mode-setup --enable
@@ -36,6 +37,7 @@
       ansible.builtin.command: cat /proc/sys/crypto/fips_enabled
       register: system_mode
       changed_when: false
+      check_mode: false
     - name: Fail when kernel boot param
       ansible.builtin.fail:
         msg: "Either the kernel boot parameter was not set to 'fips=1' or the system is not in FIPS mode. Include 'fips=1' in the kernel boot parameters during installation to enable strict FIPS compliance."

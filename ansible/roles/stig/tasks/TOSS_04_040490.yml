@@ -17,6 +17,7 @@
       register: execute_bit_flag
       failed_when: execute_bit_flag.rc not in [0, 1]
       changed_when: false
+      check_mode: false
     - name: Check the cpuinfo settings for the nx flag
       ansible.builtin.command: 'grep -i "flags\(\s\|\S\)\+nx" /proc/cpuinfo'
       register: cpuinfo_settings

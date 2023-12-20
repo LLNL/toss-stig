@@ -20,6 +20,7 @@
     - name: Check the system accounts on the system
       ansible.builtin.command: more /etc/passwd
       register: system_accounts
+      check_mode: false
       changed_when: false
     - name: List all accounts
       ansible.builtin.debug:

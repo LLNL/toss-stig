@@ -20,6 +20,7 @@
       register: home_dirs
       changed_when: false
       failed_when: home_dirs.rc not in [0,1]
+      check_mode: false
     - name: Change the owner of the local interactive user's home directory
       ansible.builtin.file:
         path: '{{ item.split().1 }}'

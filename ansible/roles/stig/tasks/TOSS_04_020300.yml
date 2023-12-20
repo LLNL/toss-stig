@@ -16,6 +16,7 @@
       register: local_users
       changed_when: false
       failed_when: local_users.rc not in [0,1]
+      check_mode: false
     - name: Ensure interactive local users have proper permissions on their respective home directories
       ansible.builtin.file:
         path: '{{ item }}'
