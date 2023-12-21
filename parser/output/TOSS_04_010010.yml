@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252912
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252912
 
 # Verify TOSS for PKI-based authentication has valid certificates by
 # constructing a certification path (which includes status information) to an
@@ -28,3 +28,5 @@
     - medium_severity
     - CCI-000185
     - CCI-001991
+    - DISA-STIG-RHEL-08-010090
+    - pki_authentication

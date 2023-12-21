@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252934
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252934
 
 # Verify that the SSH package is installed: $ rpm -q openssh-server
 # openssh-server-8.0p1-10.el8_4.2.x86_64 If the "SSH server" package is not

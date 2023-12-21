@@ -1,0 +1,44 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252962
+
+# Verify local interactive users on TOSS have a home directory assigned
+# with the following command: $ sudo pwck -r user 'lp': directory '/var/spool/lpd'
+# does not exist user 'news': directory '/var/spool/news' does not exist user
+# 'uucp': directory '/var/spool/uucp' does not exist user 'www-data': directory
+# '/var/www' does not exist Ask the System Administrator (SA) if any users found
+# without home directories are local interactive users. If the SA is unable to
+# provide a response, check for users with a User Identifier (UID) of 1000 or
+# greater with the following command: $ sudo awk -F: '($3>=1000)&&($7
+# !~ /nologin/){print $1, $3, $6}' /etc/passwd If any interactive users do not
+# have a home directory assigned, this is a finding.
+
+
+- name: TOSS-04-020230 - All TOSS local interactive users must have a home directory assigned in the /etc/passwd file.
+  block:
+    - name: Verify the integrity of the /etc/passwd file
+      ansible.builtin.command: "pwck -r"
+      failed_when: false
+      changed_when: false
+      check_mode: false
+      register: passwd_check
+    - name: Check if the users are local interactive users
+      ansible.builtin.command: "awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/){print $1}' /etc/passwd"
+      changed_when: false
+      check_mode: false
+      register: local_interactive_users
+    - name: Display any local interactive users without home directories
+      ansible.builtin.debug:
+        var: item
+      when: item.split().0 == "user" and item.split().1[1:-2] in local_interactive_users.stdout
+      # Only check output lines that are flagging a user without a directory, and parse out the '' surrounding the username"
+      loop: '{{ passwd_check.stdout_lines }}'
+  when:
+    - toss_04_020230 | bool
+  tags:
+    - V-252962
+    - SRG-OS-000480-GPOS-00227
+    - SV-252962r824210_rule
+    - TOSS-04-020230
+    - DISA-STIG-TOSS-04-020230
+    - medium_severity
+    - CCI-000366
+    - hpc_issue

@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253055
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253055
 
 # Verify the operating system has the packages required for encrypting
 # offloaded audit logs installed with the following commands: $ sudo yum list

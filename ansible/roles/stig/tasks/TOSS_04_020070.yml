@@ -1,0 +1,114 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252952
+
+# Verify the operating system uses multifactor authentication for
+# network access to privileged accounts. If it does not, this is a finding. Note:
+# This requirement is applicable to any externally accessible nodes of the TOSS
+# system. For compute or other intra-cluster only accessible nodes, this
+# requirement is Not Applicable. One possible method for meeting this requirement
+# is to require smart card logon for access to interactive accounts. Check that
+# the "pam_cert_auth" setting is set to "true" in the "/etc/sssd/sssd.conf" file.
+# Check that the "try_cert_auth" or "require_cert_auth" options are configured in
+# both "/etc/pam.d/system-auth" and "/etc/pam.d/smartcard-auth" files with the
+# following command: $ sudo grep cert_auth /etc/sssd/sssd.conf /etc/pam.d/*
+# /etc/sssd/sssd.conf:pam_cert_auth = True /etc/pam.d/smartcard-auth:auth
+# sufficient pam_sss.so try_cert_auth /etc/pam.d/system-auth:auth [success=done
+# authinfo_unavail=ignore ignore=ignore default=die] pam_sss.so try_cert_auth If
+# "pam_cert_auth" is not set to "true" in "/etc/sssd/sssd.conf", this is a
+# finding. If "pam_sss.so" is not set to "try_cert_auth" or "require_cert_auth" in
+# both the "/etc/pam.d/smartcard-auth" and "/etc/pam.d/system-auth" files, this is
+# a finding.
+
+
+- name: TOSS-04-020070 - TOSS must use multifactor authentication for network and local access to privileged and non-privileged accounts.
+  block:
+    - name: Test for domain group
+      ansible.builtin.command: grep '^\s*\[domain\/[^]]*]' /etc/sssd/sssd.conf
+      register: test_grep_domain
+      ignore_errors: true
+      changed_when: false
+      check_mode: false
+    - name: Add default domain group (if no domain there)
+      community.general.ini_file:
+        path: /etc/sssd/sssd.conf
+        section: '{{ item.section }}'
+        option: '{{ item.option }}'
+        value: '{{ item.value }}'
+        create: true
+        mode: 384
+      with_items:
+        - section: sssd
+          option: domains
+          value: default
+        - section: domain/default
+          option: id_provider
+          value: files
+      when:
+        - test_grep_domain.stdout is defined
+        - test_grep_domain.stdout | length < 1
+    - name: Verify the pam section
+      community.general.ini_file:
+        dest: /etc/sssd/sssd.conf
+        section: pam
+        option: pam_cert_auth
+        value: 'True'
+        create: true
+        mode: 384
+
+    - name: Enable Smartcards in SSSD - Check integrity of authselect current profile
+      ansible.builtin.command: "authselect check"
+      register: result_authselect_check_cmd
+      changed_when: false
+      check_mode: false
+      failed_when: false
+    - name: Enable Smartcards in SSSD - Informative message based on the authselect integrity check result
+      ansible.builtin.assert:
+        that:
+          - result_authselect_check_cmd.rc == 0
+        fail_msg:
+          - authselect integrity check failed. Remediation aborted!
+          - This remediation could not be applied because an authselect profile was not selected or the selected profile is not
+            intact.
+          - It is not recommended to manually edit the PAM files when authselect tool is available.
+          - In cases where the default authselect profile does not cover a specific demand, a custom authselect profile is recommended.
+        success_msg:
+          - authselect integrity check passed
+    - name: Enable Smartcards in SSSD - Get authselect current features
+      ansible.builtin.shell:
+        cmd: set -o pipefail && authselect current | tail -n+3 | awk '{ print $2 }'
+      register: result_authselect_features
+      changed_when: false
+      check_mode: false
+      when:
+        - result_authselect_check_cmd is success
+    - name: Enable Smartcards in SSSD - Ensure "with-smartcard" feature is enabled using authselect tool
+      ansible.builtin.command:
+        cmd: authselect enable-feature with-smartcard
+      register: result_authselect_enable_feature_cmd
+      changed_when: true
+      when:
+        - result_authselect_check_cmd is success
+        - result_authselect_features.stdout is not search("with-smartcard")
+    - name: Enable Smartcards in SSSD - Ensure authselect changes are applied
+      ansible.builtin.command:
+        cmd: authselect apply-changes -b
+      changed_when: false
+      when:
+        - result_authselect_enable_feature_cmd is not skipped
+        - result_authselect_enable_feature_cmd is success
+
+  when:
+    - toss_04_020070 | bool
+    # - not (compute_node | bool)  # Not applicable on compute nodes - # TODO need a universal way to check this.
+  tags:
+    - V-252952
+    - SRG-OS-000105-GPOS-00052
+    - SV-252952r824180_rule
+    - TOSS-04-020070
+    - DISA-STIG-TOSS-04-020070
+    - medium_severity
+    - CCI-000765
+    - CCI-000766
+    - CCI-000767
+    - CCI-000768
+    - DISA-STIG-RHEL-08-020250
+    - hpc-issue

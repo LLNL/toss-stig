@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252954
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252954
 
 # Verify emergency accounts have been provisioned with an expiration
 # date of 72 hours. For every existing emergency account, run the following
@@ -21,3 +21,4 @@
     - DISA-STIG-TOSS-04-020140
     - medium_severity
     - CCI-001682
+    - manual

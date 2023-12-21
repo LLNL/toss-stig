@@ -1,0 +1,40 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252950
+
+# Verify the certificate of the user or group is mapped to the
+# corresponding user or group in the "sssd.conf" file with the following command:
+# Note: If the system does not support PKI authentication, this requirement is Not
+# Applicable. $ sudo cat /etc/sssd/sssd.conf [sssd] config_file_version = 2
+# services = pam, sudo, ssh domains = testing.test [pam] pam_cert_auth = True
+# [domain/testing.test] id_provider = ldap [certmap/testing.test/rule_name]
+# matchrule =<SAN>.*EDIPI@mil maprule = (userCertificate;binary={cert!bin})
+# domains = testing.test If the certmap section does not exist, ask the System
+# Administrator to indicate how certificates are mapped to accounts. If there is
+# no evidence of certificate mapping, this is a finding.
+
+
+- name: TOSS-04-020050 - TOSS must map the authenticated identity to the user or group account for PKI-based authentication.
+  block:
+    - name: Verify the certificate of the user or group is mapped to the corresponding user or group in the "sssd.conf" file
+      community.general.ini_file:
+        path: /etc/sssd/sssd.conf
+        section: "certmap"
+        option: "{{ item.option }}"
+        value: "{{ item.value }}"
+        mode: '0600'
+      loop: # TODO: need to find how SysAdmins want ccertificates mapped
+        - { option: '^matchrule', value: ''}
+        - { option: '^maprule', value: ''}
+        - { option: '^domains', value: ''}
+      register: result
+  when:
+    - toss_04_020050 | bool
+  tags:
+    - V-252950
+    - SRG-OS-000068-GPOS-00036
+    - SV-252950r824174_rule
+    - TOSS-04-020050
+    - DISA-STIG-TOSS-04-020050
+    - medium_severity
+    - CCI-000187
+    - manual
+    - pki_authentication

@@ -1,0 +1,47 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252965
+
+# Verify SSH provides users with feedback on when account accesses last
+# occurred with the following command: $ sudo grep -i printlastlog
+# /etc/ssh/sshd_config PrintLastLog yes If the "PrintLastLog" keyword is set to
+# "no", is missing, or is commented out, this is a finding.
+
+
+- name: TOSS-04-020260 - TOSS must display the date and time of the last successful account logon upon an SSH logon.
+  block:
+    - name: Check for duplicate values
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*PrintLastLog\s+
+        state: absent
+      check_mode: true
+      changed_when: false
+      register: dupes
+    - name: Deduplicate values from /etc/ssh/sshd_config
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        create: false
+        regexp: (?i)^\s*PrintLastLog\s+
+        state: absent
+      when: dupes.found is defined and dupes.found > 1
+    - name: Insert correct line to /etc/ssh/sshd_config
+      ansible.builtin.lineinfile:
+        path: /etc/ssh/sshd_config
+        create: true
+        regexp: (?i)^\s*PrintLastLog\s+
+        line: PrintLastLog yes
+        state: present
+        insertbefore: ^[#\s]*Match
+        validate: /usr/sbin/sshd -t -f %s
+        mode: '0600'
+  when:
+    - toss_04_020260 | bool
+  tags:
+    - V-252965
+    - SRG-OS-000480-GPOS-00227
+    - SV-252965r824219_rule
+    - TOSS-04-020260
+    - DISA-STIG-TOSS-04-020260
+    - medium_severity
+    - CCI-000366
+    - DISA-STIG-RHEL-08-020350

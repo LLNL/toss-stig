@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252983
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252983
 
 # Verify the audit system prevents unauthorized changes with the
 # following command: $ sudo grep "^\s*[^#]" /etc/audit/audit.rules | tail -1 -e 2

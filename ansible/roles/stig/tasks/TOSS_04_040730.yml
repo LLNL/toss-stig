@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253114
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253114
 
 # Verify TOSS enables hardening for the BPF JIT with the following
 # commands: $ sudo sysctl net.core.bpf_jit_harden net.core.bpf_jit_harden = 2 If

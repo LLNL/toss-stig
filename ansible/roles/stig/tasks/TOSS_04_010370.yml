@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252939
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252939
 
 # Verify there are no ."shosts" files on TOSS with the following
 # command: $ sudo find / -name '*.shosts' If any ."shosts" files are found, this

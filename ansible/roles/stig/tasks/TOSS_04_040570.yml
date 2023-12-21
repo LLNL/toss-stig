@@ -1,0 +1,34 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253099
+
+# Verify all local files and directories on TOSS have a valid group
+# with the following command: Note: The value after -fstype must be replaced with
+# the filesystem type. XFS is used as an example. $ sudo find / -fstype xfs
+# -nogroup If any files on the system do not have an assigned group, this is a
+# finding. Note: Command may produce error messages from the /proc and /sys
+# directories.
+
+
+- name: TOSS-04-040570 - All TOSS local files and directories must have a valid group owner.
+  block:
+    - name: Verify all local files and directories on TOSS have a valid group
+      ansible.builtin.command: "find / -xdev -nogroup"
+      register: nogroup_files
+      changed_when: false
+      check_mode: false
+      failed_when: "nogroup_files.rc not in [0,1]"
+    - name: Assign files and directories without a group to root # TODO check if this is the right thing to do vs deleting or different group
+      ansible.builtin.file:
+        path: '{{ item }}'
+        group: root
+      loop: '{{ nogroup_files.stdout_lines }}'
+  when:
+    - toss_04_040570 | bool
+  tags:
+    - V-253099
+    - SRG-OS-000480-GPOS-00227
+    - SV-253099r824969_rule
+    - TOSS-04-040570
+    - DISA-STIG-TOSS-04-040570
+    - medium_severity
+    - CCI-000366
+    - DISA-STIG-RHEL-08-010790

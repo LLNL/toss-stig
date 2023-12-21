@@ -1,0 +1,37 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252959
+
+# Verify that "/etc/sudoers" has no occurrences of "NOPASSWD." Check
+# that the "/etc/sudoers" file has no occurrences of "NOPASSWD" by running the
+# following command: $ sudo grep -i nopasswd /etc/sudoers /etc/sudoers.d/* %admin
+# ALL=(ALL) NOPASSWD: ALL If any occurrences of "NOPASSWD" are returned from the
+# command and have not been documented with the ISSO as an organizationally
+# defined administrative group utilizing MFA, this is a finding.
+
+
+- name: TOSS-04-020190 - TOSS must require users to provide a password for privilege escalation.
+  block:
+    - name: Find /etc/sudoers.d/ files
+      ansible.builtin.find:
+        paths:
+          - /etc/sudoers.d/
+      register: sudoers
+    - name: Remove lines containing NOPASSWD from sudoers files
+      ansible.builtin.replace:
+        regexp: (^(?!#).*[\s]+NOPASSWD[\s]*\:.*$)
+        replace: '# \g<1>'
+        path: '{{ item.path }}'
+        validate: /usr/sbin/visudo -cf %s
+      with_items:
+        - path: /etc/sudoers
+        - '{{ sudoers.files }}'
+  when:
+    - toss_04_020190 | bool
+  tags:
+    - V-252959
+    - SRG-OS-000373-GPOS-00157
+    - SV-252959r824201_rule
+    - TOSS-04-020190
+    - DISA-STIG-TOSS-04-020190
+    - medium_severity
+    - CCI-002038
+    - DISA-STIG-RHEL-08-010380

@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252941
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252941
 
 # Verify TOSS is not performing packet forwarding unless the system is
 # a router. If the system is a router (sometimes called a gateway) this

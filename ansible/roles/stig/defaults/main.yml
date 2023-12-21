@@ -9,6 +9,7 @@ auditd_space_left_action: 'email'
 
 login_banner_text: You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.
 
+inactivity_timeout_value: '900'
 user_umask: '077'
 pass_max_days: '60'
 pass_min_days: '1'
@@ -20,8 +21,19 @@ pwhistory_remember: '24'
 pam_faillock_deny: 3
 pam_faillock_interval: 900
 max_concurrent_login_sessions: 256
+var_rekey_limit_size: 1G
+var_rekey_limit_time: 1h
 var_sudo_timestamp_timeout: '0'
 var_tftpd_secure_directory: /var/lib/tftpboot
+sshd_approved_ciphers: aes256-ctr,aes192-ctr,aes128-ctr
+toss_end_of_support: {
+  "4.3": "2022-5-1 01:00:00",
+  "4.4": "2023-12-1 01:00:00",
+  "4.5": "2023-5-1 01:00:00",
+  "4.6": "2023-12-1 01:00:00",
+  "4.7": "2024-5-1 01:00:00",
+  "4.8": "2029-6-1 01:00:00"
+}
 
 controls:
   - toss_04_010000
@@ -31,14 +43,20 @@ controls:
   - toss_04_010060
   - toss_04_010070
   - toss_04_010080
+  - toss_04_010100
   - toss_04_010110
   - toss_04_010120
+  - toss_04_010140
+  - toss_04_010150
+  - toss_04_010160
   - toss_04_010170
   - toss_04_010210
   - toss_04_010220
   - toss_04_010230
   - toss_04_010240
+  - toss_04_010250
   - toss_04_010280
+  - toss_04_010330
   - toss_04_010340
   - toss_04_010350
   - toss_04_010360
@@ -51,9 +69,25 @@ controls:
   - toss_04_010430
   - toss_04_020000
   - toss_04_020010
+  - toss_04_020020
+  - toss_04_020030
+  - toss_04_020050
+  - toss_04_020060
+  - toss_04_020070
   - toss_04_020120
   - toss_04_020150
+  - toss_04_020160
   - toss_04_020170
+  - toss_04_020180
+  - toss_04_020190
+  - toss_04_020230
+  - toss_04_020240
+  - toss_04_020250
+  - toss_04_020260
+  - toss_04_020280
+  - toss_04_020300
+  - toss_04_020310
+  - toss_04_020320
   - toss_04_030000
   - toss_04_030010
   - toss_04_030060
@@ -110,6 +144,9 @@ controls:
   - toss_04_030840
   - toss_04_030850
   - toss_04_030860
+  - toss_04_030890
+  - toss_04_030900
+  - toss_04_030910
   - toss_04_030990
   - toss_04_031000
   - toss_04_031100
@@ -132,6 +169,10 @@ controls:
   - toss_04_031360
   - toss_04_031370
   - toss_04_031380
+  - toss_04_040010
+  - toss_04_040020
+  - toss_04_040030
+  - toss_04_040040
   - toss_04_040050
   - toss_04_040060
   - toss_04_040070
@@ -139,24 +180,34 @@ controls:
   - toss_04_040100
   - toss_04_040130
   - toss_04_040140
+  - toss_04_040150
   - toss_04_040200
   - toss_04_040210
   - toss_04_040220
   - toss_04_040230
   - toss_04_040250
   - toss_04_040260
+  - toss_04_040270
   - toss_04_040280
   - toss_04_040290
   - toss_04_040310
+  - toss_04_040340
   - toss_04_040350
   - toss_04_040370
+  - toss_04_040390
   - toss_04_040420
+  - toss_04_040440
   - toss_04_040480
+  - toss_04_040490
   - toss_04_040540
   - toss_04_040560
+  - toss_04_040570
+  - toss_04_040580
+  - toss_04_040590
   - toss_04_040600
   - toss_04_040610
   - toss_04_040680
+  - toss_04_040690
   - toss_04_040700
   - toss_04_040710
   - toss_04_040740
@@ -176,6 +227,7 @@ controls:
   - toss_04_040880
   - toss_04_040890
   - toss_04_040900
+  - toss_04_040940
 
 # Booleans that control which controls are run
 # Generate with:

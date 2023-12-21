@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252913
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252913
 
 # Verify the operating system, for PKI-based authentication, enforces
 # authorized access to the corresponding private key. If the system does not allow
@@ -22,3 +22,4 @@
     - medium_severity
     - CCI-000186
     - isso_documented
+    - pki_authentication

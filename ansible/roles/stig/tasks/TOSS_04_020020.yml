@@ -1,0 +1,43 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252948
+
+# Verify TOSS retains a user's session lock until that user
+# reestablishes access using established identification and authentication
+# procedures with the following command: Note: This requirement assumes the use of
+# the TOSS default graphical user interface, Gnome Shell. If the system does not
+# have any graphical user interface installed, this requirement is Not Applicable.
+# $ sudo gsettings get org.gnome.desktop.screensaver lock-enabled true If the
+# setting is "false", this is a finding.
+
+
+- name: TOSS-04-020020 - TOSS must retain a user's session lock until that user reestablishes access using established identification and authentication procedures.
+  block:
+    - name: Enable GNOME3 Screensaver Lock After Idle Period
+      community.general.ini_file:
+        dest: /etc/dconf/db/local.d/00-screensaver
+        section: org/gnome/desktop/screensaver
+        option: lock-enabled
+        value: 'true'
+        create: true
+        no_extra_spaces: true
+        mode: '0644'
+    - name: Update GNOME3 screenserver lock-screen-enabled false
+      ansible.builtin.command: gsettings get org.gnome.desktop.screensaver lock-enabled
+      register: lock_screen_output
+      changed_when: false
+    - name: Dconf Update
+      ansible.builtin.command: sudo dconf update
+      register: update_output
+      changed_when: false # TODO: figure out what the output should be when sucessful
+  when:
+    - toss_04_020020 | bool
+  tags:
+    - V-252948
+    - SRG-OS-000028-GPOS-00009
+    - SV-252948r824168_rule
+    - TOSS-04-020020
+    - DISA-STIG-TOSS-04-020020
+    - medium_severity
+    - CCI-000056
+    - CCI-000058
+    - CCI-000060
+    - dconf_gnome_screensaver_lock_enabled

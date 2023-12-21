@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-253090
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253090
 
 # Verify TOSS accepts PIV credentials. Check that the "opensc" package
 # is installed on the system with the following command: $ sudo yum list installed
@@ -18,6 +18,7 @@
     - name: Ensure opensc accepts PIV cards
       ansible.builtin.shell: "set -o pipefail && opensc-tool --list-drivers | grep -i piv"
       changed_when: false
+      check_mode: false
       # failed_when: "PIV-II" not in piv_drivers.stdout # TODO -- This doesn't work this way, need to re-implement
   when:
     - toss_04_040420 | bool

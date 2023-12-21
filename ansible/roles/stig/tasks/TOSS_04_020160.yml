@@ -1,0 +1,35 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252956
+
+# Verify there are no wireless interfaces configured on the system with
+# the following command: Note: This requirement is Not Applicable for systems that
+# do not have physical wireless network radios. $ sudo nmcli device status DEVICE
+# TYPE STATE CONNECTION virbr0 bridge connected virbr0 wlp7s0 wifi connected
+# wifiSSID enp6s0 ethernet disconnected -- p2p-dev-wlp7s0 wifi-p2p disconnected --
+# lo loopback unmanaged -- virbr0-nic tun unmanaged -- If a wireless interface is
+# configured and has not been documented and approved by the Information System
+# Security Officer (ISSO), this is a finding.
+
+
+- name: TOSS-04-020160 - TOSS must protect wireless access to the system using authentication of users and/or devices.
+  block:
+    - name: Get all network devices
+      ansible.builtin.command: "nmcli device status"
+      changed_when: false
+      check_mode: false
+      register: wifi_devices
+    - name: Disable all wireless network interfaces
+      ansible.buitlin.command: "nmcli radio all off"
+      changed_when: false
+      when: "'wifi' in wifi_devices.stdout"
+  when:
+    - toss_04_020160 | bool
+  tags:
+    - V-252956
+    - SRG-OS-000299-GPOS-00117
+    - SV-252956r824192_rule
+    - TOSS-04-020160
+    - DISA-STIG-TOSS-04-020160
+    - medium_severity
+    - CCI-001443
+    - CCI-001444
+    - CCI-002418

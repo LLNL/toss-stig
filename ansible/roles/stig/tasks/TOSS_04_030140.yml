@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252979
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252979
 
 # Verify the audit logs are owned by user root. First, determine where
 # the audit logs are stored with the following command: $ sudo grep -iw log_file

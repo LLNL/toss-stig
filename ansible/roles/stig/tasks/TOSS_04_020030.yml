@@ -1,0 +1,38 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252949
+
+# Verify TOSS initiates a session lock after at most a 15-minute period
+# of inactivity for graphical user interfaces with the following commands: Note:
+# This requirement assumes the use of the TOSS default graphical user interface,
+# Gnome Shell. If the system does not have any graphical user interface installed,
+# this requirement is Not Applicable. $ sudo gsettings get
+# org.gnome.desktop.session idle-delay uint32 900 If "idle-delay" is set to "0" or
+# a value greater than "900", this is a finding.
+
+
+- name: TOSS-04-020030 - TOSS must automatically lock graphical user sessions after 15 minutes of inactivity.
+  block:
+    - name: Set GNOME3 Screensaver Inactivity Timeout
+      community.general.ini_file:
+        dest: /etc/dconf/db/local.d/00-screensaver
+        section: org/gnome/desktop/session
+        option: idle-delay
+        value: uint32 {{ inactivity_timeout_value }}
+        create: true
+        no_extra_spaces: true
+        mode: '0644'
+    - name: Dconf Update
+      ansible.builtin.command: dconf update
+      register: update_output
+      changed_when: false # TODO: figure out what the output should be when sucessful
+  when:
+    - toss_04_020030 | bool
+  tags:
+    - V-252949
+    - SRG-OS-000029-GPOS-00010
+    - SV-252949r824171_rule
+    - TOSS-04-020030
+    - DISA-STIG-TOSS-04-020030
+    - medium_severity
+    - CCI-000057
+    - dconf_gnome_screensaver_lock_enabled
+    - DISA-STIG-RHEL-08-020060

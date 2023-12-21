@@ -1,4 +1,4 @@
-# https://www.stigviewer.com/stig/toss_4/2023-xx-xx/finding/V-252975
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252975
 
 # Verify that the SA and ISSO (at a minimum) are notified in the event
 # of an audit processing failure. Check that TOSS notifies the SA and ISSO (at a

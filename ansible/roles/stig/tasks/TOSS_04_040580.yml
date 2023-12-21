@@ -1,0 +1,33 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253100
+
+# Verify all local files and directories on TOSS have a valid owner
+# with the following command: Note: The value after -fstype must be replaced with
+# the filesystem type. XFS is used as an example. $ sudo find / -fstype xfs
+# -nouser If any files on the system do not have an assigned owner, this is a
+# finding. Note: Command may produce error messages from the /proc and /sys
+# directories.
+
+
+- name: TOSS-04-040580 - All TOSS local files and directories must have a valid owner.
+  block:
+    - name: Verify all local files and directories on TOSS have a valid owner
+      ansible.builtin.command: "find / -xdev -nouser"
+      register: nouser_files
+      changed_when: false
+      check_mode: false
+      failed_when: "nouser_files.rc not in [0,1]"
+    - name: Assign files and directories without an owner to root # TODO check if this is the right thing to do vs deleting or different user
+      ansible.builtin.file:
+        path: '{{ item }}'
+        owner: root
+      loop: '{{ nouser_files.stdout_lines }}'
+  when:
+    - toss_04_040580 | bool
+  tags:
+    - V-253100
+    - SRG-OS-000480-GPOS-00227
+    - SV-253100r824972_rule
+    - TOSS-04-040580
+    - DISA-STIG-TOSS-04-040580
+    - medium_severity
+    - CCI-000366

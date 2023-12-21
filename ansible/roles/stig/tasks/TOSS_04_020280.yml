@@ -1,0 +1,43 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252967
+
+# Verify all accounts on the system are assigned to an active system,
+# application, or user account. Obtain the list of authorized system accounts from
+# the Information System Security Officer (ISSO). Check the system accounts on the
+# system with the following command: $ sudo more /etc/passwd
+# root:x:0:0:root:/root:/bin/bash bin:x:1:1:bin:/bin:/sbin/nologin
+# daemon:x:2:2:daemon:/sbin:/sbin/nologin sync:x:5:0:sync:/sbin:/bin/sync
+# shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown halt:x:7:0:halt:/sbin:/sbin/halt
+# games:x:12:100:games:/usr/games:/sbin/nologin
+# gopher:x:13:30:gopher:/var/gopher:/sbin/nologin Accounts such as "games" and
+# "gopher" are not authorized accounts as they do not support authorized system
+# functions. If the accounts on the system do not match the provided
+# documentation, or accounts that do not support an authorized system function are
+# present, this is a finding.
+
+
+- name: TOSS-04-020280 - TOSS must not have unnecessary accounts.
+  block:
+    - name: Get all /etc/passwd file entries
+      ansible.builtin.getent:
+        database: passwd
+        split: ':'
+    - name: Create local_users variable from the getent output
+      ansible.builtin.set_fact:
+        local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
+    - name: List all accounts
+      ansible.builtin.debug:
+        var: local_users
+        verbosity: 1
+  when:
+    - toss_04_020280 | bool
+  tags:
+    - V-252967
+    - SRG-OS-000480-GPOS-00227
+    - SV-252967r824225_rule
+    - TOSS-04-020280
+    - DISA-STIG-TOSS-04-020280
+    - medium_severity
+    - CCI-000366
+    - isso_documented
+    - DISA-STIG-RHEL-08-020320
+    - manual

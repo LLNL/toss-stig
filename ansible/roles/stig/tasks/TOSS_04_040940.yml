@@ -1,0 +1,32 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253135
+
+# Verify network interfaces are not in promiscuous mode unless approved
+# by the ISSO and documented. Check for the status with the following command: $
+# sudo ip link | grep -i promisc If network interfaces are found on the system in
+# promiscuous mode and their use has not been approved by the ISSO and documented,
+# this is a finding.
+
+
+- name: TOSS-04-040940 - TOSS network interfaces must not be in promiscuous mode.
+  block:
+    - name: Gather network interfaces
+      ansible.builtin.command: ip link show
+      register: network_interfaces
+      changed_when: false
+      check_mode: false
+    - name: Disable promiscuous mode
+      ansible.builtin.command: ip link set dev {{ item.split(':')[1] }} multicast off promisc off
+      loop: '{{ network_interfaces.stdout_lines }}'
+      when: 'item.find("PROMISC") != -1'
+      changed_when: 'item.find("PROMISC") != -1'
+  when:
+    - toss_04_040940 | bool
+  tags:
+    - V-253135
+    - SRG-OS-000480-GPOS-00227
+    - SV-253135r825077_rule
+    - TOSS-04-040940
+    - DISA-STIG-TOSS-04-040940
+    - medium_severity
+    - CCI-000366
+    - DISA-STIG-RHEL-08-040330
