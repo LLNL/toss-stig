@@ -12,7 +12,18 @@
 # evidence that all local disk partitions are encrypted, this is a finding.
 
 - name: TOSS-04-040330 - All TOSS local disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at rest protection.
-  # TODO: Implement the task
+  block:
+    - name: Gather the attributes of all local system partitions
+      ansible.builtin.command: "blkid"
+      check_mode: false
+      changed_when: false
+      register: partitions
+    - name: Verify all local system partitions are encrypted
+      ansible.builtin.assert:
+        that:
+          - "'crypto_LUKS' in item"
+        fail_msg: "This disk partition is not encrypted"
+      loop: "{{ partitions.stdout_lines }}"
   when:
     - toss_04_040330 | bool
   tags:
