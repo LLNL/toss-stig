@@ -37,8 +37,8 @@ toss_end_of_support: {
 
 controls:
   - toss_04_010000
-  - toss_04-010010
-  - toss_04-010020
+  - toss_04_010010
+  - toss_04_010020
   - toss_04_010030
   - toss_04_010040
   - toss_04_010050
