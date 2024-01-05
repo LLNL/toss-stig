@@ -17,13 +17,22 @@
       check_mode: false
       register: nouser_files
       failed_when: "nouser_files.rc not in [0,1]"
-    - name: Verify that the ssh key files have passphrases set
-      ansible.builtin.command: "ssh-keygen -y -f {{ item }}"
+    - name: Check if the ssh key files have passphrases set
+      ansible.builtin.expect:
+        command: 'ssh-keygen -y -f {{ item }}'
+        responses:
+          'Enter Passphrase:': '*.'
+      register: passphrase_prompts
       changed_when: false
-      check_mode: false
-      register: nouser_files
+      ignore_errors: true
       loop: '{{ nouser_files.stdout_lines }}'
-
+    - name: Verify all the ssh keys prompted for a passphrase
+      ansible.builtin.assert:
+        that:
+          "'Enter passphrase' in item.stdout"
+        sucess_msg: "The private ssh key has a passphrase"
+        fail_msg: "A private ssh key is does not have a passphrase set. Set it with ssh-keygen -n [passphrase]"
+      loop: '{{ passphrase_prompts.results }}'
   when:
     - toss_04_010020 | bool
   tags:
@@ -36,3 +45,4 @@
     - CCI-000186
     - isso_documented
     - pki_authentication
+    - manual
