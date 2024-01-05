@@ -24,7 +24,7 @@
           'Enter Passphrase:': '*.'
       register: passphrase_prompts
       changed_when: false
-      ignore_errors: true
+      failed_when: false
       loop: '{{ nouser_files.stdout_lines }}'
     - name: Verify all the ssh keys prompted for a passphrase
       ansible.builtin.assert:
