@@ -30,8 +30,9 @@
       ansible.builtin.assert:
         that:
           "'Enter passphrase' in item.stdout"
-        success_msg: "The private ssh key has a passphrase"
-        fail_msg: "A private ssh key is does not have a passphrase set. Set it with ssh-keygen -n [passphrase]"
+        success_msg: "{{ item.item }} has a passphrase"
+        fail_msg: "{{ item.item }} does not have a passphrase set. Create a new rivate and public key pair that utilizes a passcode with the following command: ssh-keygen -n [passphrase]"
+        quiet: true
       loop: '{{ passphrase_prompts.results }}'
   when:
     - toss_04_010020 | bool
