@@ -1,0 +1,50 @@
+# https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252913
+
+# Verify the operating system, for PKI-based authentication, enforces
+# authorized access to the corresponding private key. If the system does not allow
+# PKI authentication, this requirement is Not Applicable. Verify the SSH private
+# key files have a passphrase. For each private key stored on the system, use the
+# following command: $ sudo ssh-keygen -y -f /path/to/file If the contents of the
+# key are displayed, and use of un-passphrased SSH keys is not documented with the
+# Information System Security Officer (ISSO), this is a finding.
+
+
+- name: TOSS-04-010020 - TOSS, for PKI-based authentication, must enforce authorized access to the corresponding private key.
+  block:
+    - name: Find all private ssh key files
+      ansible.builtin.command: 'find / -xdev -type f -regex ".*/id_[a-z0-9]*[^\.pub]$"'
+      changed_when: false
+      check_mode: false
+      register: nouser_files
+      failed_when: "nouser_files.rc not in [0,1]"
+    - name: Check if the ssh key files have passphrases set
+      ansible.builtin.expect:
+        command: 'ssh-keygen -y -f {{ item }}'
+        responses:
+          'Enter Passphrase:': '*.'
+      register: passphrase_prompts
+      changed_when: false
+      failed_when: false
+      loop: '{{ nouser_files.stdout_lines }}'
+    - name: Verify all the ssh keys prompted for a passphrase
+      ansible.builtin.assert:
+        that:
+          "'Enter passphrase' in item.stdout"
+        success_msg: "{{ item.item }} has a passphrase"
+        fail_msg: "{{ item.item }} does not have a passphrase set. Create a new rivate and public key pair that utilizes a passcode with the following command: ssh-keygen -n [passphrase]"
+        quiet: true
+      loop: '{{ passphrase_prompts.results }}'
+  when:
+    - toss_04_010020 | bool
+  tags:
+    - V-252913
+    - SRG-OS-000067-GPOS-00035
+    - SV-252913r824063_rule
+    - TOSS-04-010020
+    - DISA-STIG-TOSS-04-010020
+    - medium_severity
+    - CCI-000186
+    - isso_documented
+    - pki_authentication
+    - manual
+    - hpc_issue
