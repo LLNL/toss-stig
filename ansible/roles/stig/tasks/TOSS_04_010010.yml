@@ -16,7 +16,19 @@
 
 
 - name: TOSS-04-010010 - TOSS, for PKI-based authentication, must validate certificates by constructing a certification path (which includes status information) to an accepted trust anchor.
-  # TODO: Implement the task
+  block:
+    - name: TOSS-04-010010 - Check that the system has a DoD issued root CA installed
+      ansible.builtin.command: "openssl x509 -issuer -in /etc/sssd/pki/sssd_auth_ca_db.pem"
+      register: certificate_issuer
+      check_mode: false
+      changed_when: false
+      failed_when: certificate_issuer.rc != 0 or 'OU = DoD' not in certificate_issuer
+    - name: TOSS-04-010010 - Check that the root CA has not expired
+      ansible.builtin.command: "openssl x509 -checkend 0 -in /etc/sssd/pki/sssd_auth_ca_db.pem"
+      register: certificate_expiration
+      check_mode: false
+      changed_when: false
+      failed_when: certificate_expiration.rc != 0
   when:
     - toss_04_010010 | bool
   tags:
