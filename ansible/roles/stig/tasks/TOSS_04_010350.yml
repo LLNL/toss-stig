@@ -15,10 +15,11 @@
       check_mode: false
 
     - name: Verify Only Root Has UID 0
-      ansible.builtin.fail:
-        msg: "Another account has been found to have uid 0 in /etc/passwd besides root."
-      when:
-        - uidzero.stdout_lines is defined and uidzero.stdout_lines | length > 0
+      ansible.builtin.assert:
+        that:
+          - uidzero.stdout_lines | length == 0
+        fail_msg: "Another account has been found to have uid 0 in /etc/passwd besides root."
+        quiet: true
 
   when:
     - toss_04_010350 | bool

@@ -28,9 +28,11 @@
       when: home_dirs.rc == 1
       loop: '{{ home_dirs.stderr_lines }}'
     - name: Check that there aren't any missing home directories
-      ansible.builtin.fail:
-        msg: "There is at least interactive user whose home directory doesn't exist"
-      when: home_dirs.rc == 1
+      ansible.builtin.assert:
+        that:
+          - home_dirs.rc == 0
+        fail_msg: "There is at least interactive user whose home directory doesn't exist"
+        quiet: true
   when:
     - toss_04_020230 | bool
   tags:

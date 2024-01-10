@@ -25,9 +25,11 @@
       when: execute_bit_flag.rc == 1
       changed_when: false
     - name: Check that both flags are set
-      ansible.builtin.fail:
-        msg: "The NX bit execute protection is not set and must be enabled in the system BIOS"
-      when: execute_bit_flag.rc == 1 and cpuinfo_settings.rc == 1
+      ansible.builtin.assert:
+        that:
+          - execute_bit_flag.rc == 0 or cpuinfo_settings.rc == 0
+        fail_msg: "The NX bit execute protection is not set and must be enabled in the system BIOS"
+        quiet: true
   when:
     - toss_04_040490 | bool
   tags:

@@ -29,9 +29,12 @@
       register: resolv_stat
       when: dns_entry.rc != 0
     - name: Verify that "/etc/resolv.conf" is empty
-      ansible.builtin.fail:
-        msg: "If local host authentication is being used, the /etc/resolv.conf file must be emtpy"
-      when: dns_entry.rc != 0 and resolv_stat.stat.size > 0
+      ansible.builtin.assert:
+        that:
+          - resolv_stat.stat.size == 0
+        fail_msg: "If local host authentication is being used, the /etc/resolv.conf file must be emtpy"
+        quiet: true
+      when: dns_entry.rc != 0
     - name: Verify the operating system is configured to use two or more name servers for DNS resolution
       ansible.builtin.command: "grep '^nameserver' /etc/resolv.conf"
       register: num_name_servers
@@ -40,9 +43,12 @@
       failed_when: dns_entry.rc not in [0,1]
       when: dns_entry.rc == 0
     - name: Check that there are at least two name servers for DNS resolution
-      ansible.builtin.fail:
-        msg: "Configure the operating system to use two or more name servers for DNS resolution"
-      when: num_name_servers.stdout is defined and num_name_servers.stdout | length < 2
+      ansible.builtin.assert:
+        that:
+          - num_name_servers.stdout is defined
+          - num_name_servers.stdout | length >= 2
+        fail_msg: "Configure the operating system to use two or more name servers for DNS resolution"
+        quiet: true
   when:
     - toss_04_010330 | bool
   tags:
