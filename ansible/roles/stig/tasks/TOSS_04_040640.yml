@@ -24,6 +24,7 @@
         line: DIR = p+i+n+u+g+acl+selinux+xattrs
         state: present
         mode: '600'
+        create: true
     - name: TOSS-04-040640 - The TOSS file integrity tool must be configured to verify extended attributes. Check NORMAL.
       ansible.builtin.lineinfile:
         path: /etc/aide/aide.conf
@@ -31,6 +32,7 @@
         line: NORMAL = p+i+n+u+g+s+m+c+acl+selinux+xattrs+sha512
         state: present
         mode: '600'
+        create: true
   when:
     - toss_04_040640 | bool
   tags:
