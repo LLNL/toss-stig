@@ -14,23 +14,29 @@
 
 - name: TOSS-04-020230 - All TOSS local interactive users must have a home directory assigned in the /etc/passwd file.
   block:
-    - name: Verify the integrity of the /etc/passwd file
-      ansible.builtin.command: "pwck -r"
-      failed_when: false
-      changed_when: false
-      check_mode: false
-      register: passwd_check
-    - name: Check if the users are local interactive users
-      ansible.builtin.command: "awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/){print $1}' /etc/passwd"
-      changed_when: false
-      check_mode: false
-      register: local_interactive_users
-    - name: Display any local interactive users without home directories
-      ansible.builtin.debug:
-        var: item
-      when: item.split().0 == "user" and item.split().1[1:-2] in local_interactive_users.stdout
-      # Only check output lines that are flagging a user without a directory, and parse out the '' surrounding the username"
-      loop: '{{ passwd_check.stdout_lines }}'
+    - name: Get all /etc/passwd file entries
+      ansible.builtin.getent:
+        database: passwd
+        split: ':'
+    - name: Create local_users variable from the getent output
+      ansible.builtin.set_fact:
+        local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
+    - name: Gather the home directories of local, interactive users
+      ansible.builtin.stat:
+        path: '{{ item.value.4 }}'
+      register: home_dirs
+      loop: '{{ local_users }}'
+      when:
+        - item.value.1 | int >= 1000 and '/nologin' not in item.value.5 and '/false' not in item.value.5
+    - name: Verify that all interactive users have a home directory. Users without a home directory might not be enabled and can be set as noninteractive (login shell set to /bin/false)
+      ansible.builtin.user:
+        name: '{{ item.item.key }}'
+        shell: /bin/false
+      check_mode: true
+      loop: '{{ home_dirs.results }}'
+      when:
+        - "item.stat is defined"
+        - "not item.stat.exists"
   when:
     - toss_04_020230 | bool
   tags:
