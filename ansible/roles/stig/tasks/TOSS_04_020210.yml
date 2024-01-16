@@ -22,7 +22,7 @@
       changed_when: false
       failed_when: home_dirs.rc not in [0,1]
       check_mode: false
-    - name: Set the owner of the local interactive user's home directory
+    - name: Set the group of the local interactive user's home directory
       ansible.builtin.file:
         path: '{{ item.split().1 }}'
         group: '{{ item.split().2 }}'
