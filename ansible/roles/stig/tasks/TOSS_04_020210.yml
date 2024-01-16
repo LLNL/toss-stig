@@ -27,7 +27,8 @@
         path: '{{ item.split().1 }}'
         group: '{{ item.split().2 }}'
       loop: '{{ home_dirs.stdout_lines }}'
-      failed_when: false
+      failed_when: false # This was include to ignore home directories that aren't mounted, but are in /etc/passwd
+                         # Functionally the same as "ignore_errors: true", but will mark the missing home dirs as ok instead of failed, which seemed clearer to me since that is expected behavior
   when:
     - not toss_04_020320 | bool
     - toss_04_020210 | bool
