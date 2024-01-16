@@ -13,8 +13,8 @@ inactivity_timeout_value: '900'
 user_umask: '077'
 pass_max_days: '60'
 pass_min_days: '1'
-pwquality_difok: '15'
-pwquality_minlen: '8'
+pwquality_difok: '8'
+pwquality_minlen: '15'
 pwquality_retry: '3'
 pwquality_ocredit: '-1'
 pwhistory_remember: '24'
@@ -45,6 +45,7 @@ controls:
   - toss_04_010060
   - toss_04_010070
   - toss_04_010080
+  - toss_04_010090
   - toss_04_010100
   - toss_04_010110
   - toss_04_010120
@@ -52,6 +53,7 @@ controls:
   - toss_04_010150
   - toss_04_010160
   - toss_04_010170
+  - toss_04_010180
   - toss_04_010210
   - toss_04_010220
   - toss_04_010230
@@ -83,18 +85,23 @@ controls:
   - toss_04_020170
   - toss_04_020180
   - toss_04_020190
+  - toss_04_020200
   - toss_04_020210
   - toss_04_020230
   - toss_04_020240
   - toss_04_020250
   - toss_04_020260
+  - toss_04_020270
   - toss_04_020280
+  - toss_04_020290
   - toss_04_020300
   - toss_04_020310
   - toss_04_020320
   - toss_04_030000
   - toss_04_030010
   - toss_04_030060
+  - toss_04_030080
+  - toss_04_030090
   - toss_04_030120
   - toss_04_030130
   - toss_04_030140
@@ -126,6 +133,7 @@ controls:
   - toss_04_030510
   - toss_04_030520
   - toss_04_030540
+  - toss_04_030550
   - toss_04_030560
   - toss_04_030570
   - toss_04_030580
@@ -181,10 +189,17 @@ controls:
   - toss_04_040060
   - toss_04_040070
   - toss_04_040080
+  - toss_04_040090
   - toss_04_040100
+  - toss_04_040110
+  - toss_04_040120
   - toss_04_040130
   - toss_04_040140
   - toss_04_040150
+  - toss_04_040160
+  - toss_04_040170
+  - toss_04_040180
+  - toss_04_040190
   - toss_04_040200
   - toss_04_040210
   - toss_04_040220
@@ -204,17 +219,27 @@ controls:
   - toss_04_040440
   - toss_04_040480
   - toss_04_040490
+  - toss_04_040500
+  - toss_04_040510
   - toss_04_040540
+  - toss_04_040550
   - toss_04_040560
   - toss_04_040570
   - toss_04_040580
   - toss_04_040590
   - toss_04_040600
   - toss_04_040610
+  - toss_04_040630
+  - toss_04_040640
+  - toss_04_040650
+  - toss_04_040660
+  - toss_04_040670
   - toss_04_040680
   - toss_04_040690
   - toss_04_040700
   - toss_04_040710
+  - toss_04_040720
+  - toss_04_040730
   - toss_04_040740
   - toss_04_040750
   - toss_04_040760
@@ -232,7 +257,12 @@ controls:
   - toss_04_040880
   - toss_04_040890
   - toss_04_040900
+  - toss_04_040910
+  - toss_04_040920
+  - toss_04_040930
   - toss_04_040940
+  - toss_04_040950
+  - toss_04_040960
 
 # Booleans that control which controls are run
 # Generate with:

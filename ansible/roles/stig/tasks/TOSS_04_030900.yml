@@ -18,9 +18,11 @@
       failed_when: remote_logging.rc not in [0,1]
       register: remote_logging
     - name: Check if there is a remote server configured
-      ansible.builtin.fail:
-        msg: "Audit logs are not being offoaded to a remote server via rsyslog, ask the System Administrator if logs are being offloaded a different way."
-      when: remote_logging.rc != 0
+      ansible.builtin.assert:
+        that:
+          - remote_logging.rc == 0
+        fail_msg: "Audit logs are not being offoaded to a remote server via rsyslog, ask the System Administrator if logs are being offloaded a different way."
+        quiet: true
 
   when:
     - toss_04_030900 | bool

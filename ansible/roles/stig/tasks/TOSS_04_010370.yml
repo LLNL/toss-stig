@@ -18,10 +18,11 @@
       register: shost_files
 
     - name: Verify there are no .shosts files on the host
-      ansible.builtin.fail:
-        msg: "There should be no `*.shosts` files on the system"
-      when:
-        - shost_files.stdout_lines is defined and shost_files.stdout_lines | length > 0
+      ansible.builtin.assert:
+        that:
+          - shost_files.matched == 0
+        fail_msg: "There should be no `*.shosts` files on the system"
+        quiet: true
 
   when:
     - toss_04_010370 | bool

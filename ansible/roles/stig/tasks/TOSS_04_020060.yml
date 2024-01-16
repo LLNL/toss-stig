@@ -21,9 +21,11 @@
         verbosity: 1
       when: all_dupe_uuid.stdout_lines | length > 0
     - name: Fail if there are duplicates
-      ansible.builtin.fail:
-        msg: "The above user(s) have the same UID as another user."
-      when: all_dupe_uuid.stdout_lines | length > 0
+      ansible.builtin.assert:
+        that:
+          - all_dupe_uuid.stdout_lines | length == 0
+        fail_msg: "The above user(s) have the same UID as another user."
+        quiet: true
   when:
     - toss_04_020060 | bool
   tags:

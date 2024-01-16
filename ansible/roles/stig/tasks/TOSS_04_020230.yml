@@ -14,23 +14,25 @@
 
 - name: TOSS-04-020230 - All TOSS local interactive users must have a home directory assigned in the /etc/passwd file.
   block:
-    - name: Verify the integrity of the /etc/passwd file
-      ansible.builtin.command: "pwck -r"
-      failed_when: false
+    - name: Find all local interactive users' home directory
+      ansible.builtin.shell:
+        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/){print $6}' /etc/passwd) -xdev -maxdepth 0"
       changed_when: false
       check_mode: false
-      register: passwd_check
-    - name: Check if the users are local interactive users
-      ansible.builtin.command: "awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/){print $1}' /etc/passwd"
-      changed_when: false
-      check_mode: false
-      register: local_interactive_users
+      failed_when: home_dirs.rc not in [0,1]
+      register: home_dirs
     - name: Display any local interactive users without home directories
       ansible.builtin.debug:
         var: item
-      when: item.split().0 == "user" and item.split().1[1:-2] in local_interactive_users.stdout
-      # Only check output lines that are flagging a user without a directory, and parse out the '' surrounding the username"
-      loop: '{{ passwd_check.stdout_lines }}'
+        verbosity: 1
+      when: home_dirs.rc == 1
+      loop: '{{ home_dirs.stderr_lines }}'
+    - name: Check that there aren't any missing home directories
+      ansible.builtin.assert:
+        that:
+          - home_dirs.rc == 0
+        fail_msg: "There is at least interactive user whose home directory doesn't exist"
+        quiet: true
   when:
     - toss_04_020230 | bool
   tags:

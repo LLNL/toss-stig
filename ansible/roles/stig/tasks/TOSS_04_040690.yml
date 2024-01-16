@@ -17,13 +17,12 @@
       changed_when: false
       check_mode: false
       register: toss_version
-    - name: Get current date
-      ansible.builtin.set_fact:
-        curr_date: "{{ now() }}"
     - name: Check if the current version is supported
-      ansible.builtin.fail:
-        msg: "TOSS {{ toss_version.stdout }}, is no longer supported. See https://hpc.llnl.gov/toss for supported versions"
-      when: now() > (toss_end_of_support[toss_version.stdout] | to_datetime)
+      ansible.builtin.assert:
+        that:
+          - now() < (toss_end_of_support[toss_version.stdout] | to_datetime)
+        fail_msg: "TOSS {{ toss_version.stdout }}, is no longer supported. See https://hpc.llnl.gov/toss for supported versions"
+        quiet: true
   when:
     - toss_04_040690 | bool
   tags:
