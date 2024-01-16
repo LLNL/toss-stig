@@ -27,7 +27,7 @@
       register: home_dirs
       loop: '{{ local_users }}'
       when:
-        - item.value.1 | int >= 1000 and '/nologin' not in item.value.5 and '/false' not in item.value.5
+        - item.value.1 | int >= 1000 and '/nologin' not in item.value.5 and '/false' not in item.value.5 and '/dev/null' not in item.value.5
         # item.value.1 is the UID                      and item.value.5 is the user's login script
     - name: Verify that all interactive users have a home directory. Users without a home directory might not be enabled and can be set as noninteractive (login shell set to /bin/false)
       ansible.builtin.user:
