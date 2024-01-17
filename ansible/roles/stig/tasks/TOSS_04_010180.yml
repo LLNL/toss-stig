@@ -20,7 +20,7 @@
       ansible.builtin.lineinfile:
         path: /etc/chrony/chrony.conf
         create: true
-        regexp: maxpoll 16
+        regexp: server ntp2.usno.navy.mil iburst maxpoll 16
         line: server tick.usno.navy.mil iburst maxpoll 16
         state: present
         mode: '600'

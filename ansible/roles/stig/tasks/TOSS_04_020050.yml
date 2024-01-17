@@ -22,9 +22,9 @@
         value: "{{ item.value }}"
         mode: '0600'
       loop: # TODO: need to find how SysAdmins want ccertificates mapped
-        - { option: '^matchrule', value: ''}
-        - { option: '^maprule', value: ''}
-        - { option: '^domains', value: ''}
+        - { option: 'matchrule', value: ''}
+        - { option: 'maprule', value: ''}
+        - { option: 'domains', value: ''}
       register: result
   when:
     - toss_04_020050 | bool
