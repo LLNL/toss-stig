@@ -25,7 +25,7 @@
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         regexp: ^[\s]*Defaults\s(.*)\btimestamp_timeout[\s]*=[\s]*[-]?\w+\b(.*)$
-        line: Defaults \1timestamp_timeout={{ var_sudo_timestamp_timeout }}\2
+        line: Defaults \1timestamp_timeout = {{ var_sudo_timestamp_timeout }}\2
         validate: /usr/sbin/visudo -cf %s
         backrefs: true
       register: edit_sudoers_timestamp_timeout_option

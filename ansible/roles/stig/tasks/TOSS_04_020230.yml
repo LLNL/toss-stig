@@ -14,25 +14,30 @@
 
 - name: TOSS-04-020230 - All TOSS local interactive users must have a home directory assigned in the /etc/passwd file.
   block:
-    - name: Find all local interactive users' home directory
-      ansible.builtin.shell:
-        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/){print $6}' /etc/passwd) -xdev -maxdepth 0"
-      changed_when: false
-      check_mode: false
-      failed_when: home_dirs.rc not in [0,1]
+    - name: Get all /etc/passwd file entries
+      ansible.builtin.getent:
+        database: passwd
+        split: ':'
+    - name: Create local_users variable from the getent output
+      ansible.builtin.set_fact:
+        local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
+    - name: Gather the home directories of local, interactive users
+      ansible.builtin.stat:
+        path: '{{ item.value.4 }}' # The path to the interactive user's home directory, ex: /g/g0/defrates
       register: home_dirs
-    - name: Display any local interactive users without home directories
-      ansible.builtin.debug:
-        var: item
-        verbosity: 1
-      when: home_dirs.rc == 1
-      loop: '{{ home_dirs.stderr_lines }}'
-    - name: Check that there aren't any missing home directories
-      ansible.builtin.assert:
-        that:
-          - home_dirs.rc == 0
-        fail_msg: "There is at least interactive user whose home directory doesn't exist"
-        quiet: true
+      loop: '{{ local_users }}'
+      when:
+        - item.value.1 | int >= 1000 and '/nologin' not in item.value.5 and '/false' not in item.value.5 and '/dev/null' not in item.value.5
+        # item.value.1 is the UID                      and item.value.5 is the user's login script
+    - name: Verify that all interactive users have a home directory. Users without a home directory might not be enabled and can be set as noninteractive (login shell set to /bin/false)
+      ansible.builtin.user:
+        name: '{{ item.item.key }}'
+        shell: /bin/false
+      check_mode: true
+      loop: '{{ home_dirs.results }}'
+      when:
+        - "item.stat is defined"
+        - "not item.stat.exists"
   when:
     - toss_04_020230 | bool
   tags:

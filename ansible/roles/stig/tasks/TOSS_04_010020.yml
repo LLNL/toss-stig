@@ -22,6 +22,7 @@
         command: 'ssh-keygen -y -f {{ item }}'
         responses:
           'Enter Passphrase:': '*.'
+      check_mode: false
       register: passphrase_prompts
       changed_when: false
       failed_when: false
