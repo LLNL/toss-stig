@@ -18,7 +18,7 @@
       check_mode: false
       register: wifi_devices
     - name: Disable all wireless network interfaces
-      ansible.buitlin.command: "nmcli radio all off"
+      command: "nmcli radio all off"
       changed_when: false
       when: "'wifi' in wifi_devices.stdout"
   when:
