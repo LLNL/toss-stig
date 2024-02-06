@@ -49,3 +49,4 @@
     - medium_severity
     - CCI-000366
     - hpc_issue
+    - user_permissions
