@@ -1,0 +1,3 @@
+# This file contains ignores rule violations for ansible-lint
+ansible/roles/stig/tasks/TOSS_04_020060.yml fqcn[action-core]
+ansible/roles/stig/tasks/TOSS_04_020160.yml fqcn[action-core]
