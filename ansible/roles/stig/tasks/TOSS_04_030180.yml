@@ -9,7 +9,6 @@
 - name: TOSS-04-030180 - The TOSS audit system must protect auditing rules from unauthorized change.
   ansible.builtin.lineinfile:
     path: /etc/audit/rules.d/audit.rules
-    regexp: ^\s*[^#]
     line: -e 2
   notify: Build auditd rules
   when:
