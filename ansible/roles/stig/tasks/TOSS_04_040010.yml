@@ -48,7 +48,7 @@
     - name: 'Configure'
       ansible.builtin.lineinfile:
         path: /etc/rsyslog.conf
-        regexp: '{{ item.item.0.selector }} .*\/var\/log\/secure.*$'
+        regexp: '{{ item.item.0.regexp }} .*\/var\/log\/secure.*$'
         line: '{{ item.item.0.selector }} /var/log/secure'
         insertafter: ^.*\/var\/log\/secure.*$
         create: true
