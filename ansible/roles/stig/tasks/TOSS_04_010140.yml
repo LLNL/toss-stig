@@ -41,6 +41,7 @@
       check_mode: false
     - name: Configure the TOSS SSH daemon to use only ciphers employing FIPS 140-2-approved algorithms
       ansible.builtin.command: fips-mode-setup --enable
+      changed_when: false
       register: fips_setup_output
     - name: 'Set crypto policy in opensshserver.config'
       ansible.builtin.replace:
