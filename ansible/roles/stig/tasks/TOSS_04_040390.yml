@@ -35,7 +35,7 @@
         regexp: (?i)^\s*overflow_action\s*=\s*
         line: overflow_action = syslog
         state: present
-        mode: '0644'
+        mode: '0640'
   when:
     - toss_04_040390 | bool
   tags:
