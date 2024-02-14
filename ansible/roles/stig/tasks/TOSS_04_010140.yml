@@ -47,7 +47,7 @@
       ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/opensshserver.config
         regexp: '^#?CRYPTO_POLICY=\S+'
-        replace: "CRYPTO_POLICY='-oCiphers={{ sshd_approved_ciphers }}'"
+        replace: "CRYPTO_POLICY='-oCiphers={{ sshd_approved_ciphers }}"
     - name: 'Set crypto policy in openssh.config'
       ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/openssh.config
