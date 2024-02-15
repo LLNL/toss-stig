@@ -7,10 +7,23 @@
 
 
 - name: TOSS-04-030180 - The TOSS audit system must protect auditing rules from unauthorized change.
-  ansible.builtin.lineinfile:
-    path: /etc/audit/rules.d/audit.rules
-    line: -e 2
-  notify: Build auditd rules
+  block:
+    - name: Check if '-e 2' is present to make the audit system immutable
+      ansible.builtin.lineinfile:
+        path: /etc/audit/rules.d/audit.rules
+        line: -e 2
+      check_mode: true # This change will cause lc-ansible-pull to fail, keep this in check mode for now
+      register: audit_rules
+    - name: Verify that the audit system is immutable
+      ansible.builtin.assert:
+        that:
+          - audit_rules.changed == false
+        fail_msg: |
+          Configure the audit system to set the audit rules to be immutable by adding the following line to the end of '/etc/audit/rules.d/audit.rules':
+          -e 2\n
+          Note: Once set, the system must be rebooted for auditing to be changed.
+          Waring: Adding this in will cause lc-ansible-pull to fail.
+        quiet: true
   when:
     - toss_04_030180 | bool
   tags:
