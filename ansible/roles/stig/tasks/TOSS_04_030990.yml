@@ -13,19 +13,19 @@
 - name: TOSS-04-030990 - The TOSS audit system must be configured to audit any usage of the "fsetxattr" system call.
   block:
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
       notify: Build auditd rules
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
       notify: Build auditd rules
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S fsetxattr -F auid=0 -k perm_mod
       notify: Build auditd rules
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S fsetxattr -F auid=0 -k perm_mod
       notify: Build auditd rules
   when:

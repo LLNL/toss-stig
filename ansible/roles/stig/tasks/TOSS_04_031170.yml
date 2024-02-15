@@ -12,11 +12,11 @@
 - name: TOSS-04-031170 - Successful/unsuccessful uses of the "mount" syscall in TOSS must generate an audit record.
   block:
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=unset -k privileged
       notify: Build auditd rules
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=unset -k privileged
       notify: Build auditd rules
   when:
