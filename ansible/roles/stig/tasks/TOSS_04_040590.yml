@@ -33,6 +33,7 @@
         path: /etc/rsyslog.conf
         line: "cron.* /var/log/cron"
       when: varlog_output.skipped is not defined and varlog_output.rc != 0 and cron_output.rc != 0
+      notify: Restart rsyslog
   when:
     - toss_04_040590 | bool
   tags:
