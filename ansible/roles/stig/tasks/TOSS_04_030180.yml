@@ -13,7 +13,7 @@
         path: /etc/audit/rules.d/audit.rules
         line: -e 2
       register: audit_rules
-    notify: Build auditd rules
+      notify: Build auditd rules
   when:
     - toss_04_030180 | bool
   tags:
@@ -26,4 +26,3 @@
     - CCI-000162
     - CCI-000163
     - CCI-000164
-    - manual
