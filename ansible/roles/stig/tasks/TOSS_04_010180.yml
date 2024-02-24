@@ -24,9 +24,11 @@
         line: server tick.usno.navy.mil iburst maxpoll 16
         state: present
         mode: '600'
+        firstmatch: true
+        backrefs: true
     - name: TOSS-04-010180 - Check time source - tick.usno.navy.mil
       ansible.builtin.lineinfile:
-        path: /etc/chrony/chrony.conf
+        path: /etc/chrony.conf
         create: true
         regexp: server tick.usno.navy.mil iburst maxpoll 16
         line: server tick.usno.navy.mil iburst maxpoll 16
@@ -34,7 +36,7 @@
         mode: '600'
     - name: TOSS-04-010180 - Check time source - tock.usno.navy.mil
       ansible.builtin.lineinfile:
-        path: /etc/chrony/chrony.conf
+        path: /etc/chrony.conf
         create: true
         regexp: server tock.usno.navy.mil iburst maxpoll 16
         line: server tock.usno.navy.mil iburst maxpoll 16
@@ -42,7 +44,7 @@
         mode: '600'
     - name: TOSS-04-010180 - Check time source - ntp2.usno.navy.mil
       ansible.builtin.lineinfile:
-        path: /etc/chrony/chrony.conf
+        path: /etc/chrony.conf
         create: true
         regexp: server ntp2.usno.navy.mil iburst maxpoll 16
         line: server ntp2.usno.navy.mil iburst maxpoll 16

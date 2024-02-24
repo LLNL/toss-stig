@@ -9,7 +9,7 @@
 
 - name: TOSS-04-031130 - Successful/unsuccessful modifications to the "lastlog" file in TOSS must generate an audit record.
   ansible.builtin.lineinfile:
-    path: /etc/audit/audit.rules
+    path: /etc/audit/rules.d/audit.rules
     line: -w /var/log/lastlog -p wa -k logins
   notify: Build auditd rules
   when:

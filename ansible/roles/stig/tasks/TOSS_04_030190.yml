@@ -9,7 +9,7 @@
 
 - name: TOSS-04-030190 - The TOSS audit system must protect logon UIDs from unauthorized change.
   ansible.builtin.lineinfile:
-    path: /etc/audit/audit.rules
+    path: /etc/audit/rules.d/audit.rules
     regexp: ^\s*--loginuid-immutable\s*$
     line: --loginuid-immutable
   notify: Build auditd rules

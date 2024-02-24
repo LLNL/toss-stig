@@ -10,7 +10,7 @@
 
 - name: TOSS-04-031180 - Successful/unsuccessful uses of the "su" command in TOSS must generate an audit record.
   ansible.builtin.lineinfile:
-    path: /etc/audit/audit.rules
+    path: /etc/audit/rules.d/audit.rules
     line: -a always,exit -F path=/usr/bin/su -F perm=x -F auid>=1000 -F auid!=unset -k privileged
   notify: Build auditd rules
   when:

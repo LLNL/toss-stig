@@ -11,6 +11,7 @@
     path: /etc/firewalld/firewalld.conf
     regexp: '^#?FirewallBackend'
     line: 'FirewallBackend=nftables'
+  notify: Reload firewall
   when:
     - toss_04_040480 | bool
   tags:

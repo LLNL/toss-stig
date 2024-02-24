@@ -27,8 +27,10 @@
       changed_when: false
     - name: Enable FIPS mode
       ansible.builtin.command: /usr/bin/fips-mode-setup --enable
+      # Note: Running this command will create a symlink from opensshserver.config and openssh.config to other files,  making permission look like '0777' to ansible's checks
+      changed_when: fips_setup_output.rc is defined
       when: is_fips_enabled.stdout.find('FIPS mode is enabled.') == -1
-      changed_when: false
+      register: fips_setup_output
     - name: Check to see if the kernel boot parameter is configured for FIPS mode
       ansible.builtin.command: grub2-editenv list
       register: boot_param

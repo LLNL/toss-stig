@@ -11,7 +11,7 @@
 
 - name: TOSS-04-030400 - Successful/unsuccessful uses of the "pam_timestamp_check" command in TOSS must generate an audit record.
   ansible.builtin.lineinfile:
-    path: /etc/audit/audit.rules
+    path: /etc/audit/rules.d/audit.rules
     line: -a always,exit -F path=/usr/sbin/pam_timestamp_check -F perm=x -F auid>=1000 -F auid!=unset -k privileged-pam_timestamp_check
   notify: Build auditd rules
   when:

@@ -20,9 +20,17 @@
         line: ".include /etc/crypto-policies/back-ends/opensslcnf.config"
         mode: '0644'
         create: true
+    - name: Check which system-wide crypto policy is in use
+      ansible.builtin.command: update-crypto-policies --show
+      register: crypto_policy_output
+      changed_when: false
+      check_mode: false
     - name: Configure the TOSS OpenSSL library to use only ciphers employing FIPS 140-2-approved algorithms
       ansible.builtin.command: fips-mode-setup --enable
-      changed_when: false
+      # Note: Running this command will create a symlink from opensshserver.config and openssh.config to other files,  making permission look like '0777' to ansible's checks
+      changed_when: fips_setup_output.rc is defined
+      register: fips_setup_output
+      when: "'FIPS' not in crypto_policy_output.stdout"
   when:
     - toss_04_040440 | bool
   tags:

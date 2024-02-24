@@ -12,12 +12,12 @@
   block:
     - name: Get all local users from /etc/passwd, ignoring any errors from directories that don't exist on this system
       ansible.builtin.shell:
-        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/)&&($7 !~ /null){print $6}' /etc/passwd) -xdev -maxdepth 0 -perm /007 2> /dev/null"
+        cmd: "find $(awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/)&&($7 !~ /null/){print $6}' /etc/passwd) -xdev -maxdepth 0 -perm /007 2> /dev/null"
       register: local_users
       changed_when: false
       failed_when: local_users.rc not in [0,1]
       check_mode: false
-    - name: Ensure interactive local users have proper permissions on their respective home directories
+    - name: Ensure interactive local users have 0770 or less permissive on their respective home directories
       ansible.builtin.file:
         path: '{{ item }}'
         mode: '770'
@@ -35,3 +35,4 @@
     - medium_severity
     - CCI-000366
     - DISA-STIG-RHEL-08-010730
+    - user_permissions

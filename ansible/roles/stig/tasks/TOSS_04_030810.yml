@@ -10,7 +10,7 @@
 
 - name: TOSS-04-030810 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect "/etc/passwd".
   ansible.builtin.lineinfile:
-    path: /etc/audit/audit.rules
+    path: /etc/audit/rules.d/audit.rules
     line: -w /etc/passwd -p wa -k identity
   notify: Build auditd rules
   when:

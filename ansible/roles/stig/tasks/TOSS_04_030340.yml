@@ -10,7 +10,7 @@
 
 - name: TOSS-04-030340 - Successful/unsuccessful uses of the "passwd" command in TOSS must generate an audit record.
   ansible.builtin.lineinfile:
-    path: /etc/audit/audit.rules
+    path: /etc/audit/rules.d/audit.rules
     line: -a always,exit -F path=/usr/bin/passwd -F perm=x -F auid>=1000 -F auid!=unset -k privileged-passwd
   notify: Build auditd rules
   when:

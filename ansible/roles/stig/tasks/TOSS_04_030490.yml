@@ -13,11 +13,11 @@
 - name: TOSS-04-030490 - Successful/unsuccessful uses of the "delete_module" command in TOSS must generate an audit record.
   block:
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=unset -k module_chng
       notify: Build auditd rules
     - ansible.builtin.lineinfile:
-        path: /etc/audit/audit.rules
+        path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=unset -k module_chng
       notify: Build auditd rules
   when:

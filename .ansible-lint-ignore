@@ -1,0 +1,6 @@
+# This file contains ignores rule violations for ansible-lint
+# See this conversation for why the below controls are being ignored
+# https://izlc.llnl.gov/gitlab/secops/security-baselines/toss-stig/-/merge_requests/1#note_56779
+# This can be removed if running ansible 2.10 or higher.
+ansible/roles/stig/tasks/TOSS_04_020060.yml fqcn[action-core]
+ansible/roles/stig/tasks/TOSS_04_020160.yml fqcn[action-core]

@@ -25,7 +25,7 @@
       register: lock_screen_output
       changed_when: false
     - name: Dconf Update
-      ansible.builtin.command: sudo dconf update
+      ansible.builtin.command: dconf update
       register: update_output
       changed_when: false # TODO: figure out what the output should be when sucessful
   when:
