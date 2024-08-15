@@ -11,11 +11,13 @@
 
 - name: TOSS-04-030420 - Successful/unsuccessful uses of the "init_module" command in TOSS must generate an audit record.
   block:
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-030420 - Successful/unsuccessful uses of "init_module" command, esp. arch=b32
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S init_module -F auid>=1000 -F auid!=unset -k module_chng
       notify: Build auditd rules
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-030420 - Successful/unsuccessful uses of "init_module" command, esp. arch=b64
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S init_module -F auid>=1000 -F auid!=unset -k module_chng
       notify: Build auditd rules

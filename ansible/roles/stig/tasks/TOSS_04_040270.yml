@@ -17,11 +17,11 @@
 
 - name: TOSS-04-040270 - TOSS must be configured to prohibit or restrict the use of functions, ports, protocols, and/or services, as defined in the PPSM CAL and vulnerability assessments.
   block:
-    - name: Gather information about active zones
+    - name: TOSS-04-040270 - Gather information about active zones
       ansible.posix.firewalld_info:
         active_zones: true
       register: result
-    - name: List all zones
+    - name: TOSS-04-040270 - List all zones
       ansible.builtin.debug:
         var: result.firewalld_info.zones
         verbosity: 1

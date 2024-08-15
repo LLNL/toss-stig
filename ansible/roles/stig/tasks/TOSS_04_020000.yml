@@ -14,13 +14,13 @@
 
 - name: TOSS-04-020000 - TOSS must enforce the limit of three consecutive invalid logon attempts by a user during a 15-minute time period.
   block:
-    - name: Ensure a maximum number of invalid login attempts
+    - name: TOSS-04-020000 - Ensure a maximum number of invalid login attempts
       ansible.builtin.lineinfile:
         path: /etc/security/faillock.conf
         regexp: ^\s*deny\s*=
         line: deny = {{ pam_faillock_deny }}
         state: present
-    - name: Ensure the auth fail time range is set correctly.
+    - name: TOSS-04-020000 - Ensure the auth fail time range is set correctly.
       ansible.builtin.lineinfile:
         path: /etc/security/faillock.conf
         regexp: ^\s*fail_interval\s*=

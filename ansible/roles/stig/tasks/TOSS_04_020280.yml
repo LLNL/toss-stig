@@ -17,14 +17,14 @@
 
 - name: TOSS-04-020280 - TOSS must not have unnecessary accounts.
   block:
-    - name: Get all /etc/passwd file entries
+    - name: TOSS-04-020280 - Get all /etc/passwd file entries
       ansible.builtin.getent:
         database: passwd
         split: ':'
-    - name: Create local_users variable from the getent output
+    - name: TOSS-04-020280 - Create local_users variable from the getent output
       ansible.builtin.set_fact:
         local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
-    - name: List all accounts
+    - name: TOSS-04-020280 - List all accounts
       ansible.builtin.debug:
         var: local_users
         verbosity: 1

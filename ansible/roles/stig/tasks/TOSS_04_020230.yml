@@ -14,14 +14,14 @@
 
 - name: TOSS-04-020230 - All TOSS local interactive users must have a home directory assigned in the /etc/passwd file.
   block:
-    - name: Get all /etc/passwd file entries
+    - name: TOSS-04-020230 - Get all /etc/passwd file entries
       ansible.builtin.getent:
         database: passwd
         split: ':'
-    - name: Create local_users variable from the getent output
+    - name: TOSS-04-020230 - Create local_users variable from the getent output
       ansible.builtin.set_fact:
         local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
-    - name: Gather the home directories of local, interactive users
+    - name: TOSS-04-020230 - Gather the home directories of local, interactive users
       ansible.builtin.stat:
         path: '{{ item.value.4 }}' # The path to the interactive user's home directory, ex: /g/g0/defrates
       register: home_dirs
@@ -29,7 +29,7 @@
       when:
         - item.value.1 | int >= 1000 and '/nologin' not in item.value.5 and '/false' not in item.value.5 and '/dev/null' not in item.value.5
         # item.value.1 is the UID                      and item.value.5 is the user's login script
-    - name: Verify that all interactive users have a home directory. Users without a home directory might not be enabled and can be set as noninteractive (login shell set to /bin/false)
+    - name: TOSS-04-020230 - Verify that all interactive users have a home directory. Users without a home directory might not be enabled and can be set as noninteractive (login shell set to /bin/false)
       ansible.builtin.user:
         name: '{{ item.item.key }}'
         shell: /bin/false

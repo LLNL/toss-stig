@@ -13,7 +13,7 @@
 
 - name: TOSS-04-040700 - TOSS must be configured to prevent unrestricted mail relaying.
   block:
-    - name: Check for duplicate values
+    - name: TOSS-04-040700 - Check for duplicate values
       ansible.builtin.lineinfile:
         path: /etc/postfix/main.cf
         create: false
@@ -22,14 +22,14 @@
       check_mode: true
       changed_when: false
       register: dupes
-    - name: Deduplicate values from /etc/postfix/main.cf
+    - name: TOSS-04-040700 - Deduplicate values from /etc/postfix/main.cf
       ansible.builtin.lineinfile:
         path: /etc/postfix/main.cf
         create: false
         regexp: ^[ \t]*smtpd_client_restrictions\s*=\s*
         state: absent
       when: dupes.found is defined and dupes.found > 1
-    - name: Insert correct line to /etc/postfix/main.cf
+    - name: TOSS-04-040700 - Insert correct line to /etc/postfix/main.cf
       ansible.builtin.lineinfile:
         path: /etc/postfix/main.cf
         create: true

@@ -10,7 +10,7 @@
 
 - name: TOSS-04-020250 - TOSS must disable the user list at logon for graphical user interfaces.
   block:
-    - name: Disable the GNOME3 Login User List
+    - name: TOSS-04-020250 - Disable the GNOME3 Login User List
       community.general.ini_file:
         dest: /etc/dconf/db/local.d/02-login-screen
         section: org/gnome/login-screen
@@ -19,7 +19,7 @@
         no_extra_spaces: true
         create: true
         mode: '0644'
-    - name: Dconf Update
+    - name: TOSS-04-020250 - Dconf Update
       ansible.builtin.command: dconf update
       register: update_output
       changed_when: false

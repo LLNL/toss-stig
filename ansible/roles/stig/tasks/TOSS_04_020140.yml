@@ -11,20 +11,20 @@
 
 - name: TOSS-04-020140 - TOSS must automatically remove or disable emergency accounts after the crisis is resolved or 72 hours.
   block:
-    - name: Get all /etc/passwd file entries
+    - name: TOSS-04-020140 - Get all /etc/passwd file entries
       ansible.builtin.getent:
         database: passwd
         split: ':'
-    - name: Create local_users variable from the getent output
+    - name: TOSS-04-020140 - Create local_users variable from the getent output
       ansible.builtin.set_fact:
         local_users: '{{ ansible_facts.getent_passwd | dict2items }}'
-    - name: Get the password expiry information
+    - name: TOSS-04-020140 - Get the password expiry information
       ansible.builtin.command: "chage -l {{ item.key }}"
       check_mode: false
       changed_when: false
       register: password_expiry
       loop: "{{ local_users }}"
-    - name: List all accounts password expiry information. If one is a emergency account, configure the system to terminate the account after 72 hours
+    - name: TOSS-04-020140 - List all accounts password expiry information. If one is a emergency account, configure the system to terminate the account after 72 hours
       ansible.builtin.debug:
         var: password_expiry
         verbosity: 1

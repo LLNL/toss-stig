@@ -10,12 +10,12 @@
 
 - name: TOSS-04-020190 - TOSS must require users to provide a password for privilege escalation.
   block:
-    - name: Find /etc/sudoers.d/ files
+    - name: TOSS-04-020190 - Find /etc/sudoers.d/ files
       ansible.builtin.find:
         paths:
           - /etc/sudoers.d/
       register: sudoers
-    - name: Remove lines containing NOPASSWD from sudoers files
+    - name: TOSS-04-020190 - Remove lines containing NOPASSWD from sudoers files
       ansible.builtin.replace:
         regexp: (^(?!#).*[\s]+NOPASSWD[\s]*\:.*$)
         replace: '# \g<1>'

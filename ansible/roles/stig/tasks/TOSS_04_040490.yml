@@ -11,20 +11,20 @@
 
 - name: TOSS-04-040490 - TOSS must implement non-executable data to protect its memory from unauthorized code execution.
   block:
-    - name: Check that the no-execution bit flag is set
+    - name: TOSS-04-040490 - Check that the no-execution bit flag is set
       ansible.builtin.shell:
         cmd: 'set -o pipefail && dmesg | grep "NX (Execute Disable) protection: active"'
       register: execute_bit_flag
       failed_when: execute_bit_flag.rc not in [0, 1]
       changed_when: false
       check_mode: false
-    - name: Check the cpuinfo settings for the nx flag
+    - name: TOSS-04-040490 - Check the cpuinfo settings for the nx flag
       ansible.builtin.command: 'grep -i "flags\(\s\|\S\)\+nx" /proc/cpuinfo'
       register: cpuinfo_settings
       failed_when: cpuinfo_settings.rc not in [0, 1]
       when: execute_bit_flag.rc == 1
       changed_when: false
-    - name: Check that both flags are set
+    - name: TOSS-04-040490 - Check that both flags are set
       ansible.builtin.assert:
         that:
           - execute_bit_flag.rc == 0 or cpuinfo_settings.rc == 0

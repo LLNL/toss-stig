@@ -12,12 +12,12 @@
 
 - name: TOSS-04-020160 - TOSS must protect wireless access to the system using authentication of users and/or devices.
   block:
-    - name: Get all network devices
+    - name: TOSS-04-020160 - Get all network devices
       ansible.builtin.command: "nmcli device status"
       changed_when: false
       check_mode: false
       register: wifi_devices
-    - name: Disable all wireless network interfaces
+    - name: TOSS-04-020160 - Disable all wireless network interfaces
       command: "nmcli radio all off"
       changed_when: false
       when: "'wifi' in wifi_devices.stdout"

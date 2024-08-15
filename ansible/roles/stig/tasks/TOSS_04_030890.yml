@@ -21,30 +21,30 @@
 
 - name: TOSS-04-030890 - TOSS must allocate audit record storage capacity to store at least one week's worth of audit records, when audit records are not immediately sent to a central audit record storage facility.
   block:
-    - name: Determine to which partition the audit records are being written
+    - name: TOSS-04-030890 - Determine to which partition the audit records are being written
       ansible.builtin.command: "grep log_file /etc/audit/auditd.conf"
       changed_when: false
       check_mode: false
       failed_when: log_file.rc not in [0,1]
       register: log_file
-    - name: Get the size of the partition to which audit records are written
+    - name: TOSS-04-030890 - Get the size of the partition to which audit records are written
       ansible.builtin.command: "df -h {{ log_file.stdout.split().2 }}"
       changed_when: false
       check_mode: false
       register: disk_space
-    - name: Get the basename of the partition path
+    - name: TOSS-04-030890 - Get the basename of the partition path
       ansible.builtin.set_fact:
         audit_partition: '{{ log_file.stdout.split().2 | ansible.builtin.dirname }}'
-    - name: Determine the amount of space being used by other files in the partition
+    - name: TOSS-04-030890 - Determine the amount of space being used by other files in the partition
       ansible.builtin.command: "du -sh {{ audit_partition }}"
       changed_when: false
       check_mode: false
       register: disk_space_partition
-    - name: Display size of the partition audit records are written to
+    - name: TOSS-04-030890 - Display size of the partition audit records are written to
       ansible.builtin.debug:
         var: disk_space.stdout
         verbosity: 1
-    - name: Display the amount of space being used by the other files in the partition
+    - name: TOSS-04-030890 - Display the amount of space being used by the other files in the partition
       ansible.builtin.debug:
         var: disk_space_partition.stdout
         verbosity: 1

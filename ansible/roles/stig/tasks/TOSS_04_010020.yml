@@ -11,13 +11,13 @@
 
 - name: TOSS-04-010020 - TOSS, for PKI-based authentication, must enforce authorized access to the corresponding private key.
   block:
-    - name: Find all private ssh key files
+    - name: TOSS-04-010020 - Find all private ssh key files
       ansible.builtin.command: 'find / -xdev -type f -regex ".*/id_[a-z0-9]*[^\.pub]$"'
       changed_when: false
       check_mode: false
       register: nouser_files
       failed_when: "nouser_files.rc not in [0,1]"
-    - name: Check if the ssh key files have passphrases set
+    - name: TOSS-04-010020 - Check if the ssh key files have passphrases set
       ansible.builtin.expect:
         command: 'ssh-keygen -y -f {{ item }}'
         responses:
@@ -27,7 +27,7 @@
       changed_when: false
       failed_when: false
       loop: '{{ nouser_files.stdout_lines }}'
-    - name: Verify all the ssh keys prompted for a passphrase
+    - name: TOSS-04-010020 - Verify all the ssh keys prompted for a passphrase
       ansible.builtin.assert:
         that:
           "'Enter passphrase' in item.stdout"

@@ -21,13 +21,13 @@
 
 - name: TOSS-04-020070 - TOSS must use multifactor authentication for network and local access to privileged and non-privileged accounts.
   block:
-    - name: Test for domain group
+    - name: TOSS-04-020070 - Test for domain group
       ansible.builtin.command: grep '^\s*\[domain\/[^]]*]' /etc/sssd/sssd.conf
       register: test_grep_domain
       ignore_errors: true
       changed_when: false
       check_mode: false
-    - name: Add default domain group (if no domain there)
+    - name: TOSS-04-020070 - Add default domain group (if no domain there)
       community.general.ini_file:
         path: /etc/sssd/sssd.conf
         section: '{{ item.section }}'
@@ -45,7 +45,7 @@
       when:
         - test_grep_domain.stdout is defined
         - test_grep_domain.stdout | length < 1
-    - name: Verify the pam section
+    - name: TOSS-04-020070 - Verify the pam section
       community.general.ini_file:
         dest: /etc/sssd/sssd.conf
         section: pam
@@ -54,13 +54,13 @@
         create: true
         mode: 384
 
-    - name: Enable Smartcards in SSSD - Check integrity of authselect current profile
+    - name: TOSS-04-020070 - Enable Smartcards in SSSD - Check integrity of authselect current profile
       ansible.builtin.command: "authselect check"
       register: result_authselect_check_cmd
       changed_when: false
       check_mode: false
       failed_when: false
-    - name: Enable Smartcards in SSSD - Informative message based on the authselect integrity check result
+    - name: TOSS-04-020070 - Enable Smartcards in SSSD - Informative message based on the authselect integrity check result
       ansible.builtin.assert:
         that:
           - result_authselect_check_cmd.rc == 0
@@ -72,7 +72,7 @@
           - In cases where the default authselect profile does not cover a specific demand, a custom authselect profile is recommended.
         success_msg:
           - authselect integrity check passed
-    - name: Enable Smartcards in SSSD - Get authselect current features
+    - name: TOSS-04-020070 - Enable Smartcards in SSSD - Get authselect current features
       ansible.builtin.shell:
         cmd: set -o pipefail && authselect current | tail -n+3 | awk '{ print $2 }'
       register: result_authselect_features
@@ -80,7 +80,7 @@
       check_mode: false
       when:
         - result_authselect_check_cmd is success
-    - name: Enable Smartcards in SSSD - Ensure "with-smartcard" feature is enabled using authselect tool
+    - name: TOSS-04-020070 - Enable Smartcards in SSSD - Ensure "with-smartcard" feature is enabled using authselect tool
       ansible.builtin.command:
         cmd: authselect enable-feature with-smartcard
       register: result_authselect_enable_feature_cmd
@@ -88,7 +88,7 @@
       when:
         - result_authselect_check_cmd is success
         - result_authselect_features.stdout is not search("with-smartcard")
-    - name: Enable Smartcards in SSSD - Ensure authselect changes are applied
+    - name: TOSS-04-020070 - Enable Smartcards in SSSD - Ensure authselect changes are applied
       ansible.builtin.command:
         cmd: authselect apply-changes -b
       changed_when: false

@@ -9,7 +9,7 @@
 
 - name: TOSS-04-010060 - The TOSS pam_unix.so module must be configured in the password-auth file to use a FIPS 140-2-approved cryptographic hashing algorithm for system authentication.
   block:
-    - name: Check bad algorithms are absent
+    - name: TOSS-04-010060 - Check bad algorithms are absent
       community.general.pamd:
         name: password-auth
         type: password
@@ -22,7 +22,7 @@
           - sha256
         state: args_absent
         backup: true
-    - name: Check good algorithms are present
+    - name: TOSS-04-010060 - Check good algorithms are present
       community.general.pamd:
         name: password-auth
         type: password

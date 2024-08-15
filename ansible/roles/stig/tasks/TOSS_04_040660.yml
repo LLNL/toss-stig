@@ -10,12 +10,14 @@
 
 - name: TOSS-04-040660 - The TOSS SSH private host key files must have mode 0600 or less permissive.
   block:
-    - ansible.builtin.find:
+    - name: TOSS-04-040660 - find SSH private host key
+      ansible.builtin.find:
         paths: /etc/ssh/
         file_type: file
         patterns: 'ssh_host*key'
       register: ssh_keys
-    - ansible.builtin.file:
+    - name: TOSS-04-040660 - verify SSH private host key files have mode "0600" or less
+      ansible.builtin.file:
         path: '{{ ssh_key.path }}'
         mode: '0600'
       loop: '{{ ssh_keys.files }}'

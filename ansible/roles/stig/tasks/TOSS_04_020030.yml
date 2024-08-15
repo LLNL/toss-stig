@@ -11,7 +11,7 @@
 
 - name: TOSS-04-020030 - TOSS must automatically lock graphical user sessions after 15 minutes of inactivity.
   block:
-    - name: Set GNOME3 Screensaver Inactivity Timeout
+    - name: TOSS-04-020030 - Set GNOME3 Screensaver Inactivity Timeout
       community.general.ini_file:
         dest: /etc/dconf/db/local.d/00-screensaver
         section: org/gnome/desktop/session
@@ -20,7 +20,7 @@
         create: true
         no_extra_spaces: true
         mode: '0644'
-    - name: Dconf Update
+    - name: TOSS-04-020030 - Dconf Update
       ansible.builtin.command: dconf update
       register: update_output
       changed_when: false # TODO: figure out what the output should be when sucessful

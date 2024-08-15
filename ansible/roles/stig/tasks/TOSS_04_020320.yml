@@ -12,14 +12,14 @@
 
 - name: TOSS-04-020320 - All TOSS local interactive user home directories must be owned by the user's primary group.
   block:
-    - name: Get the list of home directories owned by interactive users
+    - name: TOSS-04-020320 - Get the list of home directories owned by interactive users
       ansible.builtin.shell:
         cmd: "awk -F: '($3>=1000)&&($7 !~ /nologin/)&&($7 !~ /false/)&&($7 !~ /null/){print $1,$6,$4}' /etc/passwd"
       register: home_dirs
       changed_when: false
       failed_when: home_dirs.rc not in [0,1]
       check_mode: false
-    - name: Set the group of the local interactive user's home directory
+    - name: TOSS-04-020320 - Set the group of the local interactive user's home directory
       ansible.builtin.file:
         path: '{{ item.split().1 }}'
         group: '{{ item.split().2 }}'

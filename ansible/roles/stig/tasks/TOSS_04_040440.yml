@@ -13,19 +13,19 @@
 
 - name: TOSS-04-040440 - TOSS must implement DoD-approved encryption in the OpenSSL package.
   block:
-    - name: Verify that system-wide crypto policies are in effect
+    - name: TOSS-04-040440 - Verify that system-wide crypto policies are in effect
       ansible.builtin.lineinfile:
         path: /etc/pki/tls/openssl.cnf
         regexp: '^.include /etc/crypto-policies/back-ends/opensslcnf.config'
         line: ".include /etc/crypto-policies/back-ends/opensslcnf.config"
         mode: '0644'
         create: true
-    - name: Check which system-wide crypto policy is in use
+    - name: TOSS-04-040440 - Check which system-wide crypto policy is in use
       ansible.builtin.command: update-crypto-policies --show
       register: crypto_policy_output
       changed_when: false
       check_mode: false
-    - name: Configure the TOSS OpenSSL library to use only ciphers employing FIPS 140-2-approved algorithms
+    - name: TOSS-04-040440 - Configure the TOSS OpenSSL library to use only ciphers employing FIPS 140-2-approved algorithms
       ansible.builtin.command: fips-mode-setup --enable
       # Note: Running this command will create a symlink from opensshserver.config and openssh.config to other files,  making permission look like '0777' to ansible's checks
       changed_when: fips_setup_output.rc is defined

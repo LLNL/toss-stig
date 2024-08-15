@@ -15,13 +15,13 @@
 
 - name: TOSS-04-010250 - TOSS must prohibit the use of cached authentications after one day.
   block:
-    - name: Check that SSSD allows cached authentications
+    - name: TOSS-04-010250 - Check that SSSD allows cached authentications
       ansible.builtin.lineinfile:
         path: /etc/sssd/sssd.conf
         regexp: '^cache_credentials = true'
         state: absent
       register: cache_cred_enabled
-    - name: Check that SSSD prohibits the use of cached authentications after one day
+    - name: TOSS-04-010250 - Check that SSSD prohibits the use of cached authentications after one day
       community.general.ini_file:
         dest: /etc/sssd/sssd.conf
         section: pam

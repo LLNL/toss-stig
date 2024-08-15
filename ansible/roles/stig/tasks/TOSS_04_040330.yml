@@ -13,12 +13,12 @@
 
 - name: TOSS-04-040330 - All TOSS local disk partitions must implement cryptographic mechanisms to prevent unauthorized disclosure or modification of all information that requires at rest protection.
   block:
-    - name: Gather the attributes of all local system partitions
+    - name: TOSS-04-040330 - Gather the attributes of all local system partitions
       ansible.builtin.command: "blkid"
       check_mode: false
       changed_when: false
       register: partitions
-    - name: Verify all local system partitions are encrypted
+    - name: TOSS-04-040330 - Verify all local system partitions are encrypted
       ansible.builtin.assert:
         that:
           - "'crypto_LUKS' in item"

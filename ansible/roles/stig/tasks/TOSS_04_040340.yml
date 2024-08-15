@@ -14,24 +14,24 @@
 
 - name: TOSS-04-040340 - TOSS must limit privileges to change software resident within software libraries.
   block:
-    - name: Read list of system executables without root ownership
+    - name: TOSS-04-040340 - Read list of system executables without root ownership
       ansible.builtin.command: find -L /bin/ /usr/bin/ /usr/local/bin/ /sbin/ /usr/sbin/ /usr/local/sbin/ /usr/libexec \! -user root
       register: no_root_system_executables
       changed_when: false
       failed_when: false
       check_mode: false
-    - name: Set ownership to root of system executables
+    - name: TOSS-04-040340 - Set ownership to root of system executables
       ansible.builtin.file:
         path: '{{ item }}'
         owner: root
       loop: '{{ no_root_system_executables.stdout_lines }}'
-    - name: Read list of library files without root ownership
+    - name: TOSS-04-040340 - Read list of library files without root ownership
       ansible.builtin.command: find -L /lib /lib64 /usr/lib /usr/lib64 \! -user root
       register: no_root_library_files
       changed_when: false
       failed_when: false
       check_mode: false
-    - name: Set ownership to root of library files
+    - name: TOSS-04-040340 - Set ownership to root of library files
       ansible.builtin.file:
         path: '{{ item }}'
         owner: root

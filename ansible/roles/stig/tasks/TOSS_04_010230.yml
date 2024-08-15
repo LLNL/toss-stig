@@ -9,19 +9,19 @@
 
 - name: TOSS-04-010230 - TOSS must require re-authentication when using the "sudo" command.
   block:
-    - name: Find out if /etc/sudoers.d/* files contain 'Defaults timestamp_timeout' to be deduplicated
+    - name: TOSS-04-010230 - Find out if /etc/sudoers.d/* files contain 'Defaults timestamp_timeout' to be deduplicated
       ansible.builtin.find:
         path: /etc/sudoers.d
         patterns: '*'
         contains: ^[\s]*Defaults\s.*\btimestamp_timeout[\s]*=.*
       register: sudoers_d_defaults_timestamp_timeout
-    - name: Remove found occurrences of 'Defaults timestamp_timeout' from /etc/sudoers.d/* files
+    - name: TOSS-04-010230 - Remove found occurrences of 'Defaults timestamp_timeout' from /etc/sudoers.d/* files
       ansible.builtin.lineinfile:
         path: '{{ item.path }}'
         regexp: ^[\s]*Defaults\s.*\btimestamp_timeout[\s]*=.*
         state: absent
       with_items: '{{ sudoers_d_defaults_timestamp_timeout.files }}'
-    - name: Ensure timestamp_timeout is enabled with the appropriate value in /etc/sudoers
+    - name: TOSS-04-010230 - Ensure timestamp_timeout is enabled with the appropriate value in /etc/sudoers
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         regexp: ^[\s]*Defaults\s(.*)\btimestamp_timeout[\s]*=[\s]*[-]?\w+\b(.*)$
@@ -29,7 +29,7 @@
         validate: /usr/sbin/visudo -cf %s
         backrefs: true
       register: edit_sudoers_timestamp_timeout_option
-    - name: Enable timestamp_timeout option with appropriate value in /etc/sudoers
+    - name: TOSS-04-010230 - Enable timestamp_timeout option with appropriate value in /etc/sudoers
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         line: Defaults timestamp_timeout={{ var_sudo_timestamp_timeout }}

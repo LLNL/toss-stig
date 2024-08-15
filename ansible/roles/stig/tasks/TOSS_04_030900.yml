@@ -11,8 +11,8 @@
 
 - name: TOSS-04-030900 - The TOSS audit records must be off-loaded onto a different system or storage media from the system being audited.
   block:
-    - name: Get the remote server the system is configured to offload audit records to
-      ansible.builtin.command: "grep @@ /etc/rsyslog.conf /etc/rsyslog.d/syslog_server.conf"
+    - name: TOSS-04-030900 - Get the remote server the system is configured to offload audit records to
+      ansible.builtin.shell: "grep @@ /etc/rsyslog.conf /etc/rsyslog.d/*.conf | grep -v '#'"
       changed_when: false
       check_mode: false
       failed_when: remote_logging.rc not in [0,1]
@@ -23,7 +23,6 @@
           - remote_logging.rc == 0
         fail_msg: "Audit logs are not being offoaded to a remote server via rsyslog, ask the System Administrator if logs are being offloaded a different way."
         quiet: true
-
   when:
     - toss_04_030900 | bool
   tags:
