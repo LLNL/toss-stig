@@ -35,7 +35,7 @@
 
 - name: TOSS-04-010120 - TOSS must display the Standard Mandatory DoD Notice and Consent Banner or equivalent US Government Agency Notice and Consent Banner before granting local or remote access to the system via a ssh logon.
   block:
-    - name: Check `Banner` in sshd_config
+    - name: TOSS-04-010120 - Check `Banner` in sshd_config
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^(?i)#?Banner'

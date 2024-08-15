@@ -11,11 +11,13 @@
 
 - name: TOSS-04-030640 - Successful/unsuccessful uses of the lchown system call in TOSS must generate an audit record.
   block:
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-030640 - Successful/unsuccessful uses of the lchown system call, esp. arch=b32
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S lchown -F auid>=1000 -F auid!=unset -k perm_mod
       notify: Build auditd rules
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-030640 - Successful/unsuccessful uses of the lchown system call, esp. arch=b64
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S lchown -F auid>=1000 -F auid!=unset -k perm_mod
       notify: Build auditd rules

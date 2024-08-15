@@ -17,14 +17,14 @@
 
 - name: TOSS-04-040160 - TOSS must disable IEEE 1394 (FireWire) Support.
   block:
-    - name: TOSS-04-040190 - TOSS must disable IEEE 1394 (FireWire) Support. Check install.
+    - name: TOSS-04-040160 - TOSS must disable IEEE 1394 (FireWire) Support. Check install.
       ansible.builtin.lineinfile:
         create: true
         dest: /etc/modprobe.d/firewire-core.conf
         regexp: install\s+firewire-core
         line: install firewire-core /bin/false
         mode: '644'
-    - name: TOSS-04-040190 - TOSS must disable IEEE 1394 (FireWire) Support. Check blacklist.
+    - name: TOSS-04-040160 - TOSS must disable IEEE 1394 (FireWire) Support. Check blacklist.
       ansible.builtin.lineinfile:
         create: true
         dest: /etc/modprobe.d/blacklist-firewire-core.conf

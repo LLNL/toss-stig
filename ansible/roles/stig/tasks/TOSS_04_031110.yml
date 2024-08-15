@@ -12,19 +12,23 @@
 
 - name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record.
   block:
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record, esp. arch=b32 and auid!=unset
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
       notify: Build auditd rules
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record, esp. arch=b64 and auid!=unset
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S lremovexattr -F auid>=1000 -F auid!=unset -k perm_mod
       notify: Build auditd rules
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record, esp. arch=b32 and auid=0
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod
       notify: Build auditd rules
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-031110 - Successful/unsuccessful uses of the "lremovexattr" system call in TOSS must generate an audit record, esp. arch=b64 and auid=0
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod
       notify: Build auditd rules

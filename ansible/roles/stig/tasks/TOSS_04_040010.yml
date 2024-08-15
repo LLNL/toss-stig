@@ -9,7 +9,7 @@
 
 - name: TOSS-04-040010 - TOSS must monitor remote access methods.
   block:
-    - name: 'Set facts'
+    - name: 'TOSS-04-040010 - Set facts'
       ansible.builtin.set_fact:
         conf_files:
           - /etc/rsyslog.conf
@@ -20,23 +20,23 @@
             regexp: ^.*authpriv\.\*.*$
           - selector: daemon.*
             regexp: ^.*daemon\.\*.*$
-    - name: 'Ensure rsyslog.conf exists'
+    - name: 'TOSS-04-040010 - Ensure rsyslog.conf exists'
       ansible.builtin.file:
         path: '{{ conf_files.0 }}'
         state: touch
         mode: '0644'
-    - name: 'Gather conf.d files'
+    - name: 'TOSS-04-040010 - Gather conf.d files'
       ansible.builtin.find:
         patterns:
           - '*.conf'
         paths:
           - /etc/rsyslog.d
       register: rsyslogd
-    - name: 'Set conf file(s)'
+    - name: 'TOSS-04-040010 - Set conf file(s)'
       ansible.builtin.set_fact:
         conf_files: '{{ conf_files + [item.path] }}'
       loop: '{{ rsyslogd.files }}'
-    - name: 'Check for existing values'
+    - name: 'TOSS-04-040010 - Check for existing values'
       ansible.builtin.lineinfile:
         path: '{{ item.1 }}'
         regexp: '{{ item.0.regexp }}'
@@ -45,7 +45,7 @@
       changed_when: false
       register: remote_method_values
       loop: '{{ remote_methods | product(conf_files) | list }}'
-    - name: 'Configure'
+    - name: 'TOSS-04-040010 - Configure'
       ansible.builtin.lineinfile:
         path: /etc/rsyslog.conf
         regexp: '{{ item.item.0.regexp }} .*\/var\/log\/secure.*$'

@@ -12,7 +12,7 @@
 
 - name: TOSS-04-040690 - TOSS must be a vendor-supported release.
   block:
-    - name: Get the current version of TOSS
+    - name: TOSS-04-040690 - Get the current version of TOSS
       ansible.builtin.shell:
         cmd: |
           set -o pipefail
@@ -20,13 +20,17 @@
       changed_when: false
       check_mode: false
       register: toss_version
-    - name: Check if the current version is supported
+    - name: TOSS-04-040690 - Check if the current version is supported
       ansible.builtin.assert:
         that:
           - toss_version.stdout in toss_end_of_support
           - now() < (toss_end_of_support[toss_version.stdout] | to_datetime)
         fail_msg: "TOSS {{ toss_version.stdout }}, is no longer supported. See https://hpc.llnl.gov/toss for supported versions"
         quiet: true
+  rescue:
+    - name: TOSS-04-040690 - ERROR - TOSS is not a vendor-supported release
+      ansible.builtin.debug:
+        msg: "TOSS {{ toss_version.stdout }}, is no longer supported. See https://hpc.llnl.gov/toss for supported versions"
   when:
     - toss_04_040690 | bool
   tags:

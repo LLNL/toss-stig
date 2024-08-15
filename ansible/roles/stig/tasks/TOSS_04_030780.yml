@@ -18,7 +18,7 @@
 # If any of the audit tools are not installed on the system, the corresponding
 # AIDE rule is not applicable.
 
-- name: Set audit_tools fact
+- name: TOSS-04-030780 - Set audit_tools fact
   ansible.builtin.set_fact:
     audit_tools:
       - /usr/sbin/auditctl

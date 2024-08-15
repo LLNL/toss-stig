@@ -12,11 +12,13 @@
 
 - name: TOSS-04-030490 - Successful/unsuccessful uses of the "delete_module" command in TOSS must generate an audit record.
   block:
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-030490 - Successful/unsuccessful uses of "delete_module" command in TOSS must generate an audit record, esp. arch=b32
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b32 -S delete_module -F auid>=1000 -F auid!=unset -k module_chng
       notify: Build auditd rules
-    - ansible.builtin.lineinfile:
+    - name: TOSS-04-030490 - Successful/unsuccessful uses of "delete_module" command in TOSS must generate an audit record, esp. arch=b64
+      ansible.builtin.lineinfile:
         path: /etc/audit/rules.d/audit.rules
         line: -a always,exit -F arch=b64 -S delete_module -F auid>=1000 -F auid!=unset -k module_chng
       notify: Build auditd rules

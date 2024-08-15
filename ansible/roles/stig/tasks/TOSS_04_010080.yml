@@ -10,7 +10,7 @@
 
 - name: TOSS-04-010080 - The TOSS operating system must implement DoD-approved encryption in the OpenSSL package.
   block:
-    - name: Check for duplicate values of TLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
+    - name: TOSS-04-010080 - Check for duplicate values of TLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: false
@@ -19,14 +19,14 @@
       check_mode: true
       changed_when: false
       register: dupes
-    - name: Deduplicate values of TLS.MinProtocol from /etc/crypto-policies/back-ends/opensslcnf.config
+    - name: TOSS-04-010080 - Deduplicate values of TLS.MinProtocol from /etc/crypto-policies/back-ends/opensslcnf.config
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: false
         regexp: (?i)^\s*TLS.MinProtocol\s+
         state: absent
       when: dupes.found is defined and dupes.found > 1
-    - name: Insert correct line of TLS.MinProtocol to /etc/crypto-policies/back-ends/opensslcnf.config
+    - name: TOSS-04-010080 - Insert correct line of TLS.MinProtocol to /etc/crypto-policies/back-ends/opensslcnf.config
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: true
@@ -34,7 +34,7 @@
         line: TLS.MinProtocol = TLSv1.2
         state: present
         mode: '644'
-    - name: Check for duplicate values of DTLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
+    - name: TOSS-04-010080 - Check for duplicate values of DTLS.MinProtocol in /etc/crypto-policies/back-ends/opensslcnf.config
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: false
@@ -43,14 +43,14 @@
       check_mode: true
       changed_when: false
       register: dupes
-    - name: Deduplicate values of DTLS.MinProtocol from /etc/crypto-policies/back-ends/opensslcnf.config
+    - name: TOSS-04-010080 - Deduplicate values of DTLS.MinProtocol from /etc/crypto-policies/back-ends/opensslcnf.config
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: false
         regexp: (?i)^\s*DTLS.MinProtocol\s+
         state: absent
       when: dupes.found is defined and dupes.found > 1
-    - name: Insert correct line of DTLS.MinProtocol to /etc/crypto-policies/back-ends/opensslcnf.config
+    - name: TOSS-04-010080 - Insert correct line of DTLS.MinProtocol to /etc/crypto-policies/back-ends/opensslcnf.config
       ansible.builtin.lineinfile:
         path: /etc/crypto-policies/back-ends/opensslcnf.config
         create: true

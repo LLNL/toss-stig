@@ -14,7 +14,7 @@
 
 - name: TOSS-04-040290 - TOSS must be configured so that all network connections associated with SSH traffic are terminated at the end of the session or after 10 minutes of inactivity, except to fulfill documented and validated mission requirements.
   block:
-    - name: TOSS-04-040290
+    - name: TOSS-04-040290 - check "ClientAliveInterval" is set to a value of "600" or less
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^(?i)#?ClientAliveInterval'
@@ -23,7 +23,7 @@
         backup: true
         validate: /usr/sbin/sshd -t -f %s
       notify: Restart sshd
-    - name: TOSS-04-040290
+    - name: TOSS-04-040290 - check "ClientAliveCountMax" is set to a value of "1"
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
         regexp: '^(?i)#?ClientAliveCountMax'

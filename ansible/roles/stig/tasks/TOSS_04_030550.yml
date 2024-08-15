@@ -11,13 +11,13 @@
 
 - name: TOSS-04-030550 - TOSS must allow only the Information System Security Manager (ISSM) (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited.
   block:
-    - name: Gather any file paths in "/etc/audit/rules.d/" and "/etc/audit/auditd.conf" file that have a mode of "0640" or less permissive
+    - name: TOSS-04-030550 - Gather any file paths in "/etc/audit/rules.d/" and "/etc/audit/auditd.conf" file that have a mode of "0640" or less permissive
       ansible.builtin.command: "find /etc/audit/rules.d/ /etc/audit/auditd.conf -xdev -maxdepth 1 -perm /037"
       register: audit_paths
       changed_when: false
       failed_when: audit_paths.rc not in [0,1]
       check_mode: false
-    - name: Set the file permissions to '0640'
+    - name: TOSS-04-030550 - Set the file permissions to '0640'
       ansible.builtin.file:
         path: '{{ item }}'
         mode: '0640'

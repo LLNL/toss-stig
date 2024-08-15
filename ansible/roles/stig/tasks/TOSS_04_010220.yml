@@ -17,14 +17,14 @@
 
 - name: TOSS-04-010220 - TOSS must prevent the installation of patches, service packs, device drivers, or operating system components without verification they have been digitally signed using a certificate that is recognized and approved by the organization.
   block:
-    - name: Register /etc/yum.repos.d/*.yml files
+    - name: TOSS-04-010220 - Register /etc/yum.repos.d/*.yml files
       ansible.builtin.find:
         paths: /etc/yum.repos.d
         patterns: '*.repo'
         file_type: file
         recurse: false
       register: yum_repo_files
-    - name: Ensure gpgcheck Enabled For All Package Repositories
+    - name: TOSS-04-010220 - Ensure gpgcheck Enabled For All Package Repositories
       ansible.builtin.replace:
         path: '{{ yum_repo_file.path }}'
         regexp: '^#?\s*gpgcheck=[0-9]+'

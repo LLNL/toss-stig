@@ -8,18 +8,18 @@
 
 - name: TOSS-04-040920 - TOSS must restrict privilege elevation to authorized personnel.
   block:
-    - name: Find out if /etc/sudoers.d/* files contain "ALL ALL" permissions
+    - name: TOSS-04-040920 - Find out if /etc/sudoers.d/* files contain "ALL ALL" permissions
       ansible.builtin.find:
         path: /etc/sudoers.d
         patterns: '*'
         contains: 'ALL[[:blank:]]\+ALL'
       register: sudoers_d
-    - name: Remove  occurrences of "ALL ALL" from /etc/sudoers file
+    - name: TOSS-04-040920 - Remove  occurrences of "ALL ALL" from /etc/sudoers file
       ansible.builtin.lineinfile:
         path: /etc/sudoers
         regexp: 'ALL[[:blank:]]\+ALL'
         state: absent
-    - name: Remove found occurrences of "ALL ALL" from /etc/sudoers.d/* files
+    - name: TOSS-04-040920 - Remove found occurrences of "ALL ALL" from /etc/sudoers.d/* files
       ansible.builtin.lineinfile:
         path: '{{ item.path }}'
         regexp: 'ALL[[:blank:]]\+ALL'
@@ -30,7 +30,7 @@
   tags:
     - V-253133
     - SRG-OS-000480-GPOS-00227
-    - SV-253133r825071_rule
+    - SV-253133r826066_rule
     - TOSS-04-040920
     - DISA-STIG-TOSS-04-040920
     - medium_severity

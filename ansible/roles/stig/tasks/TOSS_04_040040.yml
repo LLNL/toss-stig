@@ -20,28 +20,28 @@
 
 - name: TOSS-04-040040 - TOSS must implement NIST FIPS-validated cryptography for the following to provision digital signatures; to generate cryptographic hashes; and to protect unclassified information requiring confidentiality and cryptographic protection in accordance with applicable federal laws, Executive Orders, directives, policies, regulations, and standards.
   block:
-    - name: Check to see the current status of FIPS mode
+    - name: TOSS-04-040040 - Check to see the current status of FIPS mode
       ansible.builtin.command: /usr/bin/fips-mode-setup --check
       register: is_fips_enabled
       check_mode: false
       changed_when: false
-    - name: Enable FIPS mode
+    - name: TOSS-04-040040 - Enable FIPS mode
       ansible.builtin.command: /usr/bin/fips-mode-setup --enable
       # Note: Running this command will create a symlink from opensshserver.config and openssh.config to other files,  making permission look like '0777' to ansible's checks
       changed_when: fips_setup_output.rc is defined
       when: is_fips_enabled.stdout.find('FIPS mode is enabled.') == -1
       register: fips_setup_output
-    - name: Check to see if the kernel boot parameter is configured for FIPS mode
+    - name: TOSS-04-040040 - Check to see if the kernel boot parameter is configured for FIPS mode
       ansible.builtin.command: grub2-editenv list
       register: boot_param
       check_mode: false
       changed_when: false
-    - name: Check to see if the system is in FIPS mode
+    - name: TOSS-04-040040 - Check to see if the system is in FIPS mode
       ansible.builtin.command: cat /proc/sys/crypto/fips_enabled
       register: system_mode
       changed_when: false
       check_mode: false
-    - name: Fail when kernel boot param is not configured for FIPS mode
+    - name: TOSS-04-040040 - Fail when kernel boot param is not configured for FIPS mode
       ansible.builtin.assert:
         that:
           - boot_param.stdout.find("fips=1")

@@ -10,11 +10,11 @@
 
 - name: TOSS-04-030010 - TOSS audit records must contain information to establish what type of events occurred, when the events occurred, the source of events, where events occurred, and the outcome of events.
   block:
-    - name: Ensure auditd package is installed
+    - name: TOSS-04-030010 - Ensure auditd package is installed
       ansible.builtin.package:
         name: audit
         state: present
-    - name: Enable auditd Service
+    - name: TOSS-04-030010 - Enable auditd Service
       ansible.builtin.systemd:
         name: auditd
         state: started

@@ -21,37 +21,37 @@
 
 - name: TOSS-04-010140 - The TOSS operating system must implement DoD-approved encryption to protect the confidentiality of SSH connections.
   block:
-    - name: Verify that system-wide crypto policies are in effect and CRYPTO_POLICY is not defined in sshd
+    - name: TOSS-04-010140 - Verify that system-wide crypto policies are in effect and CRYPTO_POLICY is not defined in sshd
       ansible.builtin.lineinfile:
         path: /etc/sysconfig/sshd
         regexp: '^CRYPTO_POLICY='
         state: absent
       changed_when: false
       register: out
-    - name: Comment out CRYPTO_POLICY if it is defined in sshd
+    - name: TOSS-04-010140 - Comment out CRYPTO_POLICY if it is defined in sshd
       ansible.builtin.replace:
         path: /etc/sysconfig/sshd
         regexp: '^CRYPTO_POLICY='
         replace: '#CRYPTO_POLICY='
       when: out.found
-    - name: Check which system-wide crypto policy is in use
+    - name: TOSS-04-010140 - Check which system-wide crypto policy is in use
       ansible.builtin.command: update-crypto-policies --show
       register: crypto_policy_output
       changed_when: false
       check_mode: false
-    - name: Configure the TOSS SSH daemon to use only ciphers employing FIPS 140-2-approved algorithms
+    - name: TOSS-04-010140 - Configure the TOSS SSH daemon to use only ciphers employing FIPS 140-2-approved algorithms
       ansible.builtin.command: fips-mode-setup --enable
       # Note: Running this command will create a symlink from opensshserver.config and openssh.config to other files,  making permission look like '0777' to ansible's checks
       changed_when: fips_setup_output.rc is defined
       register: fips_setup_output
       when: "'FIPS' not in crypto_policy_output.stdout"
-    - name: 'Set crypto policy in opensshserver.config'
+    - name: 'TOSS-04-010140 - Set crypto policy in opensshserver.config'
       ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/opensshserver.config
         regexp: '^#?CRYPTO_POLICY=\S+'
         replace: "CRYPTO_POLICY='-oCiphers={{ sshd_approved_ciphers }}"
         mode: '0644'
-    - name: 'Set crypto policy in openssh.config'
+    - name: 'TOSS-04-010140 - Set crypto policy in openssh.config'
       ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/openssh.config
         regexp: '^#?Ciphers.*$'
