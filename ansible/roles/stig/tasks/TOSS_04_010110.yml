@@ -1,11 +1,20 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252922
 
 # Verify The TOSS operating system is configured to use TCP syncookies.
-# Check the value of TCP syncookies with the following command: $ sysctl
-# net.ipv4.tcp_syncookies net.ipv4.tcp_syncookies = 1 If the value is not "1",
-# this is a finding. Check the saved value of TCP syncookies with the following
-# command: $ sudo grep -i net.ipv4.tcp_syncookies /etc/sysctl.conf /etc/sysctl.d/*
-# | grep -v '#' If no output is returned, this is a finding.
+#
+# Check the value of TCP syncookies with the following command:
+#
+#     $ sysctl net.ipv4.tcp_syncookies
+#
+#     net.ipv4.tcp_syncookies = 1
+#
+# If the value is not "1", this is a finding.
+#
+# Check the saved value of TCP syncookies with the following command:
+#
+#     $ sudo grep -i net.ipv4.tcp_syncookies /etc/sysctl.conf /etc/sysctl.d/* | grep -v '#'
+#
+# If no output is returned, this is a finding."
 
 
 - name: TOSS-04-010110 - The TOSS operating system must be configured to use TCP syncookies.

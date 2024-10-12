@@ -1,13 +1,21 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252916
 
-# Verify the operating system disables the ability to automount
-# devices. Check to see if automounter service is active with the following
-# command: Note: If the autofs service is not installed, this requirement is Not
-# Applicable. $ sudo systemctl status autofs autofs.service - Automounts
-# filesystems on demand Loaded: loaded (/usr/lib/systemd/system/autofs.service;
-# disabled) Active: inactive (dead) If the "autofs" status is set to "active" and
-# is not documented with the Information System Security Officer (ISSO) as an
-# operational requirement, this is a finding.
+# Verify the operating system disables the ability to automount devices.
+#
+# Check to see if automounter service is active with the following command:
+#
+#     Note: If the autofs service is not installed, this requirement is
+#           Not Applicable.
+#
+#     $ sudo systemctl status autofs
+#
+#     autofs.service - Automounts filesystems on demand
+#     Loaded: loaded (/usr/lib/systemd/system/autofs.service; disabled)
+#     Active: inactive (dead)
+#
+# If the "autofs" status is set to "active" and is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement,
+# this is a finding.
 
 
 - name: TOSS-04-010050 - The TOSS file system automounter must be disabled unless required.

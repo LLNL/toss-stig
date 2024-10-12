@@ -1,12 +1,18 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252915
 
-# Verify remote access from outside the system using SSH prevents users
-# from logging on directly as "root." Check that SSH prevents users from logging
-# on directly as "root" with the following command: $ sudo grep -i PermitRootLogin
-# /etc/ssh/sshd_config PermitRootLogin no If the "PermitRootLogin" keyword is set
-# to "yes", is missing, or is commented out, and is not documented with the
-# Information System Security Officer (ISSO) as an operational requirement, this
-# is a finding.
+# Verify remote access from outside the system using SSH prevents users from
+# logging on directly as "root."
+#
+# Check that SSH prevents users from logging on directly as "root" with the
+# following command:
+#
+#     $ sudo grep -i PermitRootLogin /etc/ssh/sshd_config
+#
+#     PermitRootLogin no
+#
+# If the "PermitRootLogin" keyword is set to "yes", is missing, or is commented
+# out, and is not documented with the Information System Security Officer (ISSO)
+# as an operational requirement, this is a finding.
 
 
 - name: TOSS-04-010040 - TOSS must not permit direct logons to the root account using remote access from outside of the system via SSH.

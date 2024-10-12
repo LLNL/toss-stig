@@ -1,11 +1,14 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252919
 
-# Verify the OpenSSL library is configured to use only DoD-approved TLS
-# encryption: $ sudo grep -i MinProtocol
-# /etc/crypto-policies/back-ends/opensslcnf.config TLS.MinProtocol = TLSv1.2
-# DTLS.MinProtocol = DTLSv1.2 If the "TLS.MinProtocol" is set to anything older
-# than "TLSv1.2" or the "DTLS.MinProtocol" is set to anything older than DTLSv1.2,
-# this is a finding.
+# Verify the OpenSSL library is configured to use only DoD-approved TLS encryption:
+#
+#     $ sudo grep -i MinProtocol /etc/crypto-policies/back-ends/opensslcnf.config
+#
+#     TLS.MinProtocol = TLSv1.2
+#     DTLS.MinProtocol = DTLSv1.2
+#
+# If the "TLS.MinProtocol" is set to anything older than "TLSv1.2" or the
+# "DTLS.MinProtocol" is set to anything older than DTLSv1.2, this is a finding.
 
 
 - name: TOSS-04-010080 - The TOSS operating system must implement DoD-approved encryption in the OpenSSL package.

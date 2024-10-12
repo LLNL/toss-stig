@@ -1,22 +1,33 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252924
 
 # Verify the SSH daemon is configured to use only ciphers employing
-# FIPS 140-2-approved algorithms: Verify that system-wide crypto policies are in
-# effect: $ sudo grep CRYPTO_POLICY /etc/sysconfig/sshd # CRYPTO_POLICY= If the
-# "CRYPTO_POLICY" is uncommented, this is a finding. Verify which system-wide
-# crypto policy is in use: $ sudo update-crypto-policies --show FIPS Check that
-# the ciphers in the back-end configurations are FIPS 140-2-approved algorithms
-# with the following command: $ sudo grep -i ciphers
-# /etc/crypto-policies/back-ends/openssh.config
-# /etc/crypto-policies/back-ends/opensshserver.config
-# /etc/crypto-policies/back-ends/openssh.config:Ciphers
-# aes256-ctr,aes192-ctr,aes128-ctr
-# /etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY='-oCiphers=aes256-ctr,aes192-ctr,aes128-ctr'
-# /etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY='-oCiphers=aes256-ctr,aes192-ctr,aes128-ctr'
+# FIPS 140-2-approved algorithms:
+#
+# Verify that system-wide crypto policies are in effect:
+#
+#     $ sudo grep CRYPTO_POLICY /etc/sysconfig/sshd
+#     # CRYPTO_POLICY=
+#
+# If the "CRYPTO_POLICY" is uncommented, this is a finding.
+#
+# Verify which system-wide crypto policy is in use:
+#
+#     $ sudo update-crypto-policies --show
+#     FIPS
+#
+# Check that the ciphers in the back-end configurations are FIPS 140-2-approved
+# algorithms with the following command:
+#
+#     $ sudo grep -i ciphers /etc/crypto-policies/back-ends/openssh.config /etc/crypto-policies/back-ends/opensshserver.config
+#
+#     /etc/crypto-policies/back-ends/openssh.config:Ciphers aes256-ctr,aes192-ctr,aes128-ctr
+#     /etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY='-oCiphers=aes256-ctr,aes192-ctr,aes128-ctr'
+#     /etc/crypto-policies/back-ends/opensshserver.config:CRYPTO_POLICY='-oCiphers=aes256-ctr,aes192-ctr,aes128-ctr'
+#
 # If the cipher entries in the "openssh.config" and "opensshserver.config" files
 # have any ciphers other than "aes256-ctr,aes192-ctr,aes128-ctr", the order
-# differs from the example above, if they are missing, or commented out, this is a
-# finding.
+# differs from the example above, if they are missing, or commented out, this
+# is a finding.
 
 
 - name: TOSS-04-010140 - The TOSS operating system must implement DoD-approved encryption to protect the confidentiality of SSH connections.
