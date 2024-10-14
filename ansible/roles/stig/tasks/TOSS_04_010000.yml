@@ -49,7 +49,7 @@
       ansible.builtin.copy:
         content: "{{ login_banner_text }}"
         dest: /etc/issue
-        mode: 0644
+        mode: '644'
     - name: TOSS-04-010000 - Set the GNOME3 Login Warning Banner Text
       community.general.ini_file:
         dest: /etc/dconf/db/gdm.d/00-security-settings
