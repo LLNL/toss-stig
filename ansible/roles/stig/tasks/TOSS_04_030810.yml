@@ -2,10 +2,14 @@
 
 # Verify TOSS generates audit records for all account creations,
 # modifications, disabling, and termination events that affect "/etc/passwd".
+#
 # Check the auditing rules in "/etc/audit/audit.rules" with the following command:
-# $ sudo grep /etc/passwd /etc/audit/audit.rules -w /etc/passwd -p wa -k identity
-# If the command does not return a line, or the line is commented out, this is a
-# finding.
+#
+#     $ sudo grep /etc/passwd /etc/audit/audit.rules
+#     -w /etc/passwd -p wa -k identity
+#
+# If the command does not return a line, or the line is commented out,
+# this is a finding.
 
 
 - name: TOSS-04-030810 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect "/etc/passwd".
@@ -18,7 +22,7 @@
   tags:
     - V-253026
     - SRG-OS-000303-GPOS-00120
-    - SV-253026r824750_rule
+    - SV-253026r825989_rule
     - TOSS-04-030810
     - DISA-STIG-TOSS-04-030810
     - medium_severity

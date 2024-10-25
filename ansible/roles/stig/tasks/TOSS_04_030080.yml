@@ -11,6 +11,22 @@
 # evidence of the proper personnel being notified of an audit processing failure,
 # this is a finding.
 
+# Verify that the SA and ISSO (at a minimum) are notified in the event of
+# an audit processing failure.
+#
+# Check that TOSS notifies the SA and ISSO (at a minimum) in the event of an
+# audit processing failure with the following command:
+#
+#     $ sudo grep action_mail_acct /etc/audit/auditd.conf
+#     action_mail_acct = root
+#
+# If the value of the "action_mail_acct" keyword is not set to "root" and/or
+# other accounts for security personnel, the "action_mail_acct" keyword is
+# missing, or the retuned line is commented out, ask the system administrator
+# to indicate how they and the ISSO are notified of an audit process failure.
+# If there is no evidence of the proper personnel being notified of an audit
+# processing failure, this is a finding.
+
 
 - name: TOSS-04-030080 - TOSS must alert the ISSO and SA (at a minimum) in the event of an audit processing failure.
   ansible.builtin.lineinfile:

@@ -8,7 +8,6 @@
 #           Not Applicable.
 #
 #     $ sudo systemctl status autofs
-#
 #     autofs.service - Automounts filesystems on demand
 #     Loaded: loaded (/usr/lib/systemd/system/autofs.service; disabled)
 #     Active: inactive (dead)

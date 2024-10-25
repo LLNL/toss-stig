@@ -1,15 +1,20 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253086
 
 # Verify the system commands contained in the following directories are
-# owned by "root" or an appropriate system account with the following command: $
-# sudo find -L /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin !
-# -user root -exec ls -l {} \; If any system commands are returned which are not
-# owned by an appropriate system account, this is a finding. Verify the
-# system-wide shared library files are owned by "root" or an appropriate system
-# account with the following command: $ sudo find -L /lib /lib64 /usr/lib
-# /usr/lib64 ! -user root -exec ls -l {} \; If any system wide shared library file
-# is returned which is not owned by an appropriate system account, this is a
-# finding.
+# owned by "root" or an appropriate system account with the following command:
+#
+#     $ sudo find -L /bin /sbin /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin ! -user root -exec ls -l {} \;
+#
+# If any system commands are returned which are not owned by an appropriate
+# system account, this is a finding.
+#
+# Verify the system-wide shared library files are owned by "root" or an
+# appropriate system account with the following command:
+#
+#     $ sudo find -L /lib /lib64 /usr/lib /usr/lib64 ! -user root -exec ls -l {} \;
+#
+# If any system wide shared library file is returned which is not owned
+# by an appropriate system account, this is a finding.
 
 
 - name: TOSS-04-040340 - TOSS must limit privileges to change software resident within software libraries.

@@ -6,7 +6,6 @@
 # /etc/pam.d/password-auth with the following command:
 #
 #     $ sudo grep password /etc/pam.d/password-auth | grep pam_unix
-#
 #     password sufficient pam_unix.so sha512
 #
 # If "sha512" is missing, or is commented out, this is a finding.

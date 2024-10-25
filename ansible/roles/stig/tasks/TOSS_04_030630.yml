@@ -1,16 +1,18 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253016
 
-# Verify TOSS generates an audit record when successful/unsuccessful
-# attempts to use the "ftruncate" system call by performing the following command
-# to check the file system rules in "/etc/audit/audit.rules": $ sudo grep -iw
-# ftruncate /etc/audit/audit.rules -a always,exit -F arch=b32 -S ftruncate -F
-# exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access -a always,exit -F
-# arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k
-# perm_access -a always,exit -F arch=b32 -S ftruncate -F exit=-EACCES -F
-# auid>=1000 -F auid!=unset -k perm_access -a always,exit -F arch=b64 -S
-# ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access If the
-# command does not return all lines, or the lines are commented out, this is a
-# finding.
+# Verify TOSS generates an audit record when successful/unsuccessful attempts
+# to use the "ftruncate" system call by performing the following command to
+# check the file system rules in "/etc/audit/audit.rules":
+#
+#     $ sudo grep -iw ftruncate /etc/audit/audit.rules
+#     -a always,exit -F arch=b32 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+#     -a always,exit -F arch=b64 -S ftruncate -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+#
+#     -a always,exit -F arch=b32 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+#     -a always,exit -F arch=b64 -S ftruncate -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+#
+# If the command does not return all lines, or the lines are commented out,
+# this is a finding.
 
 
 - name: TOSS-04-030630 - Successful/unsuccessful uses of the ftruncate system call system call in TOSS must generate an audit record.

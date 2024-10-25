@@ -1,10 +1,17 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253115
 
 # Check that TOSS has enabled the hardware random number generator
-# entropy gatherer service. Verify the rngd service is enabled and active with the
-# following commands: $ sudo systemctl is-enabled rngd enabled $ sudo systemctl
-# is-active rngd active If the service is not "enable and "active", this is a
-# finding.
+# entropy gatherer service.
+#
+# Verify the rngd service is enabled and active with the following commands:
+#
+#     $ sudo systemctl is-enabled rngd
+#     enabled
+#
+#     $ sudo systemctl is-active rngd
+#     active
+#
+# If the service is not "enable and "active", this is a finding.
 
 
 - name: TOSS-04-040740 - TOSS must enable the hardware random number generator entropy gatherer service.

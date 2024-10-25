@@ -1,12 +1,15 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253055
 
-# Verify the operating system has the packages required for encrypting
-# offloaded audit logs installed with the following commands: $ sudo yum list
-# installed rsyslog-gnutls rsyslog-gnutls.x86_64 8.2102.0-5.el8 @AppStream If the
-# "rsyslog-gnutls" package is not installed, ask the administrator to indicate how
-# audit logs are being encrypted during offloading and what packages are installed
-# to support it. If there is no evidence of audit logs being encrypted during
-# offloading, this is a finding.
+# Verify the operating system has the packages required for encrypting offloaded
+# audit logs installed with the following commands:
+#
+#     $ sudo yum list installed rsyslog-gnutls
+#     rsyslog-gnutls.x86_64          8.2102.0-5.el8          @AppStream
+#
+# If the "rsyslog-gnutls" package is not installed, ask the administrator to
+# indicate how audit logs are being encrypted during offloading and what packages
+# are installed to support it. If there is no evidence of audit logs being
+# encrypted during offloading, this is a finding.
 
 
 - name: TOSS-04-031380 - TOSS must have the packages required for encrypting offloaded audit logs installed.
@@ -18,7 +21,7 @@
   tags:
     - V-253055
     - SRG-OS-000480-GPOS-00227
-    - SV-253055r824837_rule
+    - SV-253055r826063_rule
     - TOSS-04-031380
     - DISA-STIG-TOSS-04-031380
     - medium_severity

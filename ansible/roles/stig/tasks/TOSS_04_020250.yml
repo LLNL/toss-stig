@@ -7,6 +7,18 @@
 # requirement is Not Applicable. $ sudo gsettings get org.gnome.login-screen
 # disable-user-list true If the setting is "false", this is a finding.
 
+# Verify the operating system disables the user logon list for graphical
+# user interfaces with the following command:
+#
+# Note: This requirement assumes the use of the TOSS default graphical user
+# interface, Gnome Shell. If the system does not have any graphical user
+# interface installed, this requirement is Not Applicable.
+#
+#     $ sudo gsettings get org.gnome.login-screen disable-user-list
+#     true
+#
+# If the setting is "false", this is a finding.
+
 
 - name: TOSS-04-020250 - TOSS must disable the user list at logon for graphical user interfaces.
   block:

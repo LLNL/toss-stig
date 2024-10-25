@@ -1,15 +1,18 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253011
 
-# Verify TOSS generates an audit record when successful/unsuccessful
-# attempts to use the "creat" system call by performing the following command to
-# check the file system rules in "/etc/audit/audit.rules": $ sudo grep -iw creat
-# /etc/audit/audit.rules -a always,exit -F arch=b32 -S creat -F exit=-EPERM -F
-# auid>=1000 -F auid!=unset -k perm_access -a always,exit -F arch=b64 -S creat
-# -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access -a always,exit -F
-# arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
-# -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F
-# auid!=unset -k perm_access If the command does not return all lines, or the
-# lines are commented out, this is a finding.
+# Verify TOSS generates an audit record when successful/unsuccessful attempts
+# to use the "creat" system call by performing the following command to check
+# the file system rules in "/etc/audit/audit.rules":
+#
+#     $ sudo grep -iw creat /etc/audit/audit.rules
+#     -a always,exit -F arch=b32 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+#     -a always,exit -F arch=b64 -S creat -F exit=-EPERM -F auid>=1000 -F auid!=unset -k perm_access
+#
+#     -a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+#     -a always,exit -F arch=b64 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=unset -k perm_access
+#
+# If the command does not return all lines, or the lines are commented out,
+# this is a finding.
 
 
 - name: TOSS-04-030580 - Successful/unsuccessful uses of the creat system call in TOSS must generate an audit record.

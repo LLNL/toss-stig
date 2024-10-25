@@ -1,8 +1,10 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253122
 
-# To verify that null passwords cannot be used, run the following
-# command: $ sudo grep -i nullok /etc/pam.d/password-auth If output is produced,
-# this is a finding.
+# To verify that null passwords cannot be used, run the following command:
+#
+#     $ sudo grep -i nullok /etc/pam.d/password-auth
+#
+# If output is produced, this is a finding.
 
 
 - name: TOSS-04-040810 - TOSS must not allow blank or null passwords in the password-auth file.

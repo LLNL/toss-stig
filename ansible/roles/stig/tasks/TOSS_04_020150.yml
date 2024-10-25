@@ -1,21 +1,30 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252955
 
-# Verify the "/var/log/messages" file has a mode of "0640" or less
-# permissive and is owned by the root user with the following command: $ sudo ls
-# -l /var/log/messages -rw-r----- 1 root root 59782947 Jul 20 01:36
-# /var/log/messages If the "/var/log/messages" file has a mode more permissive
-# than "0640", this is a finding. If the "/var/log/messages" file is not owned by
-# "root", this is a finding. Verify the "/var/log" directory has a mode of "0755"
-# or less permissive and is owned by the root user with the following command: $
-# sudo ls -ld /var/log/ drwxr-xr-x 1 root root 1200 Jul 19 03:39 /var/log If the
-# "/var/log/" directory has a mode more permissive than "0755", this is a finding.
+# Verify the "/var/log/messages" file has a mode of "0640" or less permissive
+# and is owned by the root user with the following command:
+#
+#     $ sudo ls -l /var/log/messages
+#     -rw-r----- 1 root root 59782947 Jul 20 01:36 /var/log/messages
+#
+# If the "/var/log/messages" file has a mode more permissive than "0640",
+# this is a finding.
+# If the "/var/log/messages" file is not owned by "root", this is a finding.
+#
+# Verify the "/var/log" directory has a mode of "0755" or less permissive
+# and is owned by the root user with the following command:
+#
+#     $ sudo ls -ld /var/log/
+#     drwxr-xr-x 1 root root 1200 Jul 19 03:39 /var/log
+#
+# If the "/var/log/" directory has a mode more permissive than "0755",
+# this is a finding.
 # If the "/var/log/" directory is not owned by "root", this is a finding.
 
 
 - name: TOSS-04-020150 - TOSS must reveal error messages only to authorized users.
   ansible.builtin.file:
     path: /var/log/messages
-    mode: '640'
+    mode: '0640'
   when:
     - toss_04_020150 | bool
   tags:

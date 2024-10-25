@@ -6,6 +6,15 @@
 # Information System Security Officer (ISSO) as an operational requirement, this
 # is a finding.
 
+# Verify an FTP server has not been installed on the system with the
+# following commands:
+#
+#     $ sudo yum list installed *ftpd*
+#     vsftpd.x86_64                                                     3.0.3-28.el8                                                  appstream
+#
+# If an FTP server is installed and is not documented with the Information
+# System Security Officer (ISSO) as an operational requirement, this is a finding.
+
 
 - name: TOSS-04-040560 - A File Transfer Protocol (FTP) server package must not be installed unless mission essential on TOSS.
   block:

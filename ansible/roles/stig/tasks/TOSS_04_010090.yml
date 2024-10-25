@@ -5,7 +5,6 @@
 # Check if "SELinux" is active and in "Enforcing" mode with the following command:
 #
 #     $ sudo getenforce
-#
 #     Enforcing
 #
 # If "SELinux" is not active or not in "Enforcing" mode, this is a finding.

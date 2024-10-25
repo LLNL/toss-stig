@@ -5,7 +5,6 @@
 # Check the value of TCP syncookies with the following command:
 #
 #     $ sysctl net.ipv4.tcp_syncookies
-#
 #     net.ipv4.tcp_syncookies = 1
 #
 # If the value is not "1", this is a finding.

@@ -49,7 +49,7 @@
       ansible.builtin.copy:
         content: "{{ login_banner_text }}"
         dest: /etc/issue
-        mode: '644'
+        mode: '0644'
     - name: TOSS-04-010000 - Set the GNOME3 Login Warning Banner Text
       community.general.ini_file:
         dest: /etc/dconf/db/gdm.d/00-security-settings
@@ -58,7 +58,7 @@
         value: "{{ login_banner_text }}"
         create: true
         no_extra_spaces: true
-        mode: '644'
+        mode: '0644'
     - name: TOSS-04-010000 - Insert correct banner setting into /etc/ssh/sshd_config
       ansible.builtin.lineinfile:
         path: /etc/ssh/sshd_config
@@ -67,7 +67,7 @@
         line: Banner /etc/issue
         state: present
         validate: /usr/sbin/sshd -t -f %s
-        mode: '600'
+        mode: '0600'
   when:
     - toss_04_010000 | bool
   tags:

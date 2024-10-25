@@ -2,9 +2,13 @@
 
 # Verify the operating system enforces a delay of at least four seconds
 # between console logon prompts following a failed logon attempt with the
-# following command: $ sudo grep -i fail_delay /etc/login.defs FAIL_DELAY 4 If the
-# value of "FAIL_DELAY" is not set to "4" or greater, or the line is commented
-# out, this is a finding.
+# following command:
+#
+#     $ sudo grep -i fail_delay /etc/login.defs
+#     FAIL_DELAY 4
+#
+# If the value of "FAIL_DELAY" is not set to "4" or greater, or the line
+# is commented out, this is a finding.
 
 
 - name: TOSS-04-040550 - TOSS must enforce a delay of at least four seconds between logon prompts following a failed logon attempt.

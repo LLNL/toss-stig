@@ -4,7 +4,6 @@
 # with the following command:
 #
 #     $ sudo grep sulogin-shell /usr/lib/systemd/system/rescue.service
-#
 #     ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue
 #
 # If the "ExecStart" line is configured for anything other than

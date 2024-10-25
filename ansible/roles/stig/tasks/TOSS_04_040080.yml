@@ -1,9 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253063
 
-# Verify the value of the "difok" option in
-# "/etc/security/pwquality.conf" with the following command: $ sudo grep difok
-# /etc/security/pwquality.conf difok = 8 If the value of "difok" is set to less
-# than "8" or is commented out, this is a finding.
+# Verify the value of the "difok" option in "/etc/security/pwquality.conf"
+# with the following command:
+#
+#     $ sudo grep difok /etc/security/pwquality.conf
+#     difok = 8
+#
+# If the value of "difok" is set to less than "8" or is commented out,
+# this is a finding.
 
 
 - name: TOSS-04-040080 - TOSS must require the change of at least eight characters when passwords are changed.
