@@ -1,16 +1,26 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253076
 
-# Verify the operating system disables the ability to load the SCTP
-# protocol kernel module. $ sudo grep -r sctp /etc/modprobe.d/* | grep install
-# install sctp /bin/false If the command does not return any output, or the line
-# is commented out, and use of the SCTP protocol is not documented with the
-# Information System Security Officer (ISSO) as an operational requirement, this
-# is a finding. Verify the operating system disables the ability to use the SCTP
-# protocol. Check to see if the SCTP protocol is disabled with the following
-# command: $ sudo grep -r sctp /etc/modprobe.d/* | grep "blacklist" blacklist sctp
-# If the command does not return any output or the output is not "blacklist sctp",
+# Verify the operating system disables the ability to load the SCTP protocol
+# kernel module.
+#
+#     $ sudo grep -r sctp /etc/modprobe.d/* | grep install
+#     install sctp /bin/false
+#
+# If the command does not return any output, or the line is commented out,
 # and use of the SCTP protocol is not documented with the Information System
 # Security Officer (ISSO) as an operational requirement, this is a finding.
+#
+# Verify the operating system disables the ability to use the SCTP protocol.
+#
+# Check to see if the SCTP protocol is disabled with the following command:
+#
+#     $ sudo grep -r sctp /etc/modprobe.d/* | grep "blacklist"
+#     blacklist sctp
+#
+# If the command does not return any output or the output is not
+# "blacklist sctp", and use of the SCTP protocol is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement,
+# this is a finding.
 
 
 - name: TOSS-04-040210 - TOSS must disable the stream control transmission (SCTP) protocol. Check/create installs to /bin/false

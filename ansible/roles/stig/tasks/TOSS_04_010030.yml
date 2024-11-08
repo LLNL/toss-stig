@@ -1,11 +1,14 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252914
 
-# Check to see if the system requires authentication for rescue or
-# emergency mode with the following command: $ sudo grep sulogin-shell
-# /usr/lib/systemd/system/rescue.service
-# ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue If the "ExecStart" line
-# is configured for anything other than "/usr/lib/systemd/systemd-sulogin-shell
-# rescue", commented out, or missing, this is a finding.
+# Check to see if the system requires authentication for rescue or emergency mode
+# with the following command:
+#
+#     $ sudo grep sulogin-shell /usr/lib/systemd/system/rescue.service
+#     ExecStart=-/usr/lib/systemd/systemd-sulogin-shell rescue
+#
+# If the "ExecStart" line is configured for anything other than
+# "/usr/lib/systemd/systemd-sulogin-shell rescue", commented out, or missing,
+# this is a finding.
 
 
 - name: TOSS-04-010030 - TOSS must require authentication upon booting into emergency or rescue modes.

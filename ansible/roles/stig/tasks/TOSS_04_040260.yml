@@ -1,8 +1,11 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253080
 
-# Check to see if the telnet-server package is installed with the
-# following command: $ sudo yum list installed telnet-server If the telnet-server
-# package is installed, this is a finding.
+# Check to see if the telnet-server package is installed with the following
+# command:
+#
+#     $ sudo yum list installed telnet-server
+#
+# If the telnet-server package is installed, this is a finding.
 
 
 - name: TOSS-04-040260 - TOSS must not have the telnet-server package installed.

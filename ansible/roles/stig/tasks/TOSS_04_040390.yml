@@ -1,13 +1,19 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253089
 
 # Verify the audit system is configured to take an appropriate action
-# when the internal event queue is full: $ sudo grep -i overflow_action
-# /etc/audit/auditd.conf overflow_action = syslog If the value of the
-# "overflow_action" option is not set to "syslog", "single", "halt", or the line
-# is commented out, ask the System Administrator to indicate how the audit logs
-# are off-loaded to a different system or media. If there is no evidence that the
-# transfer of the audit logs being off-loaded to another system or media takes
-# appropriate action if the internal event queue becomes full, this is a finding.
+# when the internal event queue is full:
+#
+#     $ sudo grep -i overflow_action /etc/audit/auditd.conf
+#     overflow_action = syslog
+#
+# If the value of the "overflow_action" option is not set to "syslog",
+# "single", "halt", or the line is commented out, ask the System
+# Administrator to indicate how the audit logs are offloaded to a different
+# system or media.
+#
+# If there is no evidence that the transfer of the audit logs being
+# offloaded to another system or media takes appropriate action if the
+# internal event queue becomes full, this is a finding.
 
 
 - name: TOSS-04-040390 - TOSS must take appropriate action when the internal event queue is full.
@@ -41,7 +47,7 @@
   tags:
     - V-253089
     - SRG-OS-000342-GPOS-00133
-    - SV-253089r824939_rule
+    - SV-253089r826065_rule
     - TOSS-04-040390
     - DISA-STIG-TOSS-04-040390
     - medium_severity

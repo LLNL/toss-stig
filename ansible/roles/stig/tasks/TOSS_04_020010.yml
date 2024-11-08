@@ -1,14 +1,18 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252947
 
-# Verify TOSS limits the number of concurrent sessions to less than or
-# equal to 256 for all accounts and/or account types by issuing the following
-# command: $ sudo grep -r -s '^[^#].*maxlogins' /etc/security/limits.conf
-# /etc/security/limits.d/*.conf * hard maxlogins 256 This can be set as a global
-# domain (with the * wildcard) but may be set differently for multiple domains. If
-# the "maxlogins" item is missing, commented out, or the value is set greater than
-# "256" and is not documented with the Information System Security Officer (ISSO)
-# as an operational requirement for all domains that have the "maxlogins" item
-# assigned, this is a finding.
+# Verify TOSS limits the number of concurrent sessions to less than or equal
+# to 256 for all accounts and/or account types by issuing the following command:
+#
+#     $ sudo grep -r -s '^[^#].*maxlogins' /etc/security/limits.conf /etc/security/limits.d/*.conf
+#     * hard maxlogins 256
+#
+# This can be set as a global domain (with the * wildcard) but may be set
+# differently for multiple domains.
+#
+# If the "maxlogins" item is missing, commented out, or the value is set greater
+# than "256" and is not documented with the Information System Security Officer
+# (ISSO) as an operational requirement for all domains that have the "maxlogins"
+# item assigned, this is a finding.
 
 
 - name: TOSS-04-020010 - TOSS must limit the number of concurrent sessions to 256 for all accounts and/or account types.
@@ -19,7 +23,7 @@
     regexp: ^#?\*.*maxlogins
     line: '*          hard    maxlogins     {{ max_concurrent_login_sessions }}'
     create: true
-    mode: '644'
+    mode: '0644'
   when:
     - toss_04_020010 | bool
   tags:

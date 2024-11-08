@@ -1,10 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253050
 
 # Verify that TOSS is configured to audit the execution of the module
-# management program "kmod", by running the following command: $ sudo grep
-# "/usr/bin/kmod" /etc/audit/audit.rules -a always,exit -F path=/usr/bin/kmod -F
-# perm=x -F auid>=1000 -F auid!=unset -k modules If the command does not return
-# a line, or the line is commented out, this is a finding.
+# management program "kmod", by running the following command:
+#
+#     $ sudo grep "/usr/bin/kmod" /etc/audit/audit.rules
+#     -a always,exit -F path=/usr/bin/kmod -F perm=x -F auid>=1000 -F auid!=unset -k modules
+#
+# If the command does not return a line, or the line is commented out,
+# this is a finding.
 
 
 - name: TOSS-04-031240 - Successful/unsuccessful uses of the "kmod" command in TOSS must generate an audit record.

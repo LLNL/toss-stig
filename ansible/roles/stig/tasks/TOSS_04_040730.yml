@@ -1,9 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253114
 
 # Verify TOSS enables hardening for the BPF JIT with the following
-# commands: $ sudo sysctl net.core.bpf_jit_harden net.core.bpf_jit_harden = 2 If
-# the returned line does not have a value of "2", or a line is not returned, this
-# is a finding.
+# commands:
+#
+#     $ sudo sysctl net.core.bpf_jit_harden
+#     net.core.bpf_jit_harden = 2
+#
+# If the returned line does not have a value of "2", or a line is not
+# returned, this is a finding.
 
 
 - name: TOSS-04-040730 - TOSS must enable hardening for the Berkeley Packet Filter Just-in-time compiler.

@@ -1,12 +1,16 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252942
 
-# Verify the SSH daemon does not allow authentication using known
-# host's authentication with the following command: $ sudo grep -i
-# IgnoreUserKnownHosts /etc/ssh/sshd_config IgnoreUserKnownHosts yes If the value
-# is returned as "no", the returned line is commented out, or no output is
-# returned, this is a finding.
+# Verify the SSH daemon does not allow authentication using known host's
+# authentication with the following command:
+#
+#     $ sudo grep -i IgnoreUserKnownHosts /etc/ssh/sshd_config
+#     IgnoreUserKnownHosts yes
+#
+# If the value is returned as "no", the returned line is commented out, or no
+# output is returned, this is a finding.
 
 # Implementation adapted from: https://github.com/RedHatOfficial/ansible-role-rhel8-stig
+
 
 - name: TOSS-04-010400 - The TOSS SSH daemon must not allow authentication using known host's authentication.
   ansible.builtin.lineinfile:

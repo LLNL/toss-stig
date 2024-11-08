@@ -1,25 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253134
 
 # Verify TOSS uses reverse path filtering on all IPv4 interfaces with
-# the following commands: $ sudo sysctl net.ipv4.conf.all.rp_filter
-# net.ipv4.conf.all.rp_filter = 1 If the returned line does not have a value of
-# "1", or a line is not returned, this is a finding.
-
-# checkid: C-56587r825072_chk
-# checktext: |-
-#   Verify TOSS uses reverse path filtering on all IPv4 interfaces with the following commands:
+# the following commands:
+#
 #     $ sudo sysctl net.ipv4.conf.all.rp_filter
-#   net.ipv4.conf.all.rp_filter = 1
-#   If the returned line does not have a value of "1", or a line is not returned, this is a finding.
-# description: |-
-#   It is detrimental for operating systems to provide, or install by default, functionality exceeding requirements or mission objectives. These unnecessary capabilities or services are often overlooked and therefore may remain unsecured. They increase the risk to the platform by providing additional attack vectors.
-#   Enabling reverse path filtering drops packets with source addresses that are not routable. There is not an equivalent filter for IPv6 traffic.
-# fixid: F-56537r825073_fix
-# fixtext: |-
-#   Configure TOSS to use reverse path filtering on all IPv4 interfaces by adding the following line to a file in the "/etc/sysctl.d" directory:
 #     net.ipv4.conf.all.rp_filter = 1
-#   The system configuration files need to be reloaded for the changes to take effect. To reload the contents of the files, run the following command:
-#     $ sudo sysctl --system
+#
+# If the returned line does not have a value of "1", or a line is not
+# returned, this is a finding.
 
 
 - name: TOSS-04-040930 - TOSS must use reverse path filtering on all IPv4 interfaces.

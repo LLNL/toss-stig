@@ -1,19 +1,26 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252981
 
-# Verify the audit log directory is owned by user root. First,
-# determine where the audit logs are stored with the following command: $ sudo
-# grep -iw log_file /etc/audit/auditd.conf log_file = /var/log/audit/audit.log
-# Using the directory where the audit log file is located, check if the directory
-# is owned by user "root" with the following command: $ sudo ls -ld
-# /var/log/audit/ drwx------. 2 root root 99 Jul 19 07:32 /var/log/audit/ If the
-# audit log directory is not owned by user "root", this is a finding.
+# Verify the audit log directory is owned by user root.
+#
+# First, determine where the audit logs are stored with the following command:
+#
+#     $ sudo grep -iw log_file /etc/audit/auditd.conf
+#     log_file = /var/log/audit/audit.log
+#
+# Using the directory where the audit log file is located, check if the
+# directory is owned by user "root" with the following command:
+#
+#     $ sudo ls -ld /var/log/audit/
+#     drwx------. 2 root root 99 Jul 19 07:32 /var/log/audit/
+#
+# If the audit log directory is not owned by user "root", this is a finding.
 
 
 - name: TOSS-04-030160 - TOSS audit log directory must be owned by user root to prevent unauthorized read access.
   ansible.builtin.file:
     path: /var/log/audit
     owner: root
-    mode: '700'
+    mode: '0700'
     state: directory
   when:
     - toss_04_030160 | bool

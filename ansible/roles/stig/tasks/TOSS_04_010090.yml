@@ -1,9 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252920
 
-# Verify that TOSS verifies the correct operation of all security
-# functions. Check if "SELinux" is active and in "Enforcing" mode with the
-# following command: $ sudo getenforce Enforcing If "SELinux" is not active or not
-# in "Enforcing" mode, this is a finding.
+# Verify that TOSS verifies the correct operation of all security functions.
+#
+# Check if "SELinux" is active and in "Enforcing" mode with the following command:
+#
+#     $ sudo getenforce
+#     Enforcing
+#
+# If "SELinux" is not active or not in "Enforcing" mode, this is a finding.
 
 
 - name: TOSS-04-010090 - TOSS must use a Linux Security Module configured to enforce limits on system services.

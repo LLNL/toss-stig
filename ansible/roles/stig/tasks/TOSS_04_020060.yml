@@ -1,16 +1,20 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252951
 
-# Verify that TOSS contains no duplicate User IDs (UIDs) for
-# interactive users. Check that the operating system contains no duplicate UIDs
-# for interactive users with the following command: $ sudo awk -F ":"
-# 'list[$3]++{print $1, $3}' /etc/passwd If output is produced, and the accounts
-# listed are interactive user accounts, this is a finding.
+# Verify that TOSS contains no duplicate User IDs (UIDs) for interactive users.
+#
+# Check that the operating system contains no duplicate UIDs for interactive
+# users with the following command:
+#
+#     $ sudo awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd
+#
+# If output is produced, and the accounts listed are interactive user accounts,
+# this is a finding.
 
 
 - name: TOSS-04-020060 - TOSS duplicate User IDs (UIDs) must not exist for interactive users.
   block:
     - name: TOSS-04-020060 - Verify no users have the same UUID
-      command: "awk -F ':' 'list[$3]++{print $1,$3}' /etc/passwd"
+      ansible.builtin.command: "awk -F ':' 'list[$3]++{print $1,$3}' /etc/passwd"
       failed_when: all_dupe_uuid.rc not in [0,1]
       changed_when: false
       check_mode: false
