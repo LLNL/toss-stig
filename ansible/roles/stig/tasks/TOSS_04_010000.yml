@@ -56,7 +56,6 @@
   tags:
     - V-252911
     - SRG-OS-000023-GPOS-00006
-    - SV-252911r824057_rule
     - TOSS-04-010000
     - DISA-STIG-TOSS-04-010000
     - medium_severity

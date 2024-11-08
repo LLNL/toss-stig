@@ -36,7 +36,6 @@
   tags:
     - V-253110
     - SRG-OS-000480-GPOS-00227
-    - SV-253110r825002_rule
     - TOSS-04-040690
     - DISA-STIG-TOSS-04-040690
     - high_severity

@@ -50,7 +50,6 @@
   tags:
     - V-252923
     - SRG-OS-000228-GPOS-00088
-    - SV-252923r824093_rule
     - TOSS-04-010120
     - DISA-STIG-TOSS-04-010120
     - low_severity

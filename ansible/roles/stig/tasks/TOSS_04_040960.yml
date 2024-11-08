@@ -37,7 +37,6 @@
   tags:
     - V-253137
     - SRG-OS-000312-GPOS-00122
-    - SV-253137r825083_rule
     - TOSS-04-040960
     - DISA-STIG-TOSS-04-040960
     - medium_severity
