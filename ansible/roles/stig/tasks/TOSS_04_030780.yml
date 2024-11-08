@@ -1,22 +1,33 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253023
 
-# Verify that Advanced Intrusion Detection Environment (AIDE) is
-# properly configured to use cryptographic mechanisms to protect the integrity of
-# audit tools. If AIDE is not installed, ask the System Administrator how file
-# integrity checks are performed on the system. Check the selection lines to
-# ensure AIDE is configured to add/check with the following command: $ sudo egrep
-# '(\/usr\/sbin\/(audit|au|rsys))' /etc/aide.conf /usr/sbin/auditctl
-# p+i+n+u+g+s+b+acl+xattrs+sha512 /usr/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512
-# /usr/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512 /usr/sbin/aureport
-# p+i+n+u+g+s+b+acl+xattrs+sha512 /usr/sbin/autrace
-# p+i+n+u+g+s+b+acl+xattrs+sha512 /usr/sbin/rsyslogd
-# p+i+n+u+g+s+b+acl+xattrs+sha512 /usr/sbin/augenrules
-# p+i+n+u+g+s+b+acl+xattrs+sha512 If any of the audit tools listed above do not
-# have an appropriate selection line, ask the system administrator to indicate
-# what cryptographic mechanisms are being used to protect the integrity of the
-# audit tools. If there is no evidence of integrity protection, this is a finding.
-# If any of the audit tools are not installed on the system, the corresponding
-# AIDE rule is not applicable.
+# Verify that Advanced Intrusion Detection Environment (AIDE) is properly
+# configured to use cryptographic mechanisms to protect the integrity of
+# audit tools.
+#
+# If AIDE is not installed, ask the System Administrator how file integrity
+# checks are performed on the system.
+#
+# Check the selection lines to ensure AIDE is configured to add/check with
+# the following command:
+#
+#     $ sudo egrep '(\/usr\/sbin\/(audit|au|rsys))' /etc/aide.conf
+#     /usr/sbin/auditctl p+i+n+u+g+s+b+acl+xattrs+sha512
+#     /usr/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512
+#     /usr/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512
+#     /usr/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512
+#     /usr/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512
+#     /usr/sbin/rsyslogd p+i+n+u+g+s+b+acl+xattrs+sha512
+#     /usr/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512
+#
+# If any of the audit tools listed above do not have an appropriate
+# selection line, ask the system administrator to indicate what
+# cryptographic mechanisms are being used to protect the integrity of the
+# audit tools. If there is no evidence of integrity protection, this is a
+# finding.
+#
+# If any of the audit tools are not installed on the system, the
+# corresponding AIDE rule is not applicable.
+
 
 - name: TOSS-04-030780 - Set audit_tools fact
   ansible.builtin.set_fact:

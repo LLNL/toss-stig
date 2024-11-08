@@ -1,17 +1,20 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252926
 
-# Verify the SSH daemon is configured to use only MACs employing FIPS
-# 140-2-approved algorithms: Check that the MACs in the back-end configurations
-# are FIPS 140-2-approved algorithms with the following command: $ sudo grep -i
-# macs /etc/crypto-policies/back-ends/openssh.config
-# /etc/crypto-policies/back-ends/opensshserver.config
-# /etc/crypto-policies/back-ends/openssh.config:MACs hmac-sha2-512,hmac-sha2-256
-# /etc/crypto-policies/back-ends/opensshserver.config:-oMACs=hmac-sha2-512,hmac-sha2-256'
-# /etc/crypto-policies/back-ends/opensshserver.config:-oMACs=hmac-sha2-512,hmac-sha2-256'
+# Verify the SSH daemon is configured to use only MACs employing FIPS 140-2-approved
+# algorithms:
+#
+# Check that the MACs in the back-end configurations are FIPS 140-2-approved
+# algorithms with the following command:
+#
+#     $ sudo grep -i macs /etc/crypto-policies/back-ends/openssh.config /etc/crypto-policies/back-ends/opensshserver.config
+#
+#     /etc/crypto-policies/back-ends/openssh.config:MACs hmac-sha2-512,hmac-sha2-256
+#     /etc/crypto-policies/back-ends/opensshserver.config:-oMACs=hmac-sha2-512,hmac-sha2-256'
+#     /etc/crypto-policies/back-ends/opensshserver.config:-oMACs=hmac-sha2-512,hmac-sha2-256'
+#
 # If the MAC entries in the "openssh.config" and "opensshserver.config" files have
-# any hashes other than "hmac-sha2-512" and "hmac-sha2-256", the order differs
-# from the example above, if they are missing, or commented out, this is a
-# finding.
+# any hashes other than "hmac-sha2-512" and "hmac-sha2-256", the order differs from
+# the example above, if they are missing, or commented out, this is a finding.
 
 
 - name: TOSS-04-010160 - The TOSS SSH daemon must be configured to use only Message Authentication Codes (MACs) employing FIPS 140-2 validated cryptographic hash algorithms.
@@ -27,7 +30,7 @@
         regexp: 'MACs \S+'
         line: 'MACs hmac-sha2-512,hmac-sha2-256'
         create: true
-        mode: '644'
+        mode: '0644'
   when:
     - toss_04_010160 | bool
   tags:

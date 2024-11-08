@@ -1,10 +1,14 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253039
 
 # Verify TOSS generates an audit record when successful/unsuccessful
-# modifications to the "lastlog" file by performing the following command to check
-# the file system rules in "/etc/audit/audit.rules": $ sudo grep -w lastlog
-# /etc/audit/audit.rules -w /var/log/lastlog -p wa -k logins If the command does
-# not return a line, or the line is commented out, this is a finding.
+# modifications to the "lastlog" file by performing the following command
+# to check the file system rules in "/etc/audit/audit.rules":
+#
+#     $ sudo grep -w lastlog /etc/audit/audit.rules
+#     -w /var/log/lastlog -p wa -k logins
+#
+# If the command does not return a line, or the line is commented out,
+# this is a finding.
 
 
 - name: TOSS-04-031130 - Successful/unsuccessful modifications to the "lastlog" file in TOSS must generate an audit record.

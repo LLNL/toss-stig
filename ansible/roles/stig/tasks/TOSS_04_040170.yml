@@ -1,17 +1,29 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253072
 
-# Verify the operating system disables the ability to load the cramfs
-# kernel module. $ sudo grep -r cramfs /etc/modprobe.d/* | grep install install
-# cramfs /bin/false If the command does not return any output, or the line is
-# commented out, and use of the cramfs protocol is not documented with the
-# Information System Security Officer (ISSO) as an operational requirement, this
-# is a finding. Verify the operating system disables the ability to use the cramfs
-# kernel module. Check to see if the cramfs kernel module is disabled with the
-# following command: $ sudo grep -r cramfs /etc/modprobe.d/* | grep "blacklist"
-# blacklist cramfs If the command does not return any output or the output is not
-# "blacklist cramfs", and use of the cramfs kernel module is not documented with
-# the Information System Security Officer (ISSO) as an operational requirement,
+# Verify the operating system disables the ability to load the
+# cramfs kernel module.
+#
+#     $ sudo grep -r cramfs /etc/modprobe.d/* | grep install
+#     install cramfs /bin/false
+#
+# If the command does not return any output, or the line is commented
+# out, and use of the cramfs protocol is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement,
 # this is a finding.
+#
+# Verify the operating system disables the ability to use the cramfs
+# kernel module.
+#
+# Check to see if the cramfs kernel module is disabled with the following
+# command:
+#
+#     $ sudo grep -r cramfs /etc/modprobe.d/* | grep "blacklist"
+#     blacklist cramfs
+#
+# If the command does not return any output or the output is not
+# "blacklist cramfs", and use of the cramfs kernel module is not
+# documented with the Information System Security Officer (ISSO)
+# as an operational requirement, this is a finding.
 
 
 - name: TOSS-04-040170 - TOSS must disable mounting of cramfs.

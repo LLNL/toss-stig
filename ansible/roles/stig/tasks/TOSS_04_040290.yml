@@ -1,14 +1,20 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253083
 
 # Verify all network connections associated with SSH traffic are
-# automatically terminated at the end of the session or after 10 minutes of
-# inactivity, or as long as documented with the Information System Security
-# Officer (ISSO) as an operational requirement. Check that the
-# "ClientAliveInterval" variable is set to a value of "600" or less and that the
-# "ClientAliveCountMax" is set to "1" by performing the following command: $ sudo
-# grep -i clientalive /etc/ssh/sshd_config ClientAliveInterval 600
-# ClientAliveCountMax 1 If "ClientAliveInterval" and "ClientAliveCountMax" do not
-# exist, does not have a product value of "600" or less in "/etc/ssh/sshd_config",
+# automatically terminated at the end of the session or after 10 minutes
+# of inactivity, or as long as documented with the Information System
+# Security Officer (ISSO) as an operational requirement.
+#
+# Check that the "ClientAliveInterval" variable is set to a value of "600"
+# or less and that the "ClientAliveCountMax" is set to "1" by performing
+# the following command:
+#
+#     $ sudo grep -i clientalive /etc/ssh/sshd_config
+#     ClientAliveInterval 600
+#     ClientAliveCountMax 1
+#
+# If "ClientAliveInterval" and "ClientAliveCountMax" do not exist, does
+# not have a product value of "600" or less in "/etc/ssh/sshd_config",
 # or is commented out, this is a finding.
 
 

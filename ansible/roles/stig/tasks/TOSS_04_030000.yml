@@ -1,12 +1,18 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252972
 
-# Verify TOSS generates audit records for all account creations,
-# modifications, disabling, and termination events that affect "/etc/shadow."
+# Verify TOSS generates audit records for all account creations, modifications,
+# disabling, and termination events that affect "/etc/shadow."
+#
 # Check the auditing rules in "/etc/audit/audit.rules" with the following command:
-# $ sudo grep /etc/shadow /etc/audit/audit.rules -w /etc/shadow -p wa -k identity
-# If the command does not return a line, or the line is commented out, this is a
-# finding. Note: The "-k" allows for specifying an arbitrary identifier. The
-# string following "-k" does not need to match the example output above.
+#
+#     $ sudo grep /etc/shadow /etc/audit/audit.rules
+#     -w /etc/shadow -p wa -k identity
+#
+# If the command does not return a line, or the line is commented out,
+# this is a finding.
+#
+# Note: The "-k" allows for specifying an arbitrary identifier. The string
+# following "-k" does not need to match the example output above.
 
 
 - name: TOSS-04-030000 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.

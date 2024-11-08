@@ -1,13 +1,19 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252971
 
-# Check that all user home directories are owned by the user's primary
-# group with the following command: $ awk -F: '($3>=1000)&&($7 !~
-# /nologin/)&&("stat -c '%g' " $6 | getline
-# dir_group)&&(dir_group!=$4){print $1,$6}' /etc/passwd admin /home/admin
-# Check each user's primary group with the following command (example command is
-# for the "admin" user): $ sudo grep "^admin" /etc/group
-# admin:x:250:smithj,jonesj,jacksons If the user home directory referenced in
-# "/etc/passwd" is not group-owned by that user's primary GID, this is a finding.
+# Check that all user home directories are owned by the user's primary group
+# with the following command:
+#
+#     $ awk -F: '($3>=1000)&&($7 !~ /nologin/)&&("stat -c '%g' " $6 | getline dir_group)&&(dir_group!=$4){print $1,$6}' /etc/passwd
+#     admin /home/admin
+#
+# Check each user's primary group with the following command (example
+# command is for the "admin" user):
+#
+#     $ sudo grep "^admin" /etc/group
+#     admin:x:250:smithj,jonesj,jacksons
+#
+# If the user home directory referenced in "/etc/passwd" is not group-owned
+# by that user's primary GID, this is a finding.
 
 
 - name: TOSS-04-020320 - All TOSS local interactive user home directories must be owned by the user's primary group.

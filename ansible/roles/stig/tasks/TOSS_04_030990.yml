@@ -1,13 +1,17 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253034
 
-# Verify if TOSS is configured to audit the execution of the
-# "fsetxattr" system call, by running the following command: $ sudo grep -w
-# fsetxattr /etc/audit/audit.rules -a always,exit -F arch=b32 -S fsetxattr -F
-# auid>=1000 -F auid!=unset -k perm_mod -a always,exit -F arch=b64 -S fsetxattr
-# -F auid>=1000 -F auid!=unset -k perm_mod -a always,exit -F arch=b32 -S
-# fsetxattr -F auid=0 -k perm_mod -a always,exit -F arch=b64 -S fsetxattr -F
-# auid=0 -k perm_mod If the command does not return all lines, or the lines are
-# commented out, this is a finding.
+# Verify if TOSS is configured to audit the execution of the "fsetxattr"
+# system call, by running the following command:
+#
+#     $ sudo grep -w fsetxattr /etc/audit/audit.rules
+#     -a always,exit -F arch=b32 -S fsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
+#     -a always,exit -F arch=b64 -S fsetxattr -F auid>=1000 -F auid!=unset -k perm_mod
+#
+#     -a always,exit -F arch=b32 -S fsetxattr -F auid=0 -k perm_mod
+#     -a always,exit -F arch=b64 -S fsetxattr -F auid=0 -k perm_mod
+#
+# If the command does not return all lines, or the lines are commented out,
+# this is a finding.
 
 
 - name: TOSS-04-030990 - The TOSS audit system must be configured to audit any usage of the "fsetxattr" system call.

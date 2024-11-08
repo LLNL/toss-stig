@@ -1,9 +1,12 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253084
 
 # Verify the operating system has the policycoreutils package installed
-# with the following command: $ sudo yum list installed policycoreutils
-# policycoreutils.x86_64 2.9-16.el8 @anaconda If the policycoreutils package is
-# not installed, this is a finding.
+# with the following command:
+#
+#     $ sudo yum list installed policycoreutils
+#     policycoreutils.x86_64 2.9-16.el8 @anaconda
+#
+# If the policycoreutils package is not installed, this is a finding.
 
 
 - name: TOSS-04-040310 - TOSS must have policycoreutils package installed.

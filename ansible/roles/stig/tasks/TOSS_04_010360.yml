@@ -1,10 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252938
 
-# Verify TOSS is not configured to reboot the system when
-# Ctrl-Alt-Delete is pressed seven times within two seconds with the following
-# command: $ sudo grep -i ctrl /etc/systemd/system.conf CtrlAltDelBurstAction=none
-# If the "CtrlAltDelBurstAction" is not set to "none", commented out, or is
-# missing, this is a finding.
+# Verify TOSS is not configured to reboot the system when Ctrl-Alt-Delete
+# is pressed seven times within two seconds with the following command:
+#
+#     $ sudo grep -i ctrl /etc/systemd/system.conf
+#     CtrlAltDelBurstAction=none
+#
+# If the "CtrlAltDelBurstAction" is not set to "none", commented out, or
+# is missing, this is a finding.
 
 
 - name: TOSS-04-010360 - The systemd Ctrl-Alt-Delete burst key sequence in TOSS must be disabled.

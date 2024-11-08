@@ -1,9 +1,11 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252970
 
-# Check that all user home directories are owned by the root user with
-# the following command: $ find $(awk -F: '($3>=1000)&&($7 !~
-# /nologin/){print $6}' /etc/passwd) -maxdepth 0 -not -user root -ls If there is
-# any output, this is a finding.
+# Check that all user home directories are owned by the root user with the
+# following command:
+#
+#     $ find $(awk -F: '($3>=1000)&&($7 !~ /nologin/){print $6}' /etc/passwd) -maxdepth 0 -not -user root -ls
+#
+# If there is any output, this is a finding.
 
 
 - name: TOSS-04-020310 - All TOSS local interactive user home directories must be owned by root.

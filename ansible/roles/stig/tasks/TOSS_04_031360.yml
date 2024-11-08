@@ -1,9 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253053
 
-# Verify the TOSS audit daemon is configured to resolve audit
-# information before writing to disk, with the following command: $ sudo grep
-# "log_format" /etc/audit/auditd.conf log_format = ENRICHED If the "log_format"
-# option is not "ENRICHED", or the line is commented out, this is a finding.
+# Verify the TOSS audit daemon is configured to resolve audit information
+# before writing to disk, with the following command:
+#
+#     $ sudo grep "log_format" /etc/audit/auditd.conf
+#     log_format = ENRICHED
+#
+# If the "log_format" option is not "ENRICHED", or the line is commented
+# out, this is a finding.
 
 
 - name: TOSS-04-031360 - TOSS must resolve audit information before writing to disk.

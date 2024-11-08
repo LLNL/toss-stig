@@ -11,6 +11,22 @@
 # If it does, this is a finding. Automatic logon as an authorized user allows
 # access to any user with physical access to the operating system.
 
+# Verify TOSS does not allow an unattended or automatic logon to the system
+# via a graphical user interface.
+#
+# Note: This requirement assumes the use of the TOSS default graphical user
+# interface, Gnome Shell. If the system does not have any graphical user
+# interface installed, this requirement is Not Applicable.
+#
+# Check for the value of the "AutomaticLoginEnable" in the
+# "/etc/gdm/custom.conf" file with the following command:
+#
+#     $ sudo grep -i automaticloginenable /etc/gdm/custom.conf
+#     AutomaticLoginEnable=false
+#
+# If the value of "AutomaticLoginEnable" is missing or is not set to "false",
+# this is a finding. If it does, this is a finding. Automatic logon as an authorized user allows access to any user with physical access to the operating system.
+
 
 - name: TOSS-04-010430 - TOSS must not allow an unattended or automatic logon to the system.
   ansible.builtin.lineinfile:
@@ -19,7 +35,7 @@
     regexp: '^AutomaticLoginEnable'
     line: 'AutomaticLoginEnable=false'
     insertafter: '^[daemon]\n'
-    mode: '644'
+    mode: '0644'
   when:
     - toss_04_010430 | bool
   tags:

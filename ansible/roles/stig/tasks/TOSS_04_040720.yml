@@ -1,10 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253113
 
-# Verify TOSS prevents privilege escalation thru the kernel by
-# disabling access to the bpf syscall with the following commands: $ sudo sysctl
-# kernel.unprivileged_bpf_disabled kernel.unprivileged_bpf_disabled = 1 If the
-# returned line does not have a value of "1", or a line is not returned, this is a
-# finding.
+# Verify TOSS prevents privilege escalation thru the kernel by disabling
+# access to the bpf syscall with the following commands:
+#
+#     $ sudo sysctl kernel.unprivileged_bpf_disabled
+#     kernel.unprivileged_bpf_disabled = 1
+#
+# If the returned line does not have a value of "1", or a line is not
+# returned, this is a finding.
 
 
 - name: TOSS-04-040720 - TOSS must disable access to network bpf syscall from unprivileged processes.

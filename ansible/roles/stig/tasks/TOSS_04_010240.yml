@@ -1,12 +1,15 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252932
 
 # Verify TOSS has the packages required for multifactor authentication
-# installed with the following commands: $ sudo yum list installed openssl-pkcs11
-# openssl-pkcs11.x86_64 0.4.10-2.el8 @anaconda If the "openssl-pkcs11" package is
-# not installed, ask the administrator to indicate what type of multifactor
-# authentication is being utilized and what packages are installed to support it.
-# If there is no evidence of multifactor authentication being used, this is a
-# finding.
+# installed with the following commands:
+#
+#     $ sudo yum list installed openssl-pkcs11
+#     openssl-pkcs11.x86_64 0.4.10-2.el8 @anaconda
+#
+# If the "openssl-pkcs11" package is not installed, ask the administrator to
+# indicate what type of multifactor authentication is being utilized and what
+# packages are installed to support it. If there is no evidence of multifactor
+# authentication being used, this is a finding.
 
 
 - name: TOSS-04-010240 - TOSS must have the packages required for multifactor authentication installed.

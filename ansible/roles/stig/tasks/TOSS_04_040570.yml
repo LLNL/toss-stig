@@ -1,11 +1,16 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253099
 
 # Verify all local files and directories on TOSS have a valid group
-# with the following command: Note: The value after -fstype must be replaced with
-# the filesystem type. XFS is used as an example. $ sudo find / -fstype xfs
-# -nogroup If any files on the system do not have an assigned group, this is a
-# finding. Note: Command may produce error messages from the /proc and /sys
-# directories.
+# with the following command:
+#
+# Note: The value after -fstype must be replaced with the filesystem type.
+# XFS is used as an example.
+#
+#     $ sudo find / -fstype xfs -nogroup
+#
+# If any files on the system do not have an assigned group, this is a finding.
+#
+# Note: Command may produce error messages from the /proc and /sys directories.
 
 
 - name: TOSS-04-040570 - All TOSS local files and directories must have a valid group owner.

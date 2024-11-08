@@ -1,8 +1,12 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253132
 
 # Verify TOSS restricts exposed kernel pointer addresses access with
-# the following commands: $ sudo sysctl kernel.kptr_restrict kernel.kptr_restrict
-# = 1 If the returned line does not have a value of "1", or a line is not
+# the following commands:
+#
+#     $ sudo sysctl kernel.kptr_restrict
+#     kernel.kptr_restrict = 1
+#
+# If the returned line does not have a value of "1", or a line is not
 # returned, this is a finding.
 
 

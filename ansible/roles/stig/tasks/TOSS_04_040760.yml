@@ -1,9 +1,12 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253117
 
 # Check that TOSS has the packages required to enable the hardware
-# random number generator entropy gatherer service with the following command: $
-# sudo yum list installed rng-tools rng-tools.x86_64 6.13-1.git.d207e0b6.el8
-# @anaconda If the "rng-tools" package is not installed, this is a finding.
+# random number generator entropy gatherer service with the following command:
+#
+#     $ sudo yum list installed rng-tools
+#     rng-tools.x86_64                       6.13-1.git.d207e0b6.el8                        @anaconda
+#
+# If the "rng-tools" package is not installed, this is a finding.
 
 
 - name: TOSS-04-040760 - TOSS must have the packages required to use the hardware random number generator entropy gatherer service.

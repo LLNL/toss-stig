@@ -1,10 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252921
 
-# Check to see that all public directories are owned by root or a
-# system account with the following command: $ sudo find / -type d -perm -0002
-# -exec ls -lLd {} \; drwxrwxrwxt 7 root root 4096 Jul 26 11:19 /tmp If any of the
-# returned directories are not owned by root or a system account, this is a
-# finding.
+# Check to see that all public directories are owned by root or a system account
+# with the following command:
+#
+#     $ sudo find / -type d -perm -0002 -exec ls -lLd {} \;
+#     drwxrwxrwxt 7 root root 4096 Jul 26 11:19 /tmp
+#
+# If any of the returned directories are not owned by root or a system account,
+# this is a finding.
 
 
 - name: TOSS-04-010100 - TOSS must prevent unauthorized and unintended information transfer via shared system resources.

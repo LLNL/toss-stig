@@ -1,12 +1,19 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253093
 
-# Verify the NX (no-execution) bit flag is set on the system. Check
-# that the no-execution bit flag is set with the following commands: $ sudo dmesg
-# | grep NX [ 0.000000] NX (Execute Disable) protection: active If "dmesg" does
-# not show "NX (Execute Disable) protection" active, check the cpuinfo settings
-# with the following command: $ sudo less /proc/cpuinfo | grep -i flags flags :
-# fpu vme de pse tsc ms nx rdtscp lm constant_tsc If "flags" does not contain the
-# "nx" flag, this is a finding.
+# Verify the NX (no-execution) bit flag is set on the system.
+#
+# Check that the no-execution bit flag is set with the following commands:
+#
+#     $ sudo dmesg | grep NX
+#     [ 0.000000] NX (Execute Disable) protection: active
+#
+# If "dmesg" does not show "NX (Execute Disable) protection" active, check
+# the cpuinfo settings with the following command:
+#
+#     $ sudo less /proc/cpuinfo | grep -i flags
+#     flags : fpu vme de pse tsc ms nx rdtscp lm constant_tsc
+#
+# If "flags" does not contain the "nx" flag, this is a finding.
 
 
 - name: TOSS-04-040490 - TOSS must implement non-executable data to protect its memory from unauthorized code execution.

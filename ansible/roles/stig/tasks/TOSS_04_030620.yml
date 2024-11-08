@@ -1,12 +1,15 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253015
 
-# Verify TOSS generates an audit record when successful/unsuccessful
-# attempts to use the "fchownat" system call by performing the following command
-# to check the file system rules in "/etc/audit/audit.rules": $ sudo grep -w
-# fchownat /etc/audit/audit.rules -a always,exit -F arch=b32 -S fchownat -F
-# auid>=1000 -F auid!=unset -k perm_mod -a always,exit -F arch=b64 -S fchownat
-# -F auid>=1000 -F auid!=unset -k perm_mod If the command does not return a
-# line, or the line is commented out, this is a finding.
+# Verify TOSS generates an audit record when successful/unsuccessful attempts
+# to use the "fchownat" system call by performing the following command to
+# check the file system rules in "/etc/audit/audit.rules":
+#
+#     $ sudo grep -w fchownat /etc/audit/audit.rules
+#     -a always,exit -F arch=b32 -S fchownat -F auid>=1000 -F auid!=unset -k perm_mod
+#     -a always,exit -F arch=b64 -S fchownat -F auid>=1000 -F auid!=unset -k perm_mod
+#
+# If the command does not return a line, or the line is commented out,
+# this is a finding.
 
 
 - name: TOSS-04-030620 - Successful/unsuccessful uses of the fchownat system call in TOSS must generate an audit record.

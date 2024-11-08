@@ -1,22 +1,34 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252952
 
-# Verify the operating system uses multifactor authentication for
-# network access to privileged accounts. If it does not, this is a finding. Note:
-# This requirement is applicable to any externally accessible nodes of the TOSS
-# system. For compute or other intra-cluster only accessible nodes, this
-# requirement is Not Applicable. One possible method for meeting this requirement
-# is to require smart card logon for access to interactive accounts. Check that
-# the "pam_cert_auth" setting is set to "true" in the "/etc/sssd/sssd.conf" file.
-# Check that the "try_cert_auth" or "require_cert_auth" options are configured in
-# both "/etc/pam.d/system-auth" and "/etc/pam.d/smartcard-auth" files with the
-# following command: $ sudo grep cert_auth /etc/sssd/sssd.conf /etc/pam.d/*
-# /etc/sssd/sssd.conf:pam_cert_auth = True /etc/pam.d/smartcard-auth:auth
-# sufficient pam_sss.so try_cert_auth /etc/pam.d/system-auth:auth [success=done
-# authinfo_unavail=ignore ignore=ignore default=die] pam_sss.so try_cert_auth If
-# "pam_cert_auth" is not set to "true" in "/etc/sssd/sssd.conf", this is a
-# finding. If "pam_sss.so" is not set to "try_cert_auth" or "require_cert_auth" in
-# both the "/etc/pam.d/smartcard-auth" and "/etc/pam.d/system-auth" files, this is
-# a finding.
+# Verify the operating system uses multifactor authentication for network
+# access to privileged accounts. If it does not, this is a finding.
+#
+# Note: This requirement is applicable to any externally accessible nodes of
+# the TOSS system. For compute or other intra-cluster only accessible nodes,
+# this requirement is Not Applicable.
+#
+# One possible method for meeting this requirement is to require smart card
+# logon for access to interactive accounts.
+#
+# Check that the "pam_cert_auth" setting is set to "true" in the
+# "/etc/sssd/sssd.conf" file.
+#
+# Check that the "try_cert_auth" or "require_cert_auth" options are configured
+# in both "/etc/pam.d/system-auth" and "/etc/pam.d/smartcard-auth" files with
+# the following command:
+#
+#     $ sudo grep cert_auth /etc/sssd/sssd.conf /etc/pam.d/*
+#
+#     /etc/sssd/sssd.conf:pam_cert_auth = True
+#     /etc/pam.d/smartcard-auth:auth sufficient pam_sss.so try_cert_auth
+#     /etc/pam.d/system-auth:auth [success=done authinfo_unavail=ignore ignore=ignore default=die] pam_sss.so try_cert_auth
+#
+# If "pam_cert_auth" is not set to "true" in "/etc/sssd/sssd.conf", this is a
+# finding.
+#
+# If "pam_sss.so" is not set to "try_cert_auth" or "require_cert_auth" in both
+# the "/etc/pam.d/smartcard-auth" and "/etc/pam.d/system-auth" files, this is a
+# finding.
 
 
 - name: TOSS-04-020070 - TOSS must use multifactor authentication for network and local access to privileged and non-privileged accounts.
@@ -34,7 +46,7 @@
         option: '{{ item.option }}'
         value: '{{ item.value }}'
         create: true
-        mode: 384
+        mode: '0384'
       with_items:
         - section: sssd
           option: domains
@@ -52,8 +64,7 @@
         option: pam_cert_auth
         value: 'True'
         create: true
-        mode: 384
-
+        mode: '0384'
     - name: TOSS-04-020070 - Enable Smartcards in SSSD - Check integrity of authselect current profile
       ansible.builtin.command: "authselect check"
       register: result_authselect_check_cmd
@@ -95,7 +106,6 @@
       when:
         - result_authselect_enable_feature_cmd is not skipped
         - result_authselect_enable_feature_cmd is success
-
   when:
     - toss_04_020070 | bool
     # - not (compute_node | bool)  # Not applicable on compute nodes - # TODO need a universal way to check this.

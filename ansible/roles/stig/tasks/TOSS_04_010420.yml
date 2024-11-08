@@ -1,10 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252944
 
 # Verify the SSH daemon does not allow Kerberos authentication with the
-# following command: $ sudo grep -i KerberosAuthentication /etc/ssh/sshd_config
-# KerberosAuthentication no If the value is returned as "yes", the returned line
-# is commented out, no output is returned, or has not been documented with the
-# ISSO, this is a finding.
+# following command:
+#
+#     $ sudo grep -i KerberosAuthentication  /etc/ssh/sshd_config
+#     KerberosAuthentication no
+#
+# If the value is returned as "yes", the returned line is commented out, no
+# output is returned, or has not been documented with the ISSO, this is a finding.
 
 
 - name: TOSS-04-010420 - The TOSS SSH daemon must not allow Kerberos authentication, except to fulfill documented and validated mission requirements.

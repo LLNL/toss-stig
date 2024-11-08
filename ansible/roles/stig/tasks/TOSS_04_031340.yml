@@ -1,8 +1,14 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253051
 
-# Verify the audit service is enabled and active with the following
-# commands: $ sudo systemctl is-enabled auditd enabled $ sudo systemctl is-active
-# auditd active If the service is not "enabled" and "active" this is a finding.
+# Verify the audit service is enabled and active with the following commands:
+#
+#     $ sudo systemctl is-enabled auditd
+#     enabled
+#
+#     $ sudo systemctl is-active auditd
+#     active
+#
+# If the service is not "enabled" and "active" this is a finding.
 
 
 - name: TOSS-04-031340 - The auditd service must be running in TOSS.

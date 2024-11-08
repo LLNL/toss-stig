@@ -6,6 +6,15 @@
 # set to "yes", the line is missing, or the line is commented out, this is a
 # finding.
 
+# Verify all local interactive users on TOSS are assigned a home directory
+# upon creation with the following command:
+#
+#     $ sudo grep -i create_home /etc/login.defs
+#     CREATE_HOME yes
+#
+# If the value for "CREATE_HOME" parameter is not set to "yes", the line is
+# missing, or the line is commented out, this is a finding.
+
 
 - name: TOSS-04-020200 - All TOSS local interactive user accounts must be assigned a home directory upon creation.
   ansible.builtin.lineinfile:

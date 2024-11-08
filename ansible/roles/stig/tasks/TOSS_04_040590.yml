@@ -1,16 +1,25 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253101
 
 # Verify that "rsyslog" is configured to log cron events with the
-# following command: Note: If another logging package is used, substitute the
-# utility configuration file for "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf"
-# files. $ sudo grep -r cron /etc/rsyslog.conf /etc/rsyslog.d
-# /etc/rsyslog.conf:*.info;mail.none;authpriv.none;cron.none /var/log/messages
-# /etc/rsyslog.conf:# Log cron stuff /etc/rsyslog.conf:cron.* /var/log/cron If the
-# command does not return a response, check for cron logging all facilities with
-# the following command. $ sudo grep -r /var/log/messages /etc/rsyslog.conf
-# /etc/rsyslog.d /etc/rsyslog.conf:*.info;mail.none;authpriv.none;cron.none
-# /var/log/messages If "rsyslog" is not logging messages for the cron facility or
-# all facilities, this is a finding.
+# following command:
+#
+# Note: If another logging package is used, substitute the utility
+# configuration file for "/etc/rsyslog.conf" or "/etc/rsyslog.d/*.conf"
+# files.
+#
+#     $ sudo grep -r cron /etc/rsyslog.conf /etc/rsyslog.d
+#     /etc/rsyslog.conf:*.info;mail.none;authpriv.none;cron.none                          /var/log/messages
+#     /etc/rsyslog.conf:# Log cron stuff
+#     /etc/rsyslog.conf:cron.*                                                                                                    /var/log/cron
+#
+# If the command does not return a response, check for cron logging all
+# facilities with the following command.
+#
+#     $ sudo grep -r /var/log/messages /etc/rsyslog.conf /etc/rsyslog.d
+#     /etc/rsyslog.conf:*.info;mail.none;authpriv.none;cron.none                          /var/log/messages
+#
+# If "rsyslog" is not logging messages for the cron facility or all
+# facilities, this is a finding.
 
 
 - name: TOSS-04-040590 - Cron logging must be implemented in TOSS.

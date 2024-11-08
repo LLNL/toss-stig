@@ -1,10 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253057
 
 # Verify the SSH client is configured to force frequent session key
-# renegotiation with the following command: $ sudo grep -i RekeyLimit
-# /etc/ssh/ssh_config RekeyLimit 1G 1h If "RekeyLimit" does not have a maximum
-# data amount and maximum time defined, is missing or commented out, this is a
-# finding.
+# renegotiation with the following command:
+#
+#     $ sudo grep -i RekeyLimit /etc/ssh/ssh_config
+#     RekeyLimit 1G 1h
+#
+# If "RekeyLimit" does not have a maximum data amount and maximum time
+# defined, is missing or commented out, this is a finding.
 
 
 - name: TOSS-04-040020 - TOSS must force a frequent session key renegotiation for SSH connections by the client.

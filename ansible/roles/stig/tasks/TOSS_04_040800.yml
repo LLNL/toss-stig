@@ -1,12 +1,19 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253121
 
-# Verify TOSS does not accept router advertisements on all IPv6
-# interfaces, unless the system is a router. Note: If IPv6 is disabled on the
-# system, this requirement is Not Applicable. Check to see if router
-# advertisements are not accepted by using the following command: $ sudo sysctl
-# net.ipv6.conf.all.accept_ra net.ipv6.conf.all.accept_ra = 0 If the "accept_ra"
-# value is not "0" and is not documented with the Information System Security
-# Officer (ISSO) as an operational requirement, this is a finding.
+# Verify TOSS does not accept router advertisements on all IPv6 interfaces,
+# unless the system is a router.
+#
+# Note: If IPv6 is disabled on the system, this requirement is Not Applicable.
+#
+# Check to see if router advertisements are not accepted by using the
+# following command:
+#
+#     $ sudo sysctl net.ipv6.conf.all.accept_ra
+#     net.ipv6.conf.all.accept_ra = 0
+#
+# If the "accept_ra" value is not "0" and is not documented with the
+# Information System Security Officer (ISSO) as an operational requirement,
+# this is a finding.
 
 
 - name: TOSS-04-040800 - TOSS must not accept router advertisements on all IPv6 interfaces.

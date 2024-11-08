@@ -1,9 +1,13 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-253087
 
 # Verify the value for "ocredit" in "/etc/security/pwquality.conf" with
-# the following command: $ sudo grep ocredit /etc/security/pwquality.conf ocredit
-# = -1 If the value of "ocredit" is a positive number or is commented out, this is
-# a finding.
+# the following command:
+#
+#     $ sudo grep ocredit /etc/security/pwquality.conf
+#     ocredit = -1
+#
+# If the value of "ocredit" is a positive number or is commented out,
+# this is a finding.
 
 
 - name: TOSS-04-040350 - TOSS must enforce password complexity by requiring that at least one special character be used.
