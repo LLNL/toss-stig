@@ -23,7 +23,7 @@
   tags:
     - V-253096
     - SRG-OS-000480-GPOS-00225
-    - SV-253096r824960_rule
+    - DISA-STIG-TOSS-04-040540
     - TOSS-04-040540
     - medium_severity
     - CCI-000366
