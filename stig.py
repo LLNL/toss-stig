@@ -215,7 +215,6 @@ def toss_04_010000(expected_banner: str = None):
     or remote access to the system.
 
     Vul ID: V-252911
-    Rule ID: SV-252911r824057_rule
     STIG ID: TOSS-04-010000
     Severity: CAT II
     Classification: Unclass
@@ -243,7 +242,6 @@ def toss_04_010010(ca_path: str = "/etc/sssd/pki/sssd_auth_ca_db.pem"):
     trust anchor.
 
     Vul ID: V-252912
-    Rule ID: SV-252912r824060_rule
     STIG ID: TOSS-04-010010
     Severity: CAT II Classification: Unclass
 
@@ -264,7 +262,6 @@ def toss_04_010020(fake_password: str = None):
     Rule Title: TOSS, for PKI-based authentication, must enforce authorized access to the corresponding private key.
 
     Vul ID: V-252913
-    Rule ID: SV-252913r824063_rule
     STIG ID: TOSS-04-010020
     Severity: CAT II
     Classification: Unclass

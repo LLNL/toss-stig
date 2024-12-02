@@ -64,7 +64,6 @@
   tags:
     - V-253059
     - SRG-OS-000033-GPOS-00014
-    - SV-253059r825086_rule
     - TOSS-04-040040
     - DISA-STIG-TOSS-04-040040
     - high_severity

@@ -29,7 +29,6 @@
   tags:
     - V-252947
     - SRG-OS-000027-GPOS-00008
-    - SV-252947r824165_rule
     - TOSS-04-020010
     - DISA-STIG-TOSS-04-020010
     - low_severity
