@@ -1,12 +1,6 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252931
 
 # Verify the operating system requires re-authentication when using the
-# "sudo" command to elevate privileges. $ sudo egrep -ir 'timestamp_timeout'
-# /etc/sudoers /etc/sudoers.d /etc/sudoers:Defaults timestamp_timeout=0 If
-# "timestamp_timeout" is set to a negative number, is commented out, or no results
-# are returned, this is a finding.
-
-# Verify the operating system requires re-authentication when using the
 # "sudo" command to elevate privileges.
 #
 #     $ sudo egrep -ir 'timestamp_timeout' /etc/sudoers /etc/sudoers.d

@@ -15,15 +15,25 @@
 #
 # If no output is returned, this is a finding."
 
-
+# Checks only /etc/sysctl.conf because files in /etc/sysctl.d/ are appended to /etc/sysctl.conf
 - name: TOSS-04-010110 - The TOSS operating system must be configured to use TCP syncookies.
-  ansible.builtin.lineinfile:
-    path: /etc/sysctl.conf
-    regexp: '^(?i)#?net.ipv4.tcp_syncookies'
-    line: 'net.ipv4.tcp_syncookies = 1'
-    state: present
-    backup: true
-  notify: Reload sysctl
+  block:
+    - name: TOSS-04-010110 - check files if correct setting exists in /etc/sysctl.d/
+      ansible.builtin.find:
+        contains: 'net.ipv4.tcp_syncookies = 1'  # searches for line items containing exactly this
+        paths:
+          - /etc/sysctl.d/
+        recurse: true
+      register: result1
+    - name: TOSS-04-010110 - verify /etc/sysctl.conf has correct setting if files in /etc/sysctl.d/ does not
+      ansible.builtin.lineinfile:
+        path: /etc/sysctl.conf
+        regexp: '^(?i)#?net.ipv4.tcp_syncookies'
+        line: 'net.ipv4.tcp_syncookies = 1'
+        state: present
+        backup: true
+      notify: Reload sysctl
+      when: result1.matched < 1
   when:
     - toss_04_010110 | bool
   tags:

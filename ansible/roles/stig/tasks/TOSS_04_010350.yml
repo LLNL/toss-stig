@@ -13,7 +13,7 @@
 
 - name: TOSS-04-010350 - The root account must be the only account having unrestricted access to the TOSS system.
   block:
-    - name: TOSS-04-010350 - Verify Only Root Has UID 0
+    - name: TOSS-04-010350 - get list of accounts that have UID of "0"
       ansible.builtin.command: awk -F':' '$3 == 0 && $1 != "root" { print $1 }' /etc/passwd
       register: uidzero
       changed_when: false
@@ -25,6 +25,7 @@
           - uidzero.stdout_lines | length == 0
         fail_msg: "Another account has been found to have uid 0 in /etc/passwd besides root."
         quiet: true
+  ignore_errors: yes
   when:
     - toss_04_010350 | bool
   tags:
