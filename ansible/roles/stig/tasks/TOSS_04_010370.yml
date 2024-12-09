@@ -9,21 +9,20 @@
 
 - name: TOSS-04-010370 - There must be no ".shosts" files on The TOSS operating system.
   block:
-    # $ sudo find / -name '*.shosts'
     - name: TOSS-04-010370 - Register *.shosts files
-      ansible.builtin.find:
-        # TODO: Add -xdev flag to avoid crossing filesystems
-        paths: /
-        patterns: '*.shosts'
-        file_type: file
-        recurse: false
+      # as of 2024-12-02, ansible.builtin.find does not have the capability to include the '-xdev' option
+      ansible.builtin.command: "find / -xdev -name '*.shosts'"
+      check_mode: false
+      changed_when: false
       register: shost_files
+
     - name: TOSS-04-010370 - Verify there are no .shosts files on the host
       ansible.builtin.assert:
         that:
-          - shost_files.matched == 0
+          - shost_files.stdout_lines | length < 1
         fail_msg: "There should be no `*.shosts` files on the system"
         quiet: true
+  ignore_errors: true
   when:
     - toss_04_010370 | bool
   tags:

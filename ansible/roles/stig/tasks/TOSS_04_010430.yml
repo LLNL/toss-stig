@@ -1,16 +1,5 @@
 # https://www.stigviewer.com/stig/tri-lab_operating_system_stack_toss_4/2022-08-29/finding/V-252945
 
-# Verify TOSS does not allow an unattended or automatic logon to the
-# system via a graphical user interface. Note: This requirement assumes the use of
-# the TOSS default graphical user interface, Gnome Shell. If the system does not
-# have any graphical user interface installed, this requirement is Not Applicable.
-# Check for the value of the "AutomaticLoginEnable" in the "/etc/gdm/custom.conf"
-# file with the following command: $ sudo grep -i automaticloginenable
-# /etc/gdm/custom.conf AutomaticLoginEnable=false If the value of
-# "AutomaticLoginEnable" is missing or is not set to "false", this is a finding.
-# If it does, this is a finding. Automatic logon as an authorized user allows
-# access to any user with physical access to the operating system.
-
 # Verify TOSS does not allow an unattended or automatic logon to the system
 # via a graphical user interface.
 #
@@ -25,23 +14,38 @@
 #     AutomaticLoginEnable=false
 #
 # If the value of "AutomaticLoginEnable" is missing or is not set to "false",
-# this is a finding. If it does, this is a finding. Automatic logon as an authorized user allows access to any user with physical access to the operating system.
+# this is a finding. If it does, this is a finding. Automatic logon as an authorized
+# user allows access to any user with physical access to the operating system.
 
 
 - name: TOSS-04-010430 - TOSS must not allow an unattended or automatic logon to the system.
-  ansible.builtin.lineinfile:
-    create: true
-    path: /etc/gdm/custom.conf
-    regexp: '^AutomaticLoginEnable'
-    line: 'AutomaticLoginEnable=false'
-    insertafter: '^[daemon]\n'
-    mode: '0644'
+  block:
+    - name: TOSS-04-010430 - check if gdm package is installed
+      ansible.builtin.shell: "rpm -qa | grep gdm"
+      register: gdm_package
+      ignore_errors: true
+      changed_when: false
+      check_mode: false
+      args:
+        warn: false
+    - name: TOSS-04-010430 - check TOSS doesn't allow an unattended or automatic logon to the system
+      ansible.builtin.lineinfile:
+        create: true
+        path: /etc/gdm/custom.conf
+        regexp: '^AutomaticLoginEnable'
+        line: 'AutomaticLoginEnable=false'
+        insertafter: '^[daemon]\n'
+        mode: '0644'
+      when:
+        - gdm_package.rc == 0
   when:
     - toss_04_010430 | bool
   tags:
     - V-252945
     - SRG-OS-000480-GPOS-00229
+    - SV-252945r824159_rule
     - TOSS-04-010430
     - DISA-STIG-TOSS-04-010430
     - high_severity
     - CCI-000366
+    - toss_stig
