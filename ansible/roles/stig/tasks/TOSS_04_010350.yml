@@ -25,7 +25,7 @@
           - uidzero.stdout_lines | length == 0
         fail_msg: "Another account has been found to have uid 0 in /etc/passwd besides root."
         quiet: true
-  ignore_errors: yes
+  ignore_errors: true
   when:
     - toss_04_010350 | bool
   tags:

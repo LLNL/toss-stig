@@ -23,7 +23,7 @@
     - name: TOSS-04-010430 - check if gdm package is installed
       ansible.builtin.shell: "rpm -qa | grep gdm"
       register: gdm_package
-      ignore_errors: yes
+      ignore_errors: true
       changed_when: false
       check_mode: false
       args:

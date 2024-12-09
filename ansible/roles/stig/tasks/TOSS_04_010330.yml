@@ -47,13 +47,14 @@
   tags:
     - toss_stig
 - name: TOSS-04-010330 - fail if either nsswitch or resolv file does not exist
-  ansible.builtin.fail:
-    msg: "/etc/nsswitch.conf and/or /etc/resolv.conf does not exist. TOSS-04-010330 STIG SSCL check failed."
-  when: (not nsswitch_check.stat.exists) or (not resolv_check.stat.exists)
-  ignore_errors: yes
+  ansible.builtin.assert:
+    that:
+      - (not nsswitch_check.stat.exists) or (not resolv_check.stat.exists)
+    fail_msg: "/etc/nsswitch.conf and/or /etc/resolv.conf does not exist. TOSS-04-010330 STIG SSCL check failed."
+    quiet: true
+  ignore_errors: true
   when:
     - toss_04_010330 | bool
-    - (not nsswitch_check.stat.exists) or (not resolv_check.stat.exists)
   tags:
     - toss_stig
 
@@ -94,9 +95,9 @@
         fail_msg: "Configure the operating system to use two or more name servers for DNS resolution"
         quiet: true
       when:
-          - dns_entry.rc == 0
-          - num_name_servers.stdout is defined
-  ignore_errors: yes
+        - dns_entry.rc == 0
+        - num_name_servers.stdout is defined
+  ignore_errors: true
   when:
     - toss_04_010330 | bool
     - nsswitch_check.stat.exists
