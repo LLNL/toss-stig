@@ -36,16 +36,12 @@
   register: nsswitch_check
   when:
     - toss_04_010330 | bool
-  tags:
-    - toss_stig
 - name: TOSS-04-010330 - verify resolv exists
   ansible.builtin.stat:
     path: /etc/resolv.conf
   register: resolv_check
   when:
     - toss_04_010330 | bool
-  tags:
-    - toss_stig
 - name: TOSS-04-010330 - fail if either nsswitch or resolv file does not exist
   ansible.builtin.assert:
     that:
@@ -55,8 +51,6 @@
   ignore_errors: true
   when:
     - toss_04_010330 | bool
-  tags:
-    - toss_stig
 
 - name: TOSS-04-010330 - For TOSS systems using Domain Name Servers (DNS) resolution, at least two name servers must be configured.
   block:
