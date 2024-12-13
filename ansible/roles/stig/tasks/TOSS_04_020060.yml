@@ -14,22 +14,18 @@
 - name: TOSS-04-020060 - TOSS duplicate User IDs (UIDs) must not exist for interactive users.
   block:
     - name: TOSS-04-020060 - Verify no users have the same UUID
-      ansible.builtin.command: "awk -F ':' 'list[$3]++{print $1,$3}' /etc/passwd"
-      failed_when: all_dupe_uuid.rc not in [0,1]
+      command: "awk -F ':' 'list[$3]++{print $1,$3}' /etc/passwd" # This does not print the first user with a duplicate UID
+      failed_when: all_dupe_uuid.rc not in [0,1,2]
       changed_when: false
       check_mode: false
       register: all_dupe_uuid
-    - name: TOSS-04-020060 - Display user(s) that have a duplicated UID
-      ansible.builtin.debug:
-        var: all_dupe_uuid.stdout_lines
-        verbosity: 1
-      when: all_dupe_uuid.stdout_lines | length > 0
-    - name: TOSS-04-020060 - Fail if there are duplicates
+    - name: TOSS-04-020060 - display user(s) that have a duplicated UID
       ansible.builtin.assert:
         that:
+          - all_dupe_uuid.stdout_lines is defined
           - all_dupe_uuid.stdout_lines | length == 0
-        fail_msg: "The above user(s) have the same UID as another user."
-        quiet: true
+        fail_msg: "The following user(s) have the same UID as another user: {{ all_dupe_uuid.stdout_lines }}"
+      ignore_errors: true
   when:
     - toss_04_020060 | bool
   tags:
