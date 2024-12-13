@@ -21,6 +21,7 @@
       ansible.builtin.command: 'grep "^[^#].*maxlogins" /etc/security/limits.conf /etc/security/limits.d/*.conf'
       register: maxlogins
       failed_when: false
+      changed_when: false
       check_mode: false
     - name: TOSS-04-020010 - Ensure maxlogins is set to 256 or lower
       ansible.builtin.lineinfile:

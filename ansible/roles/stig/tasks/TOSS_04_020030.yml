@@ -19,10 +19,11 @@
       ansible.builtin.command: 'grep -r idle-delay=uint32 /etc/dconf/'
       register: uint32
       failed_when: false
+      changed_when: false
       check_mode: false
     - name: TOSS-04-020030 - Set GNOME3 Screensaver Inactivity Timeout
       community.general.ini_file:
-        dest: /etc/dconf/db/local.d/00-screensaver #TODO: grab filename from previous task if the grep was successful. It's possible this setting is set in a different filename
+        dest: /etc/dconf/db/local.d/00-screensaver # TODO: grab filename from previous task if the grep was successful. It's possible this setting is set in a different filename
         section: org/gnome/desktop/session
         option: idle-delay
         value: uint32 {{ inactivity_timeout_value }}

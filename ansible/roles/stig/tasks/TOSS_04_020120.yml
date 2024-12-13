@@ -18,6 +18,7 @@
       ansible.builtin.command: "grep '^INACTIVE=' /etc/default/useradd"
       register: useradd_inactive
       failed_when: false
+      changed_when: false
       check_mode: false
     - name: TOSS-04-020120 - check value of 'INACTIVE' setting
       ansible.builtin.lineinfile:

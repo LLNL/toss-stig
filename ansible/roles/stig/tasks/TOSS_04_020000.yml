@@ -24,6 +24,7 @@
       ansible.builtin.command: egrep '^\s*deny\s*=|^\s*fail_interval\s*=' /etc/security/faillock.conf
       register: faillock
       failed_when: false
+      changed_when: false
       check_mode: false
     - name: TOSS-04-020000 - Ensure a maximum number of invalid login attempts
       ansible.builtin.lineinfile:
