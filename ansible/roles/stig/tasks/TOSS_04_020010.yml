@@ -16,14 +16,23 @@
 
 
 - name: TOSS-04-020010 - TOSS must limit the number of concurrent sessions to 256 for all accounts and/or account types.
-  ansible.builtin.lineinfile:
-    state: present
-    dest: /etc/security/limits.conf
-    insertbefore: ^# End of file
-    regexp: ^#?\*.*maxlogins
-    line: '*          hard    maxlogins     {{ max_concurrent_login_sessions }}'
-    create: true
-    mode: '0644'
+  block:
+    - name: TOSS-04-020010 - check maxlogins line
+      ansible.builtin.command: 'grep "^[^#].*maxlogins" /etc/security/limits.conf /etc/security/limits.d/*.conf'
+      register: maxlogins
+      failed_when: false
+      check_mode: false
+    - name: TOSS-04-020010 - Ensure maxlogins is set to 256 or lower
+      ansible.builtin.lineinfile:
+        state: present
+        path: /etc/security/limits.conf
+        regexp: ^#?\*.*maxlogins
+        line: '*          hard    maxlogins     {{ max_concurrent_login_sessions }}'
+        create: true
+        mode: '644'
+      when:
+        - maxlogins.stdout is defined
+        - (maxlogins.stdout == "") or (maxlogins.stdout_lines is search('maxlogins\s+25[7-9]')) or (maxlogins.stdout_lines is search('maxlogins\s+2[6-9][0-9]')) or (maxlogins.stdout_lines is search('maxlogins\s+[3-9][0-9][0-9]')) or (maxlogins.stdout_lines is search('maxlogins\s+[1-9]+[0-9]{3,}'))
   when:
     - toss_04_020010 | bool
   tags:

@@ -22,9 +22,33 @@
 
 
 - name: TOSS-04-020150 - TOSS must reveal error messages only to authorized users.
-  ansible.builtin.file:
-    path: /var/log/messages
-    mode: '0640'
+  block:
+    - name: TOSS-04-020150 - register permissions of /var/log/messages
+      ansible.builtin.file:
+        path: /var/log/messages
+        mode: '640'
+        owner: root
+      register: var_msg
+    - name: TOSS-04-020150 - verify permissions for /var/log/messages
+      ansible.builtin.file:
+        path: /var/log/messages
+        mode: '640'
+        owner: root
+      when:
+        - (var_msg.mode is search('064[1-7]')) or (var_msg.mode is search('06[5-7][0-7]')) or (var_msg.mode is search('07[0-7]{2}')) or (var_msg.owner != "root")
+    - name: TOSS-04-020150 - register permissions for /var/log/
+      ansible.builtin.file:
+        path: /var/log
+        mode: '755'
+        owner: root
+      register: var_log_dir
+    - name: TOSS-04-020150 - verify permissions for /var/log/
+      ansible.builtin.file:
+        path: /var/log
+        mode: '755'
+        owner: root
+      when:
+        - (var_log_dir.mode is search('07[6-7][0-7]')) or (var_log_dir.mode is search('07{2}[0-7]')) or (var_log_dir.owner != "root")
   when:
     - toss_04_020150 | bool
   tags:

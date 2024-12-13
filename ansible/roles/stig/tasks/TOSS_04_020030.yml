@@ -15,15 +15,24 @@
 
 - name: TOSS-04-020030 - TOSS must automatically lock graphical user sessions after 15 minutes of inactivity.
   block:
+    - name: TOSS-04-020030 - check uint32 value
+      ansible.builtin.command: 'grep -r idle-delay=uint32 /etc/dconf/'
+      register: uint32
+      failed_when: false
+      check_mode: false
     - name: TOSS-04-020030 - Set GNOME3 Screensaver Inactivity Timeout
       community.general.ini_file:
-        dest: /etc/dconf/db/local.d/00-screensaver
+        dest: /etc/dconf/db/local.d/00-screensaver #TODO: grab filename from previous task if the grep was successful. It's possible this setting is set in a different filename
         section: org/gnome/desktop/session
         option: idle-delay
         value: uint32 {{ inactivity_timeout_value }}
         create: true
         no_extra_spaces: true
         mode: '0644'
+      when:
+        - uint32.stdout is defined
+        - uint32.stdout_lines is not search('.*idle-delay=uint32\s+900')
+        - (uint32.stdout == "") or (uint32.stdout_lines is search('.*idle-delay=uint32\s+0')) or (uint32.stdout_lines is search('.*idle-delay=uint32\s+90[1-9]')) or (uint32.stdout_lines is search('.*idle-delay=uint32\s+9[1-9][0-9]')) or (uint32.stdout_lines is search('.*idle-delay=uint32\s+[1-9][0-9]{3,}')) or (uint32.stdout_lines is search('.*#\s*idle-delay=uint32'))
     - name: TOSS-04-020030 - Dconf Update
       ansible.builtin.command: dconf update
       register: update_output
