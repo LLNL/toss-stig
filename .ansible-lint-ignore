@@ -10,5 +10,5 @@ ansible/roles/stig/tasks/TOSS_04_030900.yml command-instead-of-shell
 ansible/roles/stig/tasks/TOSS_04_030900.yml risky-shell-pipe
 
 # the following ignore errors so the task can show the TOSS STIG item failed but will continue the playbook running
-ansible/roles/stig/tasks/TOSS_04_020060.yml ignore_errors
-ansible/roles/stig/tasks/TOSS_04_020210.yml ignore_errors
+ansible/roles/stig/tasks/TOSS_04_020060.yml ignore-errors
+ansible/roles/stig/tasks/TOSS_04_020210.yml ignore-errors
