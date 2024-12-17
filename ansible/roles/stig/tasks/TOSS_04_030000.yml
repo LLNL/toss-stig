@@ -17,7 +17,7 @@
 
 - name: TOSS-04-030000 - TOSS must generate audit records for all account creations, modifications, disabling, and termination events that affect /etc/shadow.
   ansible.builtin.lineinfile:
-    path: /etc/audit/rules.d/audit.rules
+    path: /etc/audit/audit.rules
     line: -w /etc/shadow -p wa -k identity
   notify: Build auditd rules
   when:

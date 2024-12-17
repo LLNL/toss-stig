@@ -16,9 +16,19 @@
 
 
 - name: TOSS-04-030090 - TOSS must take appropriate action when an audit processing failure occurs.
-  ansible.builtin.lineinfile:
-    path: /etc/audit/auditd.conf
-    line: disk_error_action = HALT
+  block:
+    - name: get value
+      ansible.builtin.lineinfile:
+        path: /etc/audit/auditd.conf
+        line: disk_error_action = HALT
+        validate: 'grep disk_error_action %s'
+      register: disk_error_action
+    - name: verify value
+      ansible.builtin.lineinfile:
+        path: /etc/audit/auditd.conf
+        line: disk_error_action = HALT
+      when:
+        - (disk_error_action.msg is not search('.*SYSLOG.*')) or (disk_error_action.msg is not search('.*SINGLE.*')) or (disk_error_action.msg is not search('.*HALT.*'))
   when:
     - toss_04_030090 | bool
   tags:
