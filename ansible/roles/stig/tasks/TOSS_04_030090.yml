@@ -17,13 +17,13 @@
 
 - name: TOSS-04-030090 - TOSS must take appropriate action when an audit processing failure occurs.
   block:
-    - name: get value
+    - name: TOSS-04-030090 - see setting for disk_error_action
       ansible.builtin.lineinfile:
         path: /etc/audit/auditd.conf
         line: disk_error_action = HALT
         validate: 'grep disk_error_action %s'
       register: disk_error_action
-    - name: verify value
+    - name: TOSS-04-030090 - verify setting for disk_error_action is an approved value
       ansible.builtin.lineinfile:
         path: /etc/audit/auditd.conf
         line: disk_error_action = HALT
