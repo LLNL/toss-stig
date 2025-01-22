@@ -21,13 +21,13 @@
 - name: TOSS-04-010430 - TOSS must not allow an unattended or automatic logon to the system.
   block:
     - name: TOSS-04-010430 - check if gdm package is installed
-      ansible.builtin.shell: "rpm -qa | grep gdm"
+      ansible.builtin.package:
+        name: gdm
+        state: present
       register: gdm_package
       ignore_errors: true
       changed_when: false
-      check_mode: false
-      args:
-        warn: false
+      check_mode: true
     - name: TOSS-04-010430 - check TOSS doesn't allow an unattended or automatic logon to the system
       ansible.builtin.lineinfile:
         create: true
