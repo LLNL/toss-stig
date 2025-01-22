@@ -60,14 +60,14 @@
       ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/opensshserver.config
         regexp: '^#?CRYPTO_POLICY=\S+'
-        replace: "CRYPTO_POLICY='-oCiphers={{ sshd_approved_ciphers }}"
-        mode: '0644'
-    - name: 'TOSS-04-010140 - Set crypto policy in openssh.config'
+        replace: "CRYPTO_POLICY='-oCiphers={{ sshd_approved_ciphers }}'"
+        mode: '0600'
+    - name: TOSS-04-010140 - Set crypto policy in openssh.config
       ansible.builtin.replace:
         path: /etc/crypto-policies/back-ends/openssh.config
         regexp: '^#?Ciphers.*$'
         replace: 'Ciphers {{ sshd_approved_ciphers }}'
-        mode: '0644'
+        mode: '0600'
   when:
     - toss_04_010140 | bool
   tags:

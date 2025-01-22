@@ -32,33 +32,18 @@
         path: /etc/chrony/chrony.conf
         create: true
         regexp: maxpoll 16
-        line: server tick.usno.navy.mil iburst maxpoll 16
+        line: server {{ authoritative_ntp_server }} iburst maxpoll 16
         state: present
         mode: '0600'
-    - name: TOSS-04-010180 - Check time source - tick.usno.navy.mil
+    - name: TOSS-04-010180 - Check time source
       ansible.builtin.lineinfile:
         path: /etc/chrony.conf
         create: true
-        regexp: server tick.usno.navy.mil iburst maxpoll 16
-        line: server tick.usno.navy.mil iburst maxpoll 16
+        regexp: server {{ item }} iburst maxpoll 16
+        line: server {{ item }} iburst maxpoll 16
         state: present
         mode: '0600'
-    - name: TOSS-04-010180 - Check time source - tock.usno.navy.mil
-      ansible.builtin.lineinfile:
-        path: /etc/chrony.conf
-        create: true
-        regexp: server tock.usno.navy.mil iburst maxpoll 16
-        line: server tock.usno.navy.mil iburst maxpoll 16
-        state: present
-        mode: '0600'
-    - name: TOSS-04-010180 - Check time source - ntp2.usno.navy.mil
-      ansible.builtin.lineinfile:
-        path: /etc/chrony.conf
-        create: true
-        regexp: server ntp2.usno.navy.mil iburst maxpoll 16
-        line: server ntp2.usno.navy.mil iburst maxpoll 16
-        state: present
-        mode: '0600'
+      loop: "{{ ntp_servers }}"
   when:
     - toss_04_010180 | bool
   tags:

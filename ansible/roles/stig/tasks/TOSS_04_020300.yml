@@ -38,3 +38,4 @@
     - CCI-000366
     - DISA-STIG-RHEL-08-010730
     - user_permissions
+    - manual

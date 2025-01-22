@@ -8,3 +8,9 @@ ansible/roles/stig/tasks/TOSS_04_020160.yml fqcn[action-core]
 # below rules are ignored in order to grep the appropriate configuration asked in TOSS STIG item 030900 since using a ansible task shell module does not allow a pipe command
 ansible/roles/stig/tasks/TOSS_04_030900.yml command-instead-of-shell
 ansible/roles/stig/tasks/TOSS_04_030900.yml risky-shell-pipe
+
+# below rules ignore "failed_when" so when tasks fail, the ansible playbook will continue
+ansible/roles/stig/tasks/TOSS_04_010330.yml ignore-errors
+ansible/roles/stig/tasks/TOSS_04_010350.yml ignore-errors
+ansible/roles/stig/tasks/TOSS_04_010370.yml ignore-errors
+ansible/roles/stig/tasks/TOSS_04_010430.yml ignore-errors
